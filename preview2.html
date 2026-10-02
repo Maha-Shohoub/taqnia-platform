@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="دليل MySQL الشامل من إعداد الكاتبة والمهندسة مها شهوب - SQL، قواعد البيانات، JOIN، الفهارس، المعاملات، الأمان، الأداء، APIs، VB.NET، PHP، Python، C#، Java والمشاريع العملية.">
+<meta name="author" content="مها شهوب">
+<title>دليل MySQL الشامل | مها شهوب</title>
+<style>
+:root{--bg:#eef3f9;--card:#fff;--text:#172033;--muted:#637087;--primary:#1677c8;--primary2:#0b4f88;--border:#d8e1ec;--code:#111827;--codeText:#e5eef9;--shadow:0 8px 28px rgba(15,45,75,.08);--nav:#fff}
+[data-theme="dark"]{--bg:#0b1220;--card:#111b2d;--text:#e8eef8;--muted:#a8b5c8;--primary:#48a9ff;--primary2:#1677c8;--border:#263750;--code:#07101d;--codeText:#dbeafe;--nav:#0e1727;--shadow:0 8px 28px rgba(0,0,0,.25)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:"Segoe UI",Tahoma,Arial,sans-serif;line-height:1.85}
+.top{position:fixed;top:0;right:0;left:0;height:68px;background:var(--nav);border-bottom:1px solid var(--border);z-index:1000;display:flex;align-items:center;gap:14px;padding:0 22px;box-shadow:0 3px 15px rgba(0,0,0,.04)}
+.logo{width:67px;height:54px;border-radius:50%;display:grid;place-items:center;}
+.brand{font-weight:800;font-size:18px}.brand small{display:block;color:var(--muted);font-size:11px;font-weight:500;line-height:1.2}
+.top-actions{margin-right:auto;display:flex;gap:8px}.btn{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:10px;padding:9px 13px;cursor:pointer;font-size:14px}.btn:hover{border-color:var(--primary);color:var(--primary)}
+.layout{display:flex;max-width:1500px;margin:auto;padding-top:68px}
+aside{width:300px;position:fixed;top:68px;bottom:0;right:max(0px,calc((100vw - 1500px)/2));background:var(--nav);border-left:1px solid var(--border);padding:20px 15px;overflow:auto}
+.search{width:100%;padding:12px 13px;border:1px solid var(--border);border-radius:12px;background:var(--card);color:var(--text);outline:none;margin-bottom:14px}.search:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(22,119,200,.12)}
+.nav-title{font-weight:800;margin:8px 0 10px;color:var(--primary)}nav a{display:block;text-decoration:none;color:var(--muted);padding:7px 10px;border-radius:8px;font-size:13px;margin:2px 0}nav a:hover,nav a.active{background:rgba(22,119,200,.1);color:var(--primary);font-weight:700}
+main{margin-right:300px;width:calc(100% - 300px);padding:32px 34px 70px}
+.hero{background:linear-gradient(135deg,#071b31,#0b4f88 55%,#1677c8);color:#fff;border-radius:20px;padding:36px;box-shadow:var(--shadow);margin-bottom:25px}.hero h1{font-size:34px;margin:0 0 8px}.hero p{margin:6px 0;opacity:.92}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}.badge{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.22);padding:6px 11px;border-radius:30px;font-size:12px}
+.progress-wrap{position:fixed;top:68px;right:0;left:0;height:3px;background:transparent;z-index:1001}.progress{height:100%;width:0;background:#3fb5ff}
+section{scroll-margin-top:88px;background:var(--card);border:1px solid var(--border);border-radius:17px;padding:27px;margin-bottom:22px;box-shadow:var(--shadow)}h2{margin:0 0 13px;color:var(--primary2);font-size:25px;border-right:5px solid var(--primary);padding-right:12px}[data-theme="dark"] h2{color:#70bdff}h3{color:var(--primary);margin-top:22px}p{margin:9px 0}.muted{color:var(--muted)}ul,ol{padding-right:25px}
+table{width:100%;border-collapse:collapse;margin:15px 0;font-size:14px;overflow:hidden;border-radius:10px}th,td{border:1px solid var(--border);padding:10px;text-align:right;vertical-align:top}th{background:rgba(22,119,200,.1);color:var(--primary2)}
+.code{position:relative;background:var(--code);color:var(--codeText);border-radius:12px;margin:15px 0;overflow:auto;direction:ltr;text-align:left}.code pre{margin:0;padding:19px;white-space:pre;min-width:max-content;font-family:Consolas,"Courier New",monospace;font-size:13px;line-height:1.65}.copy{position:absolute;top:8px;right:8px;border:1px solid #334155;background:#182538;color:#dbeafe;border-radius:7px;padding:5px 9px;cursor:pointer;font-size:12px}
+.note,.warn,.success{padding:13px 16px;border-radius:10px;margin:14px 0;border-right:4px solid var(--primary)}.note{background:rgba(22,119,200,.08)}.warn{border-color:#d08a00;background:rgba(208,138,0,.09)}.success{border-color:#16845a;background:rgba(22,132,90,.09)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:15px 0}.card{border:1px solid var(--border);border-radius:12px;padding:15px;background:var(--bg)}.card b{color:var(--primary)}.chip{display:inline-block;background:rgba(22,119,200,.1);color:var(--primary);padding:3px 8px;border-radius:15px;font-size:12px;margin:2px}
+code{background:rgba(22,119,200,.08);padding:2px 5px;border-radius:5px}footer{text-align:center;color:var(--muted);padding:30px 10px}.topbtn{position:fixed;bottom:20px;left:20px;width:45px;height:45px;border:0;border-radius:50%;background:var(--primary);color:#fff;font-size:20px;cursor:pointer;display:none;z-index:900}.menu{display:none}
+@media(max-width:950px){.menu{display:block}.layout{display:block}aside{display:none;position:fixed;right:0;width:300px;z-index:950;box-shadow:-8px 0 25px rgba(0,0,0,.12)}aside.open{display:block}main{margin:0;width:100%;padding:24px 15px 60px}.hero{padding:25px}.hero h1{font-size:27px}}
+@media(max-width:600px){.brand{font-size:15px}.top{padding:0 10px}.top-actions .btn:nth-child(2){display:none}section{padding:20px 15px}h2{font-size:21px}table{font-size:12px}.code pre{font-size:12px}}
+@media print{.top,aside,.progress-wrap,.topbtn{display:none!important}.layout,main{display:block;width:100%;margin:0;padding:0}section{box-shadow:none;break-inside:avoid}.hero{color:#000;background:#fff;border:1px solid #aaa}}
+</style>
+</head>
+<body>
+<div class="progress-wrap"><div class="progress" id="progress"></div></div>
+<header class="top">
+<button class="btn menu" onclick="toggleMenu()">☰</button>
+  <img src="IMG/آفاق المعرفة التقنية.png" class="logo">
+<div class="brand">منصة آفاق المعرفة التقنية<small>دليل MySQL الشامل</small></div>
+<div class="top-actions">
+<button class="btn" onclick="toggleTheme()">◐ الوضع</button>
+<button class="btn" onclick="window.print()">🖨 طباعة</button>
+</div>
+</header>
+<div class="layout">
+<aside id="side">
+<input class="search" id="search" placeholder="🔎 ابحث داخل الدليل..." oninput="filterNav()">
+<div class="nav-title">فهرس دليل MySQL</div>
+<nav id="nav"><a href="#start">ابدأ من هنا</a><a href="#s1">01 — مقدمة MySQL</a><a href="#s2">02 — قواعد البيانات العلائقية</a><a href="#s3">03 — تثبيت MySQL</a><a href="#s4">04 — MySQL Workbench</a><a href="#s5">05 — MySQL Shell</a><a href="#s6">06 — إنشاء وإدارة قواعد البيانات</a><a href="#s7">07 — الجداول</a><a href="#s8">08 — أنواع البيانات</a><a href="#s9">09 — Constraints</a><a href="#s10">10 — Primary Keys</a><a href="#s11">11 — Foreign Keys</a><a href="#s12">12 — العلاقات</a><a href="#s13">13 — INSERT</a><a href="#s14">14 — SELECT</a><a href="#s15">15 — WHERE</a><a href="#s16">16 — Operators</a><a href="#s17">17 — LIKE</a><a href="#s18">18 — ORDER BY</a><a href="#s19">19 — LIMIT وPagination</a><a href="#s20">20 — UPDATE</a><a href="#s21">21 — DELETE</a><a href="#s22">22 — ALTER TABLE</a><a href="#s23">23 — JOIN</a><a href="#s24">24 — GROUP BY</a><a href="#s25">25 — HAVING</a><a href="#s26">26 — Aggregate Functions</a><a href="#s27">27 — Subqueries</a><a href="#s28">28 — EXISTS</a><a href="#s29">29 — CASE</a><a href="#s30">30 — Views</a><a href="#s31">31 — Stored Procedures</a><a href="#s32">32 — Stored Functions</a><a href="#s33">33 — Triggers</a><a href="#s34">34 — Transactions</a><a href="#s35">35 — ACID</a><a href="#s36">36 — Isolation Levels</a><a href="#s37">37 — Locks وDeadlocks</a><a href="#s38">38 — Indexes</a><a href="#s39">39 — Composite Indexes</a><a href="#s40">40 — EXPLAIN</a><a href="#s41">41 — Query Optimization</a><a href="#s42">42 — Normalization</a><a href="#s43">43 — ERD</a><a href="#s44">44 — Character Sets</a><a href="#s45">45 — Collations</a><a href="#s46">46 — اللغة العربية وutf8mb4</a><a href="#s47">47 — JSON</a><a href="#s48">48 — CTE</a><a href="#s49">49 — Recursive CTE</a><a href="#s50">50 — Window Functions</a><a href="#s51">51 — FULLTEXT</a><a href="#s52">52 — Temporary Tables</a><a href="#s53">53 — Generated Columns</a><a href="#s54">54 — Users</a><a href="#s55">55 — GRANT وREVOKE</a><a href="#s56">56 — MySQL Security</a><a href="#s57">57 — SQL Injection</a><a href="#s58">58 — Prepared Statements</a><a href="#s59">59 — Backup</a><a href="#s60">60 — Restore</a><a href="#s61">61 — Binary Log</a><a href="#s62">62 — Replication</a><a href="#s63">63 — High Availability</a><a href="#s64">64 — Monitoring</a><a href="#s65">65 — Slow Query Log</a><a href="#s66">66 — Performance Schema</a><a href="#s67">67 — sys Schema</a><a href="#s68">68 — MySQL Shell</a><a href="#s69">69 — Docker</a><a href="#s70">70 — MySQL مع PHP</a><a href="#s71">71 — MySQL مع VB.NET</a><a href="#s72">72 — MySQL مع C#</a><a href="#s73">73 — MySQL مع ASP.NET</a><a href="#s74">74 — MySQL مع Python</a><a href="#s75">75 — MySQL مع Java</a><a href="#s76">76 — REST API + MySQL</a><a href="#s77">77 — CRUD</a><a href="#s78">78 — Connection Pooling</a><a href="#s79">79 — Architecture</a><a href="#s80">80 — مشاريع عملية</a><a href="#s81">81 — نظام الطلاب</a><a href="#s82">82 — نظام المكتبة</a><a href="#s83">83 — نظام المخزون</a><a href="#s84">84 — نظام الفواتير</a><a href="#s85">85 — نظام المستخدمين والصلاحيات</a><a href="#s86">86 — نظام API</a><a href="#s87">87 — تحسين الأداء</a><a href="#s88">88 — إدارة الخوادم</a><a href="#s89">89 — استكشاف الأخطاء</a><a href="#s90">90 — مرجع SQL السريع</a></nav>
+</aside>
+<main>
+<div class="hero">
+<h1>🐬 دليل MySQL الشامل</h1>
+<p>مرجع عملي واسع من أساسيات قواعد البيانات وSQL إلى العلاقات وJOIN والفهارس والمعاملات والأمان والأداء والنسخ الاحتياطي وReplication وربط MySQL بالتطبيقات والمشاريع العملية.</p>
+<p><b>إعداد الكاتبة والمهندسة: مها شهوب</b></p>
+<div class="badges">
+<span class="badge">MySQL</span><span class="badge">SQL</span><span class="badge">RDBMS</span>
+<span class="badge">InnoDB</span><span class="badge">MySQL Workbench</span><span class="badge">MySQL Shell</span>
+<span class="badge">VB.NET</span><span class="badge">PHP</span><span class="badge">ASP.NET</span>
+<span class="badge">Python</span><span class="badge">C#</span><span class="badge">Java</span>
+<span class="badge">REST API</span><span class="badge">Security</span><span class="badge">Performance</span>
+</div>
+</div>
+
+<section id="start">
+<h2>ابدأ من هنا</h2>
+<p>هذا المرجع يجمع MySQL من المستوى الأساسي إلى موضوعات التطوير والإدارة والأداء والأمان والتكامل مع لغات البرمجة. يمكنك استخدام البحث الجانبي للوصول إلى أي قسم.</p>
+<div class="grid">
+<div class="card"><b>للمبتدئ</b><br>ابدأ من 01 إلى 22 وتعلم SQL وتصميم الجداول وCRUD.</div>
+<div class="card"><b>للمطور</b><br>ركز على 23 إلى 58 ثم أقسام التكامل مع VB.NET وPHP وC# وPython وJava.</div>
+<div class="card"><b>لـDBA</b><br>ركز على 59 إلى 69 ثم النسخ الاحتياطي والمراقبة وReplication والتوافر العالي.</div>
+<div class="card"><b>للمشاريع</b><br>أقسام 76 إلى 90 تساعدك على بناء أنظمة فعلية.</div>
+</div>
+<div class="note"><b>ملاحظة مهمة:</b> بعض أوامر الإدارة والميزات تختلف حسب إصدار MySQL والبيئة. تحقق دائمًا من توثيق الإصدار المستخدم قبل تطبيق إعدادات الإنتاج.</div>
+</section>
+<section id="s1"><h2>01 — مقدمة MySQL</h2><p><b>MySQL</b> هو نظام إدارة قواعد بيانات علائقية <b>RDBMS</b> يستخدم لغة SQL لتخزين البيانات وتنظيمها والاستعلام عنها وإدارتها. يستخدم في المواقع والتطبيقات وأنظمة المؤسسات والـAPIs وتطبيقات سطح المكتب.</p>
+<div class="grid"><div class="card"><b>MySQL Server</b><br>محرك وخادم قاعدة البيانات.</div><div class="card"><b>SQL</b><br>لغة إنشاء البيانات والاستعلام عنها.</div><div class="card"><b>Database</b><br>حاوية للجداول والكائنات.</div><div class="card"><b>MySQL Workbench</b><br>أداة رسومية للإدارة والتطوير.</div></div>
+<div class="code"><button class="copy">نسخ</button><pre>CREATE DATABASE school;
+USE school;</pre></div></section><section id="s2"><h2>02 — قواعد البيانات العلائقية</h2><p>النموذج العلائقي ينظم البيانات في جداول مترابطة. يتكون الجدول من أعمدة وصفوف، وتربط المفاتيح الجداول ببعضها.</p>
+<table><tr><th>المفهوم</th><th>المعنى</th></tr><tr><td>Table</td><td>جدول البيانات</td></tr><tr><td>Column</td><td>خاصية أو حقل</td></tr><tr><td>Row</td><td>سجل</td></tr><tr><td>Primary Key</td><td>معرف فريد للسجل</td></tr><tr><td>Foreign Key</td><td>رابط إلى جدول آخر</td></tr></table></section><section id="s3"><h2>03 — تثبيت MySQL</h2><p>يمكن تشغيل MySQL عبر MySQL Server أو MySQL Installer أو XAMPP أو Docker، بحسب بيئة العمل. المنفذ الافتراضي الشائع هو <code>3306</code> ويمكن تغييره.</p>
+<div class="note"><b>نصيحة:</b> في المشاريع التعليمية يمكن استخدام XAMPP أو MySQL Installer، بينما البيئات الاحترافية قد تعتمد Docker أو تثبيتًا مباشرًا وإدارة مركزية.</div></section><section id="s4"><h2>04 — MySQL Workbench</h2><p>أداة رسومية تساعد على إنشاء قواعد البيانات والجداول وكتابة SQL وتصميم ERD وإدارة المستخدمين ومراقبة الخادم.</p>
+<ul><li>SQL Editor</li><li>Database Navigator</li><li>Modeling وERD</li><li>Import/Export</li><li>إدارة الحسابات والاتصالات</li></ul></section><section id="s5"><h2>05 — MySQL Shell</h2><p>أداة متقدمة للعمل مع MySQL وتدعم أوضاع SQL وJavaScript وPython، وتستخدم أيضًا في مهام الإدارة والـInnoDB Cluster والعمليات المتقدمة.</p>
+<div class="code"><button class="copy">نسخ</button><pre>mysqlsh
+\sql
+SELECT VERSION();</pre></div></section><section id="s6"><h2>06 — إنشاء وإدارة قواعد البيانات</h2><div class="code"><button class="copy">نسخ</button><pre>CREATE DATABASE IF NOT EXISTS school;
+SHOW DATABASES;
+USE school;
+DROP DATABASE school;</pre></div>
+<div class="warn"><b>تحذير:</b> DROP DATABASE يحذف قاعدة البيانات ومحتوياتها، لذلك يجب التأكد من وجود نسخة احتياطية قبل التنفيذ في نظام حقيقي.</div></section><section id="s7"><h2>07 — الجداول</h2><div class="code"><button class="copy">نسخ</button><pre>CREATE TABLE students (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(150),
+    age INT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);</pre></div>
+<p>الجدول هو الوحدة الأساسية لتخزين السجلات داخل قاعدة البيانات.</p></section><section id="s8"><h2>08 — أنواع البيانات</h2><table><tr><th>الفئة</th><th>أنواع مهمة</th></tr><tr><td>أعداد صحيحة</td><td>TINYINT, SMALLINT, MEDIUMINT, INT, BIGINT</td></tr><tr><td>عشرية</td><td>DECIMAL, NUMERIC, FLOAT, DOUBLE</td></tr><tr><td>نصوص</td><td>CHAR, VARCHAR, TEXT, MEDIUMTEXT, LONGTEXT</td></tr><tr><td>وقت</td><td>DATE, DATETIME, TIMESTAMP, TIME, YEAR</td></tr><tr><td>أخرى</td><td>BOOLEAN, JSON, ENUM, SET</td></tr></table>
+<div class="note"><b>للقيم المالية:</b> DECIMAL مناسب عادةً لأنه يمثل القيم العشرية بدقة عشرية.</div></section><section id="s9"><h2>09 — Constraints</h2><p>القيود تحافظ على سلامة البيانات.</p>
+<div class="grid"><div class="card"><b>PRIMARY KEY</b><br>معرف فريد.</div><div class="card"><b>FOREIGN KEY</b><br>ربط الجداول.</div><div class="card"><b>UNIQUE</b><br>منع التكرار.</div><div class="card"><b>NOT NULL</b><br>إجبار وجود قيمة.</div><div class="card"><b>DEFAULT</b><br>قيمة افتراضية.</div><div class="card"><b>CHECK</b><br>فرض شرط على البيانات.</div></div></section><section id="s10"><h2>10 — Primary Keys</h2><p>المفتاح الأساسي يميز كل صف ولا ينبغي أن يتكرر. يمكن أن يكون عمودًا واحدًا أو مفتاحًا مركبًا.</p>
+<div class="code"><button class="copy">نسخ</button><pre>id INT PRIMARY KEY AUTO_INCREMENT</pre></div></section><section id="s11"><h2>11 — Foreign Keys</h2><div class="code"><button class="copy">نسخ</button><pre>CREATE TABLE departments (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE employees (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    department_id INT,
+    FOREIGN KEY (department_id)
+        REFERENCES departments(id)
+);</pre></div></section><section id="s12"><h2>12 — العلاقات</h2><table><tr><th>العلاقة</th><th>مثال</th></tr><tr><td>One-to-One</td><td>مستخدم وملف شخصي</td></tr><tr><td>One-to-Many</td><td>قسم وعدة موظفين</td></tr><tr><td>Many-to-Many</td><td>طلاب ومقررات عبر جدول وسيط</td></tr></table>
+<div class="code"><button class="copy">نسخ</button><pre>Students
+   ↕
+Enrollments
+   ↕
+Courses</pre></div></section><section id="s13"><h2>13 — INSERT</h2><div class="code"><button class="copy">نسخ</button><pre>INSERT INTO students (name, age)
+VALUES ('Maha', 30);
+
+INSERT INTO students (name, age)
+VALUES
+('Ali', 25),
+('Sara', 22);</pre></div></section><section id="s14"><h2>14 — SELECT</h2><div class="code"><button class="copy">نسخ</button><pre>SELECT * FROM students;
+
+SELECT id, name, age
+FROM students;</pre></div>
+<p>يفضل في التطبيقات اختيار الأعمدة المطلوبة بدل الاعتماد على <code>SELECT *</code> عندما لا تكون كل الأعمدة مطلوبة.</p></section><section id="s15"><h2>15 — WHERE</h2><div class="code"><button class="copy">نسخ</button><pre>SELECT *
+FROM students
+WHERE age >= 18;
+
+SELECT *
+FROM students
+WHERE name = 'Maha';</pre></div></section><section id="s16"><h2>16 — Operators</h2><table><tr><th>الفئة</th><th>أمثلة</th></tr><tr><td>مقارنة</td><td>=, &lt;&gt;, &lt;, &gt;, &lt;=, &gt;=</td></tr><tr><td>منطقية</td><td>AND, OR, NOT</td></tr><tr><td>نطاق</td><td>BETWEEN</td></tr><tr><td>مجموعة</td><td>IN</td></tr><tr><td>نمط نصي</td><td>LIKE</td></tr><tr><td>قيمة</td><td>IS NULL / IS NOT NULL</td></tr></table></section><section id="s17"><h2>17 — LIKE</h2><div class="code"><button class="copy">نسخ</button><pre>SELECT *
+FROM students
+WHERE name LIKE 'Ma%';
+
+SELECT *
+FROM students
+WHERE name LIKE '_a%';</pre></div>
+<p><code>%</code> تمثل أي عدد من الأحرف، و<code>_</code> تمثل حرفًا واحدًا.</p></section><section id="s18"><h2>18 — ORDER BY</h2><div class="code"><button class="copy">نسخ</button><pre>SELECT *
+FROM students
+ORDER BY age ASC;
+
+SELECT *
+FROM students
+ORDER BY age DESC;</pre></div></section><section id="s19"><h2>19 — LIMIT وPagination</h2><div class="code"><button class="copy">نسخ</button><pre>SELECT *
+FROM students
+ORDER BY id
+LIMIT 20 OFFSET 0;
+
+SELECT *
+FROM students
+ORDER BY id
+LIMIT 20 OFFSET 20;</pre></div>
+<p>في البيانات الضخمة يمكن دراسة Keyset/Cursor Pagination لتجنب بعض مشاكل OFFSET الكبير.</p></section><section id="s20"><h2>20 — UPDATE</h2><div class="code"><button class="copy">نسخ</button><pre>UPDATE students
+SET age = 31
+WHERE id = 1;</pre></div>
+<div class="warn"><b>انتبه:</b> حذف WHERE من UPDATE قد يؤدي إلى تعديل جميع السجلات.</div></section><section id="s21"><h2>21 — DELETE</h2><div class="code"><button class="copy">نسخ</button><pre>DELETE FROM students
+WHERE id = 1;</pre></div>
+<p>أما DELETE بدون WHERE فيحذف جميع الصفوف. استخدمه بحذر.</p></section><section id="s22"><h2>22 — ALTER TABLE</h2><div class="code"><button class="copy">نسخ</button><pre>ALTER TABLE students
+ADD email VARCHAR(150);
+
+ALTER TABLE students
+MODIFY age SMALLINT;
+
+ALTER TABLE students
+RENAME COLUMN name TO full_name;</pre></div></section><section id="s23"><h2>23 — JOIN</h2><div class="code"><button class="copy">نسخ</button><pre>SELECT
+    e.name AS employee_name,
+    d.name AS department_name
+FROM employees e
+INNER JOIN departments d
+    ON e.department_id = d.id;</pre></div>
+<table><tr><th>JOIN</th><th>الفكرة</th></tr><tr><td>INNER JOIN</td><td>السجلات المطابقة فقط.</td></tr><tr><td>LEFT JOIN</td><td>كل سجلات الجدول الأيسر مع المطابق.</td></tr><tr><td>RIGHT JOIN</td><td>كل سجلات الجدول الأيمن مع المطابق.</td></tr><tr><td>CROSS JOIN</td><td>كل التركيبات الممكنة بين الصفوف.</td></tr></table></section><section id="s24"><h2>24 — GROUP BY</h2><div class="code"><button class="copy">نسخ</button><pre>SELECT department_id, COUNT(*) AS employee_count
+FROM employees
+GROUP BY department_id;</pre></div></section><section id="s25"><h2>25 — HAVING</h2><div class="code"><button class="copy">نسخ</button><pre>SELECT department_id, COUNT(*) AS employee_count
+FROM employees
+GROUP BY department_id
+HAVING COUNT(*) > 5;</pre></div>
+<p>WHERE تصفي الصفوف قبل التجميع، بينما HAVING تصفي نتائج التجميع.</p></section><section id="s26"><h2>26 — Aggregate Functions</h2><table><tr><th>الدالة</th><th>الاستخدام</th></tr><tr><td>COUNT()</td><td>عدد الصفوف/القيم</td></tr><tr><td>SUM()</td><td>المجموع</td></tr><tr><td>AVG()</td><td>المتوسط</td></tr><tr><td>MIN()</td><td>أصغر قيمة</td></tr><tr><td>MAX()</td><td>أكبر قيمة</td></tr></table>
+<div class="code"><button class="copy">نسخ</button><pre>SELECT
+    COUNT(*) AS total,
+    AVG(age) AS average_age,
+    MIN(age) AS min_age,
+    MAX(age) AS max_age
+FROM students;</pre></div></section><section id="s27"><h2>27 — Subqueries</h2><div class="code"><button class="copy">نسخ</button><pre>SELECT *
+FROM students
+WHERE age > (
+    SELECT AVG(age)
+    FROM students
+);</pre></div>
+<p>الاستعلامات الفرعية مفيدة، لكن أحيانًا يمكن إعادة صياغتها باستخدام JOIN أو CTE للحصول على وضوح أو أداء أفضل بحسب الحالة.</p></section><section id="s28"><h2>28 — EXISTS</h2><div class="code"><button class="copy">نسخ</button><pre>SELECT *
+FROM departments d
+WHERE EXISTS (
+    SELECT 1
+    FROM employees e
+    WHERE e.department_id = d.id
+);</pre></div></section><section id="s29"><h2>29 — CASE</h2><div class="code"><button class="copy">نسخ</button><pre>SELECT
+    name,
+    age,
+    CASE
+        WHEN age >= 18 THEN 'Adult'
+        ELSE 'Minor'
+    END AS category
+FROM students;</pre></div></section><section id="s30"><h2>30 — Views</h2><p>الـView عبارة عن استعلام محفوظ يمكن استخدامه كواجهة منطقية للبيانات.</p>
+<div class="code"><button class="copy">نسخ</button><pre>CREATE VIEW adult_students AS
+SELECT id, name, age
+FROM students
+WHERE age >= 18;
+
+SELECT * FROM adult_students;</pre></div></section><section id="s31"><h2>31 — Stored Procedures</h2><div class="code"><button class="copy">نسخ</button><pre>DELIMITER //
+
+CREATE PROCEDURE GetStudents()
+BEGIN
+    SELECT * FROM students;
+END //
+
+DELIMITER ;
+
+CALL GetStudents();</pre></div></section><section id="s32"><h2>32 — Stored Functions</h2><div class="code"><button class="copy">نسخ</button><pre>CREATE FUNCTION AddNumbers(a INT, b INT)
+RETURNS INT
+DETERMINISTIC
+RETURN a + b;
+
+SELECT AddNumbers(5, 3);</pre></div></section><section id="s33"><h2>33 — Triggers</h2><p>الـTrigger ينفذ تلقائيًا عند حدث مثل INSERT أو UPDATE أو DELETE.</p>
+<div class="code"><button class="copy">نسخ</button><pre>CREATE TRIGGER before_student_insert
+BEFORE INSERT ON students
+FOR EACH ROW
+SET NEW.name = TRIM(NEW.name);</pre></div>
+<div class="warn">استخدم Triggers باعتدال لأنها تضيف سلوكًا تلقائيًا قد يصعب تتبعه في المشاريع الكبيرة.</div></section><section id="s34"><h2>34 — Transactions</h2><div class="code"><button class="copy">نسخ</button><pre>START TRANSACTION;
+
+UPDATE accounts
+SET balance = balance - 100
+WHERE id = 1;
+
+UPDATE accounts
+SET balance = balance + 100
+WHERE id = 2;
+
+COMMIT;
+
+-- عند الخطأ:
+-- ROLLBACK;</pre></div></section><section id="s35"><h2>35 — ACID</h2><div class="grid"><div class="card"><b>Atomicity</b><br>المعاملة كوحدة واحدة.</div><div class="card"><b>Consistency</b><br>الحفاظ على سلامة القواعد.</div><div class="card"><b>Isolation</b><br>تنظيم تداخل المعاملات.</div><div class="card"><b>Durability</b><br>استمرار البيانات بعد نجاح المعاملة.</div></div></section><section id="s36"><h2>36 — Isolation Levels</h2><table><tr><th>المستوى</th><th>الفكرة</th></tr><tr><td>READ UNCOMMITTED</td><td>أقل عزلًا.</td></tr><tr><td>READ COMMITTED</td><td>قراءة البيانات الملتزم بها.</td></tr><tr><td>REPEATABLE READ</td><td>يحافظ على اتساق القراءة ضمن المعاملة وفق سلوك المحرك.</td></tr><tr><td>SERIALIZABLE</td><td>أعلى عزلًا عادةً مع تكلفة تزامن أعلى.</td></tr></table>
+<p>يجب فهم تأثير المستوى على Dirty Reads وNon-repeatable Reads وPhantom Reads والتزامن.</p></section><section id="s37"><h2>37 — Locks وDeadlocks</h2><p>توجد آليات قفل مختلفة مثل Shared Locks وExclusive Locks وRow Locks وMetadata Locks. يحدث Deadlock عندما تنتظر معاملات بعضها بعضًا بطريقة تمنع التقدم.</p>
+<div class="note">صمم المعاملات قصيرة قدر الإمكان، ووحّد ترتيب الوصول إلى الموارد، وتعامل مع احتمالية إعادة المحاولة في التطبيقات التي تحتاج ذلك.</div></section><section id="s38"><h2>38 — Indexes</h2><div class="code"><button class="copy">نسخ</button><pre>CREATE INDEX idx_students_name
+ON students(name);</pre></div>
+<p>الفهرس قد يسرع البحث والفرز والربط، لكنه يستهلك مساحة ويضيف تكلفة لبعض عمليات الكتابة.</p></section><section id="s39"><h2>39 — Composite Indexes</h2><div class="code"><button class="copy">نسخ</button><pre>CREATE INDEX idx_name_age
+ON students(name, age);</pre></div>
+<p>ترتيب الأعمدة داخل الفهرس المركب مهم، ويجب تصميمه وفق الاستعلامات الفعلية.</p></section><section id="s40"><h2>40 — EXPLAIN</h2><div class="code"><button class="copy">نسخ</button><pre>EXPLAIN
+SELECT *
+FROM students
+WHERE name = 'Maha';
+
+EXPLAIN ANALYZE
+SELECT *
+FROM students
+WHERE name = 'Maha';</pre></div>
+<p>استخدم النتائج لفهم خطة التنفيذ والفهارس والصفوف التي يتوقع MySQL فحصها.</p></section><section id="s41"><h2>41 — Query Optimization</h2><ul><li>اختيار الأعمدة المطلوبة بدل SELECT * عندما يكون ذلك مناسبًا.</li><li>إنشاء فهارس مبنية على الاستعلامات الفعلية.</li><li>تحليل EXPLAIN وEXPLAIN ANALYZE.</li><li>تقليل حجم البيانات المنقولة.</li><li>تحسين JOIN وWHERE.</li><li>استخدام Pagination.</li><li>مراقبة الاستعلامات البطيئة.</li></ul></section><section id="s42"><h2>42 — Normalization</h2><p>التطبيع يقلل تكرار البيانات ومشاكل الإدخال والتحديث والحذف.</p>
+<table><tr><th>المستوى</th><th>الفكرة العامة</th></tr><tr><td>1NF</td><td>قيم ذرية وبنية مناسبة للحقول.</td></tr><tr><td>2NF</td><td>إزالة الاعتماد الجزئي في الجداول ذات المفاتيح المركبة.</td></tr><tr><td>3NF</td><td>إزالة الاعتماد الانتقالي غير الضروري.</td></tr><tr><td>BCNF</td><td>صيغة أكثر صرامة من التطبيع.</td></tr></table>
+<p>قد تستخدم Denormalization بصورة مدروسة لأسباب أداء أو تقارير.</p></section><section id="s43"><h2>43 — ERD</h2><p>مخطط الكيانات والعلاقات يوضح Entities وAttributes وRelationships.</p>
+<div class="code"><button class="copy">نسخ</button><pre>Students
+   1
+   |
+   N
+Enrollments
+   N
+   |
+   1
+Courses</pre></div></section><section id="s44"><h2>44 — Character Sets</h2><p>Character Set يحدد كيفية تمثيل النصوص. في التطبيقات الحديثة متعددة اللغات يعد <code>utf8mb4</code> خيارًا شائعًا ومناسبًا.</p>
+<div class="code"><button class="copy">نسخ</button><pre>CREATE DATABASE school
+CHARACTER SET utf8mb4;</pre></div></section><section id="s45"><h2>45 — Collations</h2><p>Collation تحدد قواعد مقارنة وترتيب النصوص. اختيارها يؤثر في المقارنة والترتيب وحساسية حالة الأحرف وبعض القواعد اللغوية.</p>
+<div class="code"><button class="copy">نسخ</button><pre>CREATE DATABASE school
+CHARACTER SET utf8mb4
+COLLATE utf8mb4_0900_ai_ci;</pre></div>
+<div class="note">تحقق من Collation المتاحة في إصدار MySQL الذي تستخدمه، لأن الخيارات تختلف حسب الإصدار.</div></section><section id="s46"><h2>46 — اللغة العربية وutf8mb4</h2><p>للتعامل مع العربية تأكد من توافق الترميز بين قاعدة البيانات والجدول والاتصال والتطبيق. لا يكفي تغيير ترميز الجدول فقط إذا كان الاتصال نفسه مضبوطًا بطريقة غير صحيحة.</p>
+<div class="code"><button class="copy">نسخ</button><pre>CREATE TABLE articles (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(255) NOT NULL,
+    content TEXT
+) CHARACTER SET utf8mb4;</pre></div></section><section id="s47"><h2>47 — JSON</h2><div class="code"><button class="copy">نسخ</button><pre>CREATE TABLE products (
+    id INT PRIMARY KEY,
+    data JSON
+);
+
+INSERT INTO products (id, data)
+VALUES (1, '{"name":"Laptop","ram":16}');</pre></div>
+<p>JSON مناسب لبعض البيانات المرنة، لكن لا ينبغي استخدامه تلقائيًا بدل التصميم العلائقي عندما تكون البيانات الأساسية منظمة.</p></section><section id="s48"><h2>48 — CTE</h2><div class="code"><button class="copy">نسخ</button><pre>WITH adult_students AS (
+    SELECT *
+    FROM students
+    WHERE age >= 18
+)
+SELECT *
+FROM adult_students;</pre></div></section><section id="s49"><h2>49 — Recursive CTE</h2><p>Recursive CTE مفيد للبيانات الهرمية مثل الموظفين والمديرين أو الأشجار.</p>
+<div class="code"><button class="copy">نسخ</button><pre>WITH RECURSIVE numbers AS (
+    SELECT 1 AS n
+    UNION ALL
+    SELECT n + 1
+    FROM numbers
+    WHERE n &lt; 5
+)
+SELECT * FROM numbers;</pre></div></section><section id="s50"><h2>50 — Window Functions</h2><div class="code"><button class="copy">نسخ</button><pre>SELECT
+    name,
+    age,
+    ROW_NUMBER() OVER (ORDER BY age DESC) AS row_num,
+    RANK() OVER (ORDER BY age DESC) AS ranking
+FROM students;</pre></div>
+<p>ومن الدوال المهمة: ROW_NUMBER وRANK وDENSE_RANK وLAG وLEAD ودوال التجميع مع OVER.</p></section><section id="s51"><h2>51 — FULLTEXT</h2><div class="code"><button class="copy">نسخ</button><pre>CREATE FULLTEXT INDEX ft_articles
+ON articles(title, content);
+
+SELECT *
+FROM articles
+WHERE MATCH(title, content)
+AGAINST('database');</pre></div>
+<p>يستخدم للبحث النصي المتخصص، مع مراعاة إعدادات اللغة ومحرك التخزين وطبيعة المحتوى.</p></section><section id="s52"><h2>52 — Temporary Tables</h2><div class="code"><button class="copy">نسخ</button><pre>CREATE TEMPORARY TABLE temp_students (
+    id INT,
+    name VARCHAR(100)
+);
+
+INSERT INTO temp_students VALUES (1, 'Maha');
+
+SELECT * FROM temp_students;</pre></div>
+<p>الجداول المؤقتة مرتبطة عادةً بجلسة الاتصال وتفيد في العمليات الوسيطة.</p></section><section id="s53"><h2>53 — Generated Columns</h2><p>يمكن إنشاء عمود مشتق من تعبير أو أعمدة أخرى. يفيد في بعض حالات التصفية والفهرسة وتبسيط الوصول إلى قيم مشتقة.</p>
+<div class="code"><button class="copy">نسخ</button><pre>CREATE TABLE products (
+    price DECIMAL(10,2),
+    quantity INT,
+    total DECIMAL(12,2)
+      GENERATED ALWAYS AS (price * quantity) STORED
+);</pre></div></section><section id="s54"><h2>54 — Users</h2><div class="code"><button class="copy">نسخ</button><pre>CREATE USER 'appuser'@'localhost'
+IDENTIFIED BY 'StrongPassword';</pre></div>
+<p>أنشئ حسابًا مخصصًا للتطبيق بدل استخدام حساب إداري في التطبيق.</p></section><section id="s55"><h2>55 — GRANT وREVOKE</h2><div class="code"><button class="copy">نسخ</button><pre>GRANT SELECT, INSERT, UPDATE
+ON school.*
+TO 'appuser'@'localhost';
+
+REVOKE UPDATE
+ON school.*
+FROM 'appuser'@'localhost';
+
+SHOW GRANTS FOR 'appuser'@'localhost';</pre></div></section><section id="s56"><h2>56 — MySQL Security</h2><div class="grid"><div class="card"><b>Least Privilege</b><br>أقل صلاحيات لازمة.</div><div class="card"><b>Secrets</b><br>لا تضع الأسرار في المستودع العام.</div><div class="card"><b>TLS</b><br>تشفير الاتصالات الحساسة عند الحاجة.</div><div class="card"><b>Updates</b><br>تحديث الخادم والمكونات.</div><div class="card"><b>Backup</b><br>نسخ احتياطية واختبار الاستعادة.</div></div></section><section id="s57"><h2>57 — SQL Injection</h2><p>يحدث SQL Injection عندما يتم دمج مدخل المستخدم داخل SQL بطريقة غير آمنة.</p>
+<div class="code"><button class="copy">نسخ</button><pre>-- لا تفعل:
+SELECT * FROM users
+WHERE name = '...مدخل المستخدم...';
+
+-- استخدم Prepared Statement في التطبيق:
+SELECT * FROM users
+WHERE name = ?;</pre></div></section><section id="s58"><h2>58 — Prepared Statements</h2><p>تفصل القيم عن نص SQL وتقلل خطر SQL Injection وتفيد في إعادة استخدام الاستعلام.</p>
+<div class="code"><button class="copy">نسخ</button><pre>SELECT *
+FROM users
+WHERE email = ?;</pre></div>
+<div class="note">في VB.NET أو PHP أو Python استخدم API الخاصة بالمكتبة لإضافة Parameters بدل بناء النص يدويًا.</div></section><section id="s59"><h2>59 — Backup</h2><p>النسخ الاحتياطي قد يكون منطقيًا أو فيزيائيًا حسب الأداة والبنية. من الأدوات المعروفة mysqldump وMySQL Shell، وتوجد حلول أخرى للمؤسسات.</p>
+<div class="code"><button class="copy">نسخ</button><pre>mysqldump -u root -p school &gt; school.sql</pre></div></section><section id="s60"><h2>60 — Restore</h2><p>الاستعادة جزء أساسي من خطة النسخ الاحتياطي. يجب اختبارها دوريًا بدل افتراض أن ملف النسخة الاحتياطية صالح.</p>
+<div class="code"><button class="copy">نسخ</button><pre>mysql -u root -p school &lt; school.sql</pre></div></section><section id="s61"><h2>61 — Binary Log</h2><p>Binary Log يسجل تغييرات البيانات والعمليات المناسبة وفق إعدادات الخادم، ويدخل في Replication وبعض سيناريوهات الاستعادة الزمنية.</p>
+<div class="note">إدارة الـBinary Logs تحتاج سياسة احتفاظ ومساحة تخزين مناسبة.</div></section><section id="s62"><h2>62 — Replication</h2><p>Replication ينسخ البيانات بين خوادم MySQL. من المفاهيم المهمة Source وReplica وBinary Log وGTID.</p>
+<div class="code"><button class="copy">نسخ</button><pre>Source
+   |
+   | Binary Log
+   v
+Replica</pre></div></section><section id="s63"><h2>63 — High Availability</h2><p>من حلول MySQL الحديثة للتوافر العالي: Group Replication وInnoDB Cluster وMySQL Router وMySQL Shell، بحسب البنية المطلوبة.</p>
+<div class="warn">التوافر العالي ليس مجرد نسخ البيانات؛ يجب تصميم Failover والمراقبة والنسخ الاحتياطي واختبارات التعافي.</div></section><section id="s64"><h2>64 — Monitoring</h2><p>راقب CPU وRAM والتخزين والاتصالات والاستعلامات والأقفال والـSlow Queries والـReplication والـBuffer Pool والأخطاء.</p>
+<table><tr><th>المؤشر</th><th>لماذا؟</th></tr><tr><td>Connections</td><td>كشف ضغط الاتصالات.</td></tr><tr><td>Query Latency</td><td>قياس سرعة الاستعلامات.</td></tr><tr><td>Locks</td><td>اكتشاف مشاكل التزامن.</td><tr><td>Disk</td><td>تجنب امتلاء التخزين.</td></tr></table></section><section id="s65"><h2>65 — Slow Query Log</h2><p>يساعد Slow Query Log في اكتشاف الاستعلامات البطيئة وتحليل أسبابها مثل الفهارس المفقودة أو الاستعلامات غير الفعالة.</p>
+<div class="note">حدد عتبة مناسبة للاستعلام البطيء وفق طبيعة النظام، ثم حلل النتائج بدل زيادة العتبة لإخفاء المشكلة.</div></section><section id="s66"><h2>66 — Performance Schema</h2><p>Performance Schema يوفر بيانات داخلية لمراقبة وتحليل أداء MySQL، مثل بعض الاستعلامات والأحداث والانتظار والموارد.</p>
+<div class="code"><button class="copy">نسخ</button><pre>SELECT *
+FROM performance_schema.setup_instruments
+LIMIT 10;</pre></div></section><section id="s67"><h2>67 — sys Schema</h2><p>sys Schema يوفر Views مساعدة مبنية على بيانات المراقبة لتسهيل تحليل الأداء والاستخدام.</p>
+<div class="code"><button class="copy">نسخ</button><pre>SELECT *
+FROM sys.schema_table_statistics
+LIMIT 10;</pre></div></section><section id="s68"><h2>68 — MySQL Shell</h2><p>MySQL Shell أداة مهمة للإدارة المتقدمة، وتدعم SQL وJavaScript وPython وتدخل في بعض مهام MySQL InnoDB Cluster.</p></section><section id="s69"><h2>69 — Docker</h2><p>يمكن تشغيل MySQL داخل Docker لتوفير بيئة معزولة وقابلة لإعادة الإنشاء.</p>
+<div class="code"><button class="copy">نسخ</button><pre>docker run --name mysql-dev ^
+  -e MYSQL_ROOT_PASSWORD=StrongPassword ^
+  -p 3306:3306 ^
+  -d mysql</pre></div>
+<p>في Windows قد تختلف صيغة السطر حسب الطرفية المستخدمة.</p></section><section id="s70"><h2>70 — MySQL مع PHP</h2><p>يمكن استخدام PDO أو mysqli. يفضل استخدام Prepared Statements وإدارة الاتصالات والأخطاء بشكل صحيح.</p>
+<div class="code"><button class="copy">نسخ</button><pre>$pdo = new PDO(
+    'mysql:host=localhost;dbname=school;charset=utf8mb4',
+    $user,
+    $password
+);
+
+$stmt = $pdo-&gt;prepare(
+    'SELECT * FROM students WHERE id = ?'
+);
+$stmt-&gt;execute([$id]);</pre></div></section><section id="s71"><h2>71 — MySQL مع VB.NET</h2><p>يمكن استخدام MySqlConnector أو MySql.Data. المثال التالي يستخدم MySqlConnector.</p>
+<div class="code"><button class="copy">نسخ</button><pre>Imports MySqlConnector
+
+Using con As New MySqlConnection(connectionString)
+    Await con.OpenAsync()
+
+    Using cmd As New MySqlCommand(
+        "SELECT id, name FROM students WHERE age &gt;= @age", con)
+
+        cmd.Parameters.AddWithValue("@age", 18)
+
+        Using reader = Await cmd.ExecuteReaderAsync()
+            While Await reader.ReadAsync()
+                Console.WriteLine(reader("name").ToString())
+            End While
+        End Using
+    End Using
+End Using</pre></div></section><section id="s72"><h2>72 — MySQL مع C#</h2><p>يمكن استخدام MySqlConnector أو MySql.Data مع تطبيقات .NET وASP.NET.</p>
+<div class="code"><button class="copy">نسخ</button><pre>using var connection =
+    new MySqlConnection(connectionString);
+
+await connection.OpenAsync();
+
+using var command = new MySqlCommand(
+    "SELECT id, name FROM students WHERE age &gt;= @age",
+    connection);
+
+command.Parameters.AddWithValue("@age", 18);</pre></div></section><section id="s73"><h2>73 — MySQL مع ASP.NET</h2><p>يمكن بناء تطبيقات ASP.NET Core وWeb API وMVC وربطها بـMySQL باستخدام موفر مناسب أو ORM مثل EF Core.</p>
+<div class="code"><button class="copy">نسخ</button><pre>Browser
+   ↓ HTTPS
+ASP.NET Core API
+   ↓
+Service / Repository
+   ↓
+MySQL</pre></div></section><section id="s74"><h2>74 — MySQL مع Python</h2><p>يمكن استخدام mysql-connector-python أو PyMySQL أو SQLAlchemy بحسب طبيعة المشروع.</p>
+<div class="code"><button class="copy">نسخ</button><pre>import mysql.connector
+
+con = mysql.connector.connect(
+    host="localhost",
+    user="appuser",
+    password="YOUR_PASSWORD",
+    database="school"
+)
+
+cursor = con.cursor()
+cursor.execute(
+    "SELECT id, name FROM students WHERE age &gt;= %s",
+    (18,)
+)
+
+for row in cursor.fetchall():
+    print(row)</pre></div></section><section id="s75"><h2>75 — MySQL مع Java</h2><p>الاتصال التقليدي يكون عبر JDBC باستخدام MySQL Connector/J.</p>
+<div class="code"><button class="copy">نسخ</button><pre>Connection con =
+    DriverManager.getConnection(
+        url, user, password);
+
+PreparedStatement ps =
+    con.prepareStatement(
+        "SELECT * FROM students WHERE id = ?");
+
+ps.setInt(1, 1);</pre></div></section><section id="s76"><h2>76 — REST API + MySQL</h2><p>لا تجعل المتصفح يتصل مباشرة بـMySQL. البنية المعتادة:</p>
+<div class="code"><button class="copy">نسخ</button><pre>Browser / Mobile App
+        ↓ HTTPS
+      REST API
+        ↓
+Business Logic
+        ↓
+Data Access
+        ↓
+      MySQL</pre></div></section><section id="s77"><h2>77 — CRUD</h2><table><tr><th>CRUD</th><th>SQL</th><th>المعنى</th></tr><tr><td>Create</td><td>INSERT</td><td>إضافة</td></tr><tr><td>Read</td><td>SELECT</td><td>قراءة</td></tr><tr><td>Update</td><td>UPDATE</td><td>تعديل</td></tr><tr><td>Delete</td><td>DELETE</td><td>حذف</td></tr></table></section><section id="s78"><h2>78 — Connection Pooling</h2><p>إنشاء اتصال جديد لكل طلب قد يكون مكلفًا. مكتبات الاتصال الحديثة توفر Connection Pooling لإعادة استخدام الاتصالات وفق إعدادات التطبيق.</p>
+<div class="note">اضبط حجم الـPool والمهلات حسب عدد الطلبات والموارد وسلوك التطبيق، ولا تترك الاتصالات مفتوحة بلا حاجة.</div></section><section id="s79"><h2>79 — Architecture</h2><div class="code"><button class="copy">نسخ</button><pre>Frontend
+   ↓
+API / Controller
+   ↓
+Business / Service
+   ↓
+Repository / Data Access
+   ↓
+MySQL</pre></div>
+<p>فصل المسؤوليات يجعل المشروع أسهل في الاختبار والصيانة والتوسع.</p></section><section id="s80"><h2>80 — مشاريع عملية</h2><div class="grid"><div class="card"><b>إدارة الطلاب</b><br>إضافة وتعديل وحذف وبحث وتقارير.</div><div class="card"><b>مكتبة</b><br>كتب ومؤلفون واستعارات.</div><div class="card"><b>مخزون</b><br>منتجات ومشتريات ومبيعات.</div><div class="card"><b>فواتير</b><br>عملاء وأصناف وفواتير.</div><div class="card"><b>مستخدمون وصلاحيات</b><br>Roles وPermissions.</div><div class="card"><b>API</b><br>REST + JSON + MySQL.</div></div></section><section id="s81"><h2>81 — نظام الطلاب</h2><div class="code"><button class="copy">نسخ</button><pre>Departments
+    ↓ 1:N
+Students
+    ↓ 1:N
+Enrollments
+    ↑ N:1
+Courses</pre></div>
+<p>يمكن إضافة Teachers وGrades وAttendance وUsers وتقارير أكاديمية.</p></section><section id="s82"><h2>82 — نظام المكتبة</h2><div class="code"><button class="copy">نسخ</button><pre>Books
+Authors
+Categories
+Members
+Borrowings
+BorrowingDetails
+Users</pre></div>
+<p>المشروع مناسب لتطبيق VB.NET + MySQL ويشمل البحث والإعارة والإرجاع والغرامات والتقارير.</p></section><section id="s83"><h2>83 — نظام المخزون</h2><div class="code"><button class="copy">نسخ</button><pre>Products
+Categories
+Suppliers
+Purchases
+PurchaseDetails
+Sales
+SaleDetails
+Users</pre></div>
+<p>يمكن إضافة Stock Movements وMinimum Stock Alerts وتقارير المبيعات والمشتريات.</p></section><section id="s84"><h2>84 — نظام الفواتير</h2><div class="code"><button class="copy">نسخ</button><pre>Customers
+Products
+Invoices
+InvoiceItems
+Payments
+Users</pre></div>
+<p>العلاقة الأساسية: Invoice ← InvoiceItems → Products، مع إجماليات وضرائب وخصومات حسب متطلبات النظام.</p></section><section id="s85"><h2>85 — نظام المستخدمين والصلاحيات</h2><div class="code"><button class="copy">نسخ</button><pre>Users
+Roles
+Permissions
+UserRoles
+RolePermissions</pre></div>
+<p>يمكن تعريف صلاحيات مثل Add وEdit وDelete وView وPrint وExport وربطها بالأدوار.</p></section><section id="s86"><h2>86 — نظام API</h2><p>مثال مسارات REST:</p>
+<div class="code"><button class="copy">نسخ</button><pre>GET    /api/students
+GET    /api/students/1
+POST   /api/students
+PUT    /api/students/1
+DELETE /api/students/1</pre></div>
+<p>تستخدم API عادةً JSON وتحتاج إلى Authentication وValidation وLogging وError Handling.</p></section><section id="s87"><h2>87 — تحسين الأداء</h2><ul><li>ابدأ بالقياس قبل التعديل.</li><li>استخدم EXPLAIN وEXPLAIN ANALYZE.</li><li>راجع الفهارس.</li><li>قلل البيانات المنقولة.</li><li>استخدم Pagination.</li><li>حسن تصميم الاستعلامات.</li><li>راقب Slow Query Log.</li><li>راقب الموارد والاتصالات.</li></ul></section><section id="s88"><h2>88 — إدارة الخوادم</h2><p>تشمل مهام DBA: إدارة المستخدمين، الصلاحيات، الإعدادات، النسخ الاحتياطي، الاستعادة، المراقبة، السجلات، التحديثات، التخزين، Replication والتعافي من الأعطال.</p>
+<div class="warn">أي تغيير على خادم إنتاج يجب أن يسبقه تقييم للمخاطر وخطة رجوع ونسخة احتياطية مناسبة.</div></section><section id="s89"><h2>89 — استكشاف الأخطاء</h2><table><tr><th>المشكلة</th><th>ما الذي تفحصه؟</th></tr><tr><td>الاتصال يفشل</td><td>Host، Port، User، Password، Firewall، Server.</td></tr><tr><td>الاستعلام بطيء</td><td>EXPLAIN، Indexes، حجم البيانات، JOIN.</td></tr><tr><td>العربية مشوهة</td><td>utf8mb4 والاتصال والـCollation.</td></tr><tr><td>Deadlock</td><td>المعاملات والأقفال وترتيب الوصول.</td></tr><tr><td>صلاحية مرفوضة</td><td>GRANT وSHOW GRANTS وحساب المستخدم.</td></tr></table></section><section id="s90"><h2>90 — مرجع SQL السريع</h2><table><tr><th>المطلوب</th><th>الأداة</th></tr><tr><td>قاعدة بيانات</td><td>CREATE DATABASE / DROP DATABASE</td></tr><tr><td>جدول</td><td>CREATE TABLE / ALTER TABLE / DROP TABLE</td></tr><tr><td>إضافة</td><td>INSERT</td></tr><tr><td>قراءة</td><td>SELECT</td></tr><tr><td>تعديل</td><td>UPDATE</td></tr><tr><td>حذف</td><td>DELETE</td></tr><tr><td>ربط</td><td>JOIN</td></tr><tr><td>تجميع</td><td>GROUP BY / HAVING</td></tr><tr><td>ترتيب</td><td>ORDER BY</td></tr><tr><td>تحديد</td><td>LIMIT / OFFSET</td></tr><tr><td>معاملة</td><td>START TRANSACTION / COMMIT / ROLLBACK</td></tr><tr><td>فهرس</td><td>CREATE INDEX</td></tr><tr><td>خطة تنفيذ</td><td>EXPLAIN / EXPLAIN ANALYZE</td></tr><tr><td>مستخدم</td><td>CREATE USER</td></tr><tr><td>صلاحيات</td><td>GRANT / REVOKE</td></tr><tr><td>بحث نصي</td><td>FULLTEXT / MATCH / AGAINST</td></tr></table>
+<h3>مسار التعلم</h3><ol><li>SQL والأساسيات.</li><li>تصميم الجداول والعلاقات.</li><li>CRUD وJOIN.</li><li>Indexes وEXPLAIN.</li><li>Transactions وACID.</li><li>Views وProcedures وTriggers.</li><li>CTE وWindow Functions وJSON.</li><li>Security وUsers.</li><li>Backup وRestore.</li><li>Replication وMonitoring.</li><li>ربط MySQL بالتطبيقات.</li><li>تنفيذ مشاريع كاملة.</li></ol>
+<div class="success"><b>الخلاصة:</b> إتقان MySQL لا يعني حفظ أوامر SQL فقط؛ بل فهم تصميم البيانات والعلاقات والأمان والمعاملات والفهارس والأداء والنسخ الاحتياطي وربط قاعدة البيانات بالتطبيقات.</div></section>
+<footer>
+<div><b>إعداد الكاتبة والمهندسة: مها شهوب</b></div>
+<div>منصة آفاق المعرفة التقنية | مكتبة | مها شهوب | سلسلة أساسيات التقنية</div>
+<div>دليل MySQL الشامل — مرجع تعليمي قابل للتطوير</div>
+</footer>
+</main>
+</div>
+<button class="topbtn" id="topbtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+const root=document.documentElement;
+function toggleTheme(){
+ const dark=root.getAttribute("data-theme")==="dark";
+ root.setAttribute("data-theme",dark?"light":"dark");
+ localStorage.setItem("mysqlTheme",dark?"light":"dark");
+}
+(function(){const t=localStorage.getItem("mysqlTheme");if(t)root.setAttribute("data-theme",t)})();
+function toggleMenu(){document.getElementById("side").classList.toggle("open")}
+function filterNav(){
+ const q=document.getElementById("search").value.trim().toLowerCase();
+ document.querySelectorAll("#nav a").forEach(a=>a.style.display=a.textContent.toLowerCase().includes(q)?"block":"none");
+}
+document.querySelectorAll(".copy").forEach(btn=>{
+ btn.addEventListener("click",()=>{
+  const code=btn.parentElement.querySelector("pre").innerText;
+  navigator.clipboard.writeText(code).then(()=>{
+   const old=btn.textContent;btn.textContent="✓ تم النسخ";setTimeout(()=>btn.textContent=old,1200);
+  });
+ });
+});
+const sections=[...document.querySelectorAll("main section")];
+const links=[...document.querySelectorAll("#nav a")];
+const observer=new IntersectionObserver(entries=>{
+ entries.forEach(entry=>{
+  if(entry.isIntersecting)links.forEach(a=>a.classList.toggle("active",a.getAttribute("href")==="#"+entry.target.id));
+ });
+},{rootMargin:"-20% 0px -65% 0px"});
+sections.forEach(s=>observer.observe(s));
+window.addEventListener("scroll",()=>{
+ const doc=document.documentElement,max=doc.scrollHeight-doc.clientHeight;
+ document.getElementById("progress").style.width=(max>0?(scrollY/max)*100:0)+"%";
+ document.getElementById("topbtn").style.display=scrollY>500?"block":"none";
+});
+</script>
+</body>
+</html>

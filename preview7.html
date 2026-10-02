@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="دليل Microsoft Access الشامل من إعداد الكاتبة والمهندسة مها شهوب. قواعد البيانات والجداول والعلاقات والاستعلامات والنماذج والتقارير وSQL وVBA والمشاريع العملية.">
+<title>دليل Microsoft Access الشامل | مها شهوب</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+--bg:#f4f7fb;--card:#fff;--text:#182230;--muted:#64748b;--primary:#1677c8;
+--primary2:#0b4f88;--border:#dbe4ee;--code:#101827;--codeText:#e8eef7;
+--shadow:0 8px 25px rgba(15,40,70,.08);--sidebar:300px;--header:68px
+}
+[data-theme="dark"]{--bg:#0b1220;--card:#111b2b;--text:#e7eef8;--muted:#9fb0c5;--primary:#55aaf0;--primary2:#8cc8fa;--border:#26374c;--code:#07101d;--codeText:#e7eef8;--shadow:0 8px 25px rgba(0,0,0,.25)}
+html{scroll-behavior:smooth;scroll-padding-top:85px}
+body{font-family:"Segoe UI",Tahoma,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.9}
+header{height:var(--header);position:fixed;top:0;right:0;left:0;background:var(--card);border-bottom:1px solid var(--border);z-index:1000;display:flex;align-items:center;gap:15px;padding:0 20px;box-shadow:var(--shadow)}
+.logo{width:67px;height:54px;border-radius:50%;display:grid;place-items:center;}
+.brand{font-weight:800;color:var(--primary2);font-size:17px}.brand small{display:block;color:var(--muted);font-size:11px;font-weight:500}
+.actions{margin-right:auto;display:flex;gap:8px}.btn{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:10px;padding:8px 12px;cursor:pointer;font-weight:700}.btn:hover{border-color:var(--primary);color:var(--primary)}
+.progress{position:absolute;bottom:-2px;right:0;height:3px;background:var(--primary);width:0}
+.sidebar{position:fixed;top:var(--header);right:0;bottom:0;width:var(--sidebar);background:var(--card);border-left:1px solid var(--border);padding:18px;overflow:auto;z-index:900}
+.search{width:100%;padding:11px;border:1px solid var(--border);border-radius:10px;background:var(--bg);color:var(--text);margin-bottom:12px}
+.nav a{display:block;text-decoration:none;color:var(--text);padding:7px 9px;border-radius:8px;font-size:13px}.nav a:hover,.nav a.active{background:rgba(22,119,200,.12);color:var(--primary);font-weight:700}
+.main{margin-right:var(--sidebar);padding:95px 30px 50px;max-width:1400px}
+.hero{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:30px;box-shadow:var(--shadow);margin-bottom:25px}
+.hero h1{font-size:32px;color:var(--primary2);margin-bottom:7px}.hero p{color:var(--muted)}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}.badge{padding:5px 10px;border-radius:20px;background:rgba(22,119,200,.1);color:var(--primary);font-size:12px;font-weight:700}
+section{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:25px;margin:18px 0;box-shadow:var(--shadow)}
+section h2{font-size:23px;color:var(--primary2);border-right:4px solid var(--primary);padding-right:12px;margin-bottom:15px}
+section h3{font-size:18px;color:var(--primary);margin:18px 0 8px}
+p{margin:8px 0}.note{padding:13px 15px;border-right:4px solid var(--primary);background:rgba(22,119,200,.07);border-radius:8px;margin:14px 0}
+.warning{border-right-color:#d68a00;background:rgba(214,138,0,.08)}
+ul,ol{padding-right:25px}li{margin:5px 0}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}th,td{border:1px solid var(--border);padding:9px;text-align:right}th{background:rgba(22,119,200,.1);color:var(--primary2)}
+pre{background:var(--code);color:var(--codeText);padding:18px;border-radius:12px;overflow:auto;direction:ltr;text-align:left;margin:12px 0;position:relative;white-space:pre-wrap}
+.copy{float:right;background:#fff;color:#111;border:0;border-radius:7px;padding:4px 8px;cursor:pointer;font-size:11px}
+code{font-family:Consolas,"Courier New",monospace}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}.mini{border:1px solid var(--border);border-radius:12px;padding:15px;background:var(--bg)}
+footer{text-align:center;color:var(--muted);padding:30px}
+.top{position:fixed;left:20px;bottom:20px;border:0;border-radius:50%;width:45px;height:45px;background:var(--primary);color:#fff;cursor:pointer;display:none;z-index:1001}
+.menu{display:none}
+@media(max-width:900px){
+:root{--sidebar:0px}.menu{display:block}.sidebar{width:290px;right:-310px;transition:.25s}.sidebar.open{right:0}.main{margin-right:0;padding:90px 15px 35px}.actions .hideMob{display:none}.hero h1{font-size:25px}
+}
+@media print{header,.sidebar,.top,.actions{display:none!important}.main{margin:0;padding:10px}section,.hero{box-shadow:none;break-inside:avoid}body{background:#fff;color:#111}}
+</style>
+</head>
+<body>
+<header>
+<button class="btn menu" onclick="toggleMenu()">☰</button>
+  <img src="IMG/آفاق المعرفة التقنية.png" class="logo">
+<div class="brand">منصة آفاق المعرفة التقنية<small>دليل Microsoft Access الشامل</small></div>
+<div class="actions">
+<button class="btn" onclick="toggleTheme()">◐ الوضع</button>
+<button class="btn hideMob" onclick="window.print()">🖨 طباعة</button>
+
+</div>
+<div class="progress" id="progress"></div>
+</header>
+
+<aside class="sidebar" id="sidebar">
+<input class="search" id="search" placeholder="🔎 ابحث في الفصول..." oninput="filterNav()">
+<nav class="nav" id="nav">
+<a href="#s1">01 مقدمة Microsoft Access</a><a href="#s2">02 ما هو Access؟</a><a href="#s3">03 Access وExcel</a>
+<a href="#s4">04 Database وTables</a><a href="#s5">05 الحقول Field</a><a href="#s6">06 السجلات Records</a>
+<a href="#s7">07 أنواع البيانات</a><a href="#s8">08 Primary Key</a><a href="#s9">09 إنشاء الجداول</a>
+<a href="#s10">10 العلاقات Relationships</a><a href="#s11">11 One-to-One</a><a href="#s12">12 One-to-Many</a>
+<a href="#s13">13 Many-to-Many</a><a href="#s14">14 Queries</a><a href="#s15">15 Select Query</a>
+<a href="#s16">16 Parameter Query</a><a href="#s17">17 Action Queries</a><a href="#s18">18 Append Query</a>
+<a href="#s19">19 Update Query</a><a href="#s20">20 Delete Query</a><a href="#s21">21 Make-Table Query</a>
+<a href="#s22">22 SQL داخل Access</a><a href="#s23">23 SELECT</a><a href="#s24">24 WHERE</a>
+<a href="#s25">25 ORDER BY</a><a href="#s26">26 GROUP BY</a><a href="#s27">27 JOIN</a><a href="#s28">28 Forms</a>
+<a href="#s29">29 إنشاء النماذج</a><a href="#s30">30 Controls</a><a href="#s31">31 ComboBox</a>
+<a href="#s32">32 ListBox</a><a href="#s33">33 Buttons</a><a href="#s34">34 Reports</a><a href="#s35">35 تصميم التقارير</a>
+<a href="#s36">36 العلاقات المتقدمة</a><a href="#s37">37 Validation Rules</a><a href="#s38">38 Input Mask</a>
+<a href="#s39">39 Indexes</a><a href="#s40">40 Navigation Forms</a><a href="#s41">41 Subforms</a>
+<a href="#s42">42 Macros</a><a href="#s43">43 VBA في Access</a><a href="#s44">44 متغيرات VBA</a>
+<a href="#s45">45 شروط VBA</a><a href="#s46">46 حلقات VBA</a><a href="#s47">47 Forms مع VBA</a>
+<a href="#s48">48 Tables مع VBA</a><a href="#s49">49 DAO</a><a href="#s50">50 ADO</a>
+<a href="#s51">51 معالجة الأخطاء</a><a href="#s52">52 البحث</a><a href="#s53">53 تسجيل الدخول</a>
+<a href="#s54">54 النسخ الاحتياطي</a><a href="#s55">55 Compact & Repair</a><a href="#s56">56 استيراد Excel</a>
+<a href="#s57">57 تصدير Excel</a><a href="#s58">58 Access وExcel</a><a href="#s59">59 Access وSQL Server</a>
+<a href="#s60">60 مشروع الطلاب</a><a href="#s61">61 مشروع الموظفين</a><a href="#s62">62 مشروع المبيعات</a>
+<a href="#s63">63 مشروع المخزون</a><a href="#s64">64 مشروع المكتبة</a><a href="#s65">65 مشروع تسجيل الدخول</a>
+<a href="#s66">66 مشروع قاعدة مدرسية</a><a href="#s67">67 نظام إدارة كامل</a><a href="#s68">68 تحسين الأداء</a>
+<a href="#s69">69 حماية قاعدة البيانات</a><a href="#s70">70 المرجع السريع</a>
+</nav>
+</aside>
+
+<main class="main">
+<div class="hero">
+<h1>دليل Microsoft Access الشامل</h1>
+<p>من الجداول والعلاقات والاستعلامات إلى Forms وReports وSQL وVBA وبناء قواعد بيانات عملية.</p>
+<p><strong>إعداد الكاتبة والمهندسة: مها شهوب</strong></p>
+<div class="badges"><span class="badge">Microsoft Access</span><span class="badge">Database</span><span class="badge">SQL</span><span class="badge">VBA</span><span class="badge">Projects</span></div>
+</div>
+
+<section id="s1"><h2>01 — مقدمة Microsoft Access</h2>
+<p>Microsoft Access هو نظام إدارة قواعد بيانات علائقية RDBMS يجمع بين تخزين البيانات وتصميم الجداول والعلاقات وإنشاء الاستعلامات والنماذج والتقارير والأتمتة باستخدام Macros وVBA.</p>
+<div class="note">الفكرة الأساسية: لا تبدأ من شكل النموذج؛ ابدأ بتحديد البيانات والعلاقات وقواعد العمل، ثم ابنِ الواجهات فوق تصميم قاعدة بيانات صحيح.</div></section>
+
+<section id="s2"><h2>02 — ما هو Access؟</h2>
+<p>يستخدم Access لبناء تطبيقات قواعد بيانات صغيرة ومتوسطة داخل ملف قاعدة بيانات، مع إمكانية ربطه بمصادر خارجية مثل SQL Server.</p>
+<div class="grid"><div class="mini"><b>Tables</b><br>تخزين البيانات.</div><div class="mini"><b>Queries</b><br>استرجاع وتحليل وتعديل البيانات.</div><div class="mini"><b>Forms</b><br>واجهات الإدخال والتشغيل.</div><div class="mini"><b>Reports</b><br>تقارير وطباعة.</div></div></section>
+
+<section id="s3"><h2>03 — الفرق بين Access وExcel</h2>
+<table><tr><th>النقطة</th><th>Excel</th><th>Access</th></tr><tr><td>الهدف</td><td>جداول وتحليل</td><td>قواعد بيانات وتطبيقات</td></tr><tr><td>العلاقات</td><td>محدودة</td><td>أساسية ومتكاملة</td></tr><tr><td>النماذج</td><td>محدودة</td><td>Forms متخصصة</td></tr><tr><td>الاستعلامات</td><td>معادلات وأدوات تحليل</td><td>Query وSQL</td></tr><tr><td>التقارير</td><td>مخططات وطباعة</td><td>Reports مرتبطة بالبيانات</td></tr></table></section>
+
+<section id="s4"><h2>04 — Database وTables</h2>
+<p>قاعدة البيانات Database هي الحاوية المنطقية للبيانات والكائنات. أهم كائن تخزين هو Table. صمّم كل جدول حول كيان واضح مثل Students أو Employees أو Products.</p>
+<pre><button class="copy" onclick="copyCode(this)">نسخ</button><code>Students
+ID | Name | City | Grade | ClassID
+
+Classes
+ID | ClassName | Room</code></pre></section>
+
+<section id="s5"><h2>05 — الحقول Field</h2>
+<p>الحقل Field هو عمود يمثل خاصية من خصائص الكيان. مثال: StudentID، StudentName، BirthDate، Phone.</p>
+<p>اختر اسمًا واضحًا وثابتًا، وحدد نوع البيانات والحجم المناسب، ولا تضع عدة معلومات مختلفة داخل حقل واحد.</p></section>
+
+<section id="s6"><h2>06 — السجلات Records</h2>
+<p>السجل Record هو صف يمثل حالة واحدة من الكيان. في جدول الطلاب يمثل كل Record طالبًا واحدًا.</p>
+<div class="note">قاعدة مهمة: الحقول تصف الشيء، والسجلات تمثل الأشياء.</div></section>
+
+<section id="s7"><h2>07 — أنواع البيانات Data Types</h2>
+<table><tr><th>النوع</th><th>الاستخدام</th></tr><tr><td>Short Text</td><td>أسماء، رموز، أرقام هاتف</td></tr><tr><td>Long Text</td><td>ملاحظات ونصوص طويلة</td></tr><tr><td>Number</td><td>قيم رقمية وحسابات</td></tr><tr><td>Large Number</td><td>أعداد صحيحة كبيرة</td></tr><tr><td>Date/Time</td><td>التاريخ والوقت</td></tr><tr><td>Currency</td><td>المبالغ المالية</td></tr><tr><td>AutoNumber</td><td>معرف تلقائي</td></tr><tr><td>Yes/No</td><td>قيمة منطقية</td></tr><tr><td>Hyperlink</td><td>روابط</td></tr><tr><td>Attachment</td><td>مرفقات، مع مراعاة حجم القاعدة</td></tr><tr><td>Calculated</td><td>قيمة محسوبة داخل Access</td></tr></table></section>
+
+<section id="s8"><h2>08 — Primary Key</h2>
+<p>المفتاح الأساسي Primary Key يميز كل سجل بشكل فريد. غالبًا يستخدم AutoNumber لمعرف داخلي.</p>
+<pre><button class="copy" onclick="copyCode(this)">نسخ</button><code>StudentID: AutoNumber
+Primary Key: StudentID</code></pre>
+<p>لا تجعل الاسم أو رقم الهاتف مفتاحًا أساسيًا إذا كان يمكن أن يتكرر أو يتغير.</p></section>
+
+<section id="s9"><h2>09 — إنشاء الجداول</h2>
+<p>في Table Design حدد اسم الحقل، Data Type، الخصائص، ثم اختر Primary Key. أنشئ جدولًا مستقلًا لكل كيان رئيسي.</p>
+<div class="note">مثال: لا تكرر اسم الصف واسم المعلم في كل سجل طالب؛ أنشئ جداول مستقلة واربطها بالمفاتيح.</div></section>
+
+<section id="s10"><h2>10 — العلاقات Relationships</h2>
+<p>العلاقة تربط جدولين عبر Primary Key وForeign Key. فعّل Referential Integrity لمنع السجلات اليتيمة عندما تكون قواعد العمل تسمح بذلك.</p>
+<pre><button class="copy" onclick="copyCode(this)">نسخ</button><code>Classes.ID  (Primary Key)
+        ↓
+Students.ClassID (Foreign Key)</code></pre></section>
+
+<section id="s11"><h2>11 — One-to-One</h2><p>كل سجل من جدول يرتبط بسجل واحد من جدول آخر. تستخدم عند فصل بيانات نادرة أو حساسة أو عند وجود سبب تصميمي واضح.</p></section>
+<section id="s12"><h2>12 — One-to-Many</h2><p>أكثر العلاقات شيوعًا: صف واحد يحتوي عدة طلاب. المفتاح الأساسي في الجدول الأول يظهر كـ Foreign Key في الجدول الثاني.</p></section>
+<section id="s13"><h2>13 — Many-to-Many</h2><p>لا تمثل مباشرة بحقل واحد؛ استخدم جدولًا وسيطًا Junction Table.</p><pre><button class="copy" onclick="copyCode(this)">نسخ</button><code>Students
+StudentID | Name
+
+Courses
+CourseID | CourseName
+
+StudentCourses
+StudentID | CourseID | EnrollDate</code></pre></section>
+
+<section id="s14"><h2>14 — Queries</h2><p>الاستعلام Query يحدد البيانات التي تريد عرضها أو تحليلها أو تعديلها. الأنواع تشمل Select وParameter وAction Queries.</p></section>
+
+<section id="s15"><h2>15 — Select Query</h2><pre><button class="copy" onclick="copyCode(this)">نسخ</button><code>SELECT * FROM Students;</code></pre><p>لعرض حقول محددة:</p><pre><button class="copy" onclick="copyCode(this)">نسخ</button><code>SELECT ID, Name, Grade
+FROM Students;</code></pre></section>
+
+<section id="s16"><h2>16 — Parameter Query</h2><p>يسمح للمستخدم بإدخال قيمة قبل تشغيل الاستعلام.</p><pre><button class="copy" onclick="copyCode(this)">نسخ</button><code>PARAMETERS pCity Text (255);
+SELECT *
+FROM Students
+WHERE City=[pCity];</code></pre></section>
+
+<section id="s17"><h2>17 — Action Queries</h2><p>تغير البيانات أو تنشئ جدولًا جديدًا. أهمها Append وUpdate وDelete وMake-Table. استخدمها بحذر، ويفضل تجربة Select أولًا قبل تنفيذ التعديل.</p></section>
+<section id="s18"><h2>18 — Append Query</h2><pre><button class="copy" onclick="copyCode(this)">نسخ</button><code>INSERT INTO ArchiveStudents (ID, Name, Grade)
+SELECT ID, Name, Grade
+FROM Students
+WHERE GraduationYear=2026;</code></pre></section>
+<section id="s19"><h2>19 — Update Query</h2><pre><button class="copy" onclick="copyCode(this)">نسخ</button><code>UPDATE Students
+SET Grade = Grade + 5
+WHERE Grade < 50;</code></pre></section>
+<section id="s20"><h2>20 — Delete Query</h2><pre><button class="copy" onclick="copyCode(this)">نسخ</button><code>DELETE FROM Students
+WHERE ID=10;</code></pre><div class="note warning">DELETE يحذف السجلات. تأكد من شرط WHERE وخذ نسخة احتياطية قبل العمليات الحساسة.</div></section>
+<section id="s21"><h2>21 — Make-Table Query</h2><pre><button class="copy" onclick="copyCode(this)">نسخ</button><code>SELECT *
+INTO Graduates2026
+FROM Students
+WHERE GraduationYear=2026;</code></pre></section>
+
+<section id="s22"><h2>22 — SQL داخل Access</h2><p>يمكن فتح SQL View وكتابة الاستعلام مباشرة. Access يستخدم صياغة SQL خاصة به في بعض التفاصيل، لذلك اختبر الاستعلام داخل إصدار Access المستخدم.</p></section>
+<section id="s23"><h2>23 — SELECT</h2><pre><button class="copy" onclick="copyCode(this)">نسخ</button><code>SELECT Name, City, Grade
+FROM Students;</code></pre></section>
+<section id="s24"><h2>24 — WHERE</h2><pre><button class="copy" onclick="copyCode(this)">نسخ</button><code>SELECT Name, Grade
+FROM Students
+WHERE Grade >= 50;</code></pre><p>يمكن استخدام AND وOR وLIKE وIS NULL وBETWEEN.</p></section>
+<section id="s25"><h2>25 — ORDER BY</h2><pre><button class="copy" onclick="copyCode(this)">نسخ</button><code>SELECT Name, Grade
+FROM Students
+ORDER BY Grade DESC, Name ASC;</code></pre></section>
+<section id="s26"><h2>26 — GROUP BY</h2><pre><button class="copy" onclick="copyCode(this)">نسخ</button><code>SELECT City, Count(*) AS Total
+FROM Students
+GROUP BY City;</code></pre></section>
+<section id="s27"><h2>27 — JOIN</h2><pre><button class="copy" onclick="copyCode(this)">نسخ</button><code>SELECT Students.Name, Classes.ClassName
+FROM Students
+INNER JOIN Classes
+ON Students.ClassID = Classes.ID;</code></pre><p>يمكن استخدام INNER JOIN وLEFT JOIN بحسب البيانات التي تريد الاحتفاظ بها من الطرف الأيسر.</p></section>
+
+<section id="s28"><h2>28 — Forms</h2><p>Form هو واجهة للتعامل مع البيانات. يمكن أن يكون Bound Form مرتبطًا بجدول/استعلام أو Unbound Form للواجهة والتنقل والعمليات.</p></section>
+<section id="s29"><h2>29 — إنشاء النماذج</h2><p>اختر مصدر البيانات، أضف الحقول، اضبط التخطيط، ثم أضف أزرار الحفظ والإضافة والبحث والتنقل.</p></section>
+<section id="s30"><h2>30 — Controls</h2><p>أهم Controls: Text Box، Label، Combo Box، List Box، Check Box، Option Button، Command Button، Subform، Image.</p></section>
+<section id="s31"><h2>31 — ComboBox</h2><p>يستخدم لاختيار قيمة من قائمة، مثل اختيار ClassID مع عرض اسم الصف بدلًا من رقم المفتاح.</p><div class="note">الأفضل أن يخزن ComboBox المفتاح، بينما يعرض للمستخدم الوصف المفهوم.</div></section>
+<section id="s32"><h2>32 — ListBox</h2><p>مفيد لعرض قائمة عناصر، وقد يسمح باختيار عنصر واحد أو عدة عناصر بحسب إعدادات التحكم.</p></section>
+<section id="s33"><h2>33 — Buttons</h2><p>الأزرار تنفذ أوامر مثل فتح نموذج، حفظ سجل، إضافة سجل، طباعة تقرير، أو تشغيل استعلام.</p><pre><button class="copy" onclick="copyCode(this)">نسخ</button><code>Private Sub btnStudents_Click()
+    DoCmd.OpenForm "frmStudents"
+End Sub</code></pre></section>
+
+<section id="s34"><h2>34 — Reports</h2><p>Reports مخصصة للعرض والطباعة والتجميع. اربط التقرير باستعلام مناسب بدل وضع منطق معقد داخل التقرير.</p></section>
+<section id="s35"><h2>35 — تصميم التقارير</h2><p>استخدم Report Header وPage Header وDetail وGroup Header/Footer وPage Footer. أضف Count وSum وAvg عند الحاجة.</p><pre><button class="copy" onclick="copyCode(this)">نسخ</button><code>=Sum([Amount])
+=Count([StudentID])
+=Avg([Grade])</code></pre></section>
+
+<section id="s36"><h2>36 — العلاقات المتقدمة</h2><p>قبل إنشاء العلاقة حدد PK وFK وتأكد من توافق نوع البيانات. فعّل Cascade Update/Delete فقط عندما تكون لهما قاعدة عمل واضحة.</p></section>
+<section id="s37"><h2>37 — Validation Rules</h2><p>Validation Rule تمنع إدخال قيم غير مناسبة.</p><table><tr><th>الهدف</th><th>Rule</th></tr><tr><td>درجة من 0 إلى 100</td><td><code>Between 0 And 100</code></td></tr><tr><td>مبلغ غير سالب</td><td><code>&gt;=0</code></td></tr><tr><td>إلزامي</td><td><code>Is Not Null</code></td></tr></table></section>
+<section id="s38"><h2>38 — Input Mask</h2><p>Input Mask تساعد في فرض نمط إدخال محدد مثل أرقام الهاتف أو التاريخ. لا تعتبرها بديلًا كاملًا للتحقق من صحة البيانات.</p></section>
+<section id="s39"><h2>39 — Indexes</h2><p>الفهارس تسرّع البحث والفرز والربط في الحالات المناسبة، لكنها تزيد حجم التخزين وكلفة عمليات الإدخال والتعديل. لا تفهرس كل عمود عشوائيًا.</p></section>
+<section id="s40"><h2>40 — Navigation Forms</h2><p>أنشئ شاشة رئيسية تحتوي أزرارًا للوصول إلى الطلاب والمبيعات والتقارير والإعدادات. اجعل الواجهة واضحة ومحدودة الصلاحيات.</p></section>
+<section id="s41"><h2>41 — Subforms</h2><p>Subform يعرض سجلات مرتبطة بالسجل الرئيسي، مثل نموذج طالب رئيسي مع قائمة المواد المسجل بها.</p></section>
+
+<section id="s42"><h2>42 — Macros</h2><p>Macros تسمح بأتمتة إجراءات دون كتابة VBA في بعض السيناريوهات. يمكن استخدامها لفتح Forms وReports وتشغيل Queries وإظهار الرسائل.</p></section>
+<section id="s43"><h2>43 — VBA في Access</h2><p>VBA يضيف منطقًا برمجيًا للأحداث والنماذج والتقارير وقواعد البيانات.</p><pre><button class="copy" onclick="copyCode(this)">نسخ</button><code>Private Sub btnSave_Click()
+    If IsNull(Me.txtName) Then
+        MsgBox "أدخل اسم الطالب"
+        Exit Sub
+    End If
+    DoCmd.RunCommand acCmdSaveRecord
+    MsgBox "تم الحفظ"
+End Sub</code></pre></section>
+<section id="s44"><h2>44 — المتغيرات في VBA</h2><pre><button class="copy" onclick="copyCode(this)">نسخ</button><code>Dim studentName As String
+Dim grade As Double
+Dim studentID As Long
+Dim isPassed As Boolean
+
+studentName = "أحمد"
+grade = 85
+isPassed = (grade >= 50)</code></pre></section>
+<section id="s45"><h2>45 — شروط VBA</h2><pre><button class="copy" onclick="copyCode(this)">نسخ</button><code>If grade >= 50 Then
+    MsgBox "ناجح"
+Else
+    MsgBox "راسب"
+End If</code></pre></section>
+<section id="s46"><h2>46 — حلقات VBA</h2><pre><button class="copy" onclick="copyCode(this)">نسخ</button><code>Dim i As Integer
+For i = 1 To 10
+    Debug.Print i
+Next i</code></pre></section>
+<section id="s47"><h2>47 — Forms مع VBA</h2><pre><button class="copy" onclick="copyCode(this)">نسخ</button><code>Me.txtName = "مها"
+Me.cboClass = 3
+DoCmd.OpenForm "frmStudents", , , "ID=10"
+DoCmd.Close acForm, Me.Name</code></pre></section>
+<section id="s48"><h2>48 — Tables مع VBA</h2><pre><button class="copy" onclick="copyCode(this)">نسخ</button><code>CurrentDb.Execute _
+    "UPDATE Students SET Grade=Grade+1 WHERE ID=10", dbFailOnError</code></pre></section>
+
+<section id="s49"><h2>49 — DAO</h2><p>DAO هو الخيار الشائع للتعامل البرمجي مع قاعدة Access ومجموعات Recordset.</p><pre><button class="copy" onclick="copyCode(this)">نسخ</button><code>Dim rs As DAO.Recordset
+Set rs = CurrentDb.OpenRecordset("Students")
+
+rs.AddNew
+rs!Name = "أحمد"
+rs!Grade = 88
+rs.Update
+
+rs.Close
+Set rs = Nothing</code></pre></section>
+<section id="s50"><h2>50 — ADO</h2><p>ADO يمكن استخدامه للتعامل مع مصادر بيانات مختلفة عبر مزودات مناسبة. في تطبيقات Access الحديثة، DAO غالبًا هو المسار الأبسط عند التعامل مع بيانات Access نفسها.</p></section>
+<section id="s51"><h2>51 — معالجة الأخطاء</h2><pre><button class="copy" onclick="copyCode(this)">نسخ</button><code>Private Sub btnRun_Click()
+On Error GoTo ErrHandler
+
+    CurrentDb.Execute "UPDATE Students SET Grade=Grade+1", dbFailOnError
+    MsgBox "تم التنفيذ"
+    Exit Sub
+
+ErrHandler:
+    MsgBox "حدث خطأ: " & Err.Description
+End Sub</code></pre></section>
+<section id="s52"><h2>52 — البحث داخل قاعدة البيانات</h2><p>يمكن البحث عبر Query بمعامل، أو ComboBox، أو مربع بحث مرتبط باستعلام.</p><pre><button class="copy" onclick="copyCode(this)">نسخ</button><code>SELECT *
+FROM Students
+WHERE Name Like "*" & [أدخل الاسم] & "*";</code></pre></section>
+
+<section id="s53"><h2>53 — تسجيل الدخول والصلاحيات</h2><p>يمكن بناء شاشة Login داخل Access تعتمد على Users Table، مع تحديد Role مثل Admin وUser. لكن لا تتعامل مع هذا على أنه بديل لنظام أمان مؤسسي قوي، خصوصًا للبيانات الحساسة.</p><pre><button class="copy" onclick="copyCode(this)">نسخ</button><code>Users
+UserID | Username | PasswordHash | Role | IsActive</code></pre><div class="note warning">لا تخزن كلمات المرور كنص صريح. في الأنظمة الحساسة استخدم بنية مصادقة مناسبة مثل SQL Server/Active Directory أو تطبيق ويب متخصص.</div></section>
+
+<section id="s54"><h2>54 — النسخ الاحتياطي</h2><p>احتفظ بنسخ دورية من ملف قاعدة البيانات، ويفضل نسخ متعددة في مواقع منفصلة. اختبر استعادة النسخة الاحتياطية بدل افتراض أنها صالحة.</p></section>
+<section id="s55"><h2>55 — Compact & Repair</h2><p>الأمر Compact and Repair Database يساعد في تقليل حجم الملف وإصلاح بعض المشكلات الداخلية. نفذه وفق سياسة صيانة واحتفظ بنسخة احتياطية قبل العمليات المهمة.</p></section>
+<section id="s56"><h2>56 — استيراد Excel</h2><p>يمكن استيراد ورقة Excel إلى جدول Access، مع مراجعة أنواع البيانات والمفاتيح والتكرارات بعد الاستيراد.</p></section>
+<section id="s57"><h2>57 — تصدير Excel</h2><p>يمكن تصدير جدول أو Query أو Report إلى Excel للتحليل أو المشاركة.</p></section>
+<section id="s58"><h2>58 — ربط Access بـ Excel</h2><p>يمكن ربط بيانات Excel كمصدر خارجي أو استخدام Access كطبقة بيانات وتنظيم العلاقات والاستعلامات ثم تصدير النتائج.</p></section>
+<section id="s59"><h2>59 — ربط Access بـ SQL Server</h2><p>في الأنظمة التي تحتاج تعدد مستخدمين أكبر أو إدارة مركزية للبيانات، يمكن إبقاء Forms/Reports في Access وربط الجداول الخلفية بـ SQL Server عبر Linked Tables أو حلول أخرى.</p></section>
+
+<section id="s60"><h2>60 — مشروع إدارة الطلاب</h2>
+<p>مشروع عملي يتكون من:</p><ul><li>Students</li><li>Classes</li><li>Subjects</li><li>Grades</li><li>Teachers</li></ul>
+<pre><button class="copy" onclick="copyCode(this)">نسخ</button><code>Students(StudentID, Name, ClassID)
+Classes(ClassID, ClassName)
+Subjects(SubjectID, SubjectName)
+Grades(GradeID, StudentID, SubjectID, Grade)</code></pre></section>
+
+<section id="s61"><h2>61 — مشروع الموظفين</h2><p>Employees + Departments + Jobs + Attendance + Salaries. استخدم DepartmentID كمفتاح أجنبي بدل تكرار اسم القسم في كل سجل.</p></section>
+<section id="s62"><h2>62 — مشروع المبيعات</h2><p>Customers + Products + Invoices + InvoiceDetails. اجعل الفاتورة رأسًا وتفاصيلها في جدول مستقل لعلاقة One-to-Many.</p><pre><button class="copy" onclick="copyCode(this)">نسخ</button><code>Invoices(InvoiceID, CustomerID, InvoiceDate)
+InvoiceDetails(DetailID, InvoiceID, ProductID, Qty, UnitPrice)</code></pre></section>
+<section id="s63"><h2>63 — مشروع المخزون</h2><p>Products + Categories + Suppliers + Purchases + Sales + StockTransactions. يفضل تسجيل حركة المخزون بدل تعديل رقم المخزون عشوائيًا فقط.</p></section>
+<section id="s64"><h2>64 — مشروع المكتبة</h2><p>Books + Authors + Members + Borrowings + Categories. علاقة الكتاب والمؤلف قد تكون Many-to-Many، لذلك استخدم BookAuthors كجدول وسيط.</p></section>
+<section id="s65"><h2>65 — مشروع تسجيل الدخول</h2><p>أنشئ Users وRoles ثم Form Login وMain Navigation. بعد نجاح المصادقة، افتح الواجهة المناسبة للدور.</p></section>
+<section id="s66"><h2>66 — مشروع قاعدة مدرسية</h2><p>يمكن دمج الطلاب والمعلمين والفصول والمواد والحضور والدرجات والرسوم والتقارير في قاعدة واحدة منظمة.</p></section>
+<section id="s67"><h2>67 — مشروع نظام إدارة كامل</h2><p>المشروع النهائي يجمع Database Design + Relationships + Queries + Forms + Subforms + Reports + VBA + Backup + صلاحيات تشغيلية.</p><div class="grid"><div class="mini"><b>واجهة رئيسية</b><br>تنقل مركزي.</div><div class="mini"><b>إدارة البيانات</b><br>CRUD.</div><div class="mini"><b>التقارير</b><br>طباعة وتحليل.</div><div class="mini"><b>الأتمتة</b><br>VBA/Macros.</div></div></section>
+
+<section id="s68"><h2>68 — تحسين الأداء</h2><ul><li>اختر أنواع بيانات مناسبة.</li><li>استخدم Indexes للحقول التي تستفيد فعليًا.</li><li>قلل الاستعلامات غير الضرورية.</li><li>تجنب تخزين البيانات المكررة.</li><li>قسم قاعدة البيانات إلى Front-End وBack-End في البيئات متعددة المستخدمين.</li><li>استخدم SQL Server عندما تتجاوز احتياجات Access المناسبة.</li></ul></section>
+<section id="s69"><h2>69 — حماية قاعدة البيانات</h2><p>استخدم أقل صلاحية ممكنة، نسخًا احتياطية، حماية ملفات النظام، وإدارة وصول مناسبة. ACCDE يمكن أن يكون مفيدًا لتوزيع واجهة Access ومنع تعديل تصميم VBA في النسخة الموزعة، لكنه ليس حلًا أمنيًا مطلقًا.</p></section>
+
+<section id="s70"><h2>70 — المرجع السريع لـ Access</h2>
+<table><tr><th>المهمة</th><th>الأداة/الأمر</th></tr><tr><td>عرض البيانات</td><td>SELECT</td></tr><tr><td>تصفية</td><td>WHERE</td></tr><tr><td>ترتيب</td><td>ORDER BY</td></tr><tr><td>تجميع</td><td>GROUP BY</td></tr><tr><td>ربط الجداول</td><td>JOIN</td></tr><tr><td>إضافة</td><td>INSERT INTO</td></tr><tr><td>تعديل</td><td>UPDATE</td></tr><tr><td>حذف</td><td>DELETE</td></tr><tr><td>جدول من استعلام</td><td>SELECT INTO</td></tr><tr><td>فتح نموذج</td><td>DoCmd.OpenForm</td></tr><tr><td>فتح تقرير</td><td>DoCmd.OpenReport</td></tr><tr><td>تنفيذ SQL</td><td>CurrentDb.Execute</td></tr><tr><td>سجل DAO</td><td>DAO.Recordset</td></tr></table>
+<div class="note"><b>خريطة التعلم:</b> Tables → Keys → Relationships → Queries/SQL → Forms → Reports → VBA/DAO → Projects → Backup/Security → SQL Server عند الحاجة.</div>
+</section>
+
+<footer>
+<p><strong>منصة آفاق المعرفة التقنية</strong> — مكتبة | مها شهوب</p>
+<p>إعداد الكاتبة والمهندسة: مها شهوب</p>
+</footer>
+</main>
+
+<button class="top" id="top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+function toggleTheme(){document.documentElement.dataset.theme=document.documentElement.dataset.theme==="dark"?"light":"dark";localStorage.setItem("accessTheme",document.documentElement.dataset.theme)}
+if(localStorage.getItem("accessTheme"))document.documentElement.dataset.theme=localStorage.getItem("accessTheme");
+function toggleMenu(){document.getElementById("sidebar").classList.toggle("open")}
+function copyCode(btn){const code=btn.parentElement.querySelector("code").innerText;navigator.clipboard.writeText(code);btn.textContent="تم النسخ";setTimeout(()=>btn.textContent="نسخ",1200)}
+function filterNav(){const q=document.getElementById("search").value.trim().toLowerCase();document.querySelectorAll("#nav a").forEach(a=>a.style.display=a.textContent.toLowerCase().includes(q)?"block":"none")}
+window.addEventListener("scroll",()=>{
+const h=document.documentElement.scrollHeight-innerHeight;
+document.getElementById("progress").style.width=(scrollY/h*100)+"%";
+document.getElementById("top").style.display=scrollY>500?"block":"none";
+let current="";
+document.querySelectorAll("section").forEach(s=>{if(scrollY>=s.offsetTop-130)current=s.id});
+document.querySelectorAll("#nav a").forEach(a=>a.classList.toggle("active",a.getAttribute("href")==="#"+current));
+});
+document.querySelectorAll("#nav a").forEach(a=>a.addEventListener("click",()=>{if(innerWidth<=900)document.getElementById("sidebar").classList.remove("open")}));
+</script>
+</body>
+</html>

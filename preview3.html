@@ -1,0 +1,4192 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description"
+content="دليل Java الشامل من إعداد الكاتبة والمهندسة مها شهوب - تعلم Java من الأساسيات إلى البرمجة الكائنية وقواعد البيانات وSpring Boot وREST API والأمان والمشاريع.">
+
+<meta name="author" content="مها شهوب">
+
+<title>دليل Java الشامل | مها شهوب</title>
+
+<style>
+
+/* =========================================================
+   المتغيرات
+========================================================= */
+
+:root{
+    --bg:#eef3f9;
+    --card:#ffffff;
+    --text:#172033;
+    --muted:#637087;
+    --primary:#1677c8;
+    --primary2:#0b4f88;
+    --border:#d8e1ec;
+    --code:#111827;
+    --codeText:#e5eef9;
+    --nav:#ffffff;
+    --shadow:0 8px 28px rgba(15,45,75,.08);
+}
+
+[data-theme="dark"]{
+    --bg:#0b1220;
+    --card:#111b2d;
+    --text:#e8eef8;
+    --muted:#a8b5c8;
+    --primary:#48a9ff;
+    --primary2:#1677c8;
+    --border:#263750;
+    --code:#07101d;
+    --codeText:#dbeafe;
+    --nav:#0e1727;
+    --shadow:0 8px 28px rgba(0,0,0,.25);
+}
+
+
+/* =========================================================
+   أساسيات
+========================================================= */
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:"Segoe UI",Tahoma,Arial,sans-serif;
+    line-height:1.85;
+}
+
+a{
+    color:inherit;
+}
+
+button,
+input{
+    font-family:inherit;
+}
+
+
+/* =========================================================
+   الشريط العلوي
+========================================================= */
+
+.top{
+    position:fixed;
+    top:0;
+    right:0;
+    left:0;
+    height:68px;
+
+    background:var(--nav);
+
+    border-bottom:1px solid var(--border);
+
+    z-index:1000;
+
+    display:flex;
+    align-items:center;
+
+    gap:14px;
+
+    padding:0 22px;
+
+    box-shadow:0 3px 15px rgba(0,0,0,.04);
+}
+
+.logo{width:67px;height:54px;border-radius:50%;display:grid;place-items:center;}
+
+
+.brand{
+    font-weight:800;
+    font-size:18px;
+}
+
+.brand small{
+    display:block;
+    color:var(--muted);
+    font-size:11px;
+    line-height:1.2;
+}
+
+.top-actions{
+    margin-right:auto;
+
+    display:flex;
+    gap:8px;
+}
+
+.btn{
+    border:1px solid var(--border);
+
+    background:var(--card);
+
+    color:var(--text);
+
+    border-radius:10px;
+
+    padding:9px 13px;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.btn:hover{
+    border-color:var(--primary);
+    color:var(--primary);
+}
+
+
+/* =========================================================
+   التخطيط
+========================================================= */
+
+.layout{
+    display:flex;
+
+    max-width:1500px;
+
+    margin:auto;
+
+    padding-top:68px;
+}
+
+aside{
+    width:300px;
+
+    position:fixed;
+
+    top:68px;
+    bottom:0;
+
+    right:max(
+        0px,
+        calc((100vw - 1500px)/2)
+    );
+
+    background:var(--nav);
+
+    border-left:1px solid var(--border);
+
+    padding:20px 15px;
+
+    overflow:auto;
+}
+
+
+/* =========================================================
+   البحث
+========================================================= */
+
+.search{
+    width:100%;
+
+    padding:12px;
+
+    border:1px solid var(--border);
+
+    border-radius:12px;
+
+    background:var(--card);
+
+    color:var(--text);
+
+    outline:none;
+
+    margin-bottom:14px;
+}
+
+.search:focus{
+    border-color:var(--primary);
+
+    box-shadow:
+    0 0 0 3px rgba(22,119,200,.12);
+}
+
+.nav-title{
+    font-weight:800;
+
+    color:var(--primary);
+
+    margin:8px 0 10px;
+}
+
+
+/* =========================================================
+   القائمة
+========================================================= */
+
+nav a{
+    display:block;
+
+    text-decoration:none;
+
+    color:var(--muted);
+
+    padding:7px 10px;
+
+    border-radius:8px;
+
+    font-size:13px;
+
+    margin:2px 0;
+
+    transition:.2s;
+}
+
+nav a:hover,
+nav a.active{
+    background:rgba(22,119,200,.1);
+
+    color:var(--primary);
+
+    font-weight:700;
+}
+
+
+/* =========================================================
+   المحتوى
+========================================================= */
+
+main{
+    margin-right:300px;
+
+    width:calc(100% - 300px);
+
+    padding:32px 34px 70px;
+}
+
+
+/* =========================================================
+   Hero
+========================================================= */
+
+.hero{
+    background:
+    linear-gradient(
+        135deg,
+        #071b31,
+        #0b4f88 55%,
+        #1677c8
+    );
+
+    color:#fff;
+
+    border-radius:20px;
+
+    padding:36px;
+
+    box-shadow:var(--shadow);
+
+    margin-bottom:25px;
+}
+
+.hero h1{
+    font-size:34px;
+
+    margin:0 0 8px;
+}
+
+.hero p{
+    margin:7px 0;
+}
+
+.badges{
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:8px;
+
+    margin-top:20px;
+}
+
+.badge{
+    background:rgba(255,255,255,.13);
+
+    border:1px solid rgba(255,255,255,.22);
+
+    padding:6px 11px;
+
+    border-radius:30px;
+
+    font-size:12px;
+}
+
+
+/* =========================================================
+   الأقسام
+========================================================= */
+
+section{
+    scroll-margin-top:88px;
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:17px;
+
+    padding:27px;
+
+    margin-bottom:22px;
+
+    box-shadow:var(--shadow);
+}
+
+h2{
+    margin:0 0 13px;
+
+    color:var(--primary2);
+
+    font-size:25px;
+
+    border-right:5px solid var(--primary);
+
+    padding-right:12px;
+}
+
+[data-theme="dark"] h2{
+    color:#70bdff;
+}
+
+h3{
+    color:var(--primary);
+
+    margin-top:22px;
+}
+
+p{
+    margin:9px 0;
+}
+
+.muted{
+    color:var(--muted);
+}
+
+
+/* =========================================================
+   البطاقات
+========================================================= */
+
+.grid{
+    display:grid;
+
+    grid-template-columns:
+    repeat(
+        auto-fit,
+        minmax(220px,1fr)
+    );
+
+    gap:14px;
+
+    margin:15px 0;
+}
+
+.card{
+    border:1px solid var(--border);
+
+    border-radius:12px;
+
+    padding:15px;
+
+    background:var(--bg);
+}
+
+.card b{
+    color:var(--primary);
+}
+
+
+/* =========================================================
+   الفهرس
+========================================================= */
+
+.toc{
+    display:grid;
+
+    grid-template-columns:
+    repeat(
+        auto-fit,
+        minmax(220px,1fr)
+    );
+
+    gap:10px;
+}
+
+.toc a{
+    text-decoration:none;
+
+    border:1px solid var(--border);
+
+    border-radius:10px;
+
+    padding:11px;
+
+    background:var(--bg);
+
+    color:var(--text);
+
+    transition:.2s;
+}
+
+.toc a:hover{
+    border-color:var(--primary);
+
+    color:var(--primary);
+
+    transform:translateY(-2px);
+}
+
+
+/* =========================================================
+   الأكواد
+========================================================= */
+
+.code{
+    position:relative;
+
+    background:var(--code);
+
+    color:var(--codeText);
+
+    border-radius:12px;
+
+    margin:15px 0;
+
+    overflow:auto;
+
+    direction:ltr;
+
+    text-align:left;
+}
+
+.code pre{
+    margin:0;
+
+    padding:20px;
+
+    white-space:pre;
+
+    min-width:max-content;
+
+    font-family:
+    Consolas,
+    "Courier New",
+    monospace;
+
+    font-size:13px;
+
+    line-height:1.7;
+}
+
+.copy{
+    position:absolute;
+
+    top:8px;
+
+    right:8px;
+
+    border:1px solid #334155;
+
+    background:#182538;
+
+    color:#dbeafe;
+
+    border-radius:7px;
+
+    padding:5px 9px;
+
+    cursor:pointer;
+
+    font-size:12px;
+}
+
+
+/* =========================================================
+   الجداول
+========================================================= */
+
+table{
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin:15px 0;
+
+    font-size:14px;
+}
+
+th,
+td{
+    border:1px solid var(--border);
+
+    padding:10px;
+
+    text-align:right;
+
+    vertical-align:top;
+}
+
+th{
+    background:rgba(22,119,200,.1);
+
+    color:var(--primary2);
+}
+
+
+/* =========================================================
+   الملاحظات
+========================================================= */
+
+.note{
+    padding:14px 16px;
+
+    border-radius:10px;
+
+    margin:14px 0;
+
+    border-right:4px solid var(--primary);
+
+    background:rgba(22,119,200,.08);
+}
+
+.warning{
+    padding:14px 16px;
+
+    border-radius:10px;
+
+    margin:14px 0;
+
+    border-right:4px solid #d08a00;
+
+    background:rgba(208,138,0,.09);
+}
+
+.success{
+    padding:14px 16px;
+
+    border-radius:10px;
+
+    margin:14px 0;
+
+    border-right:4px solid #16845a;
+
+    background:rgba(22,132,90,.09);
+}
+
+
+/* =========================================================
+   شريط التقدم
+========================================================= */
+
+.progress-wrap{
+    position:fixed;
+
+    top:68px;
+
+    right:0;
+
+    left:0;
+
+    height:3px;
+
+    z-index:1001;
+}
+
+.progress{
+    height:100%;
+
+    width:0;
+
+    background:#3fb5ff;
+}
+
+
+/* =========================================================
+   زر العودة
+========================================================= */
+
+.topbtn{
+    position:fixed;
+
+    bottom:20px;
+
+    left:20px;
+
+    width:45px;
+
+    height:45px;
+
+    border:0;
+
+    border-radius:50%;
+
+    background:var(--primary);
+
+    color:#fff;
+
+    font-size:20px;
+
+    cursor:pointer;
+
+    display:none;
+
+    z-index:900;
+}
+
+
+/* =========================================================
+   القائمة المحمولة
+========================================================= */
+
+.menu{
+    display:none;
+}
+
+
+/* =========================================================
+   Footer
+========================================================= */
+
+footer{
+    text-align:center;
+
+    color:var(--muted);
+
+    padding:30px 10px;
+}
+
+
+/* =========================================================
+   Responsive
+========================================================= */
+
+@media(max-width:950px){
+
+    .menu{
+        display:block;
+    }
+
+    aside{
+        display:none;
+
+        right:0;
+
+        width:300px;
+
+        z-index:950;
+
+        box-shadow:
+        -8px 0 25px rgba(0,0,0,.12);
+    }
+
+    aside.open{
+        display:block;
+    }
+
+    main{
+        margin:0;
+
+        width:100%;
+
+        padding:
+        24px
+        15px
+        60px;
+    }
+
+    .hero{
+        padding:25px;
+    }
+
+    .hero h1{
+        font-size:27px;
+    }
+}
+
+
+@media(max-width:600px){
+
+    .brand{
+        font-size:15px;
+    }
+
+    .top{
+        padding:0 10px;
+    }
+
+    .top-actions .btn:nth-child(2){
+        display:none;
+    }
+
+    section{
+        padding:20px 15px;
+    }
+
+    h2{
+        font-size:21px;
+    }
+
+    table{
+        font-size:12px;
+    }
+
+    .code pre{
+        font-size:12px;
+    }
+}
+
+
+/* =========================================================
+   الطباعة
+========================================================= */
+
+@media print{
+
+    .top,
+    aside,
+    .progress-wrap,
+    .topbtn{
+        display:none !important;
+    }
+
+    main{
+        margin:0;
+
+        width:100%;
+
+        padding:0;
+    }
+
+    section{
+        box-shadow:none;
+
+        break-inside:avoid;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =======================================================
+     شريط التقدم
+======================================================= -->
+
+<div class="progress-wrap">
+    <div class="progress" id="progress"></div>
+</div>
+
+
+<!-- =======================================================
+     Header
+======================================================= -->
+
+<header class="top">
+
+    <button
+        class="btn menu"
+        onclick="toggleMenu()">
+        ☰
+    </button>
+
+     <img src="IMG/آفاق المعرفة التقنية.png" class="logo">
+
+
+    <div class="brand">
+
+        منصة آفاق المعرفة التقنية
+
+        <small>
+            دليل Java الشامل
+        </small>
+
+    </div>
+
+    <div class="top-actions">
+
+        <button
+            class="btn"
+            onclick="toggleTheme()">
+            ◐ الوضع
+        </button>
+
+        <button
+            class="btn"
+            onclick="window.print()">
+            🖨 طباعة
+        </button>
+
+    </div>
+
+</header>
+
+
+<div class="layout">
+
+
+<!-- =======================================================
+     Sidebar
+======================================================= -->
+
+<aside id="sidebar">
+
+    <input
+        type="text"
+        id="navSearch"
+        class="search"
+        placeholder="🔎 ابحث في الدليل..."
+        oninput="filterNav()"
+    >
+
+    <div class="nav-title">
+        فهرس Java
+    </div>
+
+    <nav id="nav">
+
+        <a href="#intro">01. مقدمة Java</a>
+        <a href="#setup">02. JDK و JRE و JVM</a>
+        <a href="#syntax">03. الصياغة وأول برنامج</a>
+        <a href="#types">04. المتغيرات وأنواع البيانات</a>
+        <a href="#operators">05. Operators</a>
+        <a href="#conditions">06. Conditions و Switch</a>
+        <a href="#loops">07. Loops</a>
+        <a href="#arrays">08. Arrays</a>
+        <a href="#strings">09. Strings</a>
+        <a href="#methods">10. Methods</a>
+        <a href="#oop">11. OOP</a>
+        <a href="#inheritance">12. Inheritance و Polymorphism</a>
+        <a href="#interfaces">13. Interfaces</a>
+        <a href="#packages">14. Packages</a>
+        <a href="#exceptions">15. Exception Handling</a>
+        <a href="#collections">16. Collections</a>
+        <a href="#generics">17. Generics</a>
+        <a href="#lambda">18. Lambda</a>
+        <a href="#streams">19. Stream API</a>
+        <a href="#optional">20. Optional</a>
+        <a href="#datetime">21. Date & Time</a>
+        <a href="#files">22. Files و I/O</a>
+        <a href="#regex">23. Regular Expressions</a>
+        <a href="#json">24. JSON</a>
+        <a href="#threads">25. Threads و Concurrency</a>
+        <a href="#jvm">26. JVM والذاكرة</a>
+        <a href="#reflection">27. Reflection و Annotations</a>
+        <a href="#modules">28. Java Modules</a>
+        <a href="#networking">29. Networking و HTTP</a>
+        <a href="#jdbc">30. JDBC</a>
+        <a href="#mysql">31. Java + MySQL</a>
+        <a href="#jpa">32. JPA و Hibernate</a>
+        <a href="#maven">33. Maven و Gradle</a>
+        <a href="#spring">34. Spring Framework</a>
+        <a href="#springboot">35. Spring Boot</a>
+        <a href="#rest">36. REST API</a>
+        <a href="#security">37. Spring Security</a>
+        <a href="#jwt">38. JWT</a>
+        <a href="#testing">39. Testing</a>
+        <a href="#patterns">40. Design Patterns</a>
+        <a href="#solid">41. SOLID و Clean Code</a>
+        <a href="#architecture">42. Architecture</a>
+        <a href="#gui">43. Desktop و JavaFX</a>
+        <a href="#android">44. Java و Android</a>
+        <a href="#docker">45. Docker و CI/CD</a>
+        <a href="#algorithms">46. Algorithms</a>
+        <a href="#performance">47. Performance</a>
+        <a href="#cloud">48. Cloud و Microservices</a>
+        <a href="#projects">49. مشاريع عملية</a>
+        <a href="#quick">50. مرجع Java السريع</a>
+
+    </nav>
+
+</aside>
+
+
+<!-- =======================================================
+     Main
+======================================================= -->
+
+<main>
+
+
+<!-- =======================================================
+     Hero
+======================================================= -->
+
+<section class="hero" id="home">
+
+    <h1>
+        ☕ دليل Java الشامل
+    </h1>
+
+    <p>
+        مرجع تعليمي شامل يبدأ من أساسيات Java
+        ويصل إلى البرمجة الكائنية وقواعد البيانات
+        وSpring Boot وREST API والأمان والمشاريع.
+    </p>
+
+    <p>
+        <b>
+            إعداد الكاتبة والمهندسة: مها شهوب
+        </b>
+    </p>
+
+    <div class="badges">
+
+        <span class="badge">Java</span>
+        <span class="badge">OOP</span>
+        <span class="badge">Collections</span>
+        <span class="badge">Generics</span>
+        <span class="badge">Streams</span>
+        <span class="badge">JDBC</span>
+        <span class="badge">MySQL</span>
+        <span class="badge">Spring Boot</span>
+        <span class="badge">REST API</span>
+        <span class="badge">Security</span>
+        <span class="badge">Docker</span>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     Overview
+======================================================= -->
+
+<section id="overview">
+
+<h2>
+    نظرة عامة
+</h2>
+
+<p>
+Java من أشهر لغات البرمجة المستخدمة في تطبيقات المؤسسات،
+والخوادم، وتطبيقات الويب، والأنظمة الكبيرة، وبعض تطبيقات
+Android، والأدوات والأنظمة متعددة المنصات.
+</p>
+
+<div class="grid">
+
+<div class="card">
+<b>للمبتدئ</b>
+<br>
+Syntax، Variables، Conditions، Loops، Methods.
+</div>
+
+<div class="card">
+<b>للمستوى المتوسط</b>
+<br>
+OOP، Collections، Generics، Lambda، Streams.
+</div>
+
+<div class="card">
+<b>للمستوى المتقدم</b>
+<br>
+Concurrency، JVM، JDBC، JPA، Spring Boot.
+</div>
+
+<div class="card">
+<b>لتطوير الويب</b>
+<br>
+REST API، Spring، Security، JWT.
+</div>
+
+<div class="card">
+<b>لقواعد البيانات</b>
+<br>
+JDBC، MySQL، JPA، Hibernate.
+</div>
+
+<div class="card">
+<b>للمشاريع</b>
+<br>
+Testing، Docker، CI/CD، Microservices.
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     TOC
+======================================================= -->
+
+<section id="toc">
+
+<h2>
+    الفهرس الكامل
+</h2>
+
+<div class="toc">
+
+<a href="#intro">01. مقدمة Java</a>
+<a href="#setup">02. JDK و JRE و JVM</a>
+<a href="#syntax">03. الصياغة وأول برنامج</a>
+<a href="#types">04. المتغيرات</a>
+<a href="#operators">05. Operators</a>
+<a href="#conditions">06. Conditions</a>
+<a href="#loops">07. Loops</a>
+<a href="#arrays">08. Arrays</a>
+<a href="#strings">09. Strings</a>
+<a href="#methods">10. Methods</a>
+<a href="#oop">11. OOP</a>
+<a href="#inheritance">12. Inheritance</a>
+<a href="#interfaces">13. Interfaces</a>
+<a href="#packages">14. Packages</a>
+<a href="#exceptions">15. Exceptions</a>
+<a href="#collections">16. Collections</a>
+<a href="#generics">17. Generics</a>
+<a href="#lambda">18. Lambda</a>
+<a href="#streams">19. Streams</a>
+<a href="#optional">20. Optional</a>
+<a href="#datetime">21. Date & Time</a>
+<a href="#files">22. Files و I/O</a>
+<a href="#regex">23. Regex</a>
+<a href="#json">24. JSON</a>
+<a href="#threads">25. Threads</a>
+<a href="#jvm">26. JVM</a>
+<a href="#reflection">27. Reflection</a>
+<a href="#modules">28. Modules</a>
+<a href="#networking">29. Networking</a>
+<a href="#jdbc">30. JDBC</a>
+<a href="#mysql">31. Java + MySQL</a>
+<a href="#jpa">32. JPA و Hibernate</a>
+<a href="#maven">33. Maven و Gradle</a>
+<a href="#spring">34. Spring</a>
+<a href="#springboot">35. Spring Boot</a>
+<a href="#rest">36. REST API</a>
+<a href="#security">37. Spring Security</a>
+<a href="#jwt">38. JWT</a>
+<a href="#testing">39. Testing</a>
+<a href="#patterns">40. Design Patterns</a>
+<a href="#solid">41. SOLID</a>
+<a href="#architecture">42. Architecture</a>
+<a href="#gui">43. JavaFX</a>
+<a href="#android">44. Android</a>
+<a href="#docker">45. Docker</a>
+<a href="#algorithms">46. Algorithms</a>
+<a href="#performance">47. Performance</a>
+<a href="#cloud">48. Cloud</a>
+<a href="#projects">49. مشاريع عملية</a>
+<a href="#quick">50. مرجع سريع</a>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     01
+======================================================= -->
+
+<section id="intro">
+
+<h2>
+01. مقدمة Java
+</h2>
+
+<p>
+Java لغة برمجة عالية المستوى وعامة الاستخدام.
+تعتمد على البرمجة الكائنية OOP وتستخدم مفهوم
+Write Once, Run Anywhere من خلال Java Virtual Machine.
+</p>
+
+<div class="note">
+<b>الفكرة الأساسية:</b>
+يتم تحويل كود Java إلى Bytecode ثم تقوم JVM بتنفيذه.
+</div>
+
+<h3>
+أهم خصائص Java
+</h3>
+
+<ul>
+
+<li>Object-Oriented Programming</li>
+<li>Strong Typing</li>
+<li>Automatic Garbage Collection</li>
+<li>Multithreading</li>
+<li>Exception Handling</li>
+<li>Generics</li>
+<li>Lambda Expressions</li>
+<li>Stream API</li>
+<li>دعم واسع لتطبيقات الخوادم</li>
+
+</ul>
+
+</section>
+
+
+<!-- =======================================================
+     02
+======================================================= -->
+
+<section id="setup">
+
+<h2>
+02. JDK و JRE و JVM
+</h2>
+
+<table>
+
+<tr>
+<th>المصطلح</th>
+<th>المعنى</th>
+</tr>
+
+<tr>
+<td>JDK</td>
+<td>Java Development Kit - أدوات تطوير Java.</td>
+</tr>
+
+<tr>
+<td>JVM</td>
+<td>Java Virtual Machine - تنفيذ Bytecode.</td>
+</tr>
+
+<tr>
+<td>JRE</td>
+<td>مفهوم بيئة تشغيل Java التقليدي، ويُستخدم المصطلح تاريخيًا.</td>
+</tr>
+
+<tr>
+<td>Bytecode</td>
+<td>الناتج الوسيط من Compiler.</td>
+</tr>
+
+</table>
+
+<h3>
+أوامر مهمة
+</h3>
+
+<div class="code">
+
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+
+<pre>java -version
+javac -version
+jshell</pre>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     03
+======================================================= -->
+
+<section id="syntax">
+
+<h2>
+03. الصياغة وأول برنامج
+</h2>
+
+<p>
+أبسط برنامج Java يبدأ عادةً بكلاس يحتوي على الدالة
+main التي تمثل نقطة بداية التنفيذ.
+</p>
+
+<div class="code">
+
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+
+<pre>public class Main {
+
+    public static void main(String[] args) {
+
+        System.out.println("Hello Java");
+
+    }
+
+}</pre>
+
+</div>
+
+<div class="note">
+اسم الملف يجب أن يطابق اسم public class، مثل Main.java.
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     04
+======================================================= -->
+
+<section id="types">
+
+<h2>
+04. المتغيرات وأنواع البيانات
+</h2>
+
+<h3>
+Primitive Types
+</h3>
+
+<table>
+
+<tr>
+<th>النوع</th>
+<th>مثال</th>
+</tr>
+
+<tr>
+<td>byte</td>
+<td>byte x = 10;</td>
+</tr>
+
+<tr>
+<td>short</td>
+<td>short x = 100;</td>
+</tr>
+
+<tr>
+<td>int</td>
+<td>int age = 25;</td>
+</tr>
+
+<tr>
+<td>long</td>
+<td>long number = 100000L;</td>
+</tr>
+
+<tr>
+<td>float</td>
+<td>float price = 10.5f;</td>
+</tr>
+
+<tr>
+<td>double</td>
+<td>double value = 99.99;</td>
+</tr>
+
+<tr>
+<td>char</td>
+<td>char grade = 'A';</td>
+</tr>
+
+<tr>
+<td>boolean</td>
+<td>boolean active = true;</td>
+</tr>
+
+</table>
+
+<div class="code">
+
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+
+<pre>int age = 25;
+
+double price = 99.90;
+
+boolean active = true;
+
+String name = "Maha";
+
+final double PI = 3.14159;</pre>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     05
+======================================================= -->
+
+<section id="operators">
+
+<h2>
+05. Operators
+</h2>
+
+<div class="grid">
+
+<div class="card">
+<b>Arithmetic</b>
+<br>
++ - * / %
+</div>
+
+<div class="card">
+<b>Comparison</b>
+<br>
+== != > < >= <=
+</div>
+
+<div class="card">
+<b>Logical</b>
+<br>
+&& || !
+</div>
+
+<div class="card">
+<b>Assignment</b>
+<br>
+= += -= *= /=
+</div>
+
+<div class="card">
+<b>Increment</b>
+<br>
+++ --
+</div>
+
+<div class="card">
+<b>Ternary</b>
+<br>
+condition ? value1 : value2
+</div>
+
+</div>
+
+<div class="code">
+
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+
+<pre>int a = 10;
+int b = 5;
+
+int sum = a + b;
+int product = a * b;
+
+boolean result = a > b;</pre>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     06
+======================================================= -->
+
+<section id="conditions">
+
+<h2>
+06. Conditions و Switch
+</h2>
+
+<div class="code">
+
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+
+<pre>int age = 20;
+
+if (age >= 18) {
+
+    System.out.println("Adult");
+
+} else {
+
+    System.out.println("Minor");
+
+}</pre>
+
+</div>
+
+<h3>
+Switch
+</h3>
+
+<div class="code">
+
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+
+<pre>int day = 2;
+
+switch(day){
+
+    case 1:
+        System.out.println("Saturday");
+        break;
+
+    case 2:
+        System.out.println("Sunday");
+        break;
+
+    default:
+        System.out.println("Unknown");
+
+}</pre>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     07
+======================================================= -->
+
+<section id="loops">
+
+<h2>
+07. Loops
+</h2>
+
+<h3>
+For Loop
+</h3>
+
+<div class="code">
+
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+
+<pre>for(int i = 1; i <= 5; i++){
+
+    System.out.println(i);
+
+}</pre>
+
+</div>
+
+<h3>
+While
+</h3>
+
+<div class="code">
+
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+
+<pre>int i = 1;
+
+while(i <= 5){
+
+    System.out.println(i);
+
+    i++;
+}</pre>
+
+</div>
+
+<h3>
+Enhanced For
+</h3>
+
+<div class="code">
+
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+
+<pre>int[] numbers = {10,20,30};
+
+for(int number : numbers){
+
+    System.out.println(number);
+
+}</pre>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     08
+======================================================= -->
+
+<section id="arrays">
+
+<h2>
+08. Arrays
+</h2>
+
+<div class="code">
+
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+
+<pre>int[] numbers = {
+    10,
+    20,
+    30,
+    40
+};
+
+System.out.println(numbers[0]);</pre>
+
+</div>
+
+<h3>
+مصفوفة ثنائية الأبعاد
+</h3>
+
+<div class="code">
+
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+
+<pre>int[][] matrix = {
+
+    {1,2,3},
+
+    {4,5,6},
+
+    {7,8,9}
+
+};</pre>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     09
+======================================================= -->
+
+<section id="strings">
+
+<h2>
+09. Strings
+</h2>
+
+<p>
+String تستخدم للتعامل مع النصوص وهي Immutable،
+أي أن محتواها لا يتم تعديله مباشرة بعد إنشائها.
+</p>
+
+<div class="code">
+
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+
+<pre>String name = "Maha";
+
+System.out.println(name.length());
+
+System.out.println(name.toUpperCase());
+
+System.out.println(name.contains("ah"));
+
+System.out.println(name.substring(0,2));
+
+System.out.println(name.replace("M","m"));</pre>
+
+</div>
+
+<h3>
+StringBuilder
+</h3>
+
+<div class="code">
+
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+
+<pre>StringBuilder text = new StringBuilder();
+
+text.append("Java ");
+text.append("Programming");
+
+System.out.println(text);</pre>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     10
+======================================================= -->
+
+<section id="methods">
+
+<h2>
+10. Methods
+</h2>
+
+<p>
+Methods تسمح بتقسيم البرنامج إلى وحدات قابلة لإعادة الاستخدام.
+</p>
+
+<div class="code">
+
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+
+<pre>public static int add(int a, int b){
+
+    return a + b;
+
+}
+
+public static void main(String[] args){
+
+    int result = add(10,20);
+
+    System.out.println(result);
+
+}</pre>
+
+</div>
+
+<h3>
+Method Overloading
+</h3>
+
+<div class="code">
+
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+
+<pre>int add(int a, int b){
+    return a+b;
+}
+
+double add(double a, double b){
+    return a+b;
+}</pre>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     11
+======================================================= -->
+
+<section id="oop">
+
+<h2>
+11. Object-Oriented Programming
+</h2>
+
+<p>
+Java تعتمد بشكل كبير على OOP.
+أهم المفاهيم:
+</p>
+
+<div class="grid">
+
+<div class="card">
+<b>Class</b>
+<br>
+قالب لإنشاء Objects.
+</div>
+
+<div class="card">
+<b>Object</b>
+<br>
+نسخة من Class.
+</div>
+
+<div class="card">
+<b>Encapsulation</b>
+<br>
+حماية البيانات.
+</div>
+
+<div class="card">
+<b>Inheritance</b>
+<br>
+إعادة استخدام الكود.
+</div>
+
+<div class="card">
+<b>Polymorphism</b>
+<br>
+تعدد الأشكال.
+</div>
+
+<div class="card">
+<b>Abstraction</b>
+<br>
+إخفاء التفاصيل.
+</div>
+
+</div>
+
+<div class="code">
+
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+
+<pre>class Student {
+
+    private String name;
+
+    Student(String name){
+
+        this.name = name;
+
+    }
+
+    public String getName(){
+
+        return name;
+
+    }
+
+}
+
+Student student = new Student("Maha");
+
+System.out.println(
+    student.getName()
+);</pre>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     12
+======================================================= -->
+
+<section id="inheritance">
+
+<h2>
+12. Inheritance و Polymorphism
+</h2>
+
+<div class="code">
+
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+
+<pre>class Animal {
+
+    void sound(){
+
+        System.out.println("Animal");
+
+    }
+
+}
+
+class Dog extends Animal {
+
+    @Override
+    void sound(){
+
+        System.out.println("Woof");
+
+    }
+
+}
+
+Animal animal = new Dog();
+
+animal.sound();</pre>
+
+</div>
+
+<div class="note">
+Polymorphism يسمح بالتعامل مع Object من خلال نوع الأب
+مع تنفيذ السلوك الخاص بالكلاس الابن عند Overriding.
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     13
+======================================================= -->
+
+<section id="interfaces">
+
+<h2>
+13. Interfaces و Abstraction
+</h2>
+
+<div class="code">
+
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+
+<pre>interface Printable {
+
+    void print();
+
+}
+
+class Report implements Printable {
+
+    @Override
+    public void print(){
+
+        System.out.println("Report");
+
+    }
+
+}</pre>
+
+</div>
+
+<h3>
+Abstract Class
+</h3>
+
+<div class="code">
+
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+
+<pre>abstract class Animal {
+
+    abstract void sound();
+
+    void move(){
+
+        System.out.println("Moving");
+
+    }
+
+}</pre>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     14
+======================================================= -->
+
+<section id="packages">
+
+<h2>
+14. Packages و Access Modifiers
+</h2>
+
+<div class="grid">
+
+<div class="card">
+<b>public</b>
+<br>
+متاح من أماكن متعددة.
+</div>
+
+<div class="card">
+<b>private</b>
+<br>
+داخل نفس الكلاس.
+</div>
+
+<div class="card">
+<b>protected</b>
+<br>
+مع الوراثة وحسب سياق الحزمة.
+</div>
+
+<div class="card">
+<b>package-private</b>
+<br>
+عند عدم كتابة Modifier.
+</div>
+
+</div>
+
+<div class="code">
+
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+
+<pre>package com.example.app;
+
+import java.util.List;
+import java.util.ArrayList;</pre>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     15
+======================================================= -->
+
+<section id="exceptions">
+
+<h2>
+15. Exception Handling
+</h2>
+
+<p>
+Exception Handling تمنع توقف البرنامج بسبب الأخطاء
+المتوقعة وتتيح التعامل معها بطريقة منظمة.
+</p>
+
+<div class="code">
+
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+
+<pre>try {
+
+    int result = 10 / 0;
+
+} catch(ArithmeticException e) {
+
+    System.out.println(
+        "Error: " + e.getMessage()
+    );
+
+} finally {
+
+    System.out.println("Finished");
+
+}</pre>
+
+</div>
+
+<h3>
+throw و throws
+</h3>
+
+<div class="code">
+
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+
+<pre>throw new IllegalArgumentException(
+    "Invalid value"
+);</pre>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     16
+======================================================= -->
+
+<section id="collections">
+
+<h2>
+16. Collections Framework
+</h2>
+
+<table>
+
+<tr>
+<th>النوع</th>
+<th>أمثلة</th>
+<th>الاستخدام</th>
+</tr>
+
+<tr>
+<td>List</td>
+<td>ArrayList, LinkedList</td>
+<td>عناصر مرتبة ويمكن أن تتكرر.</td>
+</tr>
+
+<tr>
+<td>Set</td>
+<td>HashSet, TreeSet</td>
+<td>عناصر فريدة.</td>
+</tr>
+
+<tr>
+<td>Queue</td>
+<td>PriorityQueue</td>
+<td>طوابير البيانات.</td>
+</tr>
+
+<tr>
+<td>Map</td>
+<td>HashMap, TreeMap</td>
+<td>مفتاح وقيمة.</td>
+</tr>
+
+</table>
+
+<div class="code">
+
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+
+<pre>List&lt;String&gt; names =
+    new ArrayList&lt;&gt;();
+
+names.add("Maha");
+names.add("Ali");
+
+Map&lt;Integer,String&gt; users =
+    new HashMap&lt;&gt;();
+
+users.put(1,"Maha");</pre>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     17
+======================================================= -->
+
+<section id="generics">
+
+<h2>
+17. Generics
+</h2>
+
+<p>
+Generics تسمح بكتابة كود قابل لإعادة الاستخدام مع الحفاظ
+على Type Safety.
+</p>
+
+<div class="code">
+
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+
+<pre>class Box&lt;T&gt; {
+
+    private T value;
+
+    public void set(T value){
+
+        this.value = value;
+
+    }
+
+    public T get(){
+
+        return value;
+
+    }
+
+}</pre>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     18
+======================================================= -->
+
+<section id="lambda">
+
+<h2>
+18. Lambda Expressions
+</h2>
+
+<p>
+Lambda طريقة مختصرة لكتابة Function-like behavior
+وتستخدم بكثرة مع Collections وStreams.
+</p>
+
+<div class="code">
+
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+
+<pre>List&lt;String&gt; names =
+    List.of("Maha","Ali","Sara");
+
+names.forEach(
+    name -&gt; System.out.println(name)
+);</pre>
+
+</div>
+
+<h3>
+Functional Interfaces
+</h3>
+
+<p>
+من أشهرها:
+Predicate، Consumer، Supplier، Function.
+</p>
+
+</section>
+
+
+<!-- =======================================================
+     19
+======================================================= -->
+
+<section id="streams">
+
+<h2>
+19. Stream API
+</h2>
+
+<p>
+Stream API تستخدم لمعالجة Collections بأسلوب مرن وقابل للتركيب.
+</p>
+
+<div class="code">
+
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+
+<pre>List&lt;Integer&gt; numbers =
+    List.of(5,10,15,20);
+
+List&lt;Integer&gt; result =
+    numbers.stream()
+
+    .filter(n -&gt; n &gt;= 10)
+
+    .map(n -&gt; n * 2)
+
+    .sorted()
+
+    .toList();</pre>
+
+</div>
+
+<div class="grid">
+
+<div class="card">filter()</div>
+<div class="card">map()</div>
+<div class="card">flatMap()</div>
+<div class="card">sorted()</div>
+<div class="card">distinct()</div>
+<div class="card">reduce()</div>
+<div class="card">collect()</div>
+<div class="card">groupingBy()</div>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     20
+======================================================= -->
+
+<section id="optional">
+
+<h2>
+20. Optional
+</h2>
+
+<p>
+Optional يساعد على التعبير عن احتمال عدم وجود قيمة
+وتقليل بعض حالات NullPointerException.
+</p>
+
+<div class="code">
+
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+
+<pre>Optional&lt;String&gt; name =
+    Optional.ofNullable(null);
+
+String result =
+    name.orElse("Unknown");
+
+System.out.println(result);</pre>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     21
+======================================================= -->
+
+<section id="datetime">
+
+<h2>
+21. Date & Time
+</h2>
+
+<p>
+الحزمة java.time توفر API حديثًا للتاريخ والوقت.
+</p>
+
+<div class="code">
+
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+
+<pre>LocalDate date =
+    LocalDate.now();
+
+LocalTime time =
+    LocalTime.now();
+
+LocalDateTime dateTime =
+    LocalDateTime.now();
+
+System.out.println(date);
+System.out.println(time);
+System.out.println(dateTime);</pre>
+
+</div>
+
+<div class="grid">
+
+<div class="card">LocalDate</div>
+<div class="card">LocalTime</div>
+<div class="card">LocalDateTime</div>
+<div class="card">ZonedDateTime</div>
+<div class="card">Instant</div>
+<div class="card">Duration</div>
+<div class="card">Period</div>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     22
+======================================================= -->
+
+<section id="files">
+
+<h2>
+22. Files و I/O
+</h2>
+
+<div class="code">
+
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+
+<pre>Path path =
+    Path.of("data.txt");
+
+Files.writeString(
+    path,
+    "Hello Java"
+);
+
+String text =
+    Files.readString(path);
+
+System.out.println(text);</pre>
+
+</div>
+
+<h3>
+أهم Classes
+</h3>
+
+<p>
+Path، Files، InputStream، OutputStream،
+Reader، Writer، BufferedReader.
+</p>
+
+</section>
+
+
+<!-- =======================================================
+     23
+======================================================= -->
+
+<section id="regex">
+
+<h2>
+23. Regular Expressions
+</h2>
+
+<p>
+Regular Expressions تستخدم للبحث والتحقق من الأنماط النصية.
+</p>
+
+<div class="code">
+
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+
+<pre>String email =
+    "test@example.com";
+
+boolean valid =
+    email.matches(
+        "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$"
+    );
+
+System.out.println(valid);</pre>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     24
+======================================================= -->
+
+<section id="json">
+
+<h2>
+24. JSON
+</h2>
+
+<p>
+JSON من أكثر الصيغ استخدامًا في REST APIs.
+في Java يمكن استخدام مكتبات مثل Jackson وGson.
+</p>
+
+<div class="code">
+
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+
+<pre>{
+    "id": 1,
+    "name": "Maha",
+    "active": true
+}</pre>
+
+</div>
+
+<div class="note">
+في تطبيقات Spring Boot يستخدم Jackson على نطاق واسع
+لتحويل Java Objects إلى JSON والعكس.
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     25
+======================================================= -->
+
+<section id="threads">
+
+<h2>
+25. Threads و Concurrency
+</h2>
+
+<p>
+Java توفر عدة أدوات لتنفيذ الأعمال المتوازية والمتزامنة.
+</p>
+
+<div class="grid">
+
+<div class="card">
+<b>Thread</b>
+<br>
+مسار تنفيذ.
+</div>
+
+<div class="card">
+<b>Runnable</b>
+<br>
+مهمة قابلة للتنفيذ.
+</div>
+
+<div class="card">
+<b>Callable</b>
+<br>
+مهمة يمكنها إرجاع قيمة.
+</div>
+
+<div class="card">
+<b>ExecutorService</b>
+<br>
+إدارة مجموعات Threads.
+</div>
+
+<div class="card">
+<b>Future</b>
+<br>
+تمثيل نتيجة مستقبلية.
+</div>
+
+<div class="card">
+<b>CompletableFuture</b>
+<br>
+برمجة Asynchronous.
+</div>
+
+</div>
+
+<div class="code">
+
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+
+<pre>ExecutorService executor =
+    Executors.newFixedThreadPool(4);
+
+executor.submit(() -&gt; {
+
+    System.out.println(
+        "Running task"
+    );
+
+});
+
+executor.shutdown();</pre>
+
+</div>
+
+<div class="note">
+الإصدارات الحديثة من Java تتضمن Virtual Threads
+لتسهيل بناء تطبيقات عالية التزامن في حالات مناسبة.
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     26
+======================================================= -->
+
+<section id="jvm">
+
+<h2>
+26. JVM والذاكرة
+</h2>
+
+<div class="grid">
+
+<div class="card">
+<b>Heap</b>
+<br>
+ذاكرة Objects.
+</div>
+
+<div class="card">
+<b>Stack</b>
+<br>
+إطارات استدعاء الدوال والمتغيرات المحلية.
+</div>
+
+<div class="card">
+<b>Metaspace</b>
+<br>
+بيانات Classes.
+</div>
+
+<div class="card">
+<b>Garbage Collector</b>
+<br>
+إدارة الذاكرة وإزالة Objects غير المستخدمة.
+</div>
+
+<div class="card">
+<b>JIT</b>
+<br>
+تحسين تنفيذ الكود أثناء التشغيل.
+</div>
+
+<div class="card">
+<b>JFR</b>
+<br>
+Java Flight Recorder للمراقبة والتحليل.
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     27
+======================================================= -->
+
+<section id="reflection">
+
+<h2>
+27. Reflection و Annotations
+</h2>
+
+<p>
+Reflection تسمح بفحص Classes وMethods وFields أثناء التشغيل.
+</p>
+
+<div class="code">
+
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+
+<pre>Class&lt;String&gt; clazz =
+    String.class;
+
+System.out.println(
+    clazz.getName()
+);
+
+System.out.println(
+    clazz.getMethods().length
+);</pre>
+
+</div>
+
+<p>
+Annotations تستخدم لإضافة Metadata إلى الكود.
+</p>
+
+</section>
+
+
+<!-- =======================================================
+     28
+======================================================= -->
+
+<section id="modules">
+
+<h2>
+28. Java Modules
+</h2>
+
+<p>
+نظام Modules يساعد في تنظيم التطبيقات الكبيرة وتقليل
+الاعتماديات غير الضرورية.
+</p>
+
+<div class="code">
+
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+
+<pre>module com.example.app {
+
+    requires java.sql;
+
+    exports com.example.app;
+
+}</pre>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     29
+======================================================= -->
+
+<section id="networking">
+
+<h2>
+29. Networking و HTTP
+</h2>
+
+<p>
+Java توفر APIs للتعامل مع الشبكات وHTTP.
+ومن الأدوات الحديثة HttpClient.
+</p>
+
+<div class="code">
+
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+
+<pre>HttpClient client =
+    HttpClient.newHttpClient();
+
+HttpRequest request =
+    HttpRequest.newBuilder()
+        .uri(URI.create(
+            "https://example.com"
+        ))
+        .GET()
+        .build();
+
+HttpResponse&lt;String&gt; response =
+    client.send(
+        request,
+        HttpResponse.BodyHandlers.ofString()
+    );
+
+System.out.println(
+    response.body()
+);</pre>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     30
+======================================================= -->
+
+<section id="jdbc">
+
+<h2>
+30. JDBC
+</h2>
+
+<p>
+JDBC هي الواجهة التقليدية في Java للتعامل المباشر
+مع قواعد البيانات العلائقية.
+</p>
+
+<div class="code">
+
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+
+<pre>Connection con =
+    DriverManager.getConnection(
+        "jdbc:mysql://localhost:3306/test",
+        "root",
+        "password"
+    );
+
+PreparedStatement ps =
+    con.prepareStatement(
+        "SELECT id, name FROM users"
+    );
+
+ResultSet rs =
+    ps.executeQuery();
+
+while(rs.next()){
+
+    System.out.println(
+        rs.getString("name")
+    );
+
+}</pre>
+
+</div>
+
+<div class="warning">
+استخدم PreparedStatement بدل بناء SQL من نصوص المستخدم
+مباشرة لتقليل مخاطر SQL Injection.
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     31
+======================================================= -->
+
+<section id="mysql">
+
+<h2>
+31. Java + MySQL
+</h2>
+
+<p>
+يمكن ربط Java مع MySQL لإنشاء تطبيقات إدارة ومبيعات
+ومكتبات وأنظمة معلومات وغيرها.
+</p>
+
+<h3>
+العمليات الأساسية CRUD
+</h3>
+
+<table>
+
+<tr>
+<th>العملية</th>
+<th>SQL</th>
+</tr>
+
+<tr>
+<td>Create</td>
+<td>INSERT</td>
+</tr>
+
+<tr>
+<td>Read</td>
+<td>SELECT</td>
+</tr>
+
+<tr>
+<td>Update</td>
+<td>UPDATE</td>
+</tr>
+
+<tr>
+<td>Delete</td>
+<td>DELETE</td>
+</tr>
+
+</table>
+
+<div class="code">
+
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+
+<pre>PreparedStatement ps =
+    con.prepareStatement(
+        "INSERT INTO users(name) VALUES(?)"
+    );
+
+ps.setString(1, "Maha");
+
+ps.executeUpdate();</pre>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     32
+======================================================= -->
+
+<section id="jpa">
+
+<h2>
+32. JPA و Hibernate
+</h2>
+
+<p>
+JPA معيار للتعامل مع البيانات العلائقية من خلال
+Object Relational Mapping، ومن أشهر تطبيقاته Hibernate.
+</p>
+
+<div class="code">
+
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+
+<pre>@Entity
+public class User {
+
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    private String name;
+
+}</pre>
+
+</div>
+
+<h3>
+مفاهيم مهمة
+</h3>
+
+<div class="grid">
+
+<div class="card">Entity</div>
+<div class="card">Repository</div>
+<div class="card">Persistence Context</div>
+<div class="card">JPQL</div>
+<div class="card">Lazy Loading</div>
+<div class="card">Eager Loading</div>
+<div class="card">Transactions</div>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     33
+======================================================= -->
+
+<section id="maven">
+
+<h2>
+33. Maven و Gradle
+</h2>
+
+<p>
+Maven وGradle أدوات لإدارة Dependencies وبناء مشاريع Java.
+</p>
+
+<h3>
+Maven
+</h3>
+
+<div class="code">
+
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+
+<pre>mvn clean
+
+mvn test
+
+mvn package
+
+mvn spring-boot:run</pre>
+
+</div>
+
+<p>
+ملف Maven الرئيسي هو:
+<b>pom.xml</b>
+</p>
+
+<p>
+وفي Gradle يمكن استخدام:
+<b>build.gradle</b>
+أو ملفات الإعداد الحديثة الخاصة به.
+</p>
+
+</section>
+
+
+<!-- =======================================================
+     34
+======================================================= -->
+
+<section id="spring">
+
+<h2>
+34. Spring Framework
+</h2>
+
+<p>
+Spring إطار واسع الاستخدام لبناء تطبيقات Java،
+خصوصًا تطبيقات المؤسسات والخدمات الخلفية.
+</p>
+
+<div class="grid">
+
+<div class="card">
+<b>IoC</b>
+<br>
+Inversion of Control
+</div>
+
+<div class="card">
+<b>DI</b>
+<br>
+Dependency Injection
+</div>
+
+<div class="card">
+<b>Beans</b>
+<br>
+كائنات يديرها Spring.
+</div>
+
+<div class="card">
+<b>ApplicationContext</b>
+<br>
+حاوية مكونات التطبيق.
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     35
+======================================================= -->
+
+<section id="springboot">
+
+<h2>
+35. Spring Boot
+</h2>
+
+<p>
+Spring Boot يسهل إنشاء وتشغيل تطبيقات Spring
+مع إعدادات تلقائية وStarter Dependencies.
+</p>
+
+<div class="code">
+
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+
+<pre>@SpringBootApplication
+public class Application {
+
+    public static void main(String[] args) {
+
+        SpringApplication.run(
+            Application.class,
+            args
+        );
+
+    }
+
+}</pre>
+
+</div>
+
+<h3>
+مميزات Spring Boot
+</h3>
+
+<ul>
+
+<li>Auto Configuration</li>
+<li>Starters</li>
+<li>Embedded Server</li>
+<li>Profiles</li>
+<li>Configuration Properties</li>
+<li>Actuator</li>
+<li>سهولة إنشاء REST APIs</li>
+
+</ul>
+
+</section>
+
+
+<!-- =======================================================
+     36
+======================================================= -->
+
+<section id="rest">
+
+<h2>
+36. REST API
+</h2>
+
+<p>
+REST تستخدم لبناء خدمات ويب تتعامل غالبًا مع JSON
+عبر HTTP.
+</p>
+
+<div class="code">
+
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+
+<pre>@RestController
+@RequestMapping("/api/users")
+public class UserController {
+
+    @GetMapping
+    public List&lt;String&gt; users() {
+
+        return List.of(
+            "Maha",
+            "Ali"
+        );
+
+    }
+
+}</pre>
+
+</div>
+
+<table>
+
+<tr>
+<th>HTTP Method</th>
+<th>الاستخدام الشائع</th>
+</tr>
+
+<tr>
+<td>GET</td>
+<td>قراءة البيانات</td>
+</tr>
+
+<tr>
+<td>POST</td>
+<td>إنشاء بيانات</td>
+</tr>
+
+<tr>
+<td>PUT</td>
+<td>تحديث مورد</td>
+</tr>
+
+<tr>
+<td>PATCH</td>
+<td>تحديث جزئي</td>
+</tr>
+
+<tr>
+<td>DELETE</td>
+<td>حذف مورد</td>
+</tr>
+
+</table>
+
+</section>
+
+
+<!-- =======================================================
+     37
+======================================================= -->
+
+<section id="security">
+
+<h2>
+37. Spring Security
+</h2>
+
+<p>
+Spring Security يوفر أدوات للمصادقة Authentication
+والتفويض Authorization.
+</p>
+
+<div class="grid">
+
+<div class="card">Authentication</div>
+<div class="card">Authorization</div>
+<div class="card">Roles</div>
+<div class="card">Permissions</div>
+<div class="card">Password Hashing</div>
+<div class="card">CORS</div>
+<div class="card">CSRF</div>
+<div class="card">OAuth 2.0</div>
+
+</div>
+
+<div class="warning">
+لا تحفظ كلمات المرور كنصوص عادية.
+استخدم Hashing مناسبًا مثل BCrypt ضمن نظام أمان مضبوط.
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     38
+======================================================= -->
+
+<section id="jwt">
+
+<h2>
+38. JWT
+</h2>
+
+<p>
+JSON Web Token يستخدم كثيرًا في المصادقة بين العميل
+والخادم في REST APIs.
+</p>
+
+<div class="grid">
+
+<div class="card">
+<b>Header</b>
+<br>
+نوع التوقيع والخوارزمية.
+</div>
+
+<div class="card">
+<b>Payload</b>
+<br>
+Claims.
+</div>
+
+<div class="card">
+<b>Signature</b>
+<br>
+التوقيع للتحقق من سلامة الرمز.
+</div>
+
+</div>
+
+<div class="warning">
+لا تضع أسرارًا حساسة في Payload لمجرد أن JWT مشفر أو Base64؛
+Payload التقليدي يمكن قراءته، بينما التوقيع يحقق سلامة الرمز.
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     39
+======================================================= -->
+
+<section id="testing">
+
+<h2>
+39. Testing
+</h2>
+
+<p>
+اختبار البرامج جزء أساسي من دورة تطوير التطبيقات.
+</p>
+
+<div class="grid">
+
+<div class="card">JUnit</div>
+<div class="card">Mockito</div>
+<div class="card">Integration Testing</div>
+<div class="card">Assertions</div>
+<div class="card">Test Coverage</div>
+<div class="card">Testcontainers</div>
+
+</div>
+
+<div class="code">
+
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+
+<pre>@Test
+void additionTest(){
+
+    int result = 2 + 3;
+
+    assertEquals(
+        5,
+        result
+    );
+
+}</pre>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     40
+======================================================= -->
+
+<section id="patterns">
+
+<h2>
+40. Design Patterns
+</h2>
+
+<h3>
+Creational
+</h3>
+
+<div class="grid">
+
+<div class="card">Factory</div>
+<div class="card">Abstract Factory</div>
+<div class="card">Builder</div>
+<div class="card">Singleton</div>
+
+</div>
+
+<h3>
+Structural
+</h3>
+
+<div class="grid">
+
+<div class="card">Adapter</div>
+<div class="card">Decorator</div>
+<div class="card">Facade</div>
+<div class="card">Proxy</div>
+
+</div>
+
+<h3>
+Behavioral
+</h3>
+
+<div class="grid">
+
+<div class="card">Strategy</div>
+<div class="card">Observer</div>
+<div class="card">Command</div>
+<div class="card">State</div>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     41
+======================================================= -->
+
+<section id="solid">
+
+<h2>
+41. SOLID و Clean Code
+</h2>
+
+<table>
+
+<tr>
+<th>المبدأ</th>
+<th>المعنى</th>
+</tr>
+
+<tr>
+<td>S</td>
+<td>Single Responsibility</td>
+</tr>
+
+<tr>
+<td>O</td>
+<td>Open/Closed</td>
+</tr>
+
+<tr>
+<td>L</td>
+<td>Liskov Substitution</td>
+</tr>
+
+<tr>
+<td>I</td>
+<td>Interface Segregation</td>
+</tr>
+
+<tr>
+<td>D</td>
+<td>Dependency Inversion</td>
+</tr>
+
+</table>
+
+<div class="note">
+Clean Code يهتم بأسماء واضحة، Classes صغيرة، Methods واضحة،
+تقليل التكرار، وتقليل التعقيد غير الضروري.
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     42
+======================================================= -->
+
+<section id="architecture">
+
+<h2>
+42. Software Architecture
+</h2>
+
+<div class="grid">
+
+<div class="card">
+<b>Layered</b>
+<br>
+Presentation / Business / Data
+</div>
+
+<div class="card">
+<b>MVC</b>
+<br>
+Model / View / Controller
+</div>
+
+<div class="card">
+<b>Clean Architecture</b>
+<br>
+فصل منطق الأعمال عن التفاصيل الخارجية.
+</div>
+
+<div class="card">
+<b>Hexagonal</b>
+<br>
+Ports & Adapters
+</div>
+
+<div class="card">
+<b>Microservices</b>
+<br>
+خدمات مستقلة تتواصل عبر APIs أو Messaging.
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     43
+======================================================= -->
+
+<section id="gui">
+
+<h2>
+43. Desktop و JavaFX
+</h2>
+
+<p>
+يمكن بناء تطبيقات سطح المكتب باستخدام JavaFX،
+كما توجد تقنيات أخرى مثل Swing.
+</p>
+
+<div class="grid">
+
+<div class="card">Stage</div>
+<div class="card">Scene</div>
+<div class="card">Nodes</div>
+<div class="card">Controls</div>
+<div class="card">FXML</div>
+<div class="card">CSS</div>
+<div class="card">Events</div>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     44
+======================================================= -->
+
+<section id="android">
+
+<h2>
+44. Java و Android
+</h2>
+
+<p>
+كانت Java لغة رئيسية في تطوير Android، وما زالت موجودة
+ضمن بيئة Android، بينما Kotlin هي اللغة الأساسية الموصى بها
+للتطوير الحديث في Android.
+</p>
+
+<div class="grid">
+
+<div class="card">Activities</div>
+<div class="card">Services</div>
+<div class="card">Intents</div>
+<div class="card">Views</div>
+<div class="card">SQLite</div>
+<div class="card">Android APIs</div>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     45
+======================================================= -->
+
+<section id="docker">
+
+<h2>
+45. Docker و CI/CD
+</h2>
+
+<p>
+يمكن تشغيل تطبيقات Java داخل Containers لتسهيل النشر
+وتوحيد بيئة التشغيل.
+</p>
+
+<div class="code">
+
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+
+<pre>FROM eclipse-temurin:21
+
+WORKDIR /app
+
+COPY target/app.jar app.jar
+
+CMD ["java","-jar","app.jar"]</pre>
+
+</div>
+
+<h3>
+CI/CD
+</h3>
+
+<p>
+من الأدوات الشائعة:
+GitHub Actions، Jenkins، GitLab CI/CD.
+</p>
+
+</section>
+
+
+<!-- =======================================================
+     46
+======================================================= -->
+
+<section id="algorithms">
+
+<h2>
+46. Algorithms و Data Structures
+</h2>
+
+<div class="grid">
+
+<div class="card">Array</div>
+<div class="card">Linked List</div>
+<div class="card">Stack</div>
+<div class="card">Queue</div>
+<div class="card">Hash Table</div>
+<div class="card">Tree</div>
+<div class="card">Heap</div>
+<div class="card">Graph</div>
+<div class="card">Searching</div>
+<div class="card">Sorting</div>
+
+</div>
+
+<h3>
+Big-O
+</h3>
+
+<table>
+
+<tr>
+<th>Complexity</th>
+<th>مثال تقريبي</th>
+</tr>
+
+<tr>
+<td>O(1)</td>
+<td>وصول مباشر للعنصر.</td>
+</tr>
+
+<tr>
+<td>O(log n)</td>
+<td>Binary Search.</td>
+</tr>
+
+<tr>
+<td>O(n)</td>
+<td>بحث خطي.</td>
+</tr>
+
+<tr>
+<td>O(n log n)</td>
+<td>خوارزميات فرز فعالة مثل Merge Sort.</td>
+</tr>
+
+<tr>
+<td>O(n²)</td>
+<td>بعض الخوارزميات ذات الحلقات المتداخلة.</td>
+</tr>
+
+</table>
+
+</section>
+
+
+<!-- =======================================================
+     47
+======================================================= -->
+
+<section id="performance">
+
+<h2>
+47. Performance
+</h2>
+
+<p>
+تحسين أداء Java يبدأ بالقياس والتحليل وليس بالتخمين.
+</p>
+
+<div class="grid">
+
+<div class="card">Profiling</div>
+<div class="card">CPU Analysis</div>
+<div class="card">Memory Analysis</div>
+<div class="card">Garbage Collection</div>
+<div class="card">Caching</div>
+<div class="card">Connection Pooling</div>
+<div class="card">JFR</div>
+<div class="card">JMX</div>
+
+</div>
+
+<div class="note">
+من المهم قياس الأداء قبل وبعد التغيير لمعرفة تأثير التحسين فعليًا.
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     48
+======================================================= -->
+
+<section id="cloud">
+
+<h2>
+48. Cloud و Microservices
+</h2>
+
+<p>
+يمكن نشر تطبيقات Java على منصات Cloud المختلفة،
+مع استخدام Containers وKubernetes حسب طبيعة المشروع.
+</p>
+
+<div class="grid">
+
+<div class="card">AWS</div>
+<div class="card">Microsoft Azure</div>
+<div class="card">Google Cloud</div>
+<div class="card">Docker</div>
+<div class="card">Kubernetes</div>
+<div class="card">API Gateway</div>
+<div class="card">Messaging</div>
+<div class="card">Observability</div>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     49
+======================================================= -->
+
+<section id="projects">
+
+<h2>
+49. مشاريع عملية
+</h2>
+
+<p>
+بعد دراسة أساسيات Java يمكن الانتقال إلى مشاريع عملية متدرجة.
+</p>
+
+<div class="grid">
+
+<div class="card">
+<b>المشروع 01</b>
+<br>
+آلة حاسبة Java Console
+</div>
+
+<div class="card">
+<b>المشروع 02</b>
+<br>
+نظام إدارة الطلاب
+</div>
+
+<div class="card">
+<b>المشروع 03</b>
+<br>
+نظام مكتبة + MySQL
+</div>
+
+<div class="card">
+<b>المشروع 04</b>
+<br>
+نظام مبيعات
+</div>
+
+<div class="card">
+<b>المشروع 05</b>
+<br>
+REST API
+</div>
+
+<div class="card">
+<b>المشروع 06</b>
+<br>
+نظام Login + JWT
+</div>
+
+<div class="card">
+<b>المشروع 07</b>
+<br>
+متجر إلكتروني
+</div>
+
+<div class="card">
+<b>المشروع 08</b>
+<br>
+منصة مكتبة إلكترونية باستخدام Spring Boot
+</div>
+
+</div>
+
+<div class="success">
+<b>مشروع تخرج مقترح:</b>
+منصة مكتبة إلكترونية باستخدام Java + Spring Boot +
+MySQL + JPA/Hibernate + REST API + Spring Security + JWT
++ Docker + JUnit.
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     50
+======================================================= -->
+
+<section id="quick">
+
+<h2>
+50. مرجع Java السريع
+</h2>
+
+<h3>
+أوامر أساسية
+</h3>
+
+<div class="code">
+
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+
+<pre>javac Main.java
+
+java Main
+
+jshell
+
+javadoc Main.java
+
+jar --create --file app.jar Main.class</pre>
+
+</div>
+
+<h3>
+أهم الكلمات والمفاهيم
+</h3>
+
+<div class="grid">
+
+<div class="card">class</div>
+<div class="card">public</div>
+<div class="card">private</div>
+<div class="card">protected</div>
+<div class="card">static</div>
+<div class="card">final</div>
+<div class="card">extends</div>
+<div class="card">implements</div>
+<div class="card">interface</div>
+<div class="card">abstract</div>
+<div class="card">try</div>
+<div class="card">catch</div>
+<div class="card">throw</div>
+<div class="card">throws</div>
+<div class="card">new</div>
+<div class="card">this</div>
+<div class="card">super</div>
+<div class="card">return</div>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     المشروع النهائي
+======================================================= -->
+
+<section>
+
+<h2>
+المشروع النهائي المقترح
+</h2>
+
+<p>
+نظام إدارة مكتبة إلكترونية متكامل.
+</p>
+
+<div class="grid">
+
+<div class="card">
+<b>Backend</b>
+<br>
+Java + Spring Boot
+</div>
+
+<div class="card">
+<b>Database</b>
+<br>
+MySQL
+</div>
+
+<div class="card">
+<b>ORM</b>
+<br>
+JPA + Hibernate
+</div>
+
+<div class="card">
+<b>Security</b>
+<br>
+Spring Security + JWT
+</div>
+
+<div class="card">
+<b>API</b>
+<br>
+REST API + JSON
+</div>
+
+<div class="card">
+<b>Testing</b>
+<br>
+JUnit + Mockito
+</div>
+
+<div class="card">
+<b>Deployment</b>
+<br>
+Docker
+</div>
+
+</div>
+
+<div class="note">
+
+<b>المكونات المقترحة:</b>
+
+<br>
+
+المستخدمون، تسجيل الدخول، الصلاحيات،
+الكتب، المؤلفون، التصنيفات، البحث،
+الإضافة، التعديل، الحذف، التقارير،
+REST API، الحماية، الاختبارات والنشر.
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     Footer
+======================================================= -->
+
+<footer>
+
+<b>
+منصة آفاق المعرفة التقنية
+</b>
+
+<br>
+
+<b>
+مكتبة | مها شهوب
+</b>
+
+<br>
+
+<b>
+سلسلة أساسيات التقنية
+</b>
+
+<br><br>
+
+إعداد الكاتبة والمهندسة:
+<b>
+مها شهوب
+</b>
+
+<br>
+
+© 2026 — دليل Java الشامل
+
+</footer>
+
+
+</main>
+
+</div>
+
+
+<!-- =======================================================
+     زر العودة للأعلى
+======================================================= -->
+
+<button
+    class="topbtn"
+    id="topbtn"
+    onclick="window.scrollTo({
+        top:0,
+        behavior:'smooth'
+    })">
+
+    ↑
+
+</button>
+
+
+<script>
+
+/* =========================================================
+   الوضع الليلي
+========================================================= */
+
+function toggleTheme(){
+
+    const html =
+        document.documentElement;
+
+    const dark =
+        html.getAttribute("data-theme")
+        === "dark";
+
+    const newTheme =
+        dark
+        ? "light"
+        : "dark";
+
+    html.setAttribute(
+        "data-theme",
+        newTheme
+    );
+
+    localStorage.setItem(
+        "java-theme",
+        newTheme
+    );
+}
+
+
+/* تحميل الوضع المحفوظ */
+
+(function(){
+
+    const saved =
+        localStorage.getItem(
+            "java-theme"
+        );
+
+    if(saved){
+
+        document.documentElement
+            .setAttribute(
+                "data-theme",
+                saved
+            );
+
+    }
+
+})();
+
+
+/* =========================================================
+   القائمة المحمولة
+========================================================= */
+
+function toggleMenu(){
+
+    document
+        .getElementById("sidebar")
+        .classList
+        .toggle("open");
+
+}
+
+
+/* =========================================================
+   البحث في الفهرس
+========================================================= */
+
+function filterNav(){
+
+    const input =
+        document
+        .getElementById("navSearch");
+
+    const query =
+        input.value.toLowerCase();
+
+    const links =
+        document.querySelectorAll(
+            "#nav a"
+        );
+
+    links.forEach(function(link){
+
+        const text =
+            link.textContent
+            .toLowerCase();
+
+        if(text.includes(query)){
+
+            link.style.display =
+                "block";
+
+        }else{
+
+            link.style.display =
+                "none";
+
+        }
+
+    });
+
+}
+
+
+/* =========================================================
+   نسخ الأكواد
+========================================================= */
+
+async function copyCode(button){
+
+    const code =
+        button
+        .parentElement
+        .querySelector("pre")
+        .innerText;
+
+    try{
+
+        await navigator
+            .clipboard
+            .writeText(code);
+
+    }catch(error){
+
+        const textarea =
+            document.createElement(
+                "textarea"
+            );
+
+        textarea.value = code;
+
+        document.body.appendChild(
+            textarea
+        );
+
+        textarea.select();
+
+        document.execCommand(
+            "copy"
+        );
+
+        textarea.remove();
+
+    }
+
+    const oldText =
+        button.textContent;
+
+    button.textContent =
+        "✓ تم النسخ";
+
+    setTimeout(function(){
+
+        button.textContent =
+            oldText;
+
+    },1200);
+
+}
+
+
+/* =========================================================
+   شريط تقدم القراءة
+========================================================= */
+
+function updateProgress(){
+
+    const html =
+        document.documentElement;
+
+    const scrollTop =
+        html.scrollTop;
+
+    const total =
+        html.scrollHeight
+        - html.clientHeight;
+
+    const percent =
+        total > 0
+        ? (scrollTop / total) * 100
+        : 0;
+
+    document
+        .getElementById("progress")
+        .style.width =
+        percent + "%";
+
+
+    /* زر العودة للأعلى */
+
+    const topButton =
+        document
+        .getElementById("topbtn");
+
+    if(scrollTop > 500){
+
+        topButton.style.display =
+            "block";
+
+    }else{
+
+        topButton.style.display =
+            "none";
+
+    }
+
+}
+
+
+window.addEventListener(
+    "scroll",
+    updateProgress
+);
+
+updateProgress();
+
+
+/* =========================================================
+   تحديد القسم النشط
+========================================================= */
+
+const navLinks =
+    Array.from(
+        document.querySelectorAll(
+            "#nav a"
+        )
+    );
+
+const sections =
+    navLinks
+    .map(function(link){
+
+        return document.querySelector(
+            link.getAttribute("href")
+        );
+
+    })
+    .filter(Boolean);
+
+
+const observer =
+    new IntersectionObserver(
+
+        function(entries){
+
+            entries.forEach(
+                function(entry){
+
+                    if(entry.isIntersecting){
+
+                        navLinks.forEach(
+                            function(link){
+
+                                link.classList
+                                    .remove(
+                                        "active"
+                                    );
+
+                            }
+                        );
+
+                        const active =
+                            document.querySelector(
+                                '#nav a[href="#'
+                                + entry.target.id
+                                + '"]'
+                            );
+
+                        if(active){
+
+                            active.classList
+                                .add(
+                                    "active"
+                                );
+
+                        }
+
+                    }
+
+                }
+            );
+
+        },
+
+        {
+            rootMargin:
+                "-90px 0px -65% 0px"
+        }
+
+    );
+
+
+sections.forEach(
+    function(section){
+
+        observer.observe(
+            section
+        );
+
+    }
+);
+
+
+/* =========================================================
+   إغلاق القائمة بعد اختيار القسم في الهاتف
+========================================================= */
+
+document
+.querySelectorAll("#nav a")
+.forEach(function(link){
+
+    link.addEventListener(
+        "click",
+        function(){
+
+            if(window.innerWidth <= 950){
+
+                document
+                    .getElementById(
+                        "sidebar"
+                    )
+                    .classList
+                    .remove("open");
+
+            }
+
+        }
+    );
+
+});
+
+
+</script>
+
+</body>
+</html>

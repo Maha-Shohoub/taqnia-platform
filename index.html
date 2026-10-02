@@ -1,0 +1,2527 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="آفاق المعرفة التقنية - منصة تعليمية رقمية للمهندسة مها شهوب">
+<link rel="icon" type="image/png" href="IMG/آفاق المعرفة التقنية.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<title>آفاق المعرفة التقنية</title>
+<!-- وسوم السيو الإضافية الأساسية -->
+    <meta name="keywords" content="آفاق المعرفة التقنية, المهندسة مها شهوب, كتب تقنية, برمجة, قواعد بيانات, أساسيات التقنية, كورسات مجانية ومدفوعة ">
+    <meta name="author" content="المهندسة مها شهوب">
+    <meta name="robots" content="index, follow">
+    <!-- وسوم المشاركة على منصات التواصل الاجتماعي (Open Graph لـ Facebook و LinkedIn) -->
+    <meta property="og:title" content="آفاق المعرفة التقنية">
+    <meta property="og:description" content="منصة تعليمية رقمية متكاملة لتعلم البرمجة وتقنيات الحاسوب بإشراف المهندسة مها شهوب.">
+    <meta property="og:image" content="IMG/آفاق المعرفة التقنية.png">
+    <meta property="og:type" content="website">
+    <!-- وسم توافق المظهر مع الهواتف والأجهزة الذكية -->
+    <meta name="theme-color" content="#0d1b2a">
+<style>
+:root{
+--bg:#e9edf3;--surface:#ffffff;--surface2:#f4f7fb;--text:#111820;--muted:#5f6b78;
+--primary:#1677c8;--primary2:#0b4f88;--purple:#4d8fc9;--border:#d7e0ea;
+--shadow:0 12px 30px rgba(33,60,44,.09)
+}
+/* الوضع المظلم الناعم وغير القاتم */
+[data-theme=dark]{
+--bg:#1a2332;--surface:#243044;--surface2:#2d3b54;--text:#f0f4f8;--muted:#9fb0c7;
+--primary:#38a3f8;--primary2:#1e88e5;--purple:#7cb3f0;--border:#3a4c6a;--shadow:0 12px 30px rgba(0,0,0,.35)
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:Tahoma,Arial,sans-serif;background:var(--bg);color:var(--text)}
+a{text-decoration:none;color:inherit}button,input{font:inherit}
+
+/* ترويسة */
+header{position:sticky;top:0;z-index:100;background:var(--surface);border-bottom:2px solid var(--primary);box-shadow:0 4px 20px rgba(0,0,0,.05)}
+.nav{max-width:1200px;margin:auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:15px}
+
+/* شعار بخلفية شفافة بدون إطار */
+.logo{width:67px;height:60px;object-fit:contain;background:transparent;border:none;padding:0;box-shadow:none}
+
+.brand h1{font-size:1.1rem;margin:0;color:var(--primary)}.brand small{color:var(--muted);font-size:.75rem}
+
+/* تنسيق أزرار التحكم العلوي */
+.nav-actions{display:flex;align-items:center;gap:10px;position:relative}
+.icon-btn{width:40px;height:40px;border:1px solid var(--border);border-radius:50%;background:var(--surface2);color:var(--text);cursor:pointer;display:grid;place-items:center;transition:.2s}
+.icon-btn:hover{background:var(--primary);color:#fff}
+
+/* تصميم الدائرتين الجديدتين للصورة */
+.circle-img-btn{width:40px;height:40px;border:1px solid var(--border);border-radius:50%;background:var(--surface2);overflow:hidden;display:grid;place-items:center;padding:0;cursor:pointer;transition:.2s}
+.circle-img-btn:hover{border-color:var(--primary);box-shadow:0 0 10px rgba(22,119,200,.3)}
+.circle-img-btn img{width:100%;height:100%;object-fit:cover}
+
+/* تصميم الشريط الأسود المعتاد (Tooltip) */
+.tooltip-box {
+  position: absolute;
+  top: 52px;
+  right: 50%;
+  transform: translateX(50%);
+  background-color: #111820;
+  color: #ffffff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  z-index: 1000;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* سهم صغير يخرج من الشريط الأسود للأعلى باتجاه الزر */
+.tooltip-box::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  right: 50%;
+  transform: translateX(50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent #111820 transparent;
+}
+
+/* إظهار الشريط عند تمرير الماوس على الحاوية الأب */
+.tooltip-parent:hover .tooltip-box {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(50%) translateY(2px);
+}
+
+/* قسم البطل (Hero) */
+.hero{max-width:1200px;margin:25px auto 0;padding:0 20px}
+.hero-box{display:grid;grid-template-columns:1fr 320px;align-items:center;gap:30px;padding:40px;border-radius:24px;background:linear-gradient(135deg,#07111c,#0e2b45 58%,#1677c8);color:#fff;box-shadow:var(--shadow)}
+.hero h2{font-size:2.4rem;margin:0 0 10px;line-height:1.2}.hero p{line-height:1.8;margin:0;color:#eef6ff;font-size:.95rem}
+.badge{display:inline-block;padding:5px 12px;background:#ffffff20;border:1px solid #ffffff30;border-radius:8px;margin-bottom:12px;font-size:.85rem}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.btn{padding:10px 18px;border-radius:10px;font-weight:bold;display:inline-flex;align-items:center;gap:8px;font-size:.9rem;transition:.2s}
+.btn-light{background:#fff;color:#0b4f88}.btn-light:hover{background:#f0f0f0}
+.btn-ghost{border:1px solid #ffffff50;color:#fff}.btn-ghost:hover{background:#ffffff10}
+.hero-logo{display:flex;justify-content:center}.hero-logo img{width:100%;max-width:220px;background:#fff;padding:12px;border-radius:20px;box-shadow:0 10px 25px #0003}
+
+main{max-width:1200px;margin:auto;padding:20px 20px 50px}
+
+/* الإحصائيات */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-bottom:25px}
+.stat{background:var(--surface);border-right:4px solid var(--primary);border-top:1px solid var(--border);border-left:1px solid var(--border);border-bottom:1px solid var(--border);border-radius:12px;padding:15px;box-shadow:var(--shadow)}
+.stat strong{display:block;color:var(--primary);font-size:1.3rem}
+.stat span{font-size:.8rem;color:var(--muted)}
+
+/* الأقسام العامة */
+.section{margin-top:25px;padding:25px;background:var(--surface);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow)}
+.section-head{display:flex;justify-content:space-between;gap:15px;align-items:center;margin-bottom:20px;flex-wrap:wrap}
+.section-head h3{margin:0;font-size:1.3rem;color:var(--primary2)}
+[data-theme=dark] .section-head h3{color:var(--primary)}
+.section-head p{margin:4px 0 0;color:var(--muted);font-size:.85rem}
+
+/* شريط البحث */
+.search{position:relative;width:280px}
+.search input{width:100%;padding:10px 35px 10px 12px;border:1px solid var(--border);border-radius:10px;background:var(--surface2);color:var(--text);font-size:.9rem}
+.search i{position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--muted)}
+
+/* البطاقات */
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.card{display:flex;gap:15px;align-items:center;position:relative;padding:16px;background:var(--surface2);border:1px solid var(--border);border-radius:16px;transition:.2s}
+.card:hover{transform:translateY(-3px);border-color:var(--primary);box-shadow:0 8px 25px rgba(22,119,200,.15)}
+.num{position:absolute;left:12px;top:12px;font-size:.7rem;font-weight:bold;color:var(--muted);background:var(--surface);padding:2px 6px;border-radius:6px;border:1px solid var(--border)}
+.imgbox{width:90px;height:90px;flex-shrink:0;background:var(--surface);border-radius:12px;display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px solid var(--border)}
+.imgbox img{width:100%;height:100%;object-fit:contain;padding:6px}
+.card-content{flex:1;display:flex;flex-direction:column}
+.tag{align-self:flex-start;font-size:.68rem;color:var(--primary);background:color-mix(in srgb,var(--primary) 12%,transparent);padding:3px 8px;border-radius:6px;margin-bottom:6px;font-weight:bold}
+.card h4{margin:0 0 4px;font-size:.95rem;line-height:1.4}
+.card p{margin:0 0 10px;color:var(--muted);font-size:.8rem;line-height:1.5}
+.card-btn{display:inline-flex;justify-content:center;align-items:center;gap:6px;padding:6px 12px;background:var(--primary);color:#fff;border-radius:8px;font-weight:bold;font-size:.78rem;align-self:flex-start}
+.card-btn:hover{background:var(--primary2)}
+.btn-logo{width:16px;height:16px;object-fit:contain;background:#fff;border-radius:3px;padding:1px}
+
+/* قسم مدونة الكتب المقسمة */
+.blog-tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;}
+.blog-tab-btn{padding:6px 14px;border-radius:8px;border:1px solid var(--border);background:var(--surface2);color:var(--muted);cursor:pointer;font-size:0.85rem;font-weight:bold;transition:.2s;}
+.blog-tab-btn.active,.blog-tab-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary);}
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.blog-card{background:var(--surface2);border:1px solid var(--border);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;transition:.2s;}
+.blog-card:hover{transform:translateY(-3px);border-color:var(--primary);box-shadow:0 8px 25px rgba(22,119,200,.15)}
+.blog-imgbox{width:100%;height:140px;background:var(--surface);display:flex;align-items:center;justify-content:center;overflow:hidden;border-bottom:1px solid var(--border);}
+.blog-imgbox img{width:100%;height:100%;object-fit:cover;}
+.blog-content{padding:16px;display:flex;flex-direction:column;flex:1;}
+.blog-tag{align-self:flex-start;font-size:.68rem;color:var(--primary);background:color-mix(in srgb,var(--primary) 12%,transparent);padding:3px 8px;border-radius:6px;margin-bottom:6px;font-weight:bold}
+.blog-card h4{margin:0 0 6px;font-size:.95rem;color:var(--text);line-height:1.4}
+.blog-card p{margin:0 0 14px;color:var(--muted);font-size:.8rem;line-height:1.5;flex:1;}
+.blog-btn{align-self:flex-start;font-size:.78rem;color:#fff;background:var(--primary);padding:6px 12px;border-radius:8px;font-weight:bold;display:inline-flex;align-items:center;gap:6px;}
+.blog-btn:hover{background:var(--primary2);}
+
+/* قسم عن المنصة */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.about-box{background:var(--surface2);border:1px solid var(--border);padding:20px;border-radius:14px}
+.about-box h4{margin:0 0 8px;color:var(--primary);display:flex;align-items:center;gap:8px}
+.about-box p{margin:0;color:var(--muted);line-height:1.7;font-size:.9rem}
+
+.empty{display:none;grid-column:1/-1;text-align:center;color:var(--muted);padding:30px}
+
+/* تذييل الصفحة */
+footer{border-top:1px solid var(--border);background:var(--surface);padding:20px;color:var(--muted);margin-top:30px}
+.footer{max-width:1200px;margin:auto;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:.85rem}
+
+@media(max-width:900px){.hero-box{grid-template-columns:1fr}.hero-logo{display:none}.cards,.blog-grid{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.about{grid-template-columns:1fr}}
+@media(max-width:600px){.brand small{display:none}.section-head{flex-direction:column;align-items:stretch}.search{width:100%}}
+
+
+        /* شبكة البطاقات داخل الصندوق */
+        .cards-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
+            gap: 20px; 
+        }
+
+        .w3-card { 
+            padding: 25px 20px; 
+            border-radius: 8px; 
+            text-align: center; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05); 
+            transition: 0.2s; 
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+        
+        .w3-card:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12); 
+        }
+        
+        .w3-card h2 { 
+            font-size: 1.6rem; 
+            margin-bottom: 8px; 
+            font-weight: 900; 
+            color: #111;
+        }
+        
+        .w3-card p { 
+            font-size: 0.9rem; 
+            color: #444; 
+            margin-bottom: 15px; 
+            min-height: 40px; 
+        }
+        
+        .w3-card-btn { 
+            background-color: #282A35; 
+            color: rgb(232, 224, 224); 
+            border: none; 
+            padding: 8px 18px; 
+            border-radius: 4px; 
+            font-weight: 60; 
+            text-decoration: none; 
+            display: inline-block; 
+            transition: 0.2s; 
+        }
+        
+        .w3-card-btn:hover { 
+            background-color: #12639d; 
+        }
+
+        #we {
+    display: block;
+    text-align: center;
+    width: 100%;
+    margin: 0px auto; /* مسافة علوية سفلية وتوسيط أفقي تلقائي */
+              }
+
+
+/* جعل صف العنوان والأيقونة في منتصف الكارت مع بقائهما جنباً إلى جنب */
+.card-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* وضع العناصر في المنتصف أفقياً */
+    gap: 15px; /* المسافة بين اللوجو والعنوان */
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* تكبير اللوجو وجعله واضحاً جداً */
+.big-icon {
+    font-size: 2.8rem !important; /* حجم كبير وواضح */
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+/* تنسيق العنوان */
+.card-title-row h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+    color: #1e293b;
+}
+
+/* جعل النص والزر أيضاً في المنتصف لتكتمل أناقة الكارت */
+.w3-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+
+
+.courses-grid {
+    display: grid !important;
+    grid-template-columns: repeat(5, 1fr) !important; /* فرض ظهور 5 مربعات بجوار بعضها بالضبط */
+    gap: 10px !important;
+    padding: 10px !important;
+}
+
+.course-card {
+    background-color: #161b22 !important;
+    border: 1px solid #30363d !important;
+    border-radius: 6px !important;
+    overflow: hidden !important;
+    cursor: pointer !important;
+    width: 100% !important;
+}
+
+/* تصغير المربع وثباته */
+.course-thumb {
+    position: relative !important;
+    width: 100% !important;
+    padding-bottom: 100% !important; /* مربع متساوي الأبعاد */
+    background-color: #0d1117 !important;
+}
+
+.course-thumb img {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+}
+
+/* أيقونة تشغيل صغيرة جداً في المنتصف */
+.play-icon {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    background: rgba(0, 0, 0, 0.7) !important;
+    color: #fff !important;
+    width: 28px !important;
+    height: 28px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 10px !important;
+}
+
+.course-info {
+    padding: 6px !important;
+    text-align: right !important;
+}
+
+.course-info h3 {
+    font-size: 10px !important;
+    color: #ffffff !important;
+    margin: 0 0 2px 0 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+.course-info p {
+    font-size: 8px !important;
+    color: #8b949e !important;
+    margin: 0 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+
+/* تنسيق الزر المتناسق مع باقي أزرار المنصة */
+.btn-tech {
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.btn-tech:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: #58a6ff;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+.btn-tech i {
+    color: #58a6ff;
+}
+
+    </style>
+
+</head>
+<body id="top">
+
+<header>
+  <div class="nav">
+    <div class="brand">
+      <img src="IMG/آفاق المعرفة التقنية.png" alt="شعار آفاق المعرفة التقنية" class="logo">
+      <div><h1>آفاق المعرفة التقنية</h1><small>بإشراف المهندسة مها شهوب</small></div>
+    </div>
+    <div class="nav-actions">
+      
+      <!-- زر صورة ma (نبذة عن الكاتبة مع الشريط الأسود عند المرور بالماوس) -->
+      <div class="tooltip-parent" style="position:relative;">
+        <button onclick="toggleAuthorModal()" class="circle-img-btn">
+          <img src="IMG/ma.png" alt="صورة الكاتبة مها شهوب">
+        </button>
+        <div class="tooltip-box">نبذة عن المهندسة</div>
+      </div>
+      
+      <!-- زر صورة Maha1 (مكتبة مها شهوب مع الشريط الأسود عند المرور بالماوس) -->
+      <div class="tooltip-parent" style="position:relative;">
+        <a href="https://maha-shohoub.github.io/maha_shohoub_library/" target="_blank" class="circle-img-btn">
+          <img src="IMG/Maha1.png" alt="مكتبة المهندسة مها شهوب">
+        </a>
+        <div class="tooltip-box">مكتبة | مها شهوب   </div>
+      </div>
+
+      <!-- زر الوضع المظلم الخفيف -->
+      <button id="themeBtn" class="icon-btn" aria-label="تبديل المظهر"><i class="fa-solid fa-moon"></i></button>
+    </div>
+  </div>
+</header>
+
+<!-- نافذة modal الكاملة عند النقر على صورة الكاتبة -->
+<div id="author-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4" style="position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); z-index: 9999; display: none; align-items: center; justify-content: center; padding: 1rem;">
+    <div class="bg-white dark:bg-slate-800 rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-amber-100 dark:border-slate-700 relative text-right animate-fadeIn" style="background: var(--surface); color: var(--text); border-radius: 1rem; max-width: 32rem; width: 100%; padding: 1.5rem; position: relative; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);">
+        
+        <!-- زر إغلاق النافذة -->
+        <button onclick="toggleAuthorModal()" class="absolute top-4 left-4 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 text-xl font-bold" style="position: absolute; top: 1rem; left: 1rem; background: none; border: none; cursor: pointer; font-size: 1.25rem; color: var(--muted);">
+            <i class="fas fa-times"></i>
+        </button>
+
+        <!-- محتوى النافذة -->
+        <div class="flex flex-col items-center text-center mb-6" style="display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 1.5rem;">
+            <div class="w-20 h-20 rounded-full overflow-hidden border-2 border-amber-500 shadow-md mb-3 bg-amber-50" style="width: 80px; height: 80px; border-radius: 50%; overflow: hidden; border: 2px solid var(--primary); margin-bottom: 0.75rem;">
+                <img src="IMG/ma.png" alt="صورة الكاتبة" class="w-full h-full object-cover" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <h3 class="text-xl font-bold text-amber-950 dark:text-amber-100 library-title" style="font-size: 1.25rem; font-weight: bold; margin: 0; color: var(--primary2);">المهندسة مها شهوب</h3>
+            <p class="text-xs text-amber-600 dark:text-amber-400 mt-1" style="font-size: 0.8rem; color: var(--muted); margin-top: 4px;">تخصص قواعد بيانات ومطورة محتوى تقني</p>
+        </div>
+
+        <!-- مكان النبذة -->
+        <div class="mb-6 text-gray-700 dark:text-gray-300 text-sm leading-relaxed bg-amber-50/50 dark:bg-slate-900/50 p-4 rounded-xl border border-amber-100 dark:border-slate-700" style="margin-bottom: 1.5rem; padding: 1rem; border-radius: 0.75rem; background: var(--surface2); border: 1px solid var(--border); font-size: 0.9rem; line-height: 1.6;">
+            <p class="font-bold text-amber-900 dark:text-amber-400 mb-2" style="font-weight: bold; margin-bottom: 0.5rem; color: var(--primary);">نبذة عن الكاتبة:</p>
+            <p id="author-bio-text" style="margin: 0; color: var(--muted);">المهندسة مها شهوب، باحثة ومطورة محتوى تقني ليبية، وصاحبة مشروع «آفاق المعرفة التقنية» ومنصة كتب أساسيات التقنية المجانية. تتمتع بخبرة واسعة ومسبقة في البرمجة وقيادة الحاسب الآلي، وإصلاح أعطال الكمبيوتر، بالإضافة إلى خبرتها الكبيرة في مجال الإلكترونيات والشبكات. تسعى لتقديم محتوى تعليمي رقمي يسهم في تسهيل علوم البرمجة والتقنية بلغة عربية.</p>
+        </div>
+
+        <!-- معلومات التواصل وروابط السوشيال ميديا -->
+        <div>
+            <p class="font-bold text-amber-900 dark:text-amber-400 mb-3 text-sm" style="font-weight: bold; margin-bottom: 0.75rem; font-size: 0.9rem; color: var(--primary);">معلومات التواصل:</p>
+            <div class="flex flex-wrap gap-3 justify-center" style="display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center;">
+                <a href="https://www.youtube.com/@mhohu6256" target="_blank" class="flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm transition-colors shadow" style="display: inline-flex; align-items: center; gap: 8px; background: #dc2626; color: white; padding: 8px 16px; border-radius: 8px; font-size: 0.85rem;">
+                    <i class="fab fa-youtube"></i> قناة اليوتيوب
+                </a>
+                <a href="https://www.facebook.com/profile.php?id=61561346536355&locale=ar_AR" target="_blank" class="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm transition-colors shadow" style="display: inline-flex; align-items: center; gap: 8px; background: #2563eb; color: white; padding: 8px 16px; border-radius: 8px; font-size: 0.85rem;">
+                    <i class="fab fa-facebook"></i> صفحة الفيسبوك
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="hero">
+  <div class="hero-box">
+    <div>
+      <span class="badge"><i class="fa-solid fa-graduation-cap"></i> سلسلة أساسيات التقنية</span>
+      <h2>تعلم، أنشئ، وابحث<br>من مكان واحد</h2>
+      <p>بوابتك الرقمية المتكاملة لتعلم واحتراف لغات البرمجة. نجمع لك بين التطبيق العملي والمعرفة النظرية عبر مقالات وتقنيات مستوحاة من مؤلفات الكاتبة والمهندسة مها شهوب. نقدم لك أدلة محدثة، وكورسات فيديو تفاعلية، وشروحات نصية مفصلة؛ لندعم رحلتك التعليمية من الصفر حتى الاحتراف.</p>
+      <div class="hero-actions">
+      <a href="#tools" class="btn btn-light"><i class="fa-solid fa-code"></i> تعلم لغات البرمجة</a>
+        <a href="#articles" class="btn btn-ghost"><i class="fa-solid fa-book-open"></i>  كتب سلسلة أساسيات التقنية</a>
+        <a href="#tools2" class="btn-tech"><i class="fa-solid fa-video"></i> فيديوهات المنصة</a>
+        <a href="" class="btn-tech"><i class="fa-solid fa-robot"></i>  روبوتات المنصة قريباً </a>
+        <a href="https://www.facebook.com/profile.php?id=61561346536355&locale=ar_AR" class="btn btn-ghost"  target="_blank" ><i class="fa-solid fa-headset"></i>   تواصل معنا </a>
+        
+        <a href="#boot" 
+        onmouseover="this.style.backgroundColor='#1266ab'; this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 5px rgba(11, 79, 136, 0.4)';" 
+        onmouseout="this.style.backgroundColor='#0b4f88'; this.style.transform='translateY(0)'; this.style.boxShadow='none';" 
+        style="background-color: #0b4f88; color: #ffffff; padding: 11px 12px; border-radius: 6px; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; font-weight: bold; font-size: 15px; transition: all 0.2s ease-in-out;">
+        <!-- أيقونة الكورسات والتعليم -->
+        <i class="fa-solid fa-graduation-cap"></i> 
+       <span>كورسات المتاحة الآن</span>
+       <!-- شارة تدل على أن الكورس مدفوع بحجم أصغر ومتناسق -->
+      <span style="background-color: #ef4444; color: #ffffff; font-size: 10px; padding: 1px 5px; border-radius: 4px; display: inline-flex; align-items: center; gap: 3px; margin-right: 2px;">
+        <i class="fa-solid fa-credit-card" style="font-size: 9px;"></i> مدفوع
+      </span>
+    </a>
+
+  
+      </div>
+    </div>
+    <div class="hero-logo"><img src="IMG/آفاق المعرفة التقنية.png" alt="آفاق المعرفة التقنية"></div>
+  </div>
+</section>
+
+<main>
+  <section class="stats">
+    <div class="stat"><strong>16</strong><span> لغة وتقنية مشروحة مجانًا</span></div>
+    <div class="stat"><strong>20</strong><span> كتاباً وإصداراً مرجعياً مجانًا</span></div>
+    <div class="stat"><strong>3</strong><span>  كورسات تعليمية مدفوعة تؤهلك لسوق العمل مباشرة </span></div>
+    <div class="stat"><strong>2026</strong><span> النسخة الحالية </span></div>
+</section>
+<style>
+  /* تنسيق القسم الموحد */
+  .section {
+    margin-bottom: 40px;
+    font-family: 'Cairo', sans-serif;
+  }
+  .section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 25px;
+  }
+  .section-head h3 {
+    margin: 0 0 5px 0;
+    color: #2c3e50;
+  }
+  .section-head p {
+    margin: 0;
+    color: #7f8c8d;
+    font-size: 0.9rem;
+  }
+
+  /* شريط الفلاتر والبحث */
+  .filter-search-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 25px;
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid #e1e8ed;
+  }
+  .filters {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .filter-btn {
+    background: #ffffff;
+    border: 1px solid #dcdde1;
+    color: #2f3640;
+    padding: 6px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.8rem;
+    transition: all 0.3s;
+  }
+  .filter-btn.active, .filter-btn:hover {
+    background: #0077b6;
+    color: #fff;
+    border-color: #0077b6;
+  }
+  .search {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-width: 230px;
+  }
+  .search i {
+    position: absolute;
+    right: 12px;
+    color: #95a5a6;
+  }
+  .search input {
+    width: 100%;
+    padding: 8px 35px 8px 15px;
+    border: 1px solid #dcdde1;
+    border-radius: 8px;
+    outline: none;
+    font-family: 'Cairo', sans-serif;
+    transition: border-color 0.3s;
+  }
+  .search input:focus {
+    border-color: #0077b6;
+  }
+
+  /* شبكة البطاقات المربعة */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+  }
+  .card-square {
+    background: #ffffff;
+    border: 1px solid #e1e8ed;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    aspect-ratio: 1 / 1;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+  }
+  .card-square:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  }
+  .card-square .num {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 6px;
+    z-index: 2;
+  }
+  .card-square .imgbox {
+    width: 100%;
+    height: 45%;
+    overflow: hidden;
+    background: #f8f9fa;
+  }
+  .card-square .imgbox img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .card-square .card-content {
+    padding: 12px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 55%;
+  }
+  .card-square .tag {
+    font-size: 0.7rem;
+    color: #0077b6;
+    font-weight: bold;
+    margin-bottom: 2px;
+  }
+  .card-square h4 {
+    margin: 0 0 4px 0;
+    font-size: 0.95rem;
+    color: #2c3e50;
+  }
+  .card-square p {
+    margin: 0 0 6px 0;
+    font-size: 0.75rem;
+    color: #7f8c8d;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* تنسيق وتوسيع وتلوين الزر ليكون في المنتصف تماماً بلون جميل مع تأثير الـ Hover */
+  .card-square .card-btn {
+    text-decoration: none;
+    background: linear-gradient(135deg, #00b4d8, #0077b6);
+    color: #ffffff;
+    text-align: center;
+    padding: 7px 15px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    font-family: 'Cairo', sans-serif;
+    display: block;
+    width: 80%;
+    margin: 0 auto; /* هذا السطر يضع الزر في المنتصف أفقياً */
+    box-shadow: 0 3px 10px rgba(0, 119, 182, 0.2);
+    transition: all 0.3s ease;
+  }
+  
+  .card-square .card-btn:hover {
+    background: linear-gradient(135deg, #0077b6, #03045e);
+    box-shadow: 0 5px 15px rgba(3, 4, 94, 0.35);
+    transform: translateY(-2px);
+  }
+
+  /* تنسيق النافذة المنبثقة (Modal) */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    backdrop-filter: blur(5px);
+    padding: 15px;
+  }
+  .modal-box {
+    background: #fff;
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 25px;
+    border-radius: 16px;
+    position: relative;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    animation: scaleUp 0.3s ease;
+  }
+  @keyframes scaleUp {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  .close-modal {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: #f1f2f6;
+    border: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #2f3640;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, color 0.2s;
+  }
+  .close-modal:hover {
+    background: #e74c3c;
+    color: #fff;
+  }
+  .modal-header {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #f1f2f6;
+    padding-bottom: 15px;
+  }
+  .modal-header .modal-tag {
+    font-size: 0.75rem;
+    color: #0077b6;
+    font-weight: bold;
+    background: #caf0f8;
+    padding: 3px 10px;
+    border-radius: 6px;
+    display: inline-block;
+    margin-bottom: 8px;
+  }
+  .modal-header h3 {
+    margin: 0;
+    color: #2c3e50;
+    font-size: 1.3rem;
+  }
+  .modal-body h4 {
+    color: #2c3e50;
+    font-size: 0.95rem;
+    margin: 15px 0 8px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .modal-body h4 i {
+    color: #0077b6;
+  }
+  .modal-body p, .modal-body ul {
+    color: #576574;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    margin: 0 0 15px 0;
+  }
+  .modal-body ul {
+    padding-right: 20px;
+  }
+  .modal-body li {
+    margin-bottom: 5px;
+  }
+  .modal-footer {
+    display: flex;
+    gap: 10px;
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 1px solid #f1f2f6;
+  }
+  .modal-action-btn {
+    flex: 1;
+    text-decoration: none;
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: background 0.2s;
+  }
+  .modal-action-btn.pdf-btn {
+    background: #e74c3c;
+    color: #fff;
+  }
+  .modal-action-btn.pdf-btn:hover {
+    background: #c0392b;
+  }
+  .modal-action-btn.page-btn {
+    background: #0077b6;
+    color: #fff;
+  }
+  .modal-action-btn.page-btn:hover {
+    background: #03045e;
+  }
+  .empty-state {
+    display: none;
+    text-align: center;
+    padding: 40px;
+    color: #95a5a6;
+    grid-column: 1 / -1;
+  }
+</style>
+
+
+<!-- ========================================================
+     كورسات تعلم الكمبيوتر والبرمجة - كورس مدفوع
+========================================================= -->
+<section class="section" id="programming-paths">
+  <div class="section-head">
+    <div>
+      <h3>
+          <i class="fa-solid fa-lock"></i> كورس مدفوع:
+         تعلم أساسيات البرمجة  
+      </h3>
+      <p>كورس متكامل لتعلم أساسيات البرمجة ضمن سلسلة أساسيات التقنية تحت إشراف الكاتبة والمهندسة مها شهوب.</p>
+    </div>
+  </div>
+  
+  <div class="cards">
+    <!-- 1. أساسيات البرمجة -->
+    <article class="card" data-search="أساسيات البرمجة">
+      <span class="num">01</span>
+      <div class="imgbox">
+        <img src="https://images.unsplash.com/photo-1593720213428-28a5b9e94613?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="أساسيات البرمجة">
+      </div>
+      <div class="card-content">
+        <span class="tag">Programming</span>
+        <h4>أساسيات البرمجة</h4>
+        <p>تعلم المفاهيم والمبادئ الأساسية للبرمجة: الدوال، المتغيرات، الجمل الشرطية وغيرها من المبادئ المهمة.</p>
+                 <i class="fa-solid fa-hourglass-half" style="color: #ee9e2edd;"> قريباً </i> 
+      </div>
+    </article>
+
+    <!-- 2. أساسيات الخوارزميات -->
+    <article class="card" data-search="أساسيات الخوارزميات">
+      <span class="num">02</span>
+      <div class="imgbox">
+        <img src="https://plus.unsplash.com/premium_photo-1753380849525-d8c1f406fa4e?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="أساسيات الخوارزميات">
+      </div>
+      <div class="card-content">
+        <span class="tag">Algorithm</span>
+        <h4>أساسيات الخوارزميات</h4>
+        <p>التعرف على كيفية التعامل وإنشاء خوارزمية صحيحة وسريعة داخل برنامجك.</p>
+       <i class="fa-solid fa-hourglass-half" style="color: #ee9e2edd;"> قريباً</i> 
+      </div>
+    </article>
+
+    <!-- 3. أساسيات هياكل البيانات -->
+    <article class="card" data-search="تعلم أساسيات هياكل البيانات">
+      <span class="num">03</span>
+      <div class="imgbox">
+        <img src="https://plus.unsplash.com/premium_photo-1663050633633-2856e875dcc7?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="أساسيات هياكل البيانات">
+      </div>
+      <div class="card-content">
+        <span class="tag">Data Structures</span>
+        <h4>أساسيات هياكل البيانات</h4>
+        <p>تعلم الطرق البرمجية المحددة لتنظيم، وتخزين، وإدارة البيانات في ذاكرة الحاسوب بكفاءة.</p>
+        <i class="fa-solid fa-hourglass-half" style="color: #ee9e2edd;"> قريباً </i> 
+      </div>
+    </article>
+  </div>
+</section>
+
+
+<!-- =========================================================
+     كورسات تعلم المنظومات - كورسات مدفوعة
+========================================================= -->
+<section class="section" id="systems-paths">
+  <div class="section-head">
+    <div>
+      <h3>
+          <i class="fa-solid fa-lock"></i> كورس مدفوع:
+         تعلم أساسيات بناء المنظومات 
+      </h3>
+      <p> كورس تعلم المنظومات وقواعد البيانات الضحمة وكيفية التعامل مع مستودعات البيانات ضمن سلسلة أساسيات التقنية تحت إشراف الكاتبة والمهندسة مها شهوب.</p>
+    </div>
+  </div>
+  
+  <div class="systems-section">
+    <div class="cards">
+      <!-- 1. منظومات Web -->
+      <article class="card" data-search="منظومات Web web development">
+        <span class="num">01</span>
+        <div class="imgbox">
+          <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?q=80&w=736&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="منظومات Web">
+        </div>
+        <div class="card-content">
+          <span class="tag">تطوير الويب</span>
+          <h4>منظومات Web</h4>
+          <p>تعلم وتصميم منظومات وتطبيقات الويب التفاعلية الحديثة.</p>
+          <i class="fa-solid fa-hourglass-half" style="color: #ee9e2edd;"> قريباً...</i> 
+        </div>
+      </article>
+      
+      <!-- 2. منظومات C# -->
+      <article class="card" data-search="منظومات C# csharp c sharp">
+        <span class="num">02</span>
+        <div class="imgbox">
+          <img src="https://plus.unsplash.com/premium_photo-1733342561505-306871f4e706?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="منظومات C#">
+        </div>
+        <div class="card-content">
+          <span class="tag">لغة #C</span>
+          <h4>منظومات #C</h4>
+          <p>بناء البرمجيات والمنظومات باستخدام لغة #C.</p>
+          <i class="fa-solid fa-hourglass-half" style="color: #ee9e2edd;">  قريباً...</i> 
+        </div>
+      </article>
+      
+      <!-- 3. منظومات Access -->
+      <article class="card" data-search="منظومات Access access database">
+        <span class="num">03</span>
+        <div class="imgbox">
+          <img src="https://media.istockphoto.com/id/1484786238/photo/cyber-security-data-protection-business-working-on-compute-intelligenc-digital-tablet-global.jpg?s=2048x2048&w=is&k=20&c=CV6ZnLQtbrpJ-5pi39OK0fNHL3Z8VwiU7NOXc_bxQXg=" alt="منظومات Access">
+        </div>
+        <div class="card-content">
+          <span class="tag">قواعد البيانات</span>
+          <h4>منظومات Access</h4>
+          <p>تصميم وإدارة القواعد والمنظومات الإدارية باستخدام Microsoft Access.</p>
+          <i class="fa-solid fa-hourglass-half" style="color: #ee9e2edd;">  قريباً...</i> 
+        </div>
+      </article>
+      
+      <!-- 4. منظومات VB.NET -->
+      <article class="card" data-search="منظومات VB.NET visual basic">
+        <span class="num">04</span>
+        <div class="imgbox">
+          <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=600&q=80" alt="منظومات VB.NET">
+        </div>
+        <div class="card-content">
+          <span class="tag">لغة VB.NET</span>
+          <h4>منظومات VB.NET</h4>
+          <p>تطوير المنظومات المكتبية وتطبيقات سطح المكتب بلغة VB.NET.</p>
+          <i class="fa-solid fa-hourglass-half" style="color: #ee9e2edd;"> قريباً...</i> 
+        </div>
+      </article>
+      
+      <!-- 5. منظومات Excel -->
+      <article class="card" data-search="منظومات Excel">
+        <span class="num">05</span>
+        <div class="imgbox">
+          <img src="https://plus.unsplash.com/premium_photo-1671461774955-7aab3ab41b90?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="منظومات Excel">
+        </div>
+        <div class="card-content">
+          <span class="tag">جداول البيانات</span>
+          <h4>منظومات Excel</h4>
+          <p>تصميم وتطوير النماذج والمنظومات الإدارية المتقدمة باستخدام Excel.</p>
+          <i class="fa-solid fa-hourglass-half" style="color: #ee9e2edd;">  قريباً...</i> 
+        </div>
+      </article>
+      
+      <!-- 6. نظام إدارة قواعد البيانات DBMS -->
+      <article class="card" data-search="تعلم DBMS database management system">
+        <span class="num">06</span>
+        <div class="imgbox">
+          <img src="https://media.istockphoto.com/id/1200717412/photo/database-structure-flow-chart-of-a-control-panel-of-web-site.jpg?s=2048x2048&w=is&k=20&c=ibUZq3EHgQVk-Qx0j4ssJh8kR_PIBs7TG0HvAGpIzD8=" alt="Database Management System">
+        </div>
+        <div class="card-content">
+          <span class="tag">إدارة قواعد البيانات</span>
+          <h4>Database Management System</h4>
+          <p>فهم وتصميم هياكل وأنظمة إدارة قواعد البيانات بكفاءة عالية.</p>
+          <i class="fa-solid fa-hourglass-half" style="color: #ee9e2edd;" >  قريباً...</i> 
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section" id="computer-course">
+  <div class="section-head">
+    <div>
+      <h3>
+          <i class="fa-solid fa-lock"> كورس مدفوع</i> 
+         تعلم أساسيات الكمبيوتر  
+      </h3>
+      <p>كورس متكامل لتعلم أساسيات الكمبيوتر، الشبكات، البرامج المكتبية والأمن الرقمي  ضمن سلسلة أساسيات التقنية تحت إشراف الكاتبة والمهندسة مها شهوب.</p>
+    </div>
+  </div>
+
+  <div class="cards"id="boot">
+    <!-- 1. مكونات الكمبيوتر -->
+    <article class="card" data-search="مكونات الكمبيوتر computer hardware">
+      <span class="num">01</span>
+      <div class="imgbox">
+        <img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=600&q=80" alt="أساسيات مكونات الكمبيوتر">
+      </div>
+      <div class="card-content">
+        <span class="tag">Hardware</span>
+        <h4>أساسيات مكونات الكمبيوتر</h4>
+        <p>التعرف على مكونات الحاسوب الداخلية والخارجية ووظيفة كل مكون.</p>
+  <div style="color: #12c123dd;"> 
+  <i class="fa-brands fa-facebook-messenger"> متاح حاليًا للتسجيل تواصل عبر بريد الصفحة </i>
+  <hr>
+  <b>المقاعد محدودة</b> 
+  </div>
+      </div>
+    </article>
+
+    <!-- 2. Windows -->
+    <article class="card" data-search="Windows ويندوز windows basics">
+      <span class="num">02</span>
+      <div class="imgbox">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7f/Windows10abstract.png?utm_source=ar.wikipedia.org&utm_campaign=index&utm_content=original" alt="أساسيات Windows">
+      </div>
+      <div class="card-content">
+        <span class="tag">Windows</span>
+        <h4>أساسيات Windows</h4>
+        <p>تعلم أساسيات نظام Windows وإدارة الملفات والبرامج.</p>
+     <div style="color: #12c123dd;"> 
+     <i class="fa-brands fa-facebook-messenger"> متاح حاليًا للتسجيل تواصل عبر بريد الصفحة </i>
+     <hr>
+     <b>المقاعد محدودة</b> 
+    </div>
+
+      </div>
+    </article>
+
+    <!-- 3. Word -->
+    <article class="card" data-search="Word الوورد Microsoft Word">
+      <span class="num">03</span>
+      <div class="imgbox">
+        <img src="https://images.unsplash.com/photo-1658203897415-3cad6cfad5c0?q=80&w=862&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="أساسيات Word">
+      </div>
+      <div class="card-content">
+        <span class="tag">Microsoft Word</span>
+        <h4>أساسيات Word</h4>
+        <p>تعلم إنشاء وتنسيق المستندات والصفحات والجداول باستخدام Word.</p>
+      <div style="color: #12c123dd;"> 
+  <i class="fa-brands fa-facebook-messenger"> متاح حاليًا للتسجيل تواصل عبر بريد الصفحة </i>
+  <hr>
+  <b>المقاعد محدودة</b> 
+  </div>
+
+     </div>
+    </article>
+
+    <!-- 4. Excel -->
+    <article class="card" data-search="Excel اكسل Microsoft Excel">
+      <span class="num">04</span>
+      <div class="imgbox">
+        <img src="https://images.unsplash.com/photo-1658203897339-0b8c64a42fba?q=80&w=862&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="أساسيات Excel">
+      </div>
+      <div class="card-content">
+        <span class="tag">Microsoft Excel</span>
+        <h4>أساسيات Excel</h4>
+        <p>تعلم الجداول والعمليات الحسابية والدوال وتنظيم البيانات.</p>
+  <div style="color: #12c123dd;"> 
+  <i class="fa-brands fa-facebook-messenger"> متاح حاليًا للتسجيل تواصل عبر بريد الصفحة </i>
+  <hr>
+  <b>المقاعد محدودة</b> 
+  </div> 
+
+      </div>
+    </article>
+
+    <!-- 5. PowerPoint -->
+    <article class="card" data-search="PowerPoint باوربوينت presentation">
+      <span class="num">05</span>
+      <div class="imgbox">
+        <img src="https://images.unsplash.com/photo-1733222764895-9bf3a19162fe?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="أساسيات PowerPoint">
+      </div>
+      <div class="card-content">
+        <span class="tag">Microsoft PowerPoint</span>
+        <h4>أساسيات PowerPoint</h4>
+        <p>تعلم إنشاء العروض التقديمية وتصميم الشرائح الإحترافية.</p>
+       <div style="color: #12c123dd;"> 
+       <i class="fa-brands fa-facebook-messenger"> متاح حاليًا للتسجيل تواصل عبر بريد الصفحة </i>
+       <hr>
+       <b>المقاعد محدودة</b> 
+     </div>
+      </div>
+    </article>
+
+    <!-- 6. Access -->
+    <article class="card" data-search="Access اكسس Microsoft Access database">
+      <span class="num">06</span>
+      <div class="imgbox">
+        <img src="https://plus.unsplash.com/premium_photo-1768910328029-4222d58dcbc7?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="أساسيات Access">
+      </div>
+      <div class="card-content">
+        <span class="tag">Microsoft Access</span>
+        <h4>أساسيات Access</h4>
+        <p>تعلم إنشاء قواعد البيانات والجداول والاستعلامات والنماذج والتقارير.</p>
+  <div style="color: #12c123dd;"> 
+  <i class="fa-brands fa-facebook-messenger"> متاح حاليًا للتسجيل تواصل عبر بريد الصفحة </i>
+  <hr>
+  <b>المقاعد محدودة</b> 
+  </div>
+      </div>
+    </article>
+
+    <!-- 7. اختصارات الكمبيوتر -->
+    <article class="card" data-search="اختصارات الكمبيوتر keyboard shortcuts shortcuts">
+      <span class="num">07</span>
+      <div class="imgbox">
+        <img src="https://images.unsplash.com/photo-1648392368628-6e984d89e2f3?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="اختصارات الكمبيوتر">
+      </div>
+      <div class="card-content">
+        <span class="tag">Computer Skills</span>
+        <h4>أساسيات اختصارات الكمبيوتر</h4>
+        <p>تعلم أهم اختصارات لوحة المفاتيح التي تساعد على السرعة.</p>
+     <div style="color: #12c123dd;"> 
+     <i class="fa-brands fa-facebook-messenger"> متاح حاليًا للتسجيل تواصل عبر بريد الصفحة </i>
+     <hr>
+     <b>المقاعد محدودة</b> 
+     </div>  
+      </div>
+    </article>
+
+    <!-- 8. أساسيات الإنترنت والشبكات -->
+    <article class="card" data-search="أساسيات الإنترنت والشبكات internet networks">
+      <span class="num">08</span>
+      <div class="imgbox">
+        <img src="https://images.unsplash.com/photo-1546124404-9e7e3cac2ec1?q=80&w=1031&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="أساسيات الإنترنت والشبكات">
+      </div>
+      <div class="card-content">
+        <span class="tag">الشبكات</span>
+        <h4>أساسيات الإنترنت والشبكات</h4>
+        <p>تعلم مبادئ الاتصال، بروتوكولات الإنترنت، وكيفية عمل شبكات الحاسوب.</p>
+    <div style="color: #12c123dd;"> 
+    <i class="fa-brands fa-facebook-messenger"> متاح حاليًا للتسجيل تواصل عبر بريد الصفحة </i>
+    <hr>
+    <b>المقاعد محدودة</b> 
+    </div>  
+      </div>
+    </article>
+
+    <!-- 9. أساسيات  اصلاح اعطال الكمبيوتر -->
+    <article class="card" data-search="أساسيات  اصلاح اعطال الكمبيوتر digital security cyber security">
+      <span class="num">09</span>
+      <div class="imgbox">
+        <img src="https://plus.unsplash.com/premium_photo-1726769179669-dcca21be64ac?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="أساسيات الأمن الرقمي">
+      </div>
+      <div class="card-content">
+        <span class="tag">اعطال الكمبيوتر وكيفية اصلاحها </span>
+        <h4>  اعطال الكمبيوتر</h4>
+        <p>رحلة اصلاح الاجزاء التالفة من الكمبيوتر لتوفير الوقت والجهد      </p>
+    <div style="color: #12c123dd;"> 
+    <i class="fa-brands fa-facebook-messenger"> متاح حاليًا للتسجيل تواصل عبر بريد الصفحة </i>
+    <hr>
+    <b>المقاعد محدودة</b> 
+   </div>
+      </div>
+    </article>
+
+
+<article class="card" data-search="  digital security cyber security">
+      <span class="num">10</span>
+      <div class="imgbox">
+        <img src="https://images.unsplash.com/photo-1662638600476-d563fffbb072?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="أساسيات الأمن الرقمي">
+      </div>
+      <div class="card-content">
+        <span class="tag"> الامن الرقمي  </span>
+        <h4>  أساسيات الامن الرقمي  </h4>
+        <p>الأمن الرقمي الشامل: دليل الوقاية من الاختراقات وإغلاق ثغرات الكمبيوتر.</p>
+    <div style="color: #12c123dd;"> 
+    <i class="fa-brands fa-facebook-messenger"> متاح حاليًا للتسجيل تواصل عبر بريد الصفحة </i>
+    <hr>
+    <b>المقاعد محدودة</b> 
+   </div>
+      </div>
+    </article>
+
+
+
+  </div>
+</section>
+
+
+<!-- ========================================================= 
+     معرض مشاريع الطالبات - مدفوع 
+========================================================= --> 
+
+<section class="section" id="students-projects"> 
+  <div class="section-head"> 
+    <div> 
+      <h3> 
+          <i class="fa-solid fa-folder-open"><span> </span></i> 
+          معرض مشاريع الطالبات المشتركات في الكورس المدفوع
+      </h3> 
+      <p>مجموعة من المشاريع والتطبيقات التي تم تنفيذها ضمن التدريب والكورسات.</p> 
+    </div> 
+    <!-- حقل البحث الخاص بالطالبات بمعرّف فريد ومستقل -->
+    <div class="search"> 
+      <i class="fa-solid fa-magnifying-glass"></i> 
+      <input 
+        type="text" 
+        id="uniqueStudentSearch"
+        placeholder="اكتبي اسم الطالبة للبحث عن مشاريعها..." > 
+    </div> 
+  </div> 
+
+  <div class="cards" id="projectsCardsContainer"> 
+    <!-- طالبة 1 -->
+    <article class="card student-project-card" data-student-name="سارة أحمد" data-search="سارة أحمد مشروع البرمجة c++ html حاسبة"> 
+      <span class="num">01</span> 
+      <div class="imgbox"> 
+        <img src="IMG/student.png" alt="مشاريع سارة أحمد"> 
+      </div> 
+      <div class="card-content"> 
+        <span class="tag">Student Project</span> 
+        <h4>مشاريع الطالبة: -------- </h4> 
+        <p>استعراض المشاريع والتطبيقات الخاصة بالطالبة سارة في تطوير واجهات الويب.</p> 
+        <div class="student-links">
+        <div class="student-links">
+        <a href="#" class="student-badge" onclick="alert('قريباً سيتم إدراجه'); return false;">
+        <i class="fa-solid fa-link"></i> نظام قهوى
+        </a>
+        </div>
+        </div>
+      </div> 
+    </article> 
+
+    <!-- طالبة 2 -->
+    <article class="card student-project-card" data-student-name="فاطمة علي" data-search="فاطمة علي قاعدة بيانات sql نظام المدرسة"> 
+      <span class="num">02</span> 
+      <div class="imgbox"> 
+        <img src="IMG/student.png" alt="مشاريع فاطمة علي"> 
+      </div> 
+      <div class="card-content"> 
+        <span class="tag">Student Project</span> 
+        <h4>مشاريع الطالبة: -------- </h4> 
+        <p>استعراض مشاريع وتطبيقات قواعد البيانات والنظم.</p> 
+        <div class="student-links">
+        <div class="student-links">
+        <a href="#" class="student-badge" onclick="alert('قريباً سيتم إدراجه'); return false;">
+        <i class="fa-solid fa-link"></i> نظام كليات
+        </a>
+        </div>
+        </div>
+      </div> 
+    </article> 
+
+    
+    <!-- 3 الطالبة -->
+    <article class="card student-project-card" data-student-name="فاطمة علي" data-search="فاطمة علي قاعدة بيانات sql نظام المدرسة"> 
+      <span class="num">03</span> 
+      <div class="imgbox"> 
+        <img src="IMG/student.png" alt="مشاريع هند سالم"> 
+      </div> 
+      <div class="card-content"> 
+        <span class="tag">Student Project</span> 
+        <h4>مشاريع الطالبة:  --------</h4> 
+        <p>استعراض مشاريع وتطبيقات قواعد البيانات والنظم.</p> 
+        <div class="student-links">
+        <a href="#" class="student-badge" onclick="alert('قريباً سيتم إدراجه'); return false;">
+        <i class="fa-solid fa-link"></i> نظام المدرسة
+        </a>
+        </div>
+      </div> 
+    </article> 
+
+  </div> 
+</section>
+
+<!-- =========================================================
+     CSS الخاص بإخفاء وإظهار البطاقات بسلاسة
+========================================================= -->
+<style>
+.student-project-card {
+  min-height: 310px !important;
+  transition: all 0.3s ease !important;
+}
+.student-project-card.student-hidden {
+  display: none !important;
+}
+</style>
+
+<!-- =========================================================
+     JavaScript المستقل والخاص بالبحث عن الطالبات فقط
+========================================================= -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const searchInput = document.getElementById('uniqueStudentSearch');
+  const studentCards = document.querySelectorAll('.student-project-card');
+
+  if (searchInput) {
+    searchInput.addEventListener('input', function() {
+      let query = this.value.toLowerCase().trim();
+
+      studentCards.forEach(card => {
+        let name = card.getAttribute('data-student-name').toLowerCase();
+        let keywords = card.getAttribute('data-search').toLowerCase();
+
+        // إذا كان الحقل فارغاً أو النص المطابق موجوداً في الاسم أو الكلمات المفتاحية
+        if (query === "" || name.includes(query) || keywords.includes(query)) {
+          card.classList.remove('student-hidden');
+        } else {
+          card.classList.add('student-hidden');
+        }
+      });
+    });
+  }
+});
+</script>
+<script>
+function filterStudentProjects() {
+  let input = document.getElementById('studentSearchInput').value.toLowerCase();
+  let cards = document.getElementsByClassName('student-project-card');
+
+  for (let i = 0; i < cards.length; i++) {
+    let searchKeywords = cards[i].getAttribute('data-search').toLowerCase();
+    let cardContent = cards[i].innerText.toLowerCase();
+    
+    if (searchKeywords.includes(input) || cardContent.includes(input)) {
+      cards[i].style.display = ""; 
+    } else {
+      cards[i].style.display = "none"; 
+    }
+  }
+}
+</script>
+
+<!-- =========================================================
+     CSS المحسّن بخصائص مانعة للتداخل (Strict & Isolated)
+========================================================= -->
+
+<style>
+.paid-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 7px !important;
+  margin-right: 10px !important;
+  padding: 5px 10px !important;
+  border-radius: 20px !important;
+  background: linear-gradient(135deg, #111827, #2563eb) !important;
+  color: #fff !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  vertical-align: middle !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,.12) !important;
+}
+
+.paid-badge i {
+  font-size: 11px !important;
+}
+
+.section {
+  padding: 20px 4% !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  direction: rtl !important;
+  text-align: right !important;
+}
+
+.section-head {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 15px !important;
+  margin-bottom: 25px !important;
+}
+
+.section-head > div {
+  flex: 1 !important;
+  min-width: 250px !important;
+}
+
+.search {
+  min-width: 240px !important;
+  position: relative !important;
+}
+
+.search input {
+  width: 100% !important;
+  padding: 9px 35px 9px 12px !important;
+  border-radius: 10px !important;
+  border: 1px solid #cbd5e1 !important;
+  outline: none !important;
+  font-family: inherit !important;
+  font-size: 13px !important;
+}
+
+.search i {
+  position: absolute !important;
+  right: 12px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  color: #64748b !important;
+  font-size: 13px !important;
+}
+
+/* شبكة البطاقات مع إلغاء أي قيود سابقة */
+.cards {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)) !important;
+  gap: 25px !important;
+  width: 100% !important;
+  direction: rtl !important;
+}
+
+/* البطاقة أصبحت تأخذ ارتفاعاً تلقائياً مرناً يمنع أي تداخل نهائياً */
+.card {
+  position: relative !important;
+  height: auto !important;
+  min-height: 380px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  border-radius: 20px !important;
+  background: #fff !important;
+  border: 1px solid rgba(37, 99, 235, .15) !important;
+  box-shadow: 0 8px 25px rgba(0,0,0,.08) !important;
+  transition: transform .3s ease, box-shadow .3s ease !important;
+  text-align: right !important;
+}
+
+.card:hover {
+  transform: translateY(-7px) !important;
+  box-shadow: 0 18px 40px rgba(0,0,0,.14) !important;
+}
+
+.card .imgbox {
+  width: 100% !important;
+  height: 170px !important;
+  overflow: hidden !important;
+  background: #eef4fb !important;
+  flex-shrink: 0 !important;
+}
+
+.card .imgbox img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+  transition: transform .4s ease !important;
+}
+
+.card:hover .imgbox img {
+  transform: scale(1.06) !important;
+}
+
+.card-content {
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  padding: 16px !important;
+}
+
+.card-content h4 {
+  margin: 6px 0 8px 0 !important;
+  font-size: 16px !important;
+  color: #1e293b !important;
+  font-weight: 700 !important;
+  line-height: 1.4 !important;
+}
+
+.card-content p {
+  font-size: 12px !important;
+  line-height: 1.6 !important;
+  margin: 0 0 14px 0 !important;
+  color: #64748b !important;
+}
+
+.card .num {
+  position: absolute !important;
+  top: 12px !important;
+  left: 12px !important;
+  z-index: 5 !important;
+  width: 32px !important;
+  height: 32px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 50% !important;
+  background: rgba(15, 23, 42, .88) !important;
+  color: #fff !important;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+}
+
+.card-btn:hover {
+  background: #0b4f88 !important;
+  transform: translateY(-2px) !important;
+}
+
+.tag {
+  width: fit-content !important;
+  padding: 3px 8px !important;
+  border-radius: 6px !important;
+  background: #eaf4ff !important;
+  color: #1677c8 !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  margin-bottom: 4px !important;
+}
+
+.student-links {
+  display: flex !important;
+  gap: 6px !important;
+  flex-wrap: wrap !important;
+  margin: 6px 0 12px 0 !important;
+}
+
+.student-badge {
+  background: #f1f5f9 !important;
+  border: 1px solid #cbd5e1 !important;
+  padding: 3px 8px !important;
+  border-radius: 12px !important;
+  font-size: 11px !important;
+  color: #1e293b !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+  transition: 0.2s !important;
+}
+
+.student-badge:hover {
+  background: #0284c7 !important;
+  color: #fff !important;
+  border-color: #0284c7 !important;
+}
+
+/* شاشات العرض الكبرى */
+@media (min-width: 1400px) {
+  .cards {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+}
+
+/* التابلت والهواتف */
+@media (max-width: 768px) {
+  .section-head {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+  .cards {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 450px) {
+  .cards {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* الوضع الداكن */
+[data-theme="dark"] .card {
+  background: #111827 !important;
+  border-color: rgba(255,255,255,.08) !important;
+}
+[data-theme="dark"] .card-content h4 {
+  color: #f8fafc !important;
+}
+[data-theme="dark"] .card-content p {
+  color: #cbd5e1 !important;
+}
+[data-theme="dark"] .tag {
+  background: rgba(37,99,235,.18) !important;
+}
+[data-theme="dark"] .student-badge {
+  background: #1e293b !important;
+  border-color: #334155 !important;
+  color: #f1f5f9 !important;
+}
+</style>
+
+<!-- =========================================================
+     JavaScript للبحث داخل كل قسم
+========================================================= -->
+
+<script>
+document.querySelectorAll('.section').forEach(section => {
+  const input = section.querySelector('.course-search');
+  const cards = section.querySelectorAll('.card');
+
+  if (!input) return;
+
+  input.addEventListener('input', function () {
+    const value = this.value.trim().toLowerCase();
+    cards.forEach(card => {
+      const text = (card.dataset.search || '') + ' ' + card.innerText;
+      card.style.display = text.toLowerCase().includes(value) ? '' : 'none';
+    });
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+  <!-- قسم مقالات وإضاءات من سلسلة أساسيات التقنية -->
+  <section class="section" id="articles">
+    <div class="section-head">
+      <div>
+        <h3>مقالات وإضاءات من سلسلة أساسيات التقنية</h3>
+        <p>خلاصة محتوى الكتب والمراجع التقنية المتاحة في مكتبة المهندسة مها شهوب.</p>
+      </div>
+    </div>
+
+    <!-- تبويبات التصنيف الحية -->
+    <div class="blog-tabs">
+      <button class="blog-tab-btn active" onclick="filterArticles('all', this)">جميع المقالات</button>
+      <button class="blog-tab-btn" onclick="filterArticles('prog', this)">البرمجة والخوارزميات</button>
+      <button class="blog-tab-btn" onclick="filterArticles('hardware', this)">الهاردوير والصيانة</button>
+      <button class="blog-tab-btn" onclick="filterArticles('networks', this)">الشبكات والأمن</button>
+      <button class="blog-tab-btn" onclick="filterArticles('general', this)">مهارات تقنية وأخرى</button>
+    </div>
+    
+<!-- شبكة المقالات المستوحاة من كتب آفاق المعرفة التقنية -->
+    <div class="blog-grid" id="articles-grid">
+
+      <!-- 1 -->
+      <article class="blog-card" data-cat="prog">
+        <div class="blog-imgbox"><img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=400&q=80" alt="أساسيات برمجة"></div>
+        <div class="blog-content">
+          <span class="blog-tag">البرمجة</span>
+          <h4>أساسيات برمجة</h4>
+          <p>مدخل شامل ومبسط لفهم المنطق البرمجي، المتغيرات، وبناء الدوال الأولى بكفاءة.</p>
+          <button onclick="openArticleModal('أساسيات برمجة', 
+            '<strong>رحلتك الكاملة في عالم البرمجة تبدأ من هنا بالظبط</strong><br>' +
+            'البرمجة في أصلها مش مجرد طقطقة على الكيبورد ولا كتابة أكواد معقدة ما يفهمها حد.. هي باختصار طريقة تفكير منظمة كيف تخلي الكمبيوتر يفهم المشكلة ويعطيك الحل بأسرع وأقصر الطرق الممكنة.<br>' +
+            'لما تبدأ تتعلم البرمجة لأول مرة، تحس أحياناً إن الموضوع كبير وهلبا رموز، لكن الحقيقة إن الموضوع أبسط بكثير لو أخذته خطوة بخطوة وبطريقة صحيحة ومنظمة.<br>' +
+            'في هذا الكتاب، حاولنا نبسطوا لك كل المفاهيم الصعبة زي المتغيرات (Variables)، أنواع البيانات، وكيفية التعامل مع الشروط المنطقية بأسلوب سمح وقريب للفهم.<br>' +
+            'مش هتبدا حافظ كود وخلاص، بل هتعلم كيف تفكر زي المبرمجين وتدير عقلك باش تحلل أي مشكلة برمجية تقابلك في حياتك اليومية أو في مشاريعك المستقبلية.<br>' +
+            '• تعلم كيف تبني أول دالة (Function) بيدك لين تثبت المعلومة في راسك وما عاد تنساها بكل وتولي واثق في روحك.<br>' +
+            '• معرفة الفرق بين الأنواع المختلفة للبيانات وكيف تخزنها بالطريقة اللي تضمن لك أسرع أداء ممكن للبرنامج اللي تخدم عليه.<br>' +
+            '• يعطيك القاعدة الصح والمتينة اللي تخليك تمشي في أي لغة برمجة ثانية باسترخاء وتقرأ الأكواد وأنت فاهم أصول الصنعة من بدايتها.<br>' +
+            'نصيحة مهندسة: القراية وحدها ما تكفيش بكل، طبق كل سطر تتعلمه بيدك باش تطلع بنتيجة كويسة وتفتخر باللي انجزته وتشوف بعيونك كيف الكود يشتغل.', 
+            'https://maha-shohoub.github.io/maha_shohoub_library/', 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=400&q=80')" class="blog-btn"><i class="fa-solid fa-book-open"></i> قراءة المقال</button>
+        </div>
+      </article>
+
+      <!-- 2 -->
+      <article class="blog-card" data-cat="networks">
+        <div class="blog-imgbox"><img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=400&q=80" alt="أساسيات شبكات"></div>
+        <div class="blog-content">
+          <span class="blog-tag">الشبكات</span>
+          <h4>أساسيات شبكات</h4>
+          <p>تعرف على بنية شبكات الحاسب، عناوين البروتوكولات، وكيفية ربط الأجهزة ببعضها.</p>
+          <button onclick="openArticleModal('أساسيات شبكات', 
+            '<strong>كيف تحكي الأجهزة مع بعضها وتتواصل عبر العالم في ثواني؟</strong><br>' +
+            'عالم الشبكات هو الشريان الحقيقي اللي يغذي الإنترنت اليوم. كل جهاز كمبيوتر، موبايل، أو حتى شاشة ذكية في الدنيا عنده عنوان وبصمة خاصة بيه باش يقدر يبعث ويستقبل بيانات.<br>' +
+            'لما ترسل رسالة لصاحبك أو تفتح موقع على المتصفح، في ملايين الحزم البرمجية اللي تتحرك في الكوابل وعبر الهواء بسرعة الخيال باش توصل لهدفها من غير ما تضيع.<br>' +
+            'الكتاب هذا مصمم خصيصاً باش يشرح لك الخفايا هذه كلها بأسلوب سلس يخليك تتخيل مسار البيانات وكأنك تشوف فيه قدام عيونك بوضوح تام.<br>' +
+            '• تفهم كيف تركب شبكة محلية (LAN) وتعرف الفرق الحقيقي والمادي بين الراوتر، السويتش، وباقي القطع اللي تركب في الحوش أو الشركة.<br>' +
+            '• تتعرف على معنى عناوين الـ IP وكيف تتنقل الحزم البرمجية من نقطة أ إلى نقطة ب بطريقة آمنة وسريعة ومنظمة بدقة عالية جداً.<br>' +
+            '• أساسيات ضرورية هلبا لكل شخص حاب يخش مجال الاتصالات وتقنية المعلومات بثقة وعين متمكنة تعرف شن صاير خلف الكواليس.<br>' +
+            'خلاصة التجربة: فهم الشبكات يحل لك عقائد واجدة لما تتعامل مع أي نظام رقمي وتعرف علاش أحياناً الاتصال يطيح وكيف ترجعه يشتغل كويس.', 
+            'https://maha-shohoub.github.io/maha_shohoub_library/', 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=400&q=80')" class="blog-btn"><i class="fa-solid fa-book-open"></i> قراءة المقال</button>
+        </div>
+      </article>
+
+      <!-- 3 -->
+      <article class="blog-card" data-cat="prog">
+        <div class="blog-imgbox"><img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=400&q=80" alt="هياكل البيانات"></div>
+        <div class="blog-content">
+          <span class="blog-tag">البرمجة</span>
+          <h4>هياكل البيانات</h4>
+          <p>طرق تنظيم وترتيب البيانات في الذاكرة لتسهيل الوصول إليها ومعالجتها بأسرع وقت.</p>
+          <button onclick="openArticleModal('هياكل البيانات', 
+            '<strong>ترتيب البيانات في الذاكرة هو سر السرعة والإنجاز الحقيقي</strong><br>' +
+            'لما تبني برنامج حجمه كبير وفيه ملايين العمليات، الفرق بين البرنامج السريع اللي يفتح في لمح البصر والبرنامج الثقيل المزعج يوقف بالأساس على كيف رتبت معلوماتك.<br>' +
+            'الكمبيوتر مش مجرد مكان تخزن فيه وخلاص، الطريقة اللي تحط بيها البيانات تحدد هل البرنامج هيستهلك رامات هلبا ولا هيخدم بسلاسة وخفة فائقة.<br>' +
+            'في هذا الكتاب العميق، ندخلوا معاك في تفاصيل الطرق المثالية لتخزين وتنظيم المعلومات باش تكون جاهزة للاسترجاع في أي لحظة وبأقل جهد حاسوبي ممكن.<br>' +
+            '• يشرح لك المصفوفات (Arrays)، المكدس (Stack)، الطابور (Queue)، والقوائم المرتبطة بطريقة بصرية وواضحة جداً تسهل عليك استيعابها.<br>' +
+            '• يعلمك كيف تختار الهيكل الصح المناسب لمشروعك باش برنامجك يخدم بأقل استهلاك للذاكرة وأعلى كفاءة ممكنة يطلبها السوق.<br>' +
+            '• يعتبر خطوتك الحقيقية الأولى لاحتراف كتابة الكود النظيف والمرتب بعيداً عن العشوائية اللي تسبب في بطء البرامج.<br>' +
+            'نصيحة استراتيجية: المبرمج الشاطر هو اللي يعرف وين يحط كل معلومة باش يسهل عليه استرجاعها وقت الحاجة بدون ما يعطل النظام.', 
+            'https://maha-shohoub.github.io/maha_shohoub_library/', 'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=400&q=80')" class="blog-btn"><i class="fa-solid fa-book-open"></i> قراءة المقال</button>
+        </div>
+      </article>
+
+      <!-- 4 -->
+      <article class="blog-card" data-cat="prog">
+        <div class="blog-imgbox"><img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=400&q=80" alt="لغة HTML5"></div>
+        <div class="blog-content">
+          <span class="blog-tag">تطوير الويب</span>
+          <h4>لغة HTML5</h4>
+          <p>الركيزة الأساسية لبناء وهيكلة صفحات الويب وتصميم المواقع الحديثة المتجاوبة.</p>
+          <button onclick="openArticleModal('لغة HTML5', 
+            '<strong>حجر الأساس لكل موقع إلكتروني ناجح على شبكة الإنترنت</strong><br>' +
+            'أي صفحة ويب تشوفها قدامك على الإنترنت تبدأ من هنا بالظبط.. من هيكلة الـ HTML اللي تعطيك الأساس الصح والمتين لأي موقع قبل ما تحط عليه ألوان التصميم.<br>' +
+            'اللغة هذه هي العظم اللي يوقف عليه البناء كله، ومن غيرها ما يقدر المتصفح يفهم وين العنوان وين الفقرة وين الصورة ولا وين مكان الفيديو.<br>' +
+            'خصصنا لك الكتاب هذا باش يعلمك الأصول من الإبرة لصاروخ، وتتعرف على كل الوسوم الحديثة اللي سهلت علينا بناء مواقع عصرية ومتطورة جداً.<br>' +
+            '• تفهم الوسوم الأساسية وكيف ترتب محتواك من عناوين رئيسية، فقرات منسقة، جداول مرتبة، وعرض وسائط وفيديوهات بمهارة عالية.<br>' +
+            '• تعرف المعايير القياسية الحديثة في بناء صفحات متجاوبة وتتفتح بكل راحة مع شاشات الموبايل، التابلت، والكمبيوتر بدون أي مشاكل في العرض.<br>' +
+            '• دليلك المباشر والمجرب لبداية طريق تطوير الويب بثقة وبدون تعقيد يضيع لك وقتك في معلومات قديمة ما عاد لها لزوم.<br>' +
+            'بداية الطريق: تعلم الصح من الأول يختصر عليك هلبا وقت ويجنبك التخبط في عالم الويب الواسع ويخليك تبني مواقع احترافية.', 
+            'https://maha-shohoub.github.io/maha_shohoub_library/', 'https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=400&q=80')" class="blog-btn"><i class="fa-solid fa-book-open"></i> قراءة المقال</button>
+        </div>
+      </article>
+
+      <!-- 5 -->
+      <article class="blog-card" data-cat="hardware">
+        <div class="blog-imgbox"><img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=400&q=80" alt="مكونات الحاسب الآلي"></div>
+        <div class="blog-content">
+          <span class="blog-tag">هاردوير</span>
+          <h4>مكونات الحاسب الآلي</h4>
+          <p>دليل تفصيلي حول القطع المادية المكونة للجهاز: المعالج، اللوحة الأم، والذاكرة العشوائية.</p>
+          <button onclick="openArticleModal('مكونات الحاسب الآلي', 
+            '<strong>شن اللي صاير بالظبط داخل صندوق الكمبيوتر من قطع وأسرار؟</strong><br>' +
+            'التعرف على القطع المادية (Hardware) يخليك تفهم جهازك كويس، وتعرف تختار الأفضل لو تبي تجمع جهاز جديد أو تصلح مشكلة مفاجئة من غير ما تضطر تدفع فلوس برة.<br>' +
+            'الصندوق اللي تحط فيه في كرتونة الكمبيوتر فيه عالم متكامل من الدوائر والمعالجات والذكريات اللي تخدم مع بعضها بتناغم عالي جداً لا يصدق.<br>' +
+            'الكتاب هذا يأخذك في جولة ميدانية داخل الكيسة باش تعرف وظيفة كل قطعة وشن فايدتها الحقيقية في سرعة وأداء الجهاز اللي قدامك.<br>' +
+            '• شرح تفصيلي مبسط لدور المعالج (CPU) وكيف يتدبر في ملايين العمليات الحسابية والمنطقية في الثانية الواحدة بدون ما يسخن هلبا.<br>' +
+            '• وظيفة اللوحة الأم (Motherboard) وكيف تربط كل القطع ببعضها، ودور الذاكرة العشوائية (RAM) في فتح البرامج وثبات النظام.<br>' +
+            '• معلومات عملية دسمة تفيد كل طالب، فني، ومبتدئ يحب يفهم الهاردوير بوعي وعمق يخليه يتصرف بحكمة مع أي جهاز.<br>' +
+            'رؤية فنية: صيانة الأجهزة تبدأ أولاً بفهم وظيفة كل قطعة وكيف تتواصل مع اختها باش تعرف مكان الخلل بدقة وتصلحه.', 
+            'https://maha-shohoub.github.io/maha_shohoub_library/', 'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=400&q=80')" class="blog-btn"><i class="fa-solid fa-book-open"></i> قراءة المقال</button>
+        </div>
+      </article>
+
+      <!-- 6 -->
+      <article class="blog-card" data-cat="general">
+        <div class="blog-imgbox"><img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=400&q=80" alt="اختصارات الكمبيوتر"></div>
+        <div class="blog-content">
+          <span class="blog-tag">مهارات تقنية</span>
+          <h4>اختصارات الكمبيوتر</h4>
+          <p>أهم اختصارات الكيبورد والماوس لتسريع إنجاز المهام اليومية والاحتراف في استخدام النظام.</p>
+          <button onclick="openArticleModal('اختصارات الكمبيوتر', 
+            '<strong>وفر وقتك واخدم بذكاء واحترافية عالية باستخدام الكيبورد</strong><br>' +
+            'استخدام الماوس لكل صغيرة وكبيرة في الشغل ياخد وقت هلبا ويخليك تتعب بسرعة.. الكيبورد هو سر السرعة والإنجاز الحقيقي في شغلنا اليومي.<br>' +
+            'المحترفين في مجالات التقنية ما يرفعوش في يديهم على الماوس ديما، بل يعتمدوا على الاختصارات السريعة اللي تخلي التنقل بين النوافذ لعبة سهلة.<br>' +
+            'جمعنا لك في هذا الكتاب خلاصة المهارات اللي تخليك تخدم في أجزاء من الثانية وتنجز مهامك قبل أي شخص تاني يخدم بالطريقة التقليدية.<br>' +
+            '• باقة مختارة بعناية لأهم اختصارات الكيبورد والماوس اللي تختصر عليك ساعات طويلة من الشغل المتكرر اليومي.<br>' +
+            '• حيل ومهارات خفية في نظام التشغيل تخليك تتحكم في النافذة، تتنقل بين البرامج، وتنسخ وتلصق بكل سهولة وسرعة فائقة.<br>' +
+            '• مرجع عملي ضروري وخفيف لكل شخص يخدم على الكمبيوتر لفترات طويلة يومياً ويبي يريح يديه ويوفر جهده البدني.<br>' +
+            'اختصار زمني: دقيقة وحدة تتعلم فيها اختصار جديد.. توفر عليك سنين من النقر المتكرر وتخلي إنتاجيتك تضاعف بشكل ملحوظ.', 
+            'https://maha-shohoub.github.io/maha_shohoub_library/', 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=400&q=80')" class="blog-btn"><i class="fa-solid fa-book-open"></i> قراءة المقال</button>
+        </div>
+      </article>
+
+      <!-- 7 -->
+      <article class="blog-card" data-cat="general">
+        <div class="blog-imgbox"><img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80" alt="تقنية المعلومات"></div>
+        <div class="blog-content">
+          <span class="blog-tag">معلومات عامة</span>
+          <h4>تقنية المعلومات</h4>
+          <p>مفهوم شامل لأنظمة تخزين، معالجة، وتبادل البيانات الرقمية في المؤسسات.</p>
+          <button onclick="openArticleModal('تقنية المعلومات', 
+            '<strong>عالم الإدارة الرقمية وتنظيم البيانات داخل المؤسسات الكبرى</strong><br>' +
+            'تقنية المعلومات (IT) مش مجرد أجهزة كمبيوتر وشاشات محطوطة في مكتب، هي المنظومة الإدارية والتقنية المتكاملة اللي ترتب وتدير وتأمن البيانات.<br>' +
+            'الشركات والمؤسسات اليوم ما تقدرش تخدم من غير نظام تقني يربط أقسامها ببعضها ويحفظ معلوماتها من الضياع أو التلف المفاجئ.<br>' +
+            'الكتاب هذا يعطيك نظرة شاملة وواسعة على كيف تدار التكنولوجيا في بيئة العمل وكيف تساهم في تطوير الأداء العام للشركات الحديثة.<br>' +
+            '• كيف تتخزن البيانات الضخمة وتتعالج وتتبادل بين الأقسام بطريقة آمنة وسريعة ومنظمة بدقة عالية تمنع حدوث أي أخطاء بشرية.<br>' +
+            '• دور التقنية الحديثة في تطوير بيئات العمل المؤسسي ومساعدة الإدارة العليا في اتخاذ القرار الصح في الوقت المناسب تماماً.<br>' +
+            '• نظرة شاملة وعميقة على تخصص تقنية المعلومات وأهميته المتصاعدة في عصرنا الحالي وصار عصب أي نجاح تجاري أو إداري.<br>' +
+            'نظرة أفقية: التقنية هي العمود الفقري لأي نجاح مؤسسي حديث، وفهمها يفتح لك أبواب واسعة في سوق العمل المحلي والعالمي.', 
+            'https://maha-shohoub.github.io/maha_shohoub_library/', 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80')" class="blog-btn"><i class="fa-solid fa-book-open"></i> قراءة المقال</button>
+        </div>
+      </article>
+
+      <!-- 8 -->
+      <article class="blog-card" data-cat="hardware">
+        <div class="blog-imgbox"><img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=400&q=80" alt="جهاز الأفوميتر"></div>
+        <div class="blog-content">
+          <span class="blog-tag">إلكترونيات</span>
+          <h4>جهاز الأفوميتر</h4>
+          <p>طريقة استخدام جهاز القياس الكهربائي لفحص التوصيلات، الجهد، والمقاومات بدقة.</p>
+          <button onclick="openArticleModal('جهاز الأفوميتر', 
+            '<strong>صديق الفني الأول في القياس والفحص الكهربائي والإلكتروني</strong><br>' +
+            'الأفوميتر (Multimeter) هو الجهاز السحري اللي يخليك تشوف الكهرباء قدام عيونك، تفحص بيه الجهد، تقيس الشدة، وتتأكد من سلامة التوصيلات.<br>' +
+            'بدون هذا الجهاز، فحص الدوائر الإلكترونية يكون مجرد تخمين يقدر يحرّق عليك القطع أو يعرض أجهزتك لخطر التلف الدائم والكامل.<br>' +
+            'خصصنا لك هذا الدليل الميداني باش تتعلم كيف تستخدم أطراف الجهاز وشاشته بكل ثقة وبدون أي خوف من الشحنات الكهربائية العالية.<br>' +
+            '• يعلمك خطوة بخطوة كيف تستخدم شاشات وأطراف الجهاز بأمان تام من غير ما تعرض نفسك أو جهازك للخطر أثناء القياس.<br>' +
+            '• طريقة فحص المقاومات، البطاريات، وتتبع مسارات الأعطال في الدوائر الإلكترونية البسيطة والمعقدة بأسلوب عملي مبسط.<br>' +
+            '• دليل مبسط، عملي، ومباشر لكل مهتم بصيانة الأجهزة والإلكترونيات يبي يخدم بعين هندسية واثقة وأداة دقيقة وموثوقة.<br>' +
+            'قاعدة فنية: القياس السليم يوفر عليك وقت هلبا في تتبع العطل ويخليك توصل للقطعة التالفة وتغيرها في ثوان معدودة.', 
+            'https://maha-shohoub.github.io/maha_shohoub_library/', 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=400&q=80')" class="blog-btn"><i class="fa-solid fa-book-open"></i> قراءة المقال</button>
+        </div>
+      </article>
+
+      <!-- 9 -->
+      <article class="blog-card" data-cat="hardware">
+        <div class="blog-imgbox"><img src="https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?auto=format&fit=crop&w=400&q=80" alt="إصلاح أعطال الكمبيوتر"></div>
+        <div class="blog-content">
+          <span class="blog-tag">الصيانة</span>
+          <h4>إصلاح أعطال الكمبيوتر</h4>
+          <p>دليل ميداني عملي لتشخيص أعطال الهاردوير والسوفتوير وحلها بخطوات واضحة.</p>
+          <button onclick="openArticleModal('إصلاح أعطال الكمبيوتر', 
+            '<strong>كيف تشخص العطل الميداني وتصلحه بروحك من غير فني؟</strong><br>' +
+            'لما يوقف جهازك عن العمل مفاجئاً أو يثقل في الاستخدام، مش ديما انت محتاج فني برة.. واجد من المشاكل والتعليقات تقدر تحلها بروحك.<br>' +
+            'السر يكمن في معرفة السبب الجذري للمشكلة بدل ما تقعد تجرب في حلول عشوائية تزيد الطين بلة وتخرب عليك النظام أكثر فأكثر.<br>' +
+            'الكتاب هذا يعطيك الخلاصة الميدانية باش تولي طبيب جهازك وتعرف كيف تتعامل مع الشاشة الزرقاء ومشاكل الإقلاع بكل برود أعصاب.<br>' +
+            '• تشخيص أعطال الهاردوير وسوفتوير النظام بطريقة منهجية، علمية، وسليمة بعيداً عن العشوائية والتجارب اللي مالهاش أساس.<br>' +
+            '• حلول جذرية وعملية لمشاكل الإقلاع، الشاشات الزرقاء، وبطء النظام المفاجئ اللي يطلع لك وقت تكون مستعجل في خدمتك.<br>' +
+            '• خبرة ميدانية مصغرة وخلاصة سنوات مفرومة بين إيديك في كتاب واحد يخليك تكتشف الخلل وتعالجه في وقت قياسي ومضمون.<br>' +
+            'ثقة تقنية: اعتمادك على نفسك في حل المشاكل يبني عندك حس هندسي مميز ويخليك ما تخافش من أي عطل تقني يواجهك.', 
+            'https://maha-shohoub.github.io/maha_shohoub_library/', 'https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?auto=format&fit=crop&w=400&q=80')" class="blog-btn"><i class="fa-solid fa-book-open"></i> قراءة المقال</button>
+        </div>
+      </article>
+
+      <!-- 10 -->
+      <article class="blog-card" data-cat="general">
+        <div class="blog-imgbox"><img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=400&q=80" alt="أساسيات الويندوز"></div>
+        <div class="blog-content">
+          <span class="blog-tag">أنظمة التشغيل</span>
+          <h4>أساسيات الويندوز</h4>
+          <p>إدارة الملفات، لوحة التحكم، وإعدادات النظام الأساسية لتشغيل الحاسوب بكفاءة.</p>
+          <button onclick="openArticleModal('أساسيات الويندوز', 
+            '<strong>التحكم التام والاحترافي في نظام التشغيل الأكثر انتشاراً</strong><br>' +
+            'نظام الويندوز هو البيئة الافتراضية اللي تخدم فيها كل يوم، وكل ما عرفت أسراره الخفية وإعداداته المتقدمة، كل ما كان استخدامك أسرع.<br>' +
+            'تستعمل في سطح المكتب كل دقيقة، لكن هل تعرف كيف تنظم ملفاتك بطريقة تضمن لك ما تضيعش أي مستند هام وسط زحمة البيانات؟<br>' +
+            'هذا الكتاب صممناه باش يرفع مستواك من مستخدم عادي يدور بالحطّة، إلى شخص محترف يتحكم في كل خبايا النظام وإعداداته الدقيقة.<br>' +
+            '• إدارة الملفات والمجلدات بطريقة هرمية تنظم عليك شغلك وما تخليش أي ملف يضيع منك أبداً مهما كثرت عليك المستندات.<br>' +
+            '• التعامل الاحترافي مع لوحة التحكم، إعدادات الخصوصية، حماية النظام، وصلاحيات المستخدمين باش تحافظ على أمان جهازك.<br>' +
+            '• أساسيات لا غنى عنها لكل مستخدم حاسوب يبي يخدم باحترافية وسرعة ويبعد عن المشاكل اليومية المتكررة في النظام.<br>' +
+            'ترتيب رقمي: النظام المرتب في جهازك يعكس ترتيب أفكارك في الواقع ويخليك توصل لكل ملف تبيه في ثانية وحدة.', 
+            'https://maha-shohoub.github.io/maha_shohoub_library/', 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=400&q=80')" class="blog-btn"><i class="fa-solid fa-book-open"></i> قراءة المقال</button>
+        </div>
+      </article>
+
+      <!-- 11 -->
+      <article class="blog-card" data-cat="general">
+        <div class="blog-imgbox"><img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&w=400&q=80" alt="قواعد اللغة الإنجليزية"></div>
+        <div class="blog-content">
+          <span class="blog-tag">لغات</span>
+          <h4>قواعد اللغة الإنجليزية</h4>
+          <p>أهم القواعد الأساسية المساعدة لفهم المصطلحات التقنية والبرمجية العالمية.</p>
+          <button onclick="openArticleModal('قواعد اللغة الإنجليزية', 
+            '<strong>مفتاحك الأساسي لفهم المصطلحات التقنية وقراءة المراجع العالمية</strong><br>' +
+            'اللغة الإنجليزية هي لغة التكنولوجيا والبرمجة الأولى في العالم، ومعرفتك بقواعدها البسيطة والعملية تسهل عليك هلبا في قراءة الأكواد والتوثيق.<br>' +
+            'واجد من الناس تلقاه تقني ممتاز لكن يوقف قدامه عائق اللغة لما يبي يقرا مقال أجنبي أو يفهم رسالة خطأ تطلع له في شاشة البرمجة.<br>' +
+            'الكتاب هذا يركز على الجانب التقني والعملي من اللغة باش يكسر عندك حاجز الخوف ويخليك تقرا المراجع الأجنبية بكل راحة وثقة.<br>' +
+            '• أهم القواعد الأساسية اللي تساعدك تفهم المصطلحات التقنية ورسائل الخطأ في البرامج بوعي تام من غير ما تحتاج ترجمة حرفية.<br>' +
+            '• كسر حاجز الخوف والرهبة من قراءة المواضيع التقنية والمقالات الأجنبية اللي تشرح أحدث التقنيات قبل ما تترجم للعربي.<br>' +
+            '• تقوية حصيلتك اللغوية الخاصة بالمجال التقني والمهني باش تبني شخصية تقنية قادرة على مواكبة كل جديد في العالم.<br>' +
+            'أفق لغوي: لغة التكنولوجيا أصبحت لغة عالمية لا غنى عنها لأي تقني يبي يطور من روحه ويوصل لمستويات عليا في تخصصه.', 
+            'https://maha-shohoub.github.io/maha_shohoub_library/', 'https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&w=400&q=80')" class="blog-btn"><i class="fa-solid fa-book-open"></i> قراءة المقال</button>
+        </div>
+      </article>
+
+      <!-- 12 -->
+      <article class="blog-card" data-cat="hardware">
+        <div class="blog-imgbox"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&q=80" alt="العناصر الإلكترونية"></div>
+        <div class="blog-content">
+          <span class="blog-tag">إلكترونيات</span>
+          <h4>العناصر الإلكترونية</h4>
+          <p>التعرف على المقاومات، المكثفات، والدايودات ودورها في الدوائر الإلكترونية.</p>
+          <button onclick="openArticleModal('العناصر الإلكترونية', 
+            '<strong>القلب النابض الحقيقي لكل اللوحات والدوائر الإلكترونية حولنا</strong><br>' +
+            'كل جهاز إلكتروني تشوفه قدامك يتكون من قطع صغيرة زي المقاومات، المكثفات، والدايودات اللي تخدم مع بعضها بتناغم ونظام دقيق جداً.<br>' +
+            'القطعة البسيطة هذي هي اللي تنظم تدفق التيار وتمنع احتراق الشاشات والمعالجات لما يصير أي تذبذب في طاقة الكهرباء الواردة للجهاز.<br>' +
+            'في هذا الكتاب، فتحنا لك اللوحات ووريناك كل عنصر وشن دوره الأساسي وكيف تفرقه بالعين المجردة وبأجهزة الفحص المتوفرة لديك.<br>' +
+            '• التعرف على كل عنصر إلكتروني على حدة ودوره الأساسي داخل الدائرة الكهربائية وكيف يساهم في تشغيل النظام بسلام.<br>' +
+            '• كيف تفرق بين القطع البصرية وتفهم وظيفتها العملية وكيفية اختبارها للتأكد هل هي سليمة ولا تالفة وتستحق التغيير.<br>' +
+            '• مدخل ممتاز وواضح لكل شخص يبي يتعمق في عالم الهاردوير الدقيق والإلكترونيات ويبني قاعدة صلبة في الصيانة والتصميم.<br>' +
+            'عمق هاردوير: التفاصيل الصغيرة في اللوحة هي اللي تصنع الفرق في عمل الجهاز، وفهمها يخليك فني متمكن يعرف راسه من رجليه.', 
+            'https://maha-shohoub.github.io/maha_shohoub_library/', 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&q=80')" class="blog-btn"><i class="fa-solid fa-book-open"></i> قراءة المقال</button>
+        </div>
+      </article>
+
+      <!-- 13 -->
+      <article class="blog-card" data-cat="hardware">
+        <div class="blog-imgbox"><img src="https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?auto=format&fit=crop&w=400&q=80" alt="هندسة كمبيوتر"></div>
+        <div class="blog-content">
+          <span class="blog-tag">هندسة الحاسوب</span>
+          <h4>هندسة كمبيوتر</h4>
+          <p>التكامل بين العتاد المادي والبرمجيات لتصميم وتنفيذ الأنظمة الحاسوبية.</p>
+          <button onclick="openArticleModal('هندسة كمبيوتر', 
+            '<strong>وين يلتقي الهاردوير المادي بالسوفتوير البرمجي في تناغم هندسي</strong><br>' +
+            'هندسة الحاسوب هي التخصص الراقي اللي يدمج بين صناعة وتصميم القطع المادية وهندسة البرمجيات باش يطلع لنا نظام متكامل يشتغل بكفاءة.<br>' +
+            'البرنامج ما يشتغلش لوحده بدون عتاد يستقبله، والعتاد حديد جامد لوحده بدون برمجيات تحركه وتعطيه التعليمات والأوامر اللازمة.<br>' +
+            'الكتاب هذا يناقش بعمق فلسفة هذا التقاطع العجيب وكيف صمم المهندسون الأنظمة اللي تخدمنا اليوم في كل مناحي الحياة التقنية.<br>' +
+            '• فهم العلاقة القوية والعميقة بين المعالج والبرامج اللي تشتغل عليه بشكل مباشر وكيف يتم تبادل البيانات بين الطبقات المختلفة.<br>' +
+            '• كيفية تصميم وتنفيذ الأنظمة الحاسوبية بكفاءة عالية تلبي الاحتياجات العملية للمستخدمين وتتحمل الضغط والتشغيل المستمر.<br>' +
+            '• نظرة هندسية شاملة على مستقبل عالم التقنية وتكامل الأنظمة الحديثة باش تكون على اطلاع بكل ما هو جديد في الهندسة.<br>' +
+            'رؤية هندسية: التكامل بين العتاد والبرمجيات هو سر قوة الأجهزة الحديثة، وفهم هذه الموازنة يفتح لك آفاق واسعة في الابتكار.', 
+            'https://maha-shohoub.github.io/maha_shohoub_library/', 'https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?auto=format&fit=crop&w=400&q=80')" class="blog-btn"><i class="fa-solid fa-book-open"></i> قراءة المقال</button>
+        </div>
+      </article>
+
+      <!-- 14 -->
+      <article class="blog-card" data-cat="networks">
+        <div class="blog-imgbox"><img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=400&q=80" alt="أساسيات الأمن الرقمي"></div>
+        <div class="blog-content">
+          <span class="blog-tag">الأمن السيبراني</span>
+          <h4>أساسيات الأمن الرقمي</h4>
+          <p>حماية البيانات الشخصية، تأمين حسابات الإنترنت، ومفاهيم الحماية من التهديدات.</p>
+          <button onclick="openArticleModal('أساسيات الأمن الرقمي', 
+            '<strong>كيف تحمي نفسك وحساباتك في فضاء الإنترنت الواسع والمليء بالمخاطر؟</strong><br>' +
+            'الوقاية ديما خير من العلاج، وخاصة في العالم الرقمي وين حماية البيانات الشخصية والخصوصية بقت أمر ضروري جداً ومش مجرد رفاهية إضافية.<br>' +
+            'اختراق الحسابات وسرقة المعلومات ما عادش أمر صعيبي للمخترقين لو كنت غافل عن أبسط قواعد الأمان وحماية كلمات المرور الخاصة بك.<br>' +
+            'الكتاب هذا يسلحك بالوعي الأمني الضروري باش تتصفح الإنترنت وأنت في حصن منيع وتعرف كيف تبعد عن طرق الاحتيال والابتزاز الرقمي.<br>' +
+            '• تأمين الحسابات الشخصية وطرق اختيار وتخزين كلمات مرور قوية ومتينة تصعب اختراقها بأي برنامج من برامج التخمين.<br>' +
+            '• مفاهيم الوقاية من الهجمات، الاحتيال الإلكتروني، والتهديدات الرقمية الشائعة اليوم وكيف تكتشف الروابط المشبوهة قبل ما تفتحها.<br>' +
+            '• بناء وعي أمني رقمي يخليك تتصفح الإنترنت وأنت في أمان تام وتعرف كيف تحمي عائلتك وأجهزتك من أي متسلل متخفي.<br>' +
+            'درع أمني: الوعي الرقمي هو حائط الصد الأول ضد أي اختراق محتمل، ومافيش نظام آمن 100% لو كان المستخدم نفسه غافل عن الحماية.', 
+            'https://maha-shohoub.github.io/maha_shohoub_library/', 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=400&q=80')" class="blog-btn"><i class="fa-solid fa-book-open"></i> قراءة المقال</button>
+        </div>
+      </article>
+
+      <!-- 15 -->
+      <article class="blog-card" data-cat="prog">
+        <div class="blog-imgbox"><img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=400&q=80" alt="أساسيات الخوارزميات"></div>
+        <div class="blog-content">
+          <span class="blog-tag">البرمجة</span>
+          <h4>أساسيات الخوارزميات</h4>
+          <p>الخطوات المنطقية والمرتبة لحل المشكلات البرمجية بكفاءة عالية ومنهجية سليمة.</p>
+          <button onclick="openArticleModal('أساسيات الخوارزميات', 
+            '<strong>طريقة التفكير السليمة والمنطقية لحل أي مشكلة برمجية تعترضك</strong><br>' +
+            'الخوارزمية باختصار هي الوصفة أو الخطوات المنطقية والمرتبة بدقة باش تحل بيها أي مشكلة تقابلك في الكود قبل ما تبدأ في كتابته.<br>' +
+            'المبرمج اللي ما يعرفش يفكر بخوارزميات صحيحة، يلقى روحه غارق في أخطاء الكود ويستهلك في وقته بدون ما يلقى نتيجة مرضية لبرنامجه.<br>' +
+            'في هذا الكتاب نعلمك كيف ترتب أفكارك وتكتب خطوات الحل على الورق قبل ما تلمس الكيبورد باش يكون كودك نظيف وخفيف وسريع جداً.<br>' +
+            '• يعلمك كيف تفكر بطريقة تحليلية ومنهجية سليمة قبل ما تكتب سطر كود واحد وتضمن إن الحل اللي اخترته هو الأفضل.<br>' +
+            '• طرق ترتيب الخطوات والعمليات لاختيار الحل الأسرع والأكفأ في الأداء وتقليل الوقت المستغرق في تنفيذ الأوامر البرمجية.<br>' +
+            '• يعتبر الأساس الحقيقي والعميق لأي مبرمج محترف يبي يبني برمجيات قوية تنافس في السوق وتتحمل حجم البيانات الضخم.<br>' +
+            'منهجية تفكير: الخوارزمية الناجحة تختصر عليك ساعات من تجربة الأخطاء وتخليك تحل المشاكل المعقدة بكل بساطة وسلاسة.', 
+            'https://maha-shohoub.github.io/maha_shohoub_library/', 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=400&q=80')" class="blog-btn"><i class="fa-solid fa-book-open"></i> قراءة المقال</button>
+        </div>
+      </article>
+
+      <!-- 16 -->
+      <article class="blog-card" data-cat="general">
+        <div class="blog-imgbox"><img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=400&q=80" alt="تحليل وتصميم النظم"></div>
+        <div class="blog-content">
+          <span class="blog-tag">تحليل النظم</span>
+          <h4>تحليل وتصميم النظم</h4>
+          <p>دراسة وتحليل متطلبات الأنظمة البرمجية وتصميم هياكل قواعد البيانات بفعالية.</p>
+          <button onclick="openArticleModal('تحليل وتصميم النظم', 
+            '<strong>رحلة تحويل الأفكار العشوائية إلى نظام برمجي متكامل ومحترف</strong><br>' +
+            'قبل ما نبنوا أي برنامج أو تطبيق ضخم، لازم نحددوا المتطلبات بدقة ونرسموا هيكل النظام وقواعد البيانات باش يخدم صح من البداية.<br>' +
+            'البناء العشوائي بدون تحليل مسبق يخليك تضطر تهدم كل شي وتبدا من جديد بعد ما تحط جهد كبير وفلوس في مشروع غير مدروس.<br>' +
+            'الكتاب هذا يعلمك القواعد المهنية لدراسة الأنظمة وتصميم قواعد بيانات تمنع التكرار وتضمن سرعة الاستعلام مهما كبر حجم البيانات.<br>' +
+            '• دراسة وتحليل متطلبات المشاريع البرمجية من واقع الاحتياج الفعلي للمستخدم باش تضمن إن البرنامج يحل في مشكلة حقيقية.<br>' +
+            '• تصميم هياكل قواعد البيانات بفعالية عالية تمنع التكرار وتضمن سرعة الاستعلام وسلامة البيانات على المدى الطويل.<br>' +
+            '• دليل منهجي متكامل لكل مطور، محلل نظم، وباحث تقني يبي يقود مشاريع برمجية ناجحة ومستدامة بدون تعثرات منتصف الطريق.<br>' +
+            'رؤية تحليلية: التخطيط والتحليل الصح في البداية يوفر 80% من جهد التطوير ويخلي مشروعك يطلع في أبهي صورة ممكنة.', 
+            'https://maha-shohoub.github.io/maha_shohoub_library/', 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=400&q=80')" class="blog-btn"><i class="fa-solid fa-book-open"></i> قراءة المقال</button>
+        </div>
+      </article>
+
+      <!-- 17 -->
+      <article class="blog-card" data-cat="general">
+        <div class="blog-imgbox"><img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=400&q=80" alt="منهجيات البحث العلمي"></div>
+        <div class="blog-content">
+          <span class="blog-tag">بحث علمي</span>
+          <h4>منهجيات البحث العلمي</h4>
+          <p>طرق وأساليب إعداد الأبحاث الأكاديمية، جمع المراجع، وصياغة الدراسات.</p>
+          <button onclick="openArticleModal('منهجيات البحث العلمي', 
+            '<strong>أصول كتابة الأبحاث الأكاديمية باحتراف ورصانة علمية عالية</strong><br>' +
+            'البحث العلمي له أصول وقواعد واضحة لا غنى عنها، تبدأ من صياغة الإشكالية، مروراً بجمع المراجع وتحليل الدراسات السابقة بدقة.<br>' +
+            'الكتابة الأكاديمية مش مجرد سرد لكلام من النت، بل هي منهجية دقيقة تتبعها باش تثبت فرضيتك وتطلع بنائج علمية موثوقة ومحكّمة.<br>' +
+            'في هذا الكتاب وضعنا بين يديك المنهجية المعتمدة عالمياً لكل باحث يبي يكتب أبحاث رصينة ترفع من قيمته العلمية والأكاديمية.<br>' +
+            '• طرق وأساليب إعداد الأبحاث الأكاديمية المعتمدة وفق المعايير العالمية الموثوقة لتجنب الوقوع في أخطاء الاقتباس.<br>' +
+            '• كيف تجمع مراجعك، توثق مصادرك بالطرق الصحيحة، وتكتب تقريرك بطريقة علمية منظمة تجذب انتباه لجان المناقشة.<br>' +
+            '• مرجع مفيد جداً لكل طالب، باحث، ومهتم بتطوير مهاراته الأكاديمية وكتابة الأوراق البحثية باحترافية تامة.<br>' +
+            'منهجية رصينة: البحث العلمي المنظم هو طريق الأمم نحو الابتكار الحقيقي وحل المشاكل المعقدة بعيداً عن الاجتهادات الشخصية.', 
+            'https://maha-shohoub.github.io/maha_shohoub_library/', 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=400&q=80')" class="blog-btn"><i class="fa-solid fa-book-open"></i> قراءة المقال</button>
+        </div>
+      </article>
+
+    </div>  
+
+<!-- نافذة عرض المقال الكبيرة (Modal) -->
+<div id="article-modal" style="position: fixed; inset: 0; background: rgba(0,0,0,0.75); backdrop-filter: blur(5px); z-index: 10000; display: none; align-items: center; justify-content: center; padding: 1rem;">
+    <div id="article-modal-box" style="background: var(--surface); color: var(--text); border-radius: 16px; max-width: 45rem; width: 100%; max-height: 90vh; overflow-y: auto; padding: 2.5rem; position: relative; box-shadow: 0 25px 50px rgba(0,0,0,0.3); border: 1px solid var(--border); transition: all 0.3s ease;">
+        
+       <!-- أزرار التحكم: الإغلاق، وتكبير النافذة -->
+       <div style="position: absolute; top: 1rem; left: 1rem; display: flex; gap: 8px; z-index: 10;">
+           <button onclick="toggleMaximizeModal()" title="تكبير / تصغير" style="background: var(--surface2); border: 1px solid var(--border); color: var(--text); width: 32px; height: 32px; border-radius: 8px; cursor: pointer; display: grid; place-items: center;"><i class="fa-solid fa-expand" id="expand-icon"></i></button>
+           <button onclick="closeArticleModal()" title="إغلاق" style="background: #dc2626; border: none; color: white; width: 32px; height: 32px; border-radius: 8px; cursor: pointer; display: grid; place-items: center;"><i class="fa-solid fa-xmark"></i></button>
+       </div>
+
+       <!-- صورة المقال في النافذة -->
+       <div style="width: 100%; height: 220px; border-radius: 12px; overflow: hidden; margin-bottom: 1.5rem; border: 1px solid var(--border);">
+           <img id="modal-img" src="" alt="صورة المقال" style="width: 100%; height: 100%; object-fit: cover;">
+       </div>
+
+       <!-- عنوان المقال -->
+       <h3 id="modal-title" style="margin: 0 0 1.2rem; font-size: 1.5rem; color: var(--primary2);"></h3>
+
+       <!-- نص المقال التفصيلي -->
+       <div id="modal-body" style="font-size: 1rem; line-height: 1.9; color: var(--muted); margin-bottom: 2rem;"></div>
+
+       <!-- زر الانتقال إلى المكتبة -->
+       <div style="text-align: center; border-top: 1px solid var(--border); padding-top: 1.5rem;">
+           <a id="modal-lib-link" href="" target="_blank" class="btn btn-light" style="display: inline-flex; align-items: center; gap: 8px; background: var(--primary); color: white; padding: 12px 24px; border-radius: 10px; font-weight: bold;"><i class="fa-solid fa-book-bookmark"></i> زيارة مكتبة مها شهوب لتحميل الكتاب</a>
+       </div>
+    </div>
+</div>
+
+<script>
+  // فتح النافذة المنبثقة للمقال
+  function openArticleModal(title, text, libLink, imgSrc) {
+    document.getElementById('modal-title').textContent = title;
+    document.getElementById('modal-body').innerHTML = text;
+    document.getElementById('modal-img').src = imgSrc;
+    document.getElementById('modal-lib-link').href = libLink;
+    
+    const modal = document.getElementById('article-modal');
+    modal.style.display = 'flex';
+  }
+
+  // إغلاق النافذة المنبثقة
+  function closeArticleModal() {
+    const modal = document.getElementById('article-modal');
+    modal.style.display = 'none';
+    const box = document.getElementById('article-modal-box');
+    box.style.maxWidth = '45rem';
+    box.style.height = 'auto';
+    document.getElementById('expand-icon').className = 'fa-solid fa-expand';
+  }
+
+  // زر تكبير / تصغير النافذة
+  function toggleMaximizeModal() {
+    const box = document.getElementById('article-modal-box');
+    const icon = document.getElementById('expand-icon');
+    if(box.style.maxWidth === '95vw') {
+      box.style.maxWidth = '45rem';
+      box.style.height = 'auto';
+      icon.className = 'fa-solid fa-expand';
+    } else {
+      box.style.maxWidth = '95vw';
+      box.style.height = '90vh';
+      icon.className = 'fa-solid fa-compress';
+    }
+  }
+
+  // إغلاق النافذة عند النقر خارجها
+  window.addEventListener('click', (e) => {
+    const modal = document.getElementById('article-modal');
+    if(e.target === modal) {
+      closeArticleModal();
+    }
+  });
+</script>
+  </section>
+
+  
+  <!-- قسم الروبوتات والأدوات الذكية -->
+  <section class="section" id="tools">
+    <div class="section-head">
+      <div><h3> سلسلة أساسيات التقنية: تعلم لغات البرمجة</h3>
+                <p> ملخص كورسات تعليمية للغات البرمجة ضمن لمؤلفات  الكاتبة والمهندسة مها شهوب.</p></div>
+    </div>
+<!-- الصندوق الرئيسي -->
+<div class="cards-grid">
+    
+    <!-- MySQL -->
+    <div class="w3-card" style="background-color: #FFECB3;">
+        <div class="card-title-row">
+            <i class="fa-solid fa-database big-icon" style="color: #00758F;"></i>
+            <h2>MySQL</h2>
+        </div>
+        <p>إدارة الجداول والسيرفرات.</p>
+        <a href="preview2.html" class="w3-card-btn" target="_blank">انقر لدراسة</a>
+    </div>
+
+    <!-- VB.NET -->
+    <div class="w3-card" style="background-color: #B3E5FC;">
+        <div class="card-title-row">
+            <i class="fa-solid fa-window-maximize big-icon" style="color: #512BD4;"></i>
+            <h2>VB.NET</h2>
+        </div>
+        <p>بناء البرامج والنوافذ الإدارية.</p>
+        <a href="preview1.html" class="w3-card-btn" target="_blank">انقر لدراسة</a>
+    </div>
+
+    <!-- Java -->
+    <div class="w3-card" style="background-color: #FFE0B2;">
+        <div class="card-title-row">
+            <i class="fa-brands fa-java big-icon" style="color: #ED8B00;"></i>
+            <h2>Java</h2>
+        </div>
+        <p>تطبيقات الكائنات والأنظمة.</p>
+        <a href="preview3.html" class="w3-card-btn" target="_blank">انقر لدراسة</a>
+    </div>
+
+    <!-- Python -->
+    <div class="w3-card" style="background-color: #E1F5FE;">
+        <div class="card-title-row">
+            <i class="fa-brands fa-python big-icon" style="color: #3776AB;"></i>
+            <h2>Python</h2>
+        </div>
+        <p>الذكاء الاصطناعي وتحليل البيانات.</p>
+        <a href="preview4.html" class="w3-card-btn" target="_blank">انقر لدراسة</a>
+    </div>
+
+    <!-- C# -->
+    <div class="w3-card" style="background-color: #D1C4E9;">
+        <div class="card-title-row">
+            <i class="fa-solid fa-code big-icon" style="color: #239120;"></i>
+            <h2>#C</h2>
+        </div>
+        <p>تطوير الألعاب وتطبيقات .NET.</p>
+        <a href="preview5.html" class="w3-card-btn" target="_blank">انقر لدراسة</a>
+    </div>
+
+    <!-- Excel -->
+    <div class="w3-card" style="background-color: #C8E6C9;">
+        <div class="card-title-row">
+            <i class="fa-solid fa-file-excel big-icon" style="color: #217346;"></i>
+            <h2>Excel</h2>
+        </div>
+        <p>الجداول المحورية والدوال المتقدمة.</p>
+        <a href="preview6.html" class="w3-card-btn" target="_blank">انقر لدراسة</a>
+    </div>
+
+    <!-- Access -->
+    <div class="w3-card" style="background-color: #F8BBD0;">
+        <div class="card-title-row">
+            <i class="fa-solid fa-table big-icon" style="color: #A4373A;"></i>
+            <h2>Access</h2>
+        </div>
+        <p>أنظمة القواعد المكتبية السريعة.</p>
+        <a href="preview7.html" class="w3-card-btn" target="_blank">انقر لدراسة</a>
+    </div>
+
+    <!-- SQL Server -->
+    <div class="w3-card" style="background-color: #E1BEE7;">
+        <div class="card-title-row">
+            <i class="fa-solid fa-server big-icon" style="color: #CC292B;"></i>
+            <h2>SQL Server</h2>
+        </div>
+        <p>قواعد البيانات المؤسسية الضخمة.</p>
+        <a href="preview8.html" class="w3-card-btn" target="_blank">انقر لدراسة</a>
+    </div>
+
+    <!-- HTML -->
+    <div class="w3-card" style="background-color: #C8E6C9;">
+        <div class="card-title-row">
+            <i class="fa-brands fa-html5 big-icon" style="color: #E34F26;"></i>
+            <h2>HTML</h2>
+        </div>
+        <p>هيكلة صفحات الويب الأساسية.</p>
+        <a href="preview9.html" class="w3-card-btn" target="_blank">انقر لدراسة</a>
+    </div>
+
+    <!-- CSS -->
+    <div class="w3-card" style="background-color: #B3E5FC;">
+        <div class="card-title-row">
+            <i class="fa-brands fa-css3-alt big-icon" style="color: #1572B6;"></i>
+            <h2>CSS</h2>
+        </div>
+        <p>تنسيق الواجهات وتصميم الصفحات.</p>
+        <a href="preview10.html" class="w3-card-btn" target="_blank">انقر لدراسة</a>
+    </div>
+
+    <!-- JavaScript -->
+    <div class="w3-card" style="background-color: #FFF9C4;">
+        <div class="card-title-row">
+            <i class="fa-brands fa-js big-icon" style="color: #F7DF1E;"></i>
+            <h2>JavaScript</h2>
+        </div>
+        <p>برمجة التفاعل وحركات المتصفح.</p>
+        <a href="preview11.html" class="w3-card-btn" target="_blank">انقر لدراسة</a>
+    </div>
+
+    <!-- PHP -->
+    <div class="w3-card" style="background-color: #E1BEE7;">
+        <div class="card-title-row">
+            <i class="fa-brands fa-php big-icon" style="color: #777BB4;"></i>
+            <h2>PHP</h2>
+        </div>
+        <p>برمجة الخوادم وربط البيانات.</p>
+        <a href="preview12.html" class="w3-card-btn" target="_blank">انقر لدراسة</a>
+    </div>
+
+    <!-- SQL -->
+    <div class="w3-card" style="background-color: #FFCCBC;">
+        <div class="card-title-row">
+            <i class="fa-solid fa-database big-icon" style="color: #e25822;"></i>
+            <h2>SQL</h2>
+        </div>
+        <p>لغة الاستعلامات واسترجاع البيانات.</p>
+        <a href="preview13.html" class="w3-card-btn" target="_blank">انقر لدراسة</a>
+    </div>
+
+    <!-- DBMS -->
+    <div class="w3-card" style="background-color: #D7CCC8;">
+        <div class="card-title-row">
+            <i class="fa-solid fa-network-wired big-icon" style="color: #4E342E;"></i>
+            <h2>DBMS</h2>
+        </div>
+        <p>إدارة نظم قواعد البيانات وتحليلها.</p>
+        <a href="preview14.html" class="w3-card-btn" target="_blank">انقر لدراسة</a>
+    </div>
+
+    <!-- C++ -->
+    <div class="w3-card" style="background-color: #B2DFDB;">
+        <div class="card-title-row">
+            <i class="fa-solid fa-laptop-code big-icon" style="color: #00599C;"></i>
+            <h2>++C</h2>
+        </div>
+        <p>هياكل البيانات والخوارزميات.</p>
+        <a href="preview15.html" class="w3-card-btn" target="_blank">انقر لدراسة</a>
+    </div>
+
+    <!-- C -->
+    <div class="w3-card" style="background-color: #CFD8DC;">
+        <div class="card-title-row">
+            <i class="fa-solid fa-terminal big-icon" style="color: #A8B9CC;"></i>
+            <h2>C</h2>
+        </div>
+        <p>البرمجة منخفضة المستوى والعتاد.</p>
+        <a href="preview16.html" class="w3-card-btn" target="_blank">انقر لدراسة</a>
+    </div>
+
+</div>
+    </div>
+</section>
+
+
+    </div>
+  </section> 
+</main>
+
+
+
+
+
+
+
+
+<!-- قسم الفيديوهات التعليمية (بستايل مصغر) -->
+<div class="courses-section"id="tools2">
+    <!-- عنوان القسم أو التصنيف -->
+    <div class="category-header">
+        <span class="category-badge">سلسلة أساسيات التقنية </span>
+        <span class="category-title"> أساسيات الكمبيوتر   </span>
+    </div>
+
+    <!-- شبكة البطاقات المصغرة -->
+    <div class="courses-grid">
+        
+        <!-- الفيديو 1 -->
+        <a href="https://www.youtube.com/watch?v=07xsKk51ShI" target="_blank" class="course-card">
+            <div class="course-thumb">
+                <img src="https://img.youtube.com/vi/07xsKk51ShI/hqdefault.jpg" alt="   حاول مرة اخرة">
+                <div class="play-icon">▶</div>
+            </div>
+            <div class="course-info">
+                <h3>سبحان الله راحة نفسية</h3>
+                <p>تلاوة خاشعة ومباركة</p>
+            </div>
+        </a>
+
+        <!-- الفيديو 2 -->
+        <!-- 
+        <a href="https://www.youtube.com/watch?v=jNQXAC9IVRw" target="_blank" class="course-card">
+            <div class="course-thumb">
+                <img src="https://img.youtube.com/vi/jNQXAC9IVRw/hqdefault.jpg" alt="  حاول مرة اخرة">
+                <div class="play-icon">▶</div>
+            </div>
+            <div class="course-info">
+                <h3>مهارات تقنية متقدمة</h3>
+                <p>كيفية استخدام الأدوات</p>
+            </div>
+        </a>
+-->
+
+    </div>
+</div> 
+
+
+<!-- قسم الفيديوهات التعليمية (بستايل مصغر) -->
+<div class="courses-section">
+    <!-- عنوان القسم أو التصنيف -->
+    <div class="category-header">
+        <span class="category-badge">سلسلة أساسيات التقنية </span>
+        <span class="category-title"> أساسيات الشبكات </span>
+    </div>
+
+    <!-- شبكة البطاقات المصغرة -->
+    <div class="courses-grid">
+        
+        <!-- الفيديو 1 -->
+        <a href="https://www.youtube.com/watch?v=07xsKk51ShI" target="_blank" class="course-card">
+            <div class="course-thumb">
+                <img src="https://img.youtube.com/vi/07xsKk51ShI/hqdefault.jpg" alt=" حاول مرة اخرة  ">
+                <div class="play-icon">▶</div>
+            </div>
+            <div class="course-info">
+                <h3>سبحان الله راحة نفسية</h3>
+                <p>تلاوة خاشعة ومباركة</p>
+            </div>
+        </a>
+
+
+    </div>
+</div>
+
+
+<!-- قسم الفيديوهات التعليمية (بستايل مصغر) -->
+<div class="courses-section">
+    <!-- عنوان القسم أو التصنيف -->
+    <div class="category-header">
+        <span class="category-badge">سلسلة أساسيات التقنية </span>
+        <span class="category-title">أساسيات الإلكترونيات </span>
+    </div>
+
+    <!-- شبكة البطاقات المصغرة -->
+    <div class="courses-grid">
+        
+        <!-- الفيديو 1 -->
+        <a href="https://www.youtube.com/watch?v=07xsKk51ShI" target="_blank" class="course-card">
+            <div class="course-thumb">
+                <img src="https://img.youtube.com/vi/07xsKk51ShI/hqdefault.jpg" alt="حاول مرة اخرة   ">
+                <div class="play-icon">▶</div>
+            </div>
+            <div class="course-info">
+                <h3>سبحان الله راحة نفسية</h3>
+                <p>تلاوة خاشعة ومباركة</p>
+            </div>
+        </a>
+
+        
+    </div>
+</div>
+
+
+<!-- قسم الفيديوهات التعليمية (بستايل مصغر) -->
+<div class="courses-section">
+    <!-- عنوان القسم أو التصنيف -->
+    <div class="category-header">
+        <span class="category-badge">سلسلة أساسيات التقنية </span>
+        <span class="category-title">أساسيات الأمن الرقمي</span>
+    </div>
+
+    <!-- شبكة البطاقات المصغرة -->
+    <div class="courses-grid">
+        
+        <!-- الفيديو 1 -->
+        <a href="https://www.youtube.com/watch?v=07xsKk51ShI" target="_blank" class="course-card">
+            <div class="course-thumb">
+                <img src="https://img.youtube.com/vi/07xsKk51ShI/hqdefault.jpg" alt="  حاول مرة اخرة ">
+                <div class="play-icon">▶</div>
+            </div>
+            <div class="course-info">
+                <h3>سبحان الله راحة نفسية</h3>
+                <p>تلاوة خاشعة ومباركة</p>
+            </div>
+        </a>
+
+
+    </div>
+</div>
+
+
+<style>
+.courses-section {
+    padding: 15px 20px;
+    direction: rtl;
+    font-family: inherit;
+}
+
+.category-header {
+    background-color: #0d1b2a;
+    border: 1px solid #1b4965;
+    border-radius: 8px;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    color: #fff;
+    font-size: 13px;
+    font-weight: bold;
+    position: relative;
+    overflow: hidden;
+}
+
+.category-header::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background-color: #0077b6;
+}
+
+.category-title {
+    text-align: right;
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+.category-badge {
+    background-color: #0077b6;
+    color: #fff;
+    padding: 3px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* تصغير عرض الأعمدة لتناسب بطاقات أصغر بجانب بعضها */
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+}
+
+.course-card {
+    background-color: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+}
+
+.course-card:hover {
+    transform: translateY(-3px);
+    border-color: #58a6ff;
+}
+
+/* تقليص ارتفاع الصورة لتتناسب مع التصغير */
+.course-thumb {
+    position: relative;
+    width: 100%;
+    height: 85px;
+    background-color: #0d1117;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.course-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.85;
+}
+
+.play-icon {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* تصغير الهوامش وخطوط النصوص داخل البطاقة */
+.course-info {
+    padding: 8px 10px;
+    text-align: right;
+}
+
+.course-info h3 {
+    font-size: 11px;
+    color: #ffffff;
+    margin: 0 0 3px 0;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* لقص العنوان الطويل بـ ... حتى لا يخرب التصميم الصغير */
+}
+
+.course-info p {
+    font-size: 9px;
+    color: #8b949e;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+</style>
+
+
+
+
+
+
+
+
+
+<footer>
+  <div class="footer">
+ <!-- قسم عن المنصة -->
+  <section class="section" id="about">
+    <div class="section-head"><div><h3>عن آفاق المعرفة التقنية</h3><p>هوية تعليمية لتبسيط المعرفة التقنية وتوفير أدوات عملية للطلاب والباحثين.</p></div></div>
+    <div class="about">
+<div class="about-box">
+    <h4><i class="fa-solid fa-bullseye"></i> هدف المنصة</h4>
+    <p>منصة تعليمية هادفة لتطوير مفاهيم البرمجية، تبسيط علوم الحاسوب، وتوفير بيئة تفاعلية متكاملة تجمع الكتب والكورسات التقنية، الأدوات الذكية، والمراجع لدعم الطلاب والباحثين في رحلتهم نحو الاحتراف.</p>
+</div>   
+   <div class="about-box"><h4><i class="fa-solid fa-user-gear"></i> الإشراف</h4><p>المنصة تحت إشراف المهندسة مها شهوب، ومرتبطة بسلسلة أساسيات التقنية ومشاريع آفاق المعرفة التقنية.</p></div>
+    </div>
+  </section>
+      <span id="we">جميع الحقوق محفوظة للمهندسة مها شهوب © 2026</span>
+  </div>
+</footer>
+
+<script>
+const root=document.documentElement,themeBtn=document.getElementById('themeBtn'),search=document.getElementById('search');
+const cards=[...document.querySelectorAll('#cards .card')],empty=document.getElementById('empty');
+const saved=localStorage.getItem('afaq-theme');if(saved)root.setAttribute('data-theme',saved);setIcon();
+themeBtn.onclick=()=>{const next=root.getAttribute('data-theme')==='dark'?'light':'dark';root.setAttribute('data-theme',next);localStorage.setItem('afaq-theme',next);setIcon()};
+function setIcon(){themeBtn.innerHTML=root.getAttribute('data-theme')==='dark'?'<i class="fa-solid fa-sun"></i>':'<i class="fa-solid fa-moon"></i>'}
+search.addEventListener('input',()=>{const q=search.value.trim().toLowerCase();let n=0;cards.forEach(c=>{const ok=!q||(c.dataset.search+' '+c.innerText).toLowerCase().includes(q);c.style.display=ok?'flex':'none';if(ok)n++});empty.style.display=n?'none':'block'});
+
+/* دالة الفلترة لتبويبات مقالات الكتب */
+function filterArticles(category, btn) {
+  document.querySelectorAll('.blog-tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  const articleCards = document.querySelectorAll('#articles-grid .blog-card');
+  articleCards.forEach(card => {
+    if (category === 'all' || card.dataset.cat === category) {
+      card.style.display = 'flex';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+/* دالة التحكم في إظهار وإخفاء نافذة الكاتبة الكاملة عند النقر على صورة الكاتبة */
+function toggleAuthorModal() {
+  const modal = document.getElementById('author-modal');
+  if (modal.style.display === 'flex') {
+    modal.style.display = 'none';
+  } else {
+    modal.style.display = 'flex';
+  }
+}
+</script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="دليل لغة البرمجة ++C الشامل والمفصل للأكواد وهياكل البيانات - آفاق المعرفة التقنية - مها شهوب">
+<title>دليل ++C الشامل والمفصل | مها شهوب</title>
+<style>
+:root{--bg:#eef3f8;--card:#fff;--text:#172033;--muted:#64748b;--p:#0b4f88;--p2:#1d4ed8;--b:#d7e1eb;--code:#0b1220;--shadow:0 8px 24px rgba(20,55,90,.09)}
+[data-theme=dark]{--bg:#0c1420;--card:#151f2c;--text:#e7eef8;--muted:#d7e1eb;--p:#0b4f88;--p2:#6194d2;--b:#2b3a4b;--code:#070b12;--shadow:0 8px 24px rgba(0,0,0,.25)}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",Tahoma,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.9}
+header{position:fixed;top:0;right:0;left:0;height:72px;z-index:1000;background:var(--card);border-bottom:1px solid var(--b);display:flex;align-items:center;padding:0 20px;box-shadow:var(--shadow)}
+.logo{width:67px;height:54px;border-radius:50%;display:grid;place-items:center;}
+.brand{margin-right:12px}.brand b{display:block;color:var(--p2)}.brand small{color:var(--muted)}
+.actions{margin-right:auto;display:flex;gap:8px}button{border:1px solid var(--b);background:var(--card);color:var(--text);border-radius:9px;padding:8px 12px;cursor:pointer}.menu{display:none}
+.progress{position:fixed;top:72px;right:0;height:4px;background:var(--p);width:0;z-index:1001}
+aside{position:fixed;top:76px;right:0;bottom:0;width:310px;background:var(--card);border-left:1px solid var(--b);padding:16px;overflow:auto}
+.search{width:100%;padding:10px;border:1px solid var(--b);border-radius:9px;background:var(--bg);color:var(--text);margin-bottom:10px}
+nav a{display:block;color:var(--muted);text-decoration:none;padding:5px 8px;border-radius:7px;font-size:12.5px}
+nav a:hover,nav a.active{background:#2563eb1a;color:var(--p);font-weight:700}
+main{margin-right:310px;padding:110px 34px 50px;max-width:1300px}
+.hero{background:linear-gradient(135deg,var(--p2),var(--p));color:#ffffff;border-radius:18px;padding:34px;margin-bottom:22px;box-shadow:var(--shadow)}
+.hero h1{font-size:32px}.credit{font-weight:700;margin-top:8px}
+section{background:var(--card);border:1px solid var(--b);border-radius:14px;padding:24px;margin-bottom:18px;box-shadow:var(--shadow);scroll-margin-top:95px}
+h2{font-size:21px;color:var(--p2);border-right:4px solid var(--p);padding-right:9px;margin-bottom:12px}
+p {margin-bottom: 12px;}
+.code{position:relative;margin:13px 0}.code pre{background:var(--code);color:#dbeafe;direction:ltr;text-align:left;overflow:auto;border-radius:9px;padding:17px;font:13px/1.7 Consolas,monospace;white-space:pre-wrap}
+.copy{position:absolute;right:7px;top:7px;background:#fff;color:#172033;border:0;font-size:11px;padding:5px 8px;cursor:pointer;border-radius:4px;}
+.top{position:fixed;bottom:20px;left:20px;border-radius:50%;background:var(--p);color:#fff;width:44px;height:44px;border:0;cursor:pointer}
+footer{text-align:center;color:var(--muted);padding:28px}
+@media(max-width:900px){aside{transform:translateX(100%);transition:.25s;width:290px}aside.open{transform:none}.menu{display:block}main{margin:0;padding:100px 14px 40px}.brand small{display:none}.hero h1{font-size:25px}}
+@media print{header,aside,.top,.progress,.actions,.copy{display:none!important}main{margin:0;padding:0}section{box-shadow:none;break-inside:avoid}}
+</style>
+</head>
+<body>
+<header><button class="menu" onclick="document.querySelector('aside').classList.toggle('open')">☰</button>
+
+   
+  <img src="IMG/آفاق المعرفة التقنية.png" class="logo">
+  <div class="brand"><b>منصة آفاق المعرفة التقنية</b><small>دليل ++C الشامل </small></div>
+
+
+  <div class="actions"><button onclick="toggleTheme()">◐ الوضع</button><button onclick="window.print()">🖨 طباعة</button></div></header>
+<div class="progress" id="progress"></div>
+
+<aside><input class="search" id="search" placeholder="🔎 ابحث في الوحدات والدروس..." oninput="filterNav()"><nav id="nav">
+<a href="#s1">01. مقدمة عن لغة ++C وتاريخها</a>
+<a href="#s2">02. بنية الهيكل البرمجي ودالة Main</a>
+<a href="#s3">04. المتغيرات وأنواع البيانات الأساسية</a>
+<a href="#s5">05. العمليات الحسابية والمنطقية</a>
+<a href="#s6">06. الجمل الشرطية (if, else, switch)</a>
+<a href="#s7">07. الحلقات التكرارية (for, while, do-while)</a>
+<a href="#s8">08. المصفوفات أحادية الأبعاد Arrays</a>
+<a href="#s9">09. المصفوفات ثنائية الأبعاد Multi-dimensional</a>
+<a href="#s10">10. المؤشرات Pointers والذاكرة</a>
+<a href="#s11">11. المؤشرات المتقدمة والمرجع References</a>
+<a href="#s12">12. الدوال Functions وتعريفها</a>
+<a href="#s13">13. تمرير المعاملات بالقيم والمراجع</a>
+<a href="#s14">14. التحميل الزائد للدوال Function Overloading</a>
+<a href="#s15">15. النطاق Scope والذاكرة التلقائية والثابتة</a>
+<a href="#s16">16. البرمجة كائنية التوجه OOP ومفهوم الكلاسات</a>
+<a href="#s17">17. المنشئ Constructor والمدمج Destructor</a>
+<a href="#s18">18. مبدأ التغليف Encapsulation ومحددات الوصول</a>
+<a href="#s19">19. الوراثة Inheritance وأنواعها</a>
+<a href="#s20">20. تعدد الأشكال Polymorphism والدوال الافتراضية</a>
+<a href="#s21">21. الفئات المجردة Abstract Classes واجهات</a>
+<a href="#s22">22. قوالب الدوال Function Templates</a>
+<a href="#s23">23. قوالب الكلاسات Class Templates</a>
+<a href="#s24">24. إدارة الذاكرة الديناميكية (new / delete)</a>
+<a href="#s25">25. مؤشرات الذاكرة الذكية Smart Pointers</a>
+<a href="#s26">26. معالجة الاستثناءات (try, catch, throw)</a>
+<a href="#s27">27. التعامل مع الملفات (Files I/O)</a>
+<a href="#s28">28. مقدمة في مكتبة القوالب القياسية STL</a>
+<a href="#s29">29. الحاويات المتسلسلة (Vector, List, Deque)</a>
+<a href="#s30">30. الحاويات الترابطية (Map, Set)</a>
+<a href="#s31">31. الخوارزميات القياسية في STL</a>
+<a href="#s32">32. هياكل البيانات: القوائم المرتبطة Linked Lists</a>
+<a href="#s33">33. هياكل البيانات: المكدس Stack والصف Queue</a>
+<a href="#s34">34. هياكل البيانات: الأشجار الثنائية Binary Trees</a>
+<a href="#s35">35. هياكل البيانات: خوارزميات البحث والفرز</a>
+<a href="#s36">36. التعبيرات السهمية واللامسمى Lambda Expressions</a>
+<a href="#s37">37. البرمجة المتزامنة Multithreading</a>
+<a href="#s38">38. تحسين الأداء وإدارة الكفاءة</a>
+<a href="#s39">39. مشروع هندسي: نظام إدارة مخازن متكامل</a>
+<a href="#s40">40. الخلاصة الهندسية لمفاهيم ++C</a>
+</nav></aside>
+
+<main>
+<div class="hero">
+  <h1>دليل لغة البرمجة ++C الشامل</h1>
+  <p>المرجع الهندسي المتكامل لتطوير البرمجيات الهيكلية والكائنية وتحسين الأداء باستخدام ++C.</p>
+  <div class="credit">إعداد الكاتبة والمهندسة: مها شهوب</div>
+</div>
+
+<section id="s1">
+  <h2>01. مقدمة عن لغة ++C وتاريخها</h2>
+  <p>تطوير لغة C بواسطة بيار ستروستروب في أوائل الثمانينيات لتشمل ميزات البرمجة كائنية التوجه مع الحفاظ على كفاءة الأداء.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>// ++C System Initialization
+#include &lt;iostream&gt;
+using namespace std;</pre></div>
+</section>
+
+<section id="s2">
+  <h2>02. بنية الهيكل البرمجي ودالة Main</h2>
+  <p>نقطة الانطلاق الأساسية لأي تطبيق ++C عبر دالة التنفيذ الرئيسية main.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>int main() {
+    cout &lt;&lt; "مرحباً بك في عالم ++C" &lt;&lt; endl;
+    return 0;
+}</pre></div>
+</section>
+
+<section id="s4">
+  <h2>04. المتغيرات وأنواع البيانات الأساسية</h2>
+  <p>حجز مساحات الذاكرة لأنواع البيانات المختلفة مثل الصحيح (int)، الحقيقي (double)، والحرفي (char).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>int age = 25;
+double salary = 1200.50;
+char grade = 'A';
+bool isActive = true;</pre></div>
+</section>
+
+<section id="s5">
+  <h2>05. العمليات الحسابية والمنطقية</h2>
+  <p>استخدام المعاملات الرياضية والمنطقية لمعالجة القيم والبيانات.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>int sum = 10 + 20;
+bool check = (sum > 15) && (isActive == true);</pre></div>
+</section>
+
+<section id="s6">
+  <h2>06. الجمل الشرطية (if, else, switch)</h2>
+  <p>توجيه مسار التنفيذ بناءً على تحقق الشروط المنطقية المختلفة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>if (age >= 18) {
+    cout &lt;&lt; "مؤهل للعمل" &lt;&lt; endl;
+} else {
+    cout &lt;&lt; "غير مؤهل" &lt;&lt; endl;
+}</pre></div>
+</section>
+
+<section id="s7">
+  <h2>07. الحلقات التكرارية (for, while, do-while)</h2>
+  <p>تكرار تنفيذ الأكواد البرمجية بكفاءة عالية وبأقل عدد من الأسطر.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>for(int i = 0; i &lt; 5; i++) {
+    cout &lt;&lt; "الخطوة: " &lt;&lt; i &lt;&lt; endl;
+}</pre></div>
+</section>
+
+<section id="s8">
+  <h2>08. المصفوفات أحادية الأبعاد Arrays</h2>
+  <p>تخزين مجموعة من العناصر المتجانسة تحت اسم متغير واحد وبفهرس يبدأ من الصفر.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>int scores[3] = {90, 85, 88};
+cout &lt;&lt; scores[0];</pre></div>
+</section>
+
+<section id="s9">
+  <h2>09. المصفوفات ثنائية الأبعاد Multi-dimensional</h2>
+  <p>تمثيل الجداول والصفوف والأعمدة هندسياً في الذاكرة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>int matrix[2][2] = {{1, 2}, {3, 4}};</pre></div>
+</section>
+
+<section id="s10">
+  <h2>10. المؤشرات Pointers والذاكرة</h2>
+  <p>المتغيرات التي تحوي عناوين الذاكرة للمتغيرات الأخرى لرفع كفاءة التحكم بالنظام.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>int x = 10;
+int *ptr = &x;
+cout &lt;&lt; *ptr; // طباعة القيمة عبر المؤشر</pre></div>
+</section>
+
+<section id="s11">
+  <h2>11. المؤشرات المتقدمة والمرجع References</h2>
+  <p>استخدام المراجع كبدائل آمنة للمؤشرات لتمرير المتغيرات بسهولة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>int original = 50;
+int &ref = original;
+ref = 100; // يتغير original ليصبح 100</pre></div>
+</section>
+
+<section id="s12">
+  <h2>12. الدوال Functions وتعريفها</h2>
+  <p>تجزئة البرنامج إلى وحدات مستقلة قابلة لإعادة الاستخدام والصيانة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>int add(int a, int b) {
+    return a + b;
+}</pre></div>
+</section>
+
+<section id="s13">
+  <h2>13. تمرير المعاملات بالقيم والمراجع</h2>
+  <p>الفرق بين تمرير نسخة المتغير وتمرير عنوانه الحقيقي لتعديل قيمته.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>void increment(int &val) {
+    val++;
+}</pre></div>
+</section>
+
+<section id="s14">
+  <h2>14. التحميل الزائد للدوال Function Overloading</h2>
+  <p>تعريف عدة دالات بنفس الاسم مع اختلاف أنواع أو عدد المعاملات.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>int multiply(int a, int b) { return a * b; }
+double multiply(double a, double b) { return a * b; }</pre></div>
+</section>
+
+<section id="s15">
+  <h2>15. النطاق Scope والذاكرة التلقائية والثابتة</h2>
+  <p>إدارة عمر المتغيرات ومجالات رؤيتها داخل الدوال والكتل البرمجية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>void counter() {
+    static int count = 0;
+    count++;
+}</pre></div>
+</section>
+
+<section id="s16">
+  <h2>16. البرمجة كائنية التوجه OOP ومفهوم الكلاسات</h2>
+  <p>تصميم النماذج البرمجية التي تدمج البيانات والدوال المرتبطة بها معاً.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>class Book {
+public:
+    string title;
+    void display() { cout &lt;&lt; title; }
+};</pre></div>
+</section>
+
+<section id="s17">
+  <h2>17. المنشئ Constructor والمدمج Destructor</h2>
+  <p>تهيئة الكائنات تلقائياً عند إنشائها وتدميرها بأمان لتحرير الذاكرة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>class Database {
+public:
+    Database() { /* تهيئة الاتصال */ }
+    ~Database() { /* إغلاق الاتصال */ }
+};</pre></div>
+</section>
+
+<section id="s18">
+  <h2>18. مبدأ التغليف Encapsulation ومحددات الوصول</h2>
+  <p>حماية البيانات عبر تحديد الصلاحيات (public, private, protected).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>class Account {
+private:
+    double balance;
+public:
+    void setBalance(double b) { balance = b; }
+};</pre></div>
+</section>
+
+<section id="s19">
+  <h2>19. الوراثة Inheritance وأنواعها</h2>
+  <p>نقل الخصائص والدوال من فئة أساسية (Base) إلى فئات مشتقة (Derived).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>class Vehicle {};
+class Car : public Vehicle {};</pre></div>
+</section>
+
+<section id="s20">
+  <h2>20. تعدد الأشكال Polymorphism والدوال الافتراضية</h2>
+  <p>استخدام الدوال الافتراضية (virtual functions) لتنفيذ سلوك مختلف بناءً على نوع الكائن.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>class Shape {
+public:
+    virtual void draw() { cout &lt;&lt; "Drawing Shape"; }
+};</pre></div>
+</section>
+
+<section id="s21">
+  <h2>21. الفئات المجردة Abstract Classes واجهات</h2>
+  <p>فرض هيكل أساسي موحد للفئات المشتقة عبر الدوال الصفرية النقية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>class Interface {
+public:
+    virtual void execute() = 0; // دالة نقية مجردة
+};</pre></div>
+</section>
+
+<section id="s22">
+  <h2>22. قوالب الدوال Function Templates</h2>
+  <p>كتابة كود عام يدعم أنواع بيانات متعددة تلقائياً.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>template &lt;typename T&gt;
+T getMax(T a, T b) {
+    return (a &gt; b)? a : b;
+}</pre></div>
+</section>
+
+<section id="s23">
+  <h2>23. قوالب الكلاسات Class Templates</h2>
+  <p>إنشاء هياكل بيانات وكلاسات عامة تتعامل مع أي نوع بيانات.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>template &lt;class T&gt;
+class Box {
+    T data;
+};</pre></div>
+</section>
+
+<section id="s24">
+  <h2>24. إدارة الذاكرة الديناميكية (new / delete)</h2>
+  <p>حجز وتحرير الذاكرة يدوياً أثناء تشغيل البرنامج لتوفير المرونة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>int *p = new int(10);
+delete p; // تحرير الذاكرة لمنع التسريب</pre></div>
+</section>
+
+<section id="s25">
+  <h2>25. مؤشرات الذاكرة الذكية Smart Pointers</h2>
+  <p>استخدام unique_ptr و shared_ptr لإدارة الذاكرة تلقائياً ومنع تسريبها.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>#include &lt;memory&gt;
+unique_ptr&lt;int&gt; sptr = make_unique&lt;int&gt;(20);</pre></div>
+</section>
+
+<section id="s26">
+  <h2>26. معالجة الاستثناءات (try, catch, throw)</h2>
+  <p>التقاط الأخطاء وقت التشغيل ومعالجتها بسلاسة دون انهيار التطبيق.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>try {
+    throw "خطأ في النظام";
+} catch (const char* msg) {
+    cout &lt;&lt; msg;
+}</pre></div>
+</section>
+
+<section id="s27">
+  <h2>27. التعامل مع الملفات (Files I/O)</h2>
+  <p>قراءة وكتابة البيانات في الملفات النصية والثنائية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>ofstream file("data.txt");
+file &lt;&lt; "مها شهوب - توثيق بيانات";
+file.close();</pre></div>
+</section>
+
+<section id="s28">
+  <h2>28. مقدمة في مكتبة القوالب القياسية STL</h2>
+  <p>استخدام الهياكل والخوارزميات الجاهزة عالية الأداء في ++C.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>#include &lt;vector&gt;
+#include &lt;algorithm&gt;</pre></div>
+</section>
+
+<section id="s29">
+  <h2>29. الحاويات المتسلسلة (Vector, List, Deque)</h2>
+  <p>إدارة المجموعات المرنة ذات الحجم الديناميكي.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>vector&lt;int&gt; vec = {1, 2, 3};
+vec.push_back(4);</pre></div>
+</section>
+
+<section id="s30">
+  <h2>30. الحاويات الترابطية (Map, Set)</h2>
+  <p>تخزين البيانات بنظام المفتاح والقيمة الفريدة المرتبطة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>map&lt;string, int&gt; ages;
+ages["مها"] = 25;</pre></div>
+</section>
+
+<section id="s31">
+  <h2>31. الخوارزميات القياسية في STL</h2>
+  <p>تطبيق عمليات الفرز، البحث، والمعالجة السريعة على الحاويات.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>sort(vec.begin(), vec.end());</pre></div>
+</section>
+
+<section id="s32">
+  <h2>32. هياكل البيانات: القوائم المرتبطة Linked Lists</h2>
+  <p>بناء العقد المرتبطة بروابط الذاكرة الديناميكية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>struct Node { int data; Node* next; };</pre></div>
+</section>
+
+<section id="s33">
+  <h2>33. هياكل البيانات: المكدس Stack والصف Queue</h2>
+  <p>تنفيذ قواعد LIFO (المكدس) و FIFO (الصف) برمجياً.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>#include &lt;stack&gt;
+stack&lt;int&gt; s; s.push(10);</pre></div>
+</section>
+
+<section id="s34">
+  <h2>34. هياكل البيانات: الأشجار الثنائية Binary Trees</h2>
+  <p>تنظيم البيانات هرمياً للبحث السريع والتنقل.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>struct TreeNode { int val; TreeNode *left, *right; };</pre></div>
+</section>
+
+<section id="s35">
+  <h2>35. هياكل البيانات: خوارزميات البحث والفرز</h2>
+  <p>البحث الثنائي (Binary Search) وخوارزميات الفرز المتقدمة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>// خوارزميات البحث الثنائي والفرز السريع QuickSort</pre></div>
+</section>
+
+<section id="s36">
+  <h2>36. التعبيرات السهمية واللامسمى Lambda Expressions</h2>
+  <p>كتابة دوال سريعة ومجهولة الاسم ضمن الأسطر البرمجية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>auto sum = [](int a, int b) { return a + b; };</pre></div>
+</section>
+
+<section id="s37">
+  <h2>37. البرمجة المتزامنة Multithreading</h2>
+  <p>تشغيل عدة خيوط معالجة بالتوازي لرفع أداء التطبيقات الضخمة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>#include &lt;thread&gt;
+thread t([]{ cout &lt;&lt; "خيوط المعالجة نشطة"; });
+t.join();</pre></div>
+</section>
+
+<section id="s38">
+  <h2>38. تحسين الأداء وإدارة الكفاءة</h2>
+  <p>استخدام النقل بالحركة (Move Semantics) والمرجعيات Rvalue لتعزيز السرعة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>// تحسين استهلاك الذاكرة وسرعة تنفيذ العمليات التراكمية</pre></div>
+</section>
+
+<section id="s39">
+  <h2>39. مشروع هندسي: نظام إدارة مخازن متكامل</h2>
+  <p>تطبيق مفاهيم الكلاسات، الوراثة، وحاويات STL لإدارة المنتجات.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>class InventorySystem {
+public:
+    void addItem() { /* إضافة منتج */ }
+};</pre></div>
+</section>
+
+<section id="s40">
+  <h2>40. الخلاصة الهندسية لمفاهيم ++C</h2>
+  <p>الخلاصة النهائية لأبرز أسس ومعماريات لغة ++C في هندسة البرمجيات.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>/* خلاصة ++C: الكفاءة، الذاكرة، OOP، والمكتبة القياسية STL */</pre></div>
+</section>
+
+<footer>منصة آفاق المعرفة التقنية — مكتبة | مها شهوب<br>إعداد الكاتبة والمهندسة: مها شهوب</footer>
+</main>
+<button class="top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+function toggleTheme(){document.documentElement.dataset.theme=document.documentElement.dataset.theme==="dark"?"light":"dark";localStorage.setItem("cpp-theme-full",document.documentElement.dataset.theme)}
+if(localStorage.getItem("cpp-theme-full"))document.documentElement.dataset.theme=localStorage.getItem("cpp-theme-full");
+document.querySelectorAll(".copy").forEach(b=>b.onclick=()=>{navigator.clipboard.writeText(b.parentElement.querySelector("pre").innerText);let x=b.innerText;b.innerText="تم النسخ ✓";setTimeout(()=>b.innerText=x,1100)});
+function filterNav(){let q=document.getElementById("search").value.toLowerCase();document.querySelectorAll("#nav a").forEach(a=>a.style.display=a.innerText.toLowerCase().includes(q)?"block":"none")}
+window.addEventListener("scroll",()=>{let d=document.documentElement;document.getElementById("progress").style.width=(d.scrollTop/(d.scrollHeight-d.clientHeight)*100)+"%";let cur="";document.querySelectorAll("section").forEach(s=>{if(scrollY>=s.offsetTop-130)cur=s.id});document.querySelectorAll("#nav a").forEach(a=>a.classList.toggle("active",a.hash==="#"+cur))});
+document.querySelectorAll("#nav a").forEach(a=>a.onclick=()=>document.querySelector("aside").classList.remove("open"));
+</script>
+</body>
+</html>

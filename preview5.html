@@ -1,0 +1,4705 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>دليل #C الشامل | منصة آفاق المعرفة التقنية</title>
+
+<meta name="description" content="دليل #C الشامل من إعداد الكاتبة والمهندسة مها شهوب، من أساسيات #C و.NET إلى البرمجة الكائنية وقواعد البيانات وASP.NET Core وEntity Framework وواجهات API والأمان وWPF وMAUI وDocker.">
+
+<style>
+:root{
+    --bg:#eef3f9;
+    --card:#ffffff;
+    --text:#172033;
+    --muted:#637087;
+    --primary:#1677c8;
+    --primary2:#0b4f88;
+    --border:#d8e1ec;
+    --code:#111827;
+    --codeText:#e5eef9;
+    --nav:#ffffff;
+    --shadow:0 8px 28px rgba(15,45,75,.08);
+}
+
+[data-theme="dark"]{
+    --bg:#0b1220;
+    --card:#111b2d;
+    --text:#e8eef8;
+    --muted:#a8b5c8;
+    --primary:#48a9ff;
+    --primary2:#1677c8;
+    --border:#263750;
+    --code:#07101d;
+    --codeText:#dbeafe;
+    --nav:#0e1727;
+    --shadow:0 8px 28px rgba(0,0,0,.25);
+}
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:"Segoe UI",Tahoma,Arial,sans-serif;
+    line-height:1.9;
+}
+
+.top{
+    position:fixed;
+    top:0;
+    right:0;
+    left:0;
+    height:68px;
+    background:var(--nav);
+    border-bottom:1px solid var(--border);
+    z-index:1000;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:0 22px;
+    box-shadow:0 3px 15px rgba(0,0,0,.04);
+}
+.logo{width:67px;height:54px;border-radius:50%;display:grid;place-items:center;}
+
+
+.brand{
+    font-weight:800;
+    font-size:18px;
+}
+
+.brand small{
+    display:block;
+    color:var(--muted);
+    font-size:11px;
+    line-height:1.2;
+}
+
+.top-actions{
+    margin-right:auto;
+    display:flex;
+    gap:8px;
+}
+
+.btn{
+    border:1px solid var(--border);
+    background:var(--card);
+    color:var(--text);
+    border-radius:10px;
+    padding:9px 13px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.btn:hover{
+    border-color:var(--primary);
+    color:var(--primary);
+}
+
+.layout{
+    display:flex;
+    max-width:1500px;
+    margin:auto;
+    padding-top:68px;
+}
+
+aside{
+    width:310px;
+    position:fixed;
+    top:68px;
+    bottom:0;
+    right:max(0px,calc((100vw - 1500px)/2));
+    background:var(--nav);
+    border-left:1px solid var(--border);
+    padding:20px 15px;
+    overflow:auto;
+}
+
+.search{
+    width:100%;
+    padding:12px;
+    border:1px solid var(--border);
+    border-radius:12px;
+    background:var(--card);
+    color:var(--text);
+    outline:none;
+    margin-bottom:14px;
+}
+
+.search:focus{
+    border-color:var(--primary);
+    box-shadow:0 0 0 3px rgba(22,119,200,.12);
+}
+
+.nav-title{
+    font-weight:900;
+    color:var(--primary);
+    margin:8px 0 10px;
+}
+
+nav a{
+    display:block;
+    text-decoration:none;
+    color:var(--muted);
+    padding:8px 10px;
+    border-radius:8px;
+    font-size:13px;
+    margin:2px 0;
+    transition:.2s;
+}
+
+nav a:hover,
+nav a.active{
+    background:rgba(22,119,200,.1);
+    color:var(--primary);
+    font-weight:700;
+}
+
+main{
+    margin-right:310px;
+    width:calc(100% - 310px);
+    padding:32px 34px 70px;
+}
+
+.hero{
+    background:linear-gradient(135deg,#071b31,#0b4f88 55%,#1677c8);
+    color:#fff;
+    border-radius:20px;
+    padding:38px;
+    box-shadow:var(--shadow);
+    margin-bottom:25px;
+}
+
+.hero h1{
+    font-size:35px;
+    margin:0 0 8px;
+}
+
+.hero p{
+    margin:7px 0;
+}
+
+.hero .author{
+    font-size:16px;
+    margin-top:15px;
+    font-weight:700;
+}
+
+.badges{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:20px;
+}
+
+.badge{
+    background:rgba(255,255,255,.13);
+    border:1px solid rgba(255,255,255,.22);
+    padding:6px 11px;
+    border-radius:30px;
+    font-size:12px;
+}
+
+section{
+    scroll-margin-top:88px;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:17px;
+    padding:28px;
+    margin-bottom:22px;
+    box-shadow:var(--shadow);
+}
+
+h2{
+    margin:0 0 15px;
+    color:var(--primary2);
+    font-size:25px;
+    border-right:5px solid var(--primary);
+    padding-right:12px;
+}
+
+[data-theme="dark"] h2{
+    color:#70bdff;
+}
+
+h3{
+    color:var(--primary);
+    margin-top:22px;
+}
+
+p{
+    margin:9px 0;
+}
+
+ul,
+ol{
+    padding-right:25px;
+}
+
+.muted{
+    color:var(--muted);
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:14px;
+    margin:15px 0;
+}
+
+.card{
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:15px;
+    background:var(--bg);
+}
+
+.card b{
+    color:var(--primary);
+}
+
+.toc{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:10px;
+}
+
+.toc a{
+    text-decoration:none;
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:12px;
+    background:var(--bg);
+    color:var(--text);
+    transition:.2s;
+}
+
+.toc a:hover{
+    border-color:var(--primary);
+    color:var(--primary);
+    transform:translateY(-2px);
+}
+
+.code{
+    position:relative;
+    background:var(--code);
+    color:var(--codeText);
+    border-radius:12px;
+    margin:15px 0;
+    overflow:auto;
+    direction:ltr;
+    text-align:left;
+}
+
+.code pre{
+    margin:0;
+    padding:20px;
+    white-space:pre;
+    min-width:max-content;
+    font-family:Consolas,"Courier New",monospace;
+    font-size:13px;
+    line-height:1.7;
+}
+
+.copy{
+    position:absolute;
+    top:8px;
+    right:8px;
+    border:1px solid #334155;
+    background:#182538;
+    color:#dbeafe;
+    border-radius:7px;
+    padding:5px 9px;
+    cursor:pointer;
+    font-size:12px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin:15px 0;
+    font-size:14px;
+}
+
+th,
+td{
+    border:1px solid var(--border);
+    padding:10px;
+    text-align:right;
+    vertical-align:top;
+}
+
+th{
+    background:rgba(22,119,200,.1);
+    color:var(--primary2);
+}
+
+.note{
+    padding:14px 16px;
+    border-radius:10px;
+    margin:14px 0;
+    border-right:4px solid var(--primary);
+    background:rgba(22,119,200,.08);
+}
+
+.warning{
+    padding:14px 16px;
+    border-radius:10px;
+    margin:14px 0;
+    border-right:4px solid #d08a00;
+    background:rgba(208,138,0,.09);
+}
+
+.success{
+    padding:14px 16px;
+    border-radius:10px;
+    margin:14px 0;
+    border-right:4px solid #16845a;
+    background:rgba(22,132,90,.09);
+}
+
+.danger{
+    padding:14px 16px;
+    border-radius:10px;
+    margin:14px 0;
+    border-right:4px solid #c83a3a;
+    background:rgba(200,58,58,.08);
+}
+
+.progress-wrap{
+    position:fixed;
+    top:68px;
+    right:0;
+    left:0;
+    height:3px;
+    z-index:1001;
+}
+
+.progress{
+    height:100%;
+    width:0;
+    background:#3fb5ff;
+}
+
+.topbtn{
+    position:fixed;
+    bottom:20px;
+    left:20px;
+    width:45px;
+    height:45px;
+    border:0;
+    border-radius:50%;
+    background:var(--primary);
+    color:#fff;
+    font-size:20px;
+    cursor:pointer;
+    display:none;
+    z-index:900;
+}
+
+.menu{
+    display:none;
+}
+
+footer{
+    text-align:center;
+    color:var(--muted);
+    padding:30px 10px;
+}
+
+@media(max-width:950px){
+
+    .menu{
+        display:block;
+    }
+
+    aside{
+        display:none;
+        right:0;
+        width:310px;
+        z-index:950;
+        box-shadow:-8px 0 25px rgba(0,0,0,.12);
+    }
+
+    aside.open{
+        display:block;
+    }
+
+    main{
+        margin:0;
+        width:100%;
+        padding:24px 15px 60px;
+    }
+
+    .hero{
+        padding:25px;
+    }
+
+    .hero h1{
+        font-size:27px;
+    }
+}
+
+@media(max-width:600px){
+
+    .brand{
+        font-size:15px;
+    }
+
+    .top{
+        padding:0 10px;
+    }
+
+    .top-actions .btn:nth-child(2){
+        display:none;
+    }
+
+    section{
+        padding:20px 15px;
+    }
+
+    h2{
+        font-size:21px;
+    }
+
+    table{
+        font-size:12px;
+    }
+
+    .code pre{
+        font-size:12px;
+    }
+}
+
+@media print{
+
+    .top,
+    aside,
+    .progress-wrap,
+    .topbtn{
+        display:none!important;
+    }
+
+    main{
+        margin:0;
+        width:100%;
+        padding:0;
+    }
+
+    section{
+        box-shadow:none;
+        break-inside:avoid;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="top">
+
+    <button class="btn menu" onclick="toggleMenu()">☰</button>
+
+  <img src="IMG/آفاق المعرفة التقنية.png" class="logo">
+
+    <div class="brand">
+        منصة آفاق المعرفة التقنية
+        <small>دليل #C الشامل | مها شهوب</small>
+    </div>
+
+    <div class="top-actions">
+        <button class="btn" onclick="toggleTheme()">☀ / 🌙</button>
+        <button class="btn" onclick="window.print()">🖨 طباعة</button>
+    </div>
+
+</header>
+
+<div class="progress-wrap">
+    <div class="progress" id="progress"></div>
+</div>
+
+<div class="layout">
+
+<aside id="sidebar">
+
+    <input
+        id="navSearch"
+        class="search"
+        type="search"
+        placeholder="ابحث داخل الفصول..."
+        oninput="filterNav()"
+    >
+
+    <div class="nav-title">📘 فهرس دليل #C</div>
+
+    <nav id="nav">
+
+        <a href="#home">00 — الصفحة الرئيسية</a>
+
+        <a href="#c1">01 — مقدمة #C و.NET</a>
+        <a href="#c2">02 — بيئة التطوير SDK وRuntime وCLR</a>
+        <a href="#c3">03 — إنشاء أول مشروع #C</a>
+        <a href="#c4">04 — بنية المشروع وملف csproj</a>
+        <a href="#c5">05 — المتغيرات والثوابت</a>
+        <a href="#c6">06 — أنواع البيانات</a>
+        <a href="#c7">07 — Value Types وReference Types</a>
+        <a href="#c8">08 — التحويل Casting وParsing</a>
+        <a href="#c9">09 — المعاملات Operators</a>
+        <a href="#c10">10 — الشروط if وelse</a>
+        <a href="#c11">11 — switch وSwitch Expressions</a>
+        <a href="#c12">12 — الحلقات Loops</a>
+        <a href="#c13">13 — المصفوفات Arrays</a>
+        <a href="#c14">14 — النصوص Strings</a>
+        <a href="#c15">15 — StringBuilder</a>
+        <a href="#c16">16 — الدوال Methods</a>
+        <a href="#c17">17 — Parameters وArguments</a>
+        <a href="#c18">18 — ref وout وin وparams</a>
+        <a href="#c19">19 — Optional وNamed Arguments</a>
+        <a href="#c20">20 — Structs</a>
+        <a href="#c21">21 — Enums</a>
+        <a href="#c22">22 — Records</a>
+        <a href="#c23">23 — Classes وObjects</a>
+        <a href="#c24">24 — Constructors</a>
+        <a href="#c25">25 — Fields وProperties</a>
+        <a href="#c26">26 — Access Modifiers</a>
+        <a href="#c27">27 — Encapsulation</a>
+        <a href="#c28">28 — Inheritance</a>
+        <a href="#c29">29 — Polymorphism</a>
+        <a href="#c30">30 — Abstract Classes</a>
+        <a href="#c31">31 — Interfaces</a>
+        <a href="#c32">32 — Composition</a>
+        <a href="#c33">33 — Generics</a>
+        <a href="#c34">34 — Generic Constraints</a>
+        <a href="#c35">35 — Collections</a>
+        <a href="#c36">36 — Dictionary وHashSet</a>
+        <a href="#c37">37 — Queue وStack</a>
+        <a href="#c38">38 — Lambda Expressions</a>
+        <a href="#c39">39 — Delegates</a>
+        <a href="#c40">40 — Func وAction وPredicate</a>
+        <a href="#c41">41 — Events</a>
+        <a href="#c42">42 — LINQ الأساسي</a>
+        <a href="#c43">43 — LINQ المتقدم</a>
+        <a href="#c44">44 — Pattern Matching</a>
+        <a href="#c45">45 — Exception Handling</a>
+        <a href="#c46">46 — Custom Exceptions</a>
+        <a href="#c47">47 — Nullable Reference Types</a>
+        <a href="#c48">48 — var وobject وdynamic</a>
+        <a href="#c49">49 — Extension Methods</a>
+        <a href="#c50">50 — Iterators وyield</a>
+
+        <a href="#c51">51 — الملفات File System</a>
+        <a href="#c52">52 — Streams</a>
+        <a href="#c53">53 — Serialization</a>
+        <a href="#c54">54 — JSON</a>
+        <a href="#c55">55 — XML</a>
+        <a href="#c56">56 — DateTime وTimeSpan</a>
+        <a href="#c57">57 — Regular Expressions</a>
+        <a href="#c58">58 — Attributes</a>
+        <a href="#c59">59 — Reflection</a>
+        <a href="#c60">60 — Namespaces وAssemblies</a>
+
+        <a href="#c61">61 — NuGet</a>
+        <a href="#c62">62 — Dependency Injection</a>
+        <a href="#c63">63 — Configuration</a>
+        <a href="#c64">64 — Logging</a>
+        <a href="#c65">65 — async وawait</a>
+        <a href="#c66">66 — Task</a>
+        <a href="#c67">67 — Threading</a>
+        <a href="#c68">68 — Parallel Programming</a>
+        <a href="#c69">69 — CancellationToken</a>
+        <a href="#c70">70 — Memory وGarbage Collector</a>
+        <a href="#c71">71 — IDisposable وusing</a>
+
+        <a href="#c72">72 — Unit Testing</a>
+        <a href="#c73">73 — Mocking وتصميم قابل للاختبار</a>
+        <a href="#c74">74 — ADO.NET</a>
+        <a href="#c75">75 — SQL Server وMySQL</a>
+        <a href="#c76">76 — Entity Framework Core</a>
+        <a href="#c77">77 — EF Core Relationships</a>
+        <a href="#c78">78 — EF Core Migrations</a>
+
+        <a href="#c79">79 — ASP.NET Core</a>
+        <a href="#c80">80 — Middleware</a>
+        <a href="#c81">81 — Routing</a>
+        <a href="#c82">82 — MVC وRazor</a>
+        <a href="#c83">83 — REST API</a>
+        <a href="#c84">84 — Minimal APIs</a>
+        <a href="#c85">85 — DTOs وValidation</a>
+        <a href="#c86">86 — Authentication</a>
+        <a href="#c87">87 — Authorization</a>
+        <a href="#c88">88 — ASP.NET Identity</a>
+        <a href="#c89">89 — JWT</a>
+        <a href="#c90">90 — CORS وCSRF وHTTPS</a>
+        <a href="#c91">91 — SignalR</a>
+        <a href="#c92">92 — Blazor</a>
+
+        <a href="#c93">93 — Windows Forms</a>
+        <a href="#c94">94 — WPF وXAML</a>
+        <a href="#c95">95 — MVVM</a>
+        <a href="#c96">96 — .NET MAUI</a>
+
+        <a href="#c97">97 — SOLID</a>
+        <a href="#c98">98 — Design Patterns</a>
+        <a href="#c99">99 — Clean Code</a>
+        <a href="#c100">100 — Layered Architecture</a>
+        <a href="#c101">101 — Clean Architecture</a>
+        <a href="#c102">102 — Microservices</a>
+        <a href="#c103">103 — أمن تطبيقات #C</a>
+        <a href="#c104">104 — Docker</a>
+        <a href="#c105">105 — Git وCI/CD</a>
+        <a href="#c106">106 — Deployment</a>
+        <a href="#c107">107 — Debugging</a>
+        <a href="#c108">108 — Performance</a>
+        <a href="#c109">109 — Algorithms</a>
+        <a href="#c110">110 — Data Structures</a>
+
+        <a href="#c111">111 — المشروع الأول: إدارة الطلاب</a>
+        <a href="#c112">112 — المشروع الثاني: CRUD وقاعدة بيانات</a>
+        <a href="#c113">113 — المشروع الثالث: REST API</a>
+        <a href="#c114">114 — المشروع الرابع: مكتبة إلكترونية</a>
+        <a href="#c115">115 — أخطاء #C الشائعة</a>
+        <a href="#c116">116 — خريطة تعلم #C</a>
+        <a href="#c117">117 — المرجع السريع</a>
+
+    </nav>
+</aside>
+
+<main>
+
+<section id="home" class="hero">
+
+    <h1>دليل #C الشامل والمتكامل</h1>
+
+    <p>
+        مرجع تدريبي يبدأ من الصفر ويصل إلى تطوير تطبيقات سطح المكتب
+        والويب وواجهات API وقواعد البيانات والأنظمة المتقدمة باستخدام #C و.NET.
+    </p>
+
+    <p class="author">
+        إعداد الكاتبة والمهندسة: مها شهوب
+    </p>
+
+    <p>
+        منصة آفاق المعرفة التقنية — مكتبة | مها شهوب — سلسلة أساسيات التقنية
+    </p>
+
+    <div class="badges">
+        <span class="badge">#C</span>
+        <span class="badge">.NET</span>
+        <span class="badge">ASP.NET Core</span>
+        <span class="badge">EF Core</span>
+        <span class="badge">SQL</span>
+        <span class="badge">REST API</span>
+        <span class="badge">WPF</span>
+        <span class="badge">MAUI</span>
+        <span class="badge">Docker</span>
+    </div>
+
+</section>
+
+<section>
+
+<h2>كيف تستخدم هذا الدليل؟</h2>
+
+<p>
+هذا الدليل مرتب على شكل مسار تدريجي. تبدأ من أساسيات اللغة ثم تنتقل إلى
+البرمجة الكائنية، وبعدها LINQ والبرمجة غير المتزامنة وقواعد البيانات،
+ثم تطوير الويب وواجهات API والأمان والتطبيقات المكتبية والهندسة البرمجية.
+</p>
+
+<div class="grid">
+
+<div class="card">
+<b>المستوى الأول</b>
+<p>تعلم بناء البرامج وكتابة Syntax صحيحة وفهم الأنواع والشروط والحلقات والدوال.</p>
+</div>
+
+<div class="card">
+<b>المستوى الثاني</b>
+<p>OOP وGenerics وCollections وLINQ وDelegates وEvents.</p>
+</div>
+
+<div class="card">
+<b>المستوى الثالث</b>
+<p>Files وJSON وAsync وDI وTesting وقواعد البيانات.</p>
+</div>
+
+<div class="card">
+<b>المستوى الرابع</b>
+<p>ASP.NET Core وREST API وAuthentication وJWT وEF Core.</p>
+</div>
+
+<div class="card">
+<b>المستوى الخامس</b>
+<p>Architecture وSecurity وDocker وCI/CD والأداء والمشاريع.</p>
+</div>
+
+</div>
+
+</section>
+
+
+<section id="c1">
+
+<h2>01 — مقدمة #C و.NET</h2>
+
+<p>
+#C لغة برمجة حديثة من Microsoft، صممت لبناء تطبيقات متنوعة تشمل تطبيقات
+سطح المكتب والويب والخدمات وواجهات API وتطبيقات الهاتف والألعاب وغيرها.
+</p>
+
+<p>
+#C تعمل ضمن منظومة .NET، وهي منصة توفر Runtime ومكتبات وأدوات تطوير
+تسمح بتشغيل التطبيقات وبناء أنواع مختلفة من البرامج.
+</p>
+
+<div class="note">
+<strong>الفكرة الأساسية:</strong>
+#C هي اللغة، بينما .NET هي المنصة التي توفر البيئة والمكتبات وأدوات التشغيل والبناء.
+</div>
+
+<table>
+<tr>
+<th>العنصر</th>
+<th>وظيفته</th>
+</tr>
+<tr>
+<td>#C</td>
+<td>لغة البرمجة التي نكتب بها الكود.</td>
+</tr>
+<tr>
+<td>.NET SDK</td>
+<td>أدوات إنشاء وبناء وتشغيل المشاريع.</td>
+</tr>
+<tr>
+<td>Runtime</td>
+<td>البيئة اللازمة لتشغيل التطبيق.</td>
+</tr>
+<tr>
+<td>CLR</td>
+<td>بيئة تنفيذ كود .NET وإدارة الذاكرة والاستثناءات وغيرها.</td>
+</tr>
+</table>
+
+</section>
+
+
+<section id="c2">
+
+<h2>02 — بيئة التطوير SDK وRuntime وCLR</h2>
+
+<p>
+عند تطوير برنامج #C نحتاج إلى أدوات لإنشاء المشروع وترجمته وتشغيله.
+أهمها .NET SDK، بينما Runtime يستخدم لتشغيل التطبيقات.
+</p>
+
+<h3>الفرق بين SDK وRuntime</h3>
+
+<table>
+<tr>
+<th>SDK</th>
+<th>Runtime</th>
+</tr>
+<tr>
+<td>إنشاء المشاريع</td>
+<td>تشغيل التطبيقات</td>
+</tr>
+<tr>
+<td>Build</td>
+<td>Execution</td>
+</tr>
+<tr>
+<td>يوفر أدوات CLI</td>
+<td>يوفر مكونات التشغيل</td>
+</tr>
+</table>
+
+<h3>أوامر مهمة</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>dotnet --info
+dotnet --list-sdks
+dotnet --list-runtimes</pre>
+</div>
+
+</section>
+
+
+<section id="c3">
+
+<h2>03 — إنشاء أول مشروع #C</h2>
+
+<p>
+يمكن إنشاء مشروع Console من الطرفية باستخدام dotnet CLI.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>dotnet new console -n MyFirstApp
+cd MyFirstApp
+dotnet run</pre>
+</div>
+
+<p>
+الأمر الأول ينشئ مشروعاً جديداً، والثاني يدخل إلى مجلد المشروع،
+والثالث يبني التطبيق ويشغله.
+</p>
+
+<h3>أبسط برنامج</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>Console.WriteLine("Hello C#");</pre>
+</div>
+
+</section>
+
+
+<section id="c4">
+
+<h2>04 — بنية المشروع وملف csproj</h2>
+
+<p>
+مشروع #C يحتوي على ملفات المصدر والإعدادات والمراجع والحزم. ملف
+csproj هو ملف المشروع ويحتوي على معلومات مهمة عن Target Framework
+والحزم وبعض خيارات البناء.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>&lt;Project Sdk="Microsoft.NET.Sdk"&gt;
+
+  &lt;PropertyGroup&gt;
+    &lt;OutputType&gt;Exe&lt;/OutputType&gt;
+    &lt;TargetFramework&gt;net8.0&lt;/TargetFramework&gt;
+    &lt;ImplicitUsings&gt;enable&lt;/ImplicitUsings&gt;
+    &lt;Nullable&gt;enable&lt;/Nullable&gt;
+  &lt;/PropertyGroup&gt;
+
+&lt;/Project&gt;</pre>
+</div>
+
+<div class="warning">
+إصدار TargetFramework في المثال مجرد مثال؛ استخدمي الإصدار المتاح
+والمناسب لبيئة التطوير لديك.
+</div>
+
+</section>
+
+
+<section id="c5">
+
+<h2>05 — المتغيرات والثوابت</h2>
+
+<p>
+المتغير هو مكان في الذاكرة يحمل قيمة يمكن تغييرها أثناء تشغيل البرنامج.
+أما الثابت const فقيمته تحدد وقت الترجمة ولا يمكن تغييرها بعد تعريفها.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>string name = "Maha";
+int age = 30;
+double price = 99.90;
+bool active = true;
+
+const double Pi = 3.1415926535;</pre>
+</div>
+
+<h3>قواعد تسمية المتغيرات</h3>
+
+<ul>
+<li>يجب ألا يبدأ الاسم برقم.</li>
+<li>يمكن استخدام الحروف والأرقام وunderscore.</li>
+<li>#C حساسة لحالة الأحرف.</li>
+<li>يفضل استخدام أسماء واضحة مثل studentName بدلاً من x.</li>
+</ul>
+
+</section>
+
+
+<section id="c6">
+
+<h2>06 — أنواع البيانات</h2>
+
+<p>
+#C لغة ذات نظام أنواع قوي. كل قيمة لها نوع يحدد العمليات التي يمكن
+إجراؤها عليها وطريقة تخزينها.
+</p>
+
+<table>
+<tr>
+<th>النوع</th>
+<th>الاستخدام</th>
+</tr>
+<tr>
+<td>int</td>
+<td>الأعداد الصحيحة.</td>
+</tr>
+<tr>
+<td>long</td>
+<td>الأعداد الصحيحة الأكبر.</td>
+</tr>
+<tr>
+<td>double</td>
+<td>الأعداد العشرية.</td>
+</tr>
+<tr>
+<td>decimal</td>
+<td>القيم المالية والحسابات التي تحتاج دقة عشرية.</td>
+</tr>
+<tr>
+<td>bool</td>
+<td>true أو false.</td>
+</tr>
+<tr>
+<td>char</td>
+<td>حرف واحد.</td>
+</tr>
+<tr>
+<td>string</td>
+<td>النصوص.</td>
+</tr>
+<tr>
+<td>object</td>
+<td>نوع أساسي يمكنه الإشارة إلى قيم مختلفة.</td>
+</tr>
+</table>
+
+</section>
+
+
+<section id="c7">
+
+<h2>07 — Value Types وReference Types</h2>
+
+<p>
+من المفاهيم الأساسية في #C الفرق بين Value Types وReference Types.
+Value Type يخزن القيمة نفسها، بينما Reference Type يحتوي متغيره على
+مرجع إلى كائن موجود في الذاكرة.
+</p>
+
+<table>
+<tr>
+<th>Value Type</th>
+<th>Reference Type</th>
+</tr>
+<tr>
+<td>int</td>
+<td>class</td>
+</tr>
+<tr>
+<td>double</td>
+<td>string</td>
+</tr>
+<tr>
+<td>bool</td>
+<td>array</td>
+</tr>
+<tr>
+<td>struct</td>
+<td>object</td>
+</tr>
+<tr>
+<td>enum</td>
+<td>delegate</td>
+</tr>
+</table>
+
+</section>
+
+
+<section id="c8">
+
+<h2>08 — التحويل Casting وParsing</h2>
+
+<p>
+نحتاج إلى تحويل البيانات عندما تكون القيمة من نوع مختلف عن النوع المطلوب.
+يوجد فرق بين Casting وParsing وConversion.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>string text = "25";
+
+if (int.TryParse(text, out int age))
+{
+    Console.WriteLine(age);
+}
+
+double x = 10.8;
+int y = (int)x;
+
+Console.WriteLine(y);</pre>
+</div>
+
+<div class="note">
+TryParse مفيد عندما تكون البيانات القادمة من المستخدم أو ملف أو API
+وقد تكون غير صالحة للتحويل.
+</div>
+
+</section>
+
+
+<section id="c9">
+
+<h2>09 — المعاملات Operators</h2>
+
+<p>
+المعاملات تستخدم لإجراء الحسابات والمقارنات والعمليات المنطقية.
+</p>
+
+<table>
+<tr>
+<th>الفئة</th>
+<th>أمثلة</th>
+</tr>
+<tr>
+<td>حسابية</td>
+<td>+ - * / %</td>
+</tr>
+<tr>
+<td>مقارنة</td>
+<td>== != &gt; &lt; &gt;= &lt;=</td>
+</tr>
+<tr>
+<td>منطقية</td>
+<td>&amp;&amp; || !</td>
+</tr>
+<tr>
+<td>إسناد</td>
+<td>= += -= *= /=</td>
+</tr>
+<tr>
+<td>Null</td>
+<td>?? ??= ?. ?[]</td>
+</tr>
+</table>
+
+</section>
+
+
+<section id="c10">
+
+<h2>10 — الشروط if وelse</h2>
+
+<p>
+تستخدم الشروط لاتخاذ قرار بناءً على قيمة أو تعبير منطقي.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>int age = 20;
+
+if (age &gt;= 18)
+{
+    Console.WriteLine("Adult");
+}
+else
+{
+    Console.WriteLine("Minor");
+}</pre>
+</div>
+
+</section>
+
+
+<section id="c11">
+
+<h2>11 — switch وSwitch Expressions</h2>
+
+<p>
+switch مناسب عندما نريد التعامل مع مجموعة من الحالات المحددة.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>int day = 2;
+
+switch (day)
+{
+    case 1:
+        Console.WriteLine("Saturday");
+        break;
+
+    case 2:
+        Console.WriteLine("Sunday");
+        break;
+
+    default:
+        Console.WriteLine("Unknown");
+        break;
+}</pre>
+</div>
+
+<h3>Switch Expression</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>string result = day switch
+{
+    1 =&gt; "Saturday",
+    2 =&gt; "Sunday",
+    _ =&gt; "Unknown"
+};</pre>
+</div>
+
+</section>
+
+
+<section id="c12">
+
+<h2>12 — الحلقات Loops</h2>
+
+<p>
+الحلقات تسمح بتكرار تنفيذ مجموعة من التعليمات.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>for (int i = 1; i &lt;= 5; i++)
+{
+    Console.WriteLine(i);
+}
+
+foreach (var item in new[] { 10, 20, 30 })
+{
+    Console.WriteLine(item);
+}
+
+int x = 0;
+
+while (x &lt; 5)
+{
+    Console.WriteLine(x);
+    x++;
+}</pre>
+</div>
+
+</section>
+
+
+<section id="c13">
+
+<h2>13 — المصفوفات Arrays</h2>
+
+<p>
+المصفوفة تخزن مجموعة من العناصر من النوع نفسه، ويبدأ فهرسها عادة من الصفر.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>int[] numbers = { 10, 20, 30, 40 };
+
+Console.WriteLine(numbers[0]);
+
+for (int i = 0; i &lt; numbers.Length; i++)
+{
+    Console.WriteLine(numbers[i]);
+}</pre>
+</div>
+
+</section>
+
+
+<section id="c14">
+
+<h2>14 — النصوص Strings</h2>
+
+<p>
+string من أكثر الأنواع استخداماً في التطبيقات، ويقدم عمليات البحث
+والتقطيع والاستبدال والتحويل والمقارنة.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>string name = "Maha Shahoub";
+
+Console.WriteLine(name.Length);
+Console.WriteLine(name.ToUpper());
+Console.WriteLine(name.ToLower());
+Console.WriteLine(name.Contains("Maha"));
+Console.WriteLine(name.StartsWith("Maha"));
+Console.WriteLine(name.Replace("Maha", "Engineer"));</pre>
+</div>
+
+<h3>String Interpolation</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>string name = "Maha";
+int age = 30;
+
+string message = $"My name is {name} and my age is {age}";</pre>
+</div>
+
+</section>
+
+
+<section id="c15">
+
+<h2>15 — StringBuilder</h2>
+
+<p>
+StringBuilder مناسب عند بناء نص كبير عبر عمليات إضافة وتعديل متكررة.
+يقلل من إنشاء عدد كبير من كائنات string المؤقتة في بعض السيناريوهات.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>using System.Text;
+
+var builder = new StringBuilder();
+
+builder.Append("C#");
+builder.Append(" ");
+builder.Append("Programming");
+
+Console.WriteLine(builder.ToString());</pre>
+</div>
+
+</section>
+
+
+<section id="c16">
+
+<h2>16 — الدوال Methods</h2>
+
+<p>
+الدالة تجمع مجموعة من التعليمات في وحدة قابلة لإعادة الاستخدام.
+يمكن أن تستقبل Parameters وتعيد Return Value.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>static int Add(int a, int b)
+{
+    return a + b;
+}
+
+int result = Add(10, 20);
+
+Console.WriteLine(result);</pre>
+</div>
+
+</section>
+
+
+<section id="c17">
+
+<h2>17 — Parameters وArguments</h2>
+
+<p>
+Parameter هو المتغير الموجود في تعريف الدالة، بينما Argument هي القيمة
+التي نمررها عند استدعائها.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>static void ShowUser(string name, int age)
+{
+    Console.WriteLine($"{name} - {age}");
+}
+
+ShowUser("Maha", 30);</pre>
+</div>
+
+</section>
+
+
+<section id="c18">
+
+<h2>18 — ref وout وin وparams</h2>
+
+<p>
+توفر #C عدة طرق متقدمة لتمرير المعاملات.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>static void Increment(ref int value)
+{
+    value++;
+}
+
+static bool TryParseAge(
+    string text,
+    out int age)
+{
+    return int.TryParse(text, out age);
+}
+
+static int Sum(params int[] values)
+{
+    return values.Sum();
+}
+
+int number = 10;
+
+Increment(ref number);
+
+if (TryParseAge("25", out int age))
+{
+    Console.WriteLine(age);
+}
+
+Console.WriteLine(Sum(1, 2, 3, 4));</pre>
+</div>
+
+</section>
+
+
+<section id="c19">
+
+<h2>19 — Optional وNamed Arguments</h2>
+
+<p>
+يمكن جعل بعض Parameters اختيارية، ويمكن تمرير Arguments بالاسم بدلاً من
+الاعتماد على ترتيبها.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>static void CreateUser(
+    string name,
+    int age = 18,
+    bool active = true)
+{
+    Console.WriteLine(
+        $"{name} - {age} - {active}");
+}
+
+CreateUser("Maha");
+
+CreateUser(
+    name: "Ali",
+    active: false,
+    age: 25);</pre>
+</div>
+
+</section>
+
+
+<section id="c20">
+
+<h2>20 — Structs</h2>
+
+<p>
+struct نوع قيمة Value Type مناسب لتمثيل كائنات صغيرة ذات قيمة.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>public struct Point
+{
+    public int X { get; }
+    public int Y { get; }
+
+    public Point(int x, int y)
+    {
+        X = x;
+        Y = y;
+    }
+}
+
+var point = new Point(10, 20);
+
+Console.WriteLine(point.X);</pre>
+</div>
+
+</section>
+
+
+<section id="c21">
+
+<h2>21 — Enums</h2>
+
+<p>
+enum يستخدم لتعريف مجموعة من القيم المحددة مسبقاً.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>enum UserRole
+{
+    Admin,
+    Teacher,
+    Student
+}
+
+UserRole role = UserRole.Teacher;
+
+if (role == UserRole.Teacher)
+{
+    Console.WriteLine("Teacher");
+}</pre>
+</div>
+
+</section>
+
+
+<section id="c22">
+
+<h2>22 — Records</h2>
+
+<p>
+Records مناسبة لتمثيل البيانات، وتوفر سلوكاً مبنياً على القيمة في
+المقارنة بدلاً من الاعتماد فقط على هوية الكائن.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>public record User(
+    int Id,
+    string Name,
+    string Email);
+
+var user = new User(
+    1,
+    "Maha",
+    "maha@example.com");
+
+Console.WriteLine(user.Name);</pre>
+</div>
+
+</section>
+
+
+<section id="c23">
+
+<h2>23 — Classes وObjects</h2>
+
+<p>
+Class هو مخطط لإنشاء الكائنات. Object هو نسخة فعلية من Class.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>public class Student
+{
+    public string Name { get; set; }
+
+    public Student(string name)
+    {
+        Name = name;
+    }
+
+    public string Greet()
+    {
+        return $"Hello {Name}";
+    }
+}
+
+var student = new Student("Maha");
+
+Console.WriteLine(student.Greet());</pre>
+</div>
+
+</section>
+
+
+<section id="c24">
+
+<h2>24 — Constructors</h2>
+
+<p>
+Constructor يستخدم لتهيئة الكائن عند إنشائه.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>public class Product
+{
+    public string Name { get; }
+    public decimal Price { get; }
+
+    public Product(string name, decimal price)
+    {
+        Name = name;
+        Price = price;
+    }
+}
+
+var product =
+    new Product("Laptop", 2500);</pre>
+</div>
+
+</section>
+
+
+<section id="c25">
+
+<h2>25 — Fields وProperties</h2>
+
+<p>
+Field متغير داخل الكلاس، بينما Property توفر واجهة للوصول إلى البيانات
+ويمكنها التحكم في القراءة والكتابة.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>public class User
+{
+    private string _name = "";
+
+    public string Name
+    {
+        get =&gt; _name;
+        set
+        {
+            if (!string.IsNullOrWhiteSpace(value))
+                _name = value;
+        }
+    }
+}</pre>
+</div>
+
+</section>
+
+
+<section id="c26">
+
+<h2>26 — Access Modifiers</h2>
+
+<table>
+<tr>
+<th>المحدد</th>
+<th>المعنى</th>
+</tr>
+<tr>
+<td>public</td>
+<td>متاح من خارج النوع.</td>
+</tr>
+<tr>
+<td>private</td>
+<td>متاح داخل النوع نفسه.</td>
+</tr>
+<tr>
+<td>protected</td>
+<td>متاح داخل النوع والأنواع المشتقة.</td>
+</tr>
+<tr>
+<td>internal</td>
+<td>متاح داخل نفس Assembly.</td>
+</tr>
+</table>
+
+</section>
+
+
+<section id="c27">
+
+<h2>27 — Encapsulation</h2>
+
+<p>
+التغليف يعني حماية الحالة الداخلية للكائن وعدم السماح بتعديلها بشكل عشوائي.
+يمكن تحقيق ذلك باستخدام private fields وproperties وmethods للتحقق من القيم.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>public class BankAccount
+{
+    private decimal _balance;
+
+    public decimal Balance =&gt; _balance;
+
+    public void Deposit(decimal amount)
+    {
+        if (amount &lt;= 0)
+            throw new ArgumentException("Invalid amount");
+
+        _balance += amount;
+    }
+}</pre>
+</div>
+
+</section>
+
+
+<section id="c28">
+
+<h2>28 — Inheritance</h2>
+
+<p>
+Inheritance يسمح لكلاس مشتق بإعادة استخدام خصائص وسلوك Class أساسي.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>public class Animal
+{
+    public string Name { get; set; } = "";
+
+    public void Eat()
+    {
+        Console.WriteLine("Eating...");
+    }
+}
+
+public class Dog : Animal
+{
+    public void Bark()
+    {
+        Console.WriteLine("Woof");
+    }
+}
+
+var dog = new Dog();
+
+dog.Name = "Max";
+dog.Eat();
+dog.Bark();</pre>
+</div>
+
+</section>
+
+
+<section id="c29">
+
+<h2>29 — Polymorphism</h2>
+
+<p>
+Polymorphism يسمح باستخدام مرجع من نوع أساسي للوصول إلى سلوك مختلف
+في الأنواع المشتقة.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>public class Animal
+{
+    public virtual void Sound()
+    {
+        Console.WriteLine("Animal sound");
+    }
+}
+
+public class Dog : Animal
+{
+    public override void Sound()
+    {
+        Console.WriteLine("Woof");
+    }
+}
+
+Animal animal = new Dog();
+
+animal.Sound();</pre>
+</div>
+
+</section>
+
+
+<section id="c30">
+
+<h2>30 — Abstract Classes</h2>
+
+<p>
+Abstract class تستخدم كأساس لأنواع أخرى ولا يمكن عادة إنشاء instance
+مباشرة منها.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>public abstract class Shape
+{
+    public abstract double Area();
+}
+
+public class Circle : Shape
+{
+    public double Radius { get; }
+
+    public Circle(double radius)
+    {
+        Radius = radius;
+    }
+
+    public override double Area()
+    {
+        return Math.PI * Radius * Radius;
+    }
+}</pre>
+</div>
+
+</section>
+
+
+<section id="c31">
+
+<h2>31 — Interfaces</h2>
+
+<p>
+Interface يحدد عقداً Contract يجب أن تلتزم به الأنواع التي تطبقه.
+وهو مهم جداً في تصميم الأنظمة وفصل المسؤوليات وDependency Injection.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>public interface IRepository&lt;T&gt;
+{
+    void Add(T item);
+    T? GetById(int id);
+}
+
+public class UserRepository
+    : IRepository&lt;User&gt;
+{
+    public void Add(User item)
+    {
+        Console.WriteLine("Added");
+    }
+
+    public User? GetById(int id)
+    {
+        return null;
+    }
+}
+
+public record User(int Id, string Name);</pre>
+</div>
+
+</section>
+
+
+<section id="c32">
+
+<h2>32 — Composition</h2>
+
+<p>
+Composition تعني بناء كائن من خلال الاعتماد على كائنات أخرى بدلاً من
+الاعتماد دائماً على الوراثة.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>public class Engine
+{
+    public void Start()
+    {
+        Console.WriteLine("Engine started");
+    }
+}
+
+public class Car
+{
+    private readonly Engine _engine;
+
+    public Car(Engine engine)
+    {
+        _engine = engine;
+    }
+
+    public void Start()
+    {
+        _engine.Start();
+    }
+}</pre>
+</div>
+
+</section>
+
+
+<section id="c33">
+
+<h2>33 — Generics</h2>
+
+<p>
+Generics تسمح بكتابة كود يعمل مع أنواع متعددة مع الحفاظ على Type Safety.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>public class Box&lt;T&gt;
+{
+    public T Value { get; }
+
+    public Box(T value)
+    {
+        Value = value;
+    }
+}
+
+var numberBox = new Box&lt;int&gt;(100);
+var textBox = new Box&lt;string&gt;("C#");</pre>
+</div>
+
+</section>
+
+
+<section id="c34">
+
+<h2>34 — Generic Constraints</h2>
+
+<p>
+يمكن وضع قيود على النوع T لتحديد الأنواع المقبولة داخل Generic.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>public class Repository&lt;T&gt;
+    where T : class
+{
+    private readonly List&lt;T&gt; _items = new();
+
+    public void Add(T item)
+    {
+        _items.Add(item);
+    }
+}</pre>
+</div>
+
+</section>
+
+
+<section id="c35">
+
+<h2>35 — Collections</h2>
+
+<p>
+Collections توفر هياكل لتخزين وإدارة مجموعات من البيانات.
+</p>
+
+<table>
+<tr>
+<th>Collection</th>
+<th>الاستخدام</th>
+</tr>
+<tr>
+<td>List&lt;T&gt;</td>
+<td>قائمة مرتبة يمكن إضافة وحذف العناصر منها.</td>
+</tr>
+<tr>
+<td>Dictionary&lt;TKey,TValue&gt;</td>
+<td>الوصول إلى قيمة باستخدام مفتاح.</td>
+</tr>
+<tr>
+<td>HashSet&lt;T&gt;</td>
+<td>قيم فريدة بدون تكرار.</td>
+</tr>
+<tr>
+<td>Queue&lt;T&gt;</td>
+<td>FIFO.</td>
+</tr>
+<tr>
+<td>Stack&lt;T&gt;</td>
+<td>LIFO.</td>
+</tr>
+</table>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>var numbers = new List&lt;int&gt;
+{
+    10, 20, 30
+};
+
+numbers.Add(40);
+numbers.Remove(20);</pre>
+</div>
+
+</section>
+
+
+<section id="c36">
+
+<h2>36 — Dictionary وHashSet</h2>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>var users = new Dictionary&lt;int, string&gt;
+{
+    [1] = "Maha",
+    [2] = "Ali"
+};
+
+if (users.TryGetValue(1, out string? name))
+{
+    Console.WriteLine(name);
+}
+
+var roles = new HashSet&lt;string&gt;
+{
+    "Admin",
+    "Teacher",
+    "Admin"
+};
+
+Console.WriteLine(roles.Count);</pre>
+</div>
+
+</section>
+
+
+<section id="c37">
+
+<h2>37 — Queue وStack</h2>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>var queue = new Queue&lt;string&gt;();
+
+queue.Enqueue("A");
+queue.Enqueue("B");
+
+Console.WriteLine(queue.Dequeue());
+
+var stack = new Stack&lt;string&gt;();
+
+stack.Push("A");
+stack.Push("B");
+
+Console.WriteLine(stack.Pop());</pre>
+</div>
+
+<p>
+Queue تعمل بأسلوب First In First Out، بينما Stack تعمل بأسلوب
+Last In First Out.
+</p>
+
+</section>
+
+
+<section id="c38">
+
+<h2>38 — Lambda Expressions</h2>
+
+<p>
+Lambda طريقة مختصرة لكتابة دوال صغيرة تستخدم بكثرة مع LINQ والDelegates.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>Func&lt;int, int&gt; square =
+    x =&gt; x * x;
+
+Console.WriteLine(square(5));</pre>
+</div>
+
+</section>
+
+
+<section id="c39">
+
+<h2>39 — Delegates</h2>
+
+<p>
+Delegate يمثل مرجعاً إلى method بتوقيع معين، ويسمح بتمرير الدوال كقيم.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>public delegate int Operation(
+    int a,
+    int b);
+
+static int Add(int a, int b)
+{
+    return a + b;
+}
+
+Operation operation = Add;
+
+Console.WriteLine(
+    operation(10, 20));</pre>
+</div>
+
+</section>
+
+
+<section id="c40">
+
+<h2>40 — Func وAction وPredicate</h2>
+
+<table>
+<tr>
+<th>النوع</th>
+<th>الوظيفة</th>
+</tr>
+<tr>
+<td>Func</td>
+<td>يمثل دالة تعيد قيمة.</td>
+</tr>
+<tr>
+<td>Action</td>
+<td>يمثل دالة لا تعيد قيمة.</td>
+</tr>
+<tr>
+<td>Predicate</td>
+<td>يمثل دالة تعيد bool.</td>
+</tr>
+</table>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>Func&lt;int, int, int&gt; add =
+    (a, b) =&gt; a + b;
+
+Action&lt;string&gt; show =
+    text =&gt; Console.WriteLine(text);
+
+Predicate&lt;int&gt; isEven =
+    number =&gt; number % 2 == 0;</pre>
+</div>
+
+</section>
+
+
+<section id="c41">
+
+<h2>41 — Events</h2>
+
+<p>
+Events تستخدم في نظام الإشعارات داخل التطبيقات. الكائن يطلق الحدث،
+والكائنات الأخرى يمكنها الاشتراك فيه.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>public class Counter
+{
+    public event EventHandler? Changed;
+
+    public void Update()
+    {
+        Changed?.Invoke(
+            this,
+            EventArgs.Empty);
+    }
+}
+
+var counter = new Counter();
+
+counter.Changed +=
+    (sender, args) =>
+    {
+        Console.WriteLine("Changed");
+    };
+
+counter.Update();</pre>
+</div>
+
+</section>
+
+
+<section id="c42">
+
+<h2>42 — LINQ الأساسي</h2>
+
+<p>
+LINQ هي مجموعة تقنيات تسمح بالاستعلام عن Collections ومصادر بيانات
+بصياغة موحدة.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>var numbers = new[]
+{
+    1, 2, 3, 4, 5, 6
+};
+
+var even = numbers
+    .Where(n =&gt; n % 2 == 0)
+    .ToList();
+
+foreach (var number in even)
+{
+    Console.WriteLine(number);
+}</pre>
+</div>
+
+</section>
+
+
+<section id="c43">
+
+<h2>43 — LINQ المتقدم</h2>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>var products = new[]
+{
+    new { Name = "Laptop", Price = 3000 },
+    new { Name = "Mouse", Price = 100 },
+    new { Name = "Keyboard", Price = 250 }
+};
+
+var result = products
+    .Where(p =&gt; p.Price &gt; 200)
+    .OrderByDescending(p =&gt; p.Price)
+    .Select(p =&gt; new
+    {
+        p.Name,
+        p.Price,
+        WithTax = p.Price * 1.15m
+    })
+    .ToList();</pre>
+</div>
+
+<h3>عمليات مهمة</h3>
+
+<p>
+Where — Select — OrderBy — ThenBy — GroupBy — Join — Any — All —
+First — FirstOrDefault — Single — Count — Sum — Average — Min — Max.
+</p>
+
+</section>
+
+
+<section id="c44">
+
+<h2>44 — Pattern Matching</h2>
+
+<p>
+Pattern Matching تسمح بفحص النوع والقيمة والبنية بطريقة أكثر وضوحاً.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>object value = 25;
+
+if (value is int number &amp;&amp; number &gt; 18)
+{
+    Console.WriteLine("Adult number");
+}</pre>
+</div>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>string result = value switch
+{
+    int n when n &gt;= 18 =&gt; "Adult",
+    int =&gt; "Number",
+    string =&gt; "Text",
+    _ =&gt; "Unknown"
+};</pre>
+</div>
+
+</section>
+
+
+<section id="c45">
+
+<h2>45 — Exception Handling</h2>
+
+<p>
+Exceptions تستخدم للتعامل مع الأخطاء التي تحدث أثناء التشغيل.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>try
+{
+    int result = 10 / 0;
+}
+catch (DivideByZeroException ex)
+{
+    Console.WriteLine(ex.Message);
+}
+catch (Exception ex)
+{
+    Console.WriteLine(ex.Message);
+}
+finally
+{
+    Console.WriteLine("Finished");
+}</pre>
+</div>
+
+<div class="warning">
+لا تستخدم catch عام لإخفاء الأخطاء. سجل الخطأ وتعامل معه وفق طبيعة التطبيق.
+</div>
+
+</section>
+
+
+<section id="c46">
+
+<h2>46 — Custom Exceptions</h2>
+
+<p>
+يمكن إنشاء Exception خاصة عندما يكون للتطبيق نوع خطأ يحتاج إلى معنى واضح.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>public class InsufficientBalanceException
+    : Exception
+{
+    public InsufficientBalanceException(
+        string message)
+        : base(message)
+    {
+    }
+}
+
+throw new InsufficientBalanceException(
+    "الرصيد غير كافٍ.");</pre>
+</div>
+
+</section>
+
+
+<section id="c47">
+
+<h2>47 — Nullable Reference Types</h2>
+
+<p>
+Nullable Reference Types تساعد المبرمج على اكتشاف احتمالية وجود null
+أثناء الترجمة.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>string? name = null;
+
+string display =
+    name ?? "Unknown";
+
+Console.WriteLine(display);</pre>
+</div>
+
+<p>
+علامة ? تعني أن القيمة يمكن أن تكون null.
+أما ?? فتستخدم لتحديد قيمة بديلة عند وجود null.
+</p>
+
+</section>
+
+
+<section id="c48">
+
+<h2>48 — var وobject وdynamic</h2>
+
+<table>
+<tr>
+<th>الكلمة</th>
+<th>المعنى</th>
+</tr>
+<tr>
+<td>var</td>
+<td>النوع يحدده المترجم وقت الترجمة ولا يعني أن المتغير بلا نوع.</td>
+</tr>
+<tr>
+<td>object</td>
+<td>نوع أساسي يمكنه الإشارة إلى قيم مختلفة ويحتاج أحياناً إلى casting.</td>
+</tr>
+<tr>
+<td>dynamic</td>
+<td>يؤجل بعض عمليات التحقق إلى وقت التشغيل.</td>
+</tr>
+</table>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>var name = "Maha";
+
+object value = 100;
+
+dynamic data = "Hello";
+
+Console.WriteLine(data.Length);</pre>
+</div>
+
+</section>
+
+
+<section id="c49">
+
+<h2>49 — Extension Methods</h2>
+
+<p>
+Extension Methods تسمح بإضافة طريقة استخدام جديدة إلى نوع موجود دون تعديل
+تعريف النوع الأصلي.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>public static class StringExtensions
+{
+    public static bool IsLong(
+        this string text)
+    {
+        return text.Length &gt; 10;
+    }
+}
+
+string value = "Hello C#";
+
+Console.WriteLine(
+    value.IsLong());</pre>
+</div>
+
+</section>
+
+
+<section id="c50">
+
+<h2>50 — Iterators وyield</h2>
+
+<p>
+yield return يسمح ببناء Iterator يعيد العناصر تدريجياً بدلاً من إنشاء
+مجموعة كاملة بالضرورة قبل بدء الاستهلاك.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>static IEnumerable&lt;int&gt; Numbers()
+{
+    for (int i = 1; i &lt;= 5; i++)
+    {
+        yield return i;
+    }
+}
+
+foreach (var number in Numbers())
+{
+    Console.WriteLine(number);
+}</pre>
+</div>
+
+</section>
+
+
+<section id="c51">
+
+<h2>51 — الملفات File System</h2>
+
+<p>
+توفر System.IO أدوات للتعامل مع الملفات والمجلدات والمسارات.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>await File.WriteAllTextAsync(
+    "data.txt",
+    "Hello C#");
+
+string text =
+    await File.ReadAllTextAsync(
+        "data.txt");
+
+Console.WriteLine(text);</pre>
+</div>
+
+<h3>المجلدات</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>Directory.CreateDirectory("Data");
+
+string[] files =
+    Directory.GetFiles("Data");
+
+foreach (var file in files)
+{
+    Console.WriteLine(file);
+}</pre>
+</div>
+
+</section>
+
+
+<section id="c52">
+
+<h2>52 — Streams</h2>
+
+<p>
+Stream تمثل تدفق البيانات، وتستخدم مع الملفات والشبكات والذاكرة وغيرها.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>using var stream =
+    new FileStream(
+        "data.bin",
+        FileMode.Create,
+        FileAccess.Write);
+
+byte[] data =
+    System.Text.Encoding.UTF8
+        .GetBytes("#C");
+
+await stream.WriteAsync(data);</pre>
+</div>
+
+</section>
+
+
+<section id="c53">
+
+<h2>53 — Serialization</h2>
+
+<p>
+Serialization تحويل كائن إلى صيغة يمكن حفظها أو إرسالها، بينما
+Deserialization تعيد البيانات إلى كائنات.
+</p>
+
+<div class="note">
+من أشهر الصيغ المستخدمة مع #C JSON وXML.
+</div>
+
+</section>
+
+
+<section id="c54">
+
+<h2>54 — JSON</h2>
+
+<p>
+System.Text.Json مكتبة حديثة للتعامل مع JSON داخل .NET.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>using System.Text.Json;
+
+var user = new
+{
+    Name = "Maha",
+    Active = true
+};
+
+string json =
+    JsonSerializer.Serialize(user);
+
+Console.WriteLine(json);</pre>
+</div>
+
+<h3>Deserialization</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>public record User(
+    string Name,
+    bool Active);
+
+string json =
+    """{"Name":"Maha","Active":true}""";
+
+User? user =
+    JsonSerializer.Deserialize&lt;User&gt;(json);
+
+Console.WriteLine(user?.Name);</pre>
+</div>
+
+</section>
+
+
+<section id="c55">
+
+<h2>55 — XML</h2>
+
+<p>
+XML يستخدم في بعض ملفات الإعدادات والتكاملات والأنظمة القديمة وبعض
+الأنظمة المؤسسية.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>using System.Xml.Linq;
+
+var xml =
+    new XElement(
+        "User",
+        new XElement("Name", "Maha"),
+        new XElement("Active", true)
+    );
+
+Console.WriteLine(xml);</pre>
+</div>
+
+</section>
+
+
+<section id="c56">
+
+<h2>56 — DateTime وDateTimeOffset وTimeSpan</h2>
+
+<p>
+التعامل مع التاريخ والوقت يحتاج إلى الانتباه إلى المنطقة الزمنية
+والفرق بين الوقت المحلي وUTC.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>DateTime now = DateTime.Now;
+
+DateTime utc = DateTime.UtcNow;
+
+DateTimeOffset precise =
+    DateTimeOffset.Now;
+
+TimeSpan duration =
+    TimeSpan.FromHours(2);
+
+Console.WriteLine(now);
+Console.WriteLine(utc);
+Console.WriteLine(precise);
+Console.WriteLine(duration);</pre>
+</div>
+
+</section>
+
+
+<section id="c57">
+
+<h2>57 — Regular Expressions</h2>
+
+<p>
+Regex تستخدم للبحث عن أنماط داخل النصوص، مثل البريد الإلكتروني والأرقام
+والرموز والصيغ المحددة.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>using System.Text.RegularExpressions;
+
+string email =
+    "maha@example.com";
+
+bool valid =
+    Regex.IsMatch(
+        email,
+        @"^[^@\s]+@[^@\s]+\.[^@\s]+$");
+
+Console.WriteLine(valid);</pre>
+</div>
+
+</section>
+
+
+<section id="c58">
+
+<h2>58 — Attributes</h2>
+
+<p>
+Attributes تسمح بإضافة معلومات وصفية إلى الكلاسات والدوال والخصائص
+وغيرها ويمكن قراءتها عبر Reflection.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>[Obsolete("Use NewMethod instead")]
+static void OldMethod()
+{
+}
+
+static void NewMethod()
+{
+}</pre>
+</div>
+
+</section>
+
+
+<section id="c59">
+
+<h2>59 — Reflection</h2>
+
+<p>
+Reflection يسمح بفحص الأنواع والكلاسات والخصائص والدوال أثناء التشغيل.
+يستخدم في بعض الأطر والمكتبات وأنظمة Dependency Injection.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>Type type = typeof(string);
+
+Console.WriteLine(type.Name);
+
+foreach (var method in type.GetMethods())
+{
+    Console.WriteLine(method.Name);
+}</pre>
+</div>
+
+<div class="warning">
+Reflection قوي لكنه قد يزيد التعقيد والتكلفة في بعض السيناريوهات، لذلك
+لا يستخدم بلا حاجة.
+</div>
+
+</section>
+
+
+<section id="c60">
+
+<h2>60 — Namespaces وAssemblies</h2>
+
+<p>
+Namespace ينظم الأنواع داخل مساحة أسماء، بينما Assembly هي وحدة تجميع
+تحتوي على الكود المترجم والبيانات الوصفية والموارد حسب نوع المشروع.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>namespace MyApplication.Services;
+
+public class UserService
+{
+    public void Run()
+    {
+        Console.WriteLine("Running");
+    }
+}</pre>
+</div>
+
+</section>
+
+
+<section id="c61">
+
+<h2>61 — NuGet</h2>
+
+<p>
+NuGet هو نظام إدارة الحزم في منظومة .NET. يمكن من خلاله إضافة مكتبات
+جاهزة إلى المشاريع.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>dotnet add package Dapper
+
+dotnet restore
+
+dotnet list package</pre>
+</div>
+
+<p>
+قبل إضافة أي حزمة، يجب معرفة مصدرها وإصدارها وترخيصها ومتطلبات الأمان
+والتوافق مع المشروع.
+</p>
+
+</section>
+
+
+<section id="c62">
+
+<h2>62 — Dependency Injection</h2>
+
+<p>
+Dependency Injection تعني أن الكلاس لا ينشئ Dependencies بنفسه،
+بل يستقبلها من الخارج. هذا يقلل الاقتران ويسهل الاختبار وتبديل التنفيذ.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>public interface IMessageService
+{
+    void Send(string message);
+}
+
+public class MessageService
+    : IMessageService
+{
+    public void Send(string message)
+    {
+        Console.WriteLine(message);
+    }
+}
+
+// في تطبيق ASP.NET Core
+builder.Services
+    .AddScoped&lt;IMessageService, MessageService&gt;();</pre>
+</div>
+
+</section>
+
+
+<section id="c63">
+
+<h2>63 — Configuration</h2>
+
+<p>
+التطبيقات تحتاج إعدادات مثل Connection Strings وAPI Keys وبعض الخيارات.
+يفضل فصل الإعدادات عن الكود وعدم وضع الأسرار داخل المستودع.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>{
+  "ConnectionStrings": {
+    "Default": "Server=localhost;Database=AppDb;"
+  }
+}</pre>
+</div>
+
+<div class="danger">
+لا تضعي كلمات مرور وقيم API السرية داخل Git أو داخل الكود المنشور.
+</div>
+
+</section>
+
+
+<section id="c64">
+
+<h2>64 — Logging</h2>
+
+<p>
+Logging يساعد في معرفة ما حدث داخل التطبيق وتشخيص الأخطاء ومراقبة الأداء.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>public class UserService
+{
+    private readonly ILogger&lt;UserService&gt; _logger;
+
+    public UserService(
+        ILogger&lt;UserService&gt; logger)
+    {
+        _logger = logger;
+    }
+
+    public void Run()
+    {
+        _logger.LogInformation(
+            "UserService started");
+    }
+}</pre>
+</div>
+
+</section>
+
+
+<section id="c65">
+
+<h2>65 — async وawait</h2>
+
+<p>
+البرمجة غير المتزامنة تسمح بتنفيذ عمليات I/O مثل الشبكة والملفات وقواعد
+البيانات دون حجز Thread بشكل غير ضروري أثناء انتظار العملية.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>static async Task Main()
+{
+    await Task.Delay(1000);
+
+    Console.WriteLine("Done");
+}</pre>
+</div>
+
+</section>
+
+
+<section id="c66">
+
+<h2>66 — Task</h2>
+
+<p>
+Task يمثل عملية غير متزامنة. يمكن أن يعيد Task نتيجة من نوع معين.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>static async Task&lt;int&gt; CalculateAsync()
+{
+    await Task.Delay(500);
+
+    return 100;
+}
+
+int result =
+    await CalculateAsync();
+
+Console.WriteLine(result);</pre>
+</div>
+
+</section>
+
+
+<section id="c67">
+
+<h2>67 — Threading</h2>
+
+<p>
+Thread يمثل مسار تنفيذ. استخدام Threads يحتاج إلى فهم التزامن ومشاركة
+البيانات ومشاكل Race Conditions.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>using System.Threading;
+
+Thread thread = new(() =>
+{
+    Console.WriteLine(
+        "Running on another thread");
+});
+
+thread.Start();
+thread.Join();</pre>
+</div>
+
+</section>
+
+
+<section id="c68">
+
+<h2>68 — Parallel Programming</h2>
+
+<p>
+Parallel Programming يسمح بتنفيذ عمليات مستقلة بالتوازي عندما يكون ذلك
+مفيداً للأداء.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>Parallel.For(
+    0,
+    10,
+    i =>
+    {
+        Console.WriteLine(i);
+    });</pre>
+</div>
+
+<div class="warning">
+التوازي ليس دائماً أسرع؛ يعتمد على طبيعة العمل وعدد العمليات وتكلفة
+التزامن والموارد المتاحة.
+</div>
+
+</section>
+
+
+<section id="c69">
+
+<h2>69 — CancellationToken</h2>
+
+<p>
+CancellationToken يسمح بإلغاء عملية طويلة بطريقة منظمة بدلاً من قتل
+التنفيذ بطريقة عشوائية.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>static async Task WorkAsync(
+    CancellationToken token)
+{
+    for (int i = 0; i &lt; 10; i++)
+    {
+        token.ThrowIfCancellationRequested();
+
+        await Task.Delay(500, token);
+    }
+}
+
+using var cts =
+    new CancellationTokenSource();
+
+await WorkAsync(cts.Token);</pre>
+</div>
+
+</section>
+
+
+<section id="c70">
+
+<h2>70 — Memory وGarbage Collector</h2>
+
+<p>
+.NET تستخدم Garbage Collector لإدارة ذاكرة Managed Objects. يقوم النظام
+باكتشاف الكائنات التي لم تعد قابلة للوصول ويمكنه استعادة الذاكرة.
+</p>
+
+<h3>مهم للمبرمج</h3>
+
+<ul>
+<li>تجنب إنشاء كائنات ضخمة بلا حاجة.</li>
+<li>تخلص من الموارد غير المُدارة بطريقة صحيحة.</li>
+<li>انتبه إلى Event Handlers التي قد تمنع بعض الكائنات من التحرير.</li>
+<li>استخدم Profiling عند وجود مشكلة أداء حقيقية.</li>
+</ul>
+
+</section>
+
+
+<section id="c71">
+
+<h2>71 — IDisposable وusing</h2>
+
+<p>
+بعض الموارد تحتاج إلى تحرير صريح مثل File Streams وبعض الاتصالات.
+IDisposable توفر نمطاً لتحرير الموارد.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>using var stream =
+    new FileStream(
+        "data.txt",
+        FileMode.OpenOrCreate);
+
+await stream.WriteAsync(
+    System.Text.Encoding.UTF8
+        .GetBytes("Hello"));</pre>
+</div>
+
+</section>
+
+
+<section id="c72">
+
+<h2>72 — Unit Testing</h2>
+
+<p>
+Unit Testing يختبر وحدات صغيرة من البرنامج بشكل مستقل.
+من الأدوات المشهورة في .NET: xUnit وNUnit وMSTest.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>public class Calculator
+{
+    public int Add(int a, int b)
+        =&gt; a + b;
+}
+
+// مثال اختبار بأسلوب xUnit
+[Fact]
+public void Add_ShouldReturnCorrectValue()
+{
+    var calculator =
+        new Calculator();
+
+    var result =
+        calculator.Add(2, 3);
+
+    Assert.Equal(5, result);
+}</pre>
+</div>
+
+</section>
+
+
+<section id="c73">
+
+<h2>73 — Mocking وتصميم قابل للاختبار</h2>
+
+<p>
+عندما يعتمد كلاس على قاعدة بيانات أو خدمة خارجية، يمكن استخدام Mock
+لعزل الوحدة أثناء الاختبار. من الأدوات المستخدمة Moq وغيرها.
+</p>
+
+<div class="note">
+التصميم الجيد للاختبار يبدأ بفصل المسؤوليات واستخدام Interfaces عند
+الحاجة، وليس فقط بإضافة Mock في نهاية المشروع.
+</div>
+
+</section>
+
+
+<section id="c74">
+
+<h2>74 — ADO.NET</h2>
+
+<p>
+ADO.NET يوفر وصولاً منخفض المستوى نسبياً إلى قواعد البيانات باستخدام
+Connections وCommands وReaders وTransactions.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>using Microsoft.Data.SqlClient;
+
+using var connection =
+    new SqlConnection(connectionString);
+
+await connection.OpenAsync();
+
+using var command =
+    new SqlCommand(
+        "SELECT Id, Name FROM Users WHERE Id = @id",
+        connection);
+
+command.Parameters.AddWithValue(
+    "@id",
+    1);
+
+using var reader =
+    await command.ExecuteReaderAsync();
+
+while (await reader.ReadAsync())
+{
+    Console.WriteLine(
+        reader["Name"]);
+}</pre>
+</div>
+
+<div class="danger">
+استخدمي Parameters بدلاً من دمج قيم المستخدم داخل SQL لتقليل خطر SQL Injection.
+</div>
+
+</section>
+
+
+<section id="c75">
+
+<h2>75 — SQL Server وMySQL</h2>
+
+<p>
+يمكن لتطبيقات #C التعامل مع SQL Server وMySQL وغيرها من أنظمة قواعد
+البيانات باستخدام Drivers وORMs ومكتبات مناسبة.
+</p>
+
+<table>
+<tr>
+<th>التقنية</th>
+<th>الفكرة</th>
+</tr>
+<tr>
+<td>ADO.NET</td>
+<td>تحكم مباشر في الاتصال والاستعلامات.</td>
+</tr>
+<tr>
+<td>Dapper</td>
+<td>Micro ORM خفيف.</td>
+</tr>
+<tr>
+<td>EF Core</td>
+<td>ORM متكامل يعتمد على الكائنات وLINQ.</td>
+</tr>
+</table>
+
+</section>
+
+
+<section id="c76">
+
+<h2>76 — Entity Framework Core</h2>
+
+<p>
+EF Core هو ORM يسمح بالتعامل مع قاعدة البيانات من خلال Classes وLINQ
+بدلاً من كتابة كل SQL يدوياً.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>using Microsoft.EntityFrameworkCore;
+
+public class User
+{
+    public int Id { get; set; }
+
+    public string Name { get; set; } = "";
+}
+
+public class AppDbContext : DbContext
+{
+    public DbSet&lt;User&gt; Users =&gt; Set&lt;User&gt;();
+
+    public AppDbContext(
+        DbContextOptions&lt;AppDbContext&gt; options)
+        : base(options)
+    {
+    }
+}</pre>
+</div>
+
+</section>
+
+
+<section id="c77">
+
+<h2>77 — EF Core Relationships</h2>
+
+<p>
+يمكن تمثيل العلاقات بين الجداول باستخدام Navigation Properties
+وForeign Keys.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>public class Author
+{
+    public int Id { get; set; }
+
+    public string Name { get; set; } = "";
+
+    public List&lt;Book&gt; Books { get; set; }
+        = new();
+}
+
+public class Book
+{
+    public int Id { get; set; }
+
+    public string Title { get; set; } = "";
+
+    public int AuthorId { get; set; }
+
+    public Author Author { get; set; } = null!;
+}</pre>
+</div>
+
+</section>
+
+
+<section id="c78">
+
+<h2>78 — EF Core Migrations</h2>
+
+<p>
+Migrations تستخدم لتتبع تغييرات نموذج البيانات وتطبيقها على قاعدة البيانات.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>dotnet ef migrations add InitialCreate
+
+dotnet ef database update</pre>
+</div>
+
+<div class="warning">
+قبل تطبيق Migrations على الإنتاج، راجعي التغييرات وخطة النشر والنسخ
+الاحتياطية وقواعد البيانات الموجودة.
+</div>
+
+</section>
+
+
+<section id="c79">
+
+<h2>79 — ASP.NET Core</h2>
+
+<p>
+ASP.NET Core إطار لبناء تطبيقات الويب وREST APIs والخدمات.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>var builder =
+    WebApplication.CreateBuilder(args);
+
+builder.Services.AddControllers();
+
+var app = builder.Build();
+
+app.UseHttpsRedirection();
+
+app.MapControllers();
+
+app.Run();</pre>
+</div>
+
+</section>
+
+
+<section id="c80">
+
+<h2>80 — Middleware</h2>
+
+<p>
+Middleware عبارة عن مكونات تشارك في معالجة HTTP Request وResponse.
+يمكن أن تستخدم للتسجيل والمصادقة ومعالجة الأخطاء وCORS وغيرها.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>app.Use(async (context, next) =>
+{
+    Console.WriteLine(
+        "Request started");
+
+    await next();
+
+    Console.WriteLine(
+        "Request finished");
+});</pre>
+</div>
+
+</section>
+
+
+<section id="c81">
+
+<h2>81 — Routing</h2>
+
+<p>
+Routing يحدد الـEndpoint الذي يستقبل الطلب بناءً على HTTP Method والمسار.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>[ApiController]
+[Route("api/[controller]")]
+public class UsersController
+    : ControllerBase
+{
+    [HttpGet]
+    public IActionResult Get()
+    {
+        return Ok("Users");
+    }
+
+    [HttpGet("{id}")]
+    public IActionResult GetById(int id)
+    {
+        return Ok(id);
+    }
+}</pre>
+</div>
+
+</section>
+
+
+<section id="c82">
+
+<h2>82 — MVC وRazor</h2>
+
+<p>
+MVC يقسم التطبيق إلى Model وView وController. Razor يسمح بكتابة صفحات
+ويب تستخدم #C داخل ملفات Razor.
+</p>
+
+<table>
+<tr>
+<th>العنصر</th>
+<th>المسؤولية</th>
+</tr>
+<tr>
+<td>Model</td>
+<td>البيانات ومنطق المجال حسب التصميم.</td>
+</tr>
+<tr>
+<td>View</td>
+<td>واجهة العرض.</td>
+</tr>
+<tr>
+<td>Controller</td>
+<td>استقبال الطلبات وتنظيم الاستجابة.</td>
+</tr>
+</table>
+
+</section>
+
+
+<section id="c83">
+
+<h2>83 — REST API</h2>
+
+<p>
+REST API تستخدم HTTP للتعامل مع الموارد. أشهر Methods هي GET وPOST
+وPUT وPATCH وDELETE.
+</p>
+
+<table>
+<tr>
+<th>Method</th>
+<th>الاستخدام الشائع</th>
+</tr>
+<tr>
+<td>GET</td>
+<td>قراءة البيانات.</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>إنشاء مورد.</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td>استبدال/تحديث مورد.</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td>تحديث جزئي.</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>حذف مورد.</td>
+</tr>
+</table>
+
+</section>
+
+
+<section id="c84">
+
+<h2>84 — Minimal APIs</h2>
+
+<p>
+Minimal APIs توفر أسلوباً مختصراً لبناء HTTP APIs دون الحاجة إلى Controllers
+في المشاريع التي يناسبها هذا الأسلوب.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>var builder =
+    WebApplication.CreateBuilder(args);
+
+var app = builder.Build();
+
+app.MapGet("/users", () =>
+    Results.Ok(new[]
+    {
+        new
+        {
+            Id = 1,
+            Name = "Maha"
+        }
+    }));
+
+app.Run();</pre>
+</div>
+
+</section>
+
+
+<section id="c85">
+
+<h2>85 — DTOs وValidation</h2>
+
+<p>
+DTO تستخدم لنقل البيانات بين طبقات النظام أو API بدلاً من كشف Entity
+الداخلية مباشرة.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>public record CreateUserDto(
+    string Name,
+    string Email);
+
+[HttpPost]
+public IActionResult Create(
+    CreateUserDto dto)
+{
+    if (string.IsNullOrWhiteSpace(dto.Name))
+    {
+        return BadRequest(
+            "Name is required");
+    }
+
+    return Ok(dto);
+}</pre>
+</div>
+
+</section>
+
+
+<section id="c86">
+
+<h2>86 — Authentication</h2>
+
+<p>
+Authentication تعني التحقق من هوية المستخدم: من هو هذا المستخدم؟
+يمكن تنفيذها باستخدام Cookies أو Tokens أو OpenID Connect وغيرها.
+</p>
+
+<div class="note">
+Authentication = التحقق من الهوية.
+</div>
+
+</section>
+
+
+<section id="c87">
+
+<h2>87 — Authorization</h2>
+
+<p>
+Authorization تحدد ما الذي يسمح للمستخدم الذي تم التحقق من هويته بتنفيذه.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>[Authorize]
+[HttpGet("profile")]
+public IActionResult Profile()
+{
+    return Ok("Private profile");
+}
+
+[Authorize(Roles = "Admin")]
+[HttpDelete("{id}")]
+public IActionResult Delete(int id)
+{
+    return Ok();
+}</pre>
+</div>
+
+</section>
+
+
+<section id="c88">
+
+<h2>88 — ASP.NET Identity</h2>
+
+<p>
+ASP.NET Core Identity يوفر بنية جاهزة لإدارة المستخدمين وكلمات المرور
+والأدوار وبعض وظائف الحسابات.
+</p>
+
+<p>
+يمكن دمجه مع Entity Framework Core لتخزين بيانات المستخدمين والأدوار
+في قاعدة البيانات.
+</p>
+
+</section>
+
+
+<section id="c89">
+
+<h2>89 — JWT</h2>
+
+<p>
+JWT تستخدم كثيراً في APIs لتمثيل Claims داخل Token موقّع. الخادم يتحقق
+من التوقيع وصلاحية الـToken ثم يستخدم Claims لتنفيذ Authorization.
+</p>
+
+<div class="warning">
+لا تضعي أسراراً حساسة داخل Payload لمجرد أنها موجودة في JWT؛ الـPayload
+ليس وسيلة لتشفير المعلومات بحد ذاته.
+</div>
+
+</section>
+
+
+<section id="c90">
+
+<h2>90 — CORS وCSRF وHTTPS</h2>
+
+<p>
+CORS يتحكم في السماح بطلبات المتصفحات القادمة من Origins مختلفة.
+HTTPS يوفر قناة اتصال مشفرة بين العميل والخادم.
+</p>
+
+<table>
+<tr>
+<th>المفهوم</th>
+<th>المشكلة التي يعالجها</th>
+</tr>
+<tr>
+<td>HTTPS</td>
+<td>حماية الاتصال أثناء النقل.</td>
+</tr>
+<tr>
+<td>CORS</td>
+<td>سياسة Origins في المتصفح.</td>
+</tr>
+<tr>
+<td>CSRF</td>
+<td>منع بعض الطلبات غير المرغوبة التي تستغل جلسة المستخدم.</td>
+</tr>
+</table>
+
+</section>
+
+
+<section id="c91">
+
+<h2>91 — SignalR</h2>
+
+<p>
+SignalR مناسب للتطبيقات التي تحتاج اتصالاً تفاعلياً مثل المحادثات
+والإشعارات والتحديثات الفورية.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>builder.Services.AddSignalR();
+
+app.MapHub&lt;ChatHub&gt;("/chat");</pre>
+</div>
+
+</section>
+
+
+<section id="c92">
+
+<h2>92 — Blazor</h2>
+
+<p>
+Blazor إطار من منظومة .NET لبناء واجهات ويب باستخدام #C وRazor Components.
+يمكن بناء تطبيقات تفاعلية مع تقنيات Blazor المختلفة.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>@page "/counter"
+
+&lt;h1&gt;Counter&lt;/h1&gt;
+
+&lt;p&gt;Current count: @currentCount&lt;/p&gt;
+
+&lt;button @onclick="IncrementCount"&gt;
+    Click me
+&lt;/button&gt;
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}</pre>
+</div>
+
+</section>
+
+
+<section id="c93">
+
+<h2>93 — Windows Forms</h2>
+
+<p>
+Windows Forms إطار لبناء تطبيقات سطح المكتب بنظام Windows باستخدام
+واجهة تعتمد على Controls وEvents.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>private void btnHello_Click(
+    object sender,
+    EventArgs e)
+{
+    MessageBox.Show(
+        "Hello from #C");
+}</pre>
+</div>
+
+</section>
+
+
+<section id="c94">
+
+<h2>94 — WPF وXAML</h2>
+
+<p>
+WPF إطار سطح مكتب يوفر واجهات غنية ويستخدم XAML لوصف الواجهة.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>&lt;Button
+    Content="اضغط هنا"
+    Width="150"
+    Height="45"
+    Click="Button_Click"/&gt;</pre>
+</div>
+
+</section>
+
+
+<section id="c95">
+
+<h2>95 — MVVM</h2>
+
+<p>
+MVVM نمط تصميم شائع مع WPF، ويفصل الواجهة عن حالة العرض والمنطق.
+</p>
+
+<table>
+<tr>
+<th>الجزء</th>
+<th>المسؤولية</th>
+</tr>
+<tr>
+<td>Model</td>
+<td>البيانات ومنطق المجال.</td>
+</tr>
+<tr>
+<td>View</td>
+<td>واجهة المستخدم.</td>
+</tr>
+<tr>
+<td>ViewModel</td>
+<td>الحالة والأوامر والبيانات التي تحتاجها الواجهة.</td>
+</tr>
+</table>
+
+</section>
+
+
+<section id="c96">
+
+<h2>96 — .NET MAUI</h2>
+
+<p>
+.NET MAUI يستخدم لبناء تطبيقات متعددة المنصات من قاعدة كود مشتركة،
+بحسب المنصة والدعم والإصدار المستخدم.
+</p>
+
+<p>
+يمكن استخدام #C وXAML لبناء الواجهة والمنطق، مع مشاركة جزء كبير من
+الكود بين المنصات.
+</p>
+
+</section>
+
+
+<section id="c97">
+
+<h2>97 — SOLID</h2>
+
+<p>
+SOLID مجموعة مبادئ تساعد في تصميم أنظمة قابلة للتوسع والصيانة.
+</p>
+
+<table>
+<tr>
+<th>المبدأ</th>
+<th>الفكرة</th>
+</tr>
+<tr>
+<td>S — Single Responsibility</td>
+<td>مسؤولية واحدة واضحة للكلاس.</td>
+</tr>
+<tr>
+<td>O — Open/Closed</td>
+<td>التوسعة دون تعديل غير ضروري في الكود الموجود.</td>
+</tr>
+<tr>
+<td>L — Liskov Substitution</td>
+<td>الأنواع المشتقة يجب أن تحافظ على توقعات النوع الأساسي.</td>
+</tr>
+<tr>
+<td>I — Interface Segregation</td>
+<td>واجهات صغيرة ومناسبة بدلاً من واجهة ضخمة.</td>
+</tr>
+<tr>
+<td>D — Dependency Inversion</td>
+<td>الاعتماد على abstractions بدلاً من التفاصيل المباشرة.</td>
+</tr>
+</table>
+
+</section>
+
+
+<section id="c98">
+
+<h2>98 — Design Patterns</h2>
+
+<p>
+Design Patterns حلول تصميمية متكررة لمشكلات شائعة في بناء البرمجيات.
+</p>
+
+<div class="grid">
+
+<div class="card">
+<b>Factory</b>
+<p>إنشاء الكائنات بطريقة منفصلة عن الكود المستهلك.</p>
+</div>
+
+<div class="card">
+<b>Strategy</b>
+<p>تبديل خوارزمية أو سلوك دون تغيير الكود المستهلك.</p>
+</div>
+
+<div class="card">
+<b>Repository</b>
+<p>عزل الوصول إلى البيانات عن بقية الطبقات عند الحاجة.</p>
+</div>
+
+<div class="card">
+<b>Observer</b>
+<p>إشعار كائنات أخرى عند حدوث تغيير.</p>
+</div>
+
+<div class="card">
+<b>Decorator</b>
+<p>إضافة سلوك إلى كائن دون تعديل بنيته الأصلية.</p>
+</div>
+
+</div>
+
+</section>
+
+
+<section id="c99">
+
+<h2>99 — Clean Code</h2>
+
+<p>
+Clean Code لا يعني كتابة كود طويل أو قصير فقط، بل كتابة كود مفهوم
+وقابل للاختبار والصيانة.
+</p>
+
+<ul>
+<li>استخدم أسماء واضحة.</li>
+<li>اجعل الدوال صغيرة قدر الإمكان.</li>
+<li>تجنب التكرار غير الضروري.</li>
+<li>افصل المسؤوليات.</li>
+<li>لا تضع أسرار النظام داخل المصدر.</li>
+<li>اكتب تعليقات عندما تضيف معنى، وليس لوصف الواضح من الكود.</li>
+<li>استخدم أدوات التحليل والاختبارات.</li>
+</ul>
+
+</section>
+
+
+<section id="c100">
+
+<h2>100 — Layered Architecture</h2>
+
+<p>
+الـLayered Architecture تقسم التطبيق إلى طبقات واضحة.
+</p>
+
+<div class="grid">
+
+<div class="card">
+<b>Presentation</b>
+<p>واجهة المستخدم وHTTP Endpoints.</p>
+</div>
+
+<div class="card">
+<b>Application</b>
+<p>تنسيق حالات الاستخدام والخدمات.</p>
+</div>
+
+<div class="card">
+<b>Domain</b>
+<p>قواعد المجال والكيانات الأساسية.</p>
+</div>
+
+<div class="card">
+<b>Infrastructure</b>
+<p>قاعدة البيانات والخدمات الخارجية والملفات.</p>
+</div>
+
+</div>
+
+</section>
+
+
+<section id="c101">
+
+<h2>101 — Clean Architecture</h2>
+
+<p>
+Clean Architecture تهدف إلى جعل قواعد العمل الأساسية أقل اعتماداً على
+التفاصيل الخارجية مثل قاعدة البيانات وواجهة المستخدم.
+</p>
+
+<p>
+الفكرة المهمة هي أن اتجاه الاعتماد يكون نحو الداخل، بحيث لا يصبح Domain
+مرتبطاً مباشرة بتقنية قاعدة بيانات أو واجهة معينة.
+</p>
+
+</section>
+
+
+<section id="c102">
+
+<h2>102 — Microservices</h2>
+
+<p>
+Microservices تقسم النظام إلى خدمات مستقلة نسبياً، لكل خدمة مسؤولية
+محددة ويمكن نشرها وتطويرها بصورة مستقلة حسب التصميم.
+</p>
+
+<div class="warning">
+Microservices ليست مجرد تقسيم المشروع إلى عدة APIs؛ فهي تضيف تحديات
+مثل الشبكات والمراقبة وتوزيع البيانات والنشر والتوافق بين الخدمات.
+</div>
+
+</section>
+
+
+<section id="c103">
+
+<h2>103 — أمن تطبيقات #C</h2>
+
+<p>
+أمن التطبيق يجب أن يكون جزءاً من التصميم منذ البداية.
+</p>
+
+<ul>
+<li>استخدم HTTPS.</li>
+<li>تحقق من المدخلات.</li>
+<li>استخدم SQL Parameters أو ORM بشكل صحيح.</li>
+<li>لا تخزن كلمات المرور كنص عادي.</li>
+<li>استخدم Hashing مناسب لكلمات المرور.</li>
+<li>احمِ الأسرار وConnection Strings.</li>
+<li>طبق Authorization على العمليات الحساسة.</li>
+<li>حد من الصلاحيات.</li>
+<li>سجل الأحداث المهمة دون تسجيل أسرار حساسة.</li>
+<li>حدث الحزم واعالج الثغرات المعروفة.</li>
+</ul>
+
+</section>
+
+
+<section id="c104">
+
+<h2>104 — Docker</h2>
+
+<p>
+Docker يسمح بتغليف التطبيق وبيئته داخل Container يمكن تشغيله بطريقة
+متقاربة في بيئات مختلفة.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+WORKDIR /app
+
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /src
+
+COPY . .
+
+RUN dotnet publish -c Release -o /app/publish
+
+FROM base AS final
+WORKDIR /app
+
+COPY --from=build /app/publish .
+
+ENTRYPOINT ["dotnet", "App.dll"]</pre>
+</div>
+
+<div class="warning">
+إصدارات Docker و.NET في المثال توضيحية؛ اختاري الصور المتوافقة مع مشروعك.
+</div>
+
+</section>
+
+
+<section id="c105">
+
+<h2>105 — Git وCI/CD</h2>
+
+<p>
+Git يستخدم لإدارة إصدارات الكود. CI/CD يربط الاختبارات والبناء والنشر
+بخط أنابيب آلي.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>git init
+
+git add .
+
+git commit -m "Initial #C project"
+
+git branch -M main
+
+git remote add origin URL
+
+git push -u origin main</pre>
+</div>
+
+</section>
+
+
+<section id="c106">
+
+<h2>106 — Deployment</h2>
+
+<p>
+يمكن نشر تطبيقات .NET على خوادم Linux أو Windows أو Containers أو
+خدمات سحابية، حسب نوع التطبيق ومتطلبات المشروع.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>dotnet publish -c Release</pre>
+</div>
+
+<p>
+عملية النشر الحقيقية تشمل أيضاً إعداد Configuration وSecrets وقاعدة
+البيانات وHTTPS والـLogging والمراقبة والنسخ الاحتياطية.
+</p>
+
+</section>
+
+
+<section id="c107">
+
+<h2>107 — Debugging</h2>
+
+<p>
+Debugging عملية اكتشاف سبب الخطأ وليس مجرد البحث عن السطر الذي توقف عنده
+البرنامج.
+</p>
+
+<ul>
+<li>ضع Breakpoints.</li>
+<li>راقب قيم المتغيرات.</li>
+<li>استخدم Call Stack.</li>
+<li>افحص InnerException.</li>
+<li>كرر الخطأ بطريقة يمكن التحكم بها.</li>
+<li>استخدم Logging عند الحاجة.</li>
+</ul>
+
+</section>
+
+
+<section id="c108">
+
+<h2>108 — Performance</h2>
+
+<p>
+تحسين الأداء يبدأ بقياس المشكلة وليس بالتخمين.
+</p>
+
+<ul>
+<li>قلل عمليات قاعدة البيانات غير الضرورية.</li>
+<li>استخدم Async في عمليات I/O المناسبة.</li>
+<li>تجنب LINQ المعقد دون داعٍ.</li>
+<li>راقب Allocations عند الحاجة.</li>
+<li>استخدم Caching عندما يكون مناسباً.</li>
+<li>افحص SQL Queries وIndexes.</li>
+<li>استخدم Profilers عند وجود مشكلة واضحة.</li>
+</ul>
+
+</section>
+
+
+<section id="c109">
+
+<h2>109 — Algorithms</h2>
+
+<p>
+فهم الخوارزميات يساعد على اختيار الحل المناسب من ناحية الزمن والذاكرة.
+</p>
+
+<table>
+<tr>
+<th>الخوارزمية</th>
+<th>الفكرة</th>
+</tr>
+<tr>
+<td>Linear Search</td>
+<td>البحث عنصرًا بعد عنصر.</td>
+</tr>
+<tr>
+<td>Binary Search</td>
+<td>بحث سريع في بيانات مرتبة.</td>
+</tr>
+<tr>
+<td>Sorting</td>
+<td>ترتيب البيانات وفق معيار.</td>
+</tr>
+<tr>
+<td>Hash Lookup</td>
+<td>الوصول إلى قيمة باستخدام Hash Structure.</td>
+</tr>
+</table>
+
+</section>
+
+
+<section id="c110">
+
+<h2>110 — Data Structures</h2>
+
+<p>
+اختيار Data Structure مناسب يؤثر على أداء البرنامج وسهولة تصميمه.
+</p>
+
+<table>
+<tr>
+<th>البنية</th>
+<th>الاستخدام</th>
+</tr>
+<tr>
+<td>Array</td>
+<td>مجموعة ثابتة الحجم غالباً.</td>
+</tr>
+<tr>
+<td>List</td>
+<td>قائمة قابلة للتعديل.</td>
+</tr>
+<tr>
+<td>Dictionary</td>
+<td>Key/Value.</td>
+</tr>
+<tr>
+<td>HashSet</td>
+<td>قيم فريدة.</td>
+</tr>
+<tr>
+<td>Queue</td>
+<td>FIFO.</td>
+</tr>
+<tr>
+<td>Stack</td>
+<td>LIFO.</td>
+</tr>
+</table>
+
+</section>
+
+
+<section id="c111">
+
+<h2>111 — المشروع الأول: نظام إدارة الطلاب</h2>
+
+<p>
+مشروع تدريبي مناسب لتطبيق الأساسيات، ويحتوي على Student Class وقائمة
+طلاب وعمليات إضافة وحذف وبحث وحساب متوسط الدرجات.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>public class Student
+{
+    public int Id { get; set; }
+
+    public string Name { get; set; } = "";
+
+    public double Grade { get; set; }
+}
+
+var students = new List&lt;Student&gt;
+{
+    new()
+    {
+        Id = 1,
+        Name = "Maha",
+        Grade = 95
+    },
+    new()
+    {
+        Id = 2,
+        Name = "Ali",
+        Grade = 82
+    }
+};
+
+var excellent =
+    students
+        .Where(s =&gt; s.Grade &gt;= 90)
+        .ToList();
+
+foreach (var student in excellent)
+{
+    Console.WriteLine(
+        $"{student.Name}: {student.Grade}");
+}</pre>
+</div>
+
+</section>
+
+
+<section id="c112">
+
+<h2>112 — المشروع الثاني: CRUD وقاعدة بيانات</h2>
+
+<p>
+المشروع التالي يمكن تطويره إلى نظام إدارة كامل يحتوي على:
+</p>
+
+<div class="grid">
+
+<div class="card">
+<b>Create</b>
+<p>إضافة سجل جديد.</p>
+</div>
+
+<div class="card">
+<b>Read</b>
+<p>عرض السجلات والبحث فيها.</p>
+</div>
+
+<div class="card">
+<b>Update</b>
+<p>تعديل البيانات.</p>
+</div>
+
+<div class="card">
+<b>Delete</b>
+<p>حذف السجلات وفق صلاحيات المستخدم.</p>
+</div>
+
+</div>
+
+<p>
+يمكن تنفيذ المشروع باستخدام #C + EF Core + SQL Server أو MySQL، ثم
+إضافة واجهة Windows Forms أو WPF أو ASP.NET Core.
+</p>
+
+</section>
+
+
+<section id="c113">
+
+<h2>113 — المشروع الثالث: REST API</h2>
+
+<p>
+نظام API حقيقي يمكن أن يحتوي على:
+</p>
+
+<ul>
+<li>Users.</li>
+<li>Authentication.</li>
+<li>Roles.</li>
+<li>Books.</li>
+<li>Categories.</li>
+<li>CRUD.</li>
+<li>Search.</li>
+<li>Pagination.</li>
+<li>Validation.</li>
+<li>JWT.</li>
+<li>EF Core.</li>
+<li>Logging.</li>
+<li>Swagger/OpenAPI.</li>
+</ul>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>app.MapGet(
+    "/api/books",
+    async (AppDbContext db) =>
+    {
+        var books = await db.Books
+            .AsNoTracking()
+            .ToListAsync();
+
+        return Results.Ok(books);
+    });</pre>
+</div>
+
+</section>
+
+
+<section id="c114">
+
+<h2>114 — المشروع الرابع: مكتبة إلكترونية</h2>
+
+<p>
+يمكن تحويل مفاهيم هذا الدليل إلى مشروع مكتبة إلكترونية متكامل.
+</p>
+
+<div class="grid">
+
+<div class="card">
+<b>المستخدمون</b>
+<p>تسجيل الدخول وإدارة الحسابات والصلاحيات.</p>
+</div>
+
+<div class="card">
+<b>الكتب</b>
+<p>العنوان والمؤلف والوصف والتصنيف والملف.</p>
+</div>
+
+<div class="card">
+<b>البحث</b>
+<p>البحث بالعنوان والمؤلف والتصنيف.</p>
+</div>
+
+<div class="card">
+<b>الإدارة</b>
+<p>إضافة وتعديل وحذف الكتب.</p>
+</div>
+
+<div class="card">
+<b>API</b>
+<p>REST API للتعامل مع النظام.</p>
+</div>
+
+<div class="card">
+<b>قاعدة البيانات</b>
+<p>EF Core مع SQL Server أو MySQL.</p>
+</div>
+
+</div>
+
+<h3>تقنيات المشروع المقترحة</h3>
+
+<p>
+#C + ASP.NET Core + EF Core + SQL + REST API + JWT/Identity +
+Validation + Logging + Docker + Git.
+</p>
+
+</section>
+
+
+<section id="c115">
+
+<h2>115 — أخطاء #C الشائعة</h2>
+
+<table>
+<tr>
+<th>الخطأ</th>
+<th>الحل</th>
+</tr>
+<tr>
+<td>NullReferenceException</td>
+<td>تحقق من null واستخدم Nullable Reference Types.</td>
+</tr>
+<tr>
+<td>IndexOutOfRangeException</td>
+<td>تأكد من حدود المصفوفة والقائمة.</td>
+</tr>
+<tr>
+<td>InvalidOperationException</td>
+<td>راجع حالة الكائن والعملية المطلوبة.</td>
+</tr>
+<tr>
+<td>SQL Injection</td>
+<td>استخدم Parameters أو ORM بطريقة صحيحة.</td>
+</tr>
+<tr>
+<td>تسريب الموارد</td>
+<td>استخدم using وIDisposable.</td>
+</tr>
+<tr>
+<td>تكرار الكود</td>
+<td>افصل المنطق المشترك في Methods أو Services مناسبة.</td>
+</tr>
+<tr>
+<td>كلاس ضخم</td>
+<td>قسم المسؤوليات إلى وحدات أصغر.</td>
+</tr>
+</table>
+
+</section>
+
+
+<section id="c116">
+
+<h2>116 — خريطة تعلم #C</h2>
+
+<div class="grid">
+
+<div class="card">
+<b>المرحلة 1</b>
+<p>
+Syntax → Variables → Types → Conditions → Loops → Arrays → Methods
+</p>
+</div>
+
+<div class="card">
+<b>المرحلة 2</b>
+<p>
+OOP → Interfaces → Generics → Collections → LINQ → Delegates → Events
+</p>
+</div>
+
+<div class="card">
+<b>المرحلة 3</b>
+<p>
+Files → JSON → Exceptions → Async → Tasks → DI → Testing
+</p>
+</div>
+
+<div class="card">
+<b>المرحلة 4</b>
+<p>
+SQL → ADO.NET → EF Core → Migrations → Relationships
+</p>
+</div>
+
+<div class="card">
+<b>المرحلة 5</b>
+<p>
+ASP.NET Core → REST API → Authentication → JWT → Security
+</p>
+</div>
+
+<div class="card">
+<b>المرحلة 6</b>
+<p>
+Architecture → Docker → Git → CI/CD → Performance → Deployment
+</p>
+</div>
+
+</div>
+
+</section>
+
+
+<section id="c117">
+
+<h2>117 — المرجع السريع #C</h2>
+
+<h3>الطباعة</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>Console.WriteLine("Hello");</pre>
+</div>
+
+<h3>متغير</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>int age = 30;</pre>
+</div>
+
+<h3>شرط</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>if (age &gt;= 18)
+{
+    Console.WriteLine("Adult");
+}</pre>
+</div>
+
+<h3>Loop</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>for (int i = 0; i &lt; 10; i++)
+{
+    Console.WriteLine(i);
+}</pre>
+</div>
+
+<h3>List</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>var items = new List&lt;string&gt;
+{
+    "#C",
+    ".NET"
+};</pre>
+</div>
+
+<h3>LINQ</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>var result = items
+    .Where(x =&gt; x.Length &gt; 2)
+    .ToList();</pre>
+</div>
+
+<h3>Async</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>await Task.Delay(1000);</pre>
+</div>
+
+<h3>ASP.NET Core</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>var builder =
+    WebApplication.CreateBuilder(args);
+
+var app = builder.Build();
+
+app.MapGet("/", () =&gt;
+    "Hello #C");
+
+app.Run();</pre>
+</div>
+
+<h3>EF Core Query</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>var users =
+    await db.Users
+        .AsNoTracking()
+        .Where(x =&gt; x.Active)
+        .ToListAsync();</pre>
+</div>
+
+<div class="success">
+<strong>نهاية الدليل:</strong>
+أصبح لديك مسار متكامل من أساسيات #C إلى البرمجة الكائنية وقواعد البيانات
+و.NET وASP.NET Core وواجهات API والأمان والهندسة البرمجية والمشاريع.
+</div>
+
+</section>
+
+
+<footer>
+
+<p>
+<strong>دليل #C الشامل</strong>
+</p>
+
+<p>
+إعداد الكاتبة والمهندسة: مها شهوب
+</p>
+
+<p>
+منصة آفاق المعرفة التقنية | مكتبة | مها شهوب | سلسلة أساسيات التقنية
+</p>
+
+<p>
+© جميع الحقوق محفوظة
+</p>
+
+</footer>
+
+</main>
+
+</div>
+
+<button
+    class="topbtn"
+    id="topbtn"
+    onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    ↑
+</button>
+
+<script>
+
+function toggleTheme(){
+
+    const html = document.documentElement;
+
+    const dark =
+        html.getAttribute("data-theme") === "dark";
+
+    const newTheme =
+        dark ? "light" : "dark";
+
+    html.setAttribute(
+        "data-theme",
+        newTheme
+    );
+
+    localStorage.setItem(
+        "csharp-theme",
+        newTheme
+    );
+}
+
+
+(function(){
+
+    const saved =
+        localStorage.getItem("csharp-theme");
+
+    if(saved){
+
+        document.documentElement
+            .setAttribute(
+                "data-theme",
+                saved
+            );
+    }
+
+})();
+
+
+function toggleMenu(){
+
+    document
+        .getElementById("sidebar")
+        .classList.toggle("open");
+}
+
+
+function filterNav(){
+
+    const input =
+        document.getElementById("navSearch");
+
+    const query =
+        input.value.toLowerCase();
+
+    document
+        .querySelectorAll("#nav a")
+        .forEach(function(link){
+
+            const text =
+                link.textContent.toLowerCase();
+
+            link.style.display =
+                text.includes(query)
+                ? "block"
+                : "none";
+
+        });
+}
+
+
+async function copyCode(button){
+
+    const code =
+        button
+            .parentElement
+            .querySelector("pre")
+            .innerText;
+
+    try{
+
+        await navigator.clipboard
+            .writeText(code);
+
+    }catch(error){
+
+        const textarea =
+            document.createElement("textarea");
+
+        textarea.value = code;
+
+        document.body.appendChild(
+            textarea
+        );
+
+        textarea.select();
+
+        document.execCommand("copy");
+
+        textarea.remove();
+    }
+
+    const oldText =
+        button.textContent;
+
+    button.textContent =
+        "✓ تم النسخ";
+
+    setTimeout(function(){
+
+        button.textContent =
+            oldText;
+
+    },1200);
+}
+
+
+function updateProgress(){
+
+    const html =
+        document.documentElement;
+
+    const scrollTop =
+        html.scrollTop;
+
+    const total =
+        html.scrollHeight -
+        html.clientHeight;
+
+    const percent =
+        total > 0
+        ? (scrollTop / total) * 100
+        : 0;
+
+    document
+        .getElementById("progress")
+        .style.width =
+        percent + "%";
+
+    const topButton =
+        document.getElementById("topbtn");
+
+    topButton.style.display =
+        scrollTop > 500
+        ? "block"
+        : "none";
+}
+
+
+window.addEventListener(
+    "scroll",
+    updateProgress
+);
+
+updateProgress();
+
+
+const navLinks =
+    Array.from(
+        document.querySelectorAll(
+            "#nav a"
+        )
+    );
+
+
+const sections =
+    navLinks
+        .map(function(link){
+
+            return document.querySelector(
+                link.getAttribute("href")
+            );
+
+        })
+        .filter(Boolean);
+
+
+const observer =
+    new IntersectionObserver(
+
+        function(entries){
+
+            entries.forEach(
+                function(entry){
+
+                    if(entry.isIntersecting){
+
+                        navLinks.forEach(
+                            function(link){
+
+                                link.classList
+                                    .remove("active");
+
+                            }
+                        );
+
+                        const active =
+                            document.querySelector(
+                                '#nav a[href="#' +
+                                entry.target.id +
+                                '"]'
+                            );
+
+                        if(active){
+
+                            active.classList
+                                .add("active");
+                        }
+                    }
+                }
+            );
+
+        },
+        {
+            rootMargin:
+                "-90px 0px -65% 0px"
+        }
+    );
+
+
+sections.forEach(
+    function(section){
+
+        observer.observe(section);
+
+    }
+);
+
+
+document
+    .querySelectorAll("#nav a")
+    .forEach(function(link){
+
+        link.addEventListener(
+            "click",
+            function(){
+
+                if(window.innerWidth <= 950){
+
+                    document
+                        .getElementById("sidebar")
+                        .classList
+                        .remove("open");
+
+                }
+
+            }
+        );
+
+    });
+
+</script>
+
+</body>
+</html>

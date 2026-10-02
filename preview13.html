@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="دليل SQL الشامل والمفصل للأكواد والشروح الهندسية - آفاق المعرفة التقنية - مها شهوب">
+<title>دليل SQL الشامل والمفصل | مها شهوب</title>
+<style>
+:root{--bg:#eef3f8;--card:#fff;--text:#172033;--muted:#64748b;--p:#0b4f88;--p2:#1d4ed8;--b:#d7e1eb;--code:#0b1220;--shadow:0 8px 24px rgba(20,55,90,.09)}
+[data-theme=dark]{--bg:#0c1420;--card:#151f2c;--text:#e7eef8;--muted:#a9b7c8;--p:#0b4f88;--p2:#60a5fa;--b:#2b3a4b;--code:#070b12;--shadow:0 8px 24px rgba(0,0,0,.25)}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",Tahoma,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.9}
+header{position:fixed;top:0;right:0;left:0;height:72px;z-index:1000;background:var(--card);border-bottom:1px solid var(--b);display:flex;align-items:center;padding:0 20px;box-shadow:var(--shadow)}
+.logo{width:67px;height:54px;border-radius:50%;display:grid;place-items:center;}
+.brand{margin-right:12px}.brand b{display:block;color:var(--p2)}.brand small{color:var(--muted)}
+.actions{margin-right:auto;display:flex;gap:8px}button{border:1px solid var(--b);background:var(--card);color:var(--text);border-radius:9px;padding:8px 12px;cursor:pointer}.menu{display:none}
+.progress{position:fixed;top:72px;right:0;height:4px;background:var(--p);width:0;z-index:1001}
+aside{position:fixed;top:76px;right:0;bottom:0;width:310px;background:var(--card);border-left:1px solid var(--b);padding:16px;overflow:auto}
+.search{width:100%;padding:10px;border:1px solid var(--b);border-radius:9px;background:var(--bg);color:var(--text);margin-bottom:10px}
+nav a{display:block;color:var(--muted);text-decoration:none;padding:5px 8px;border-radius:7px;font-size:12.5px}
+nav a:hover,nav a.active{background:#2563eb1a;color:var(--p);font-weight:700}
+main{margin-right:310px;padding:110px 34px 50px;max-width:1300px}
+.hero{background:linear-gradient(135deg,var(--p2),var(--p));color:#ffffff;border-radius:18px;padding:34px;margin-bottom:22px;box-shadow:var(--shadow)}
+.hero h1{font-size:32px}.credit{font-weight:700;margin-top:8px}
+section{background:var(--card);border:1px solid var(--b);border-radius:14px;padding:24px;margin-bottom:18px;box-shadow:var(--shadow);scroll-margin-top:95px}
+h2{font-size:21px;color:var(--p2);border-right:4px solid var(--p);padding-right:9px;margin-bottom:12px}
+p {margin-bottom: 12px;}
+.code{position:relative;margin:13px 0}.code pre{background:var(--code);color:#dbeafe;direction:ltr;text-align:left;overflow:auto;border-radius:9px;padding:17px;font:13px/1.7 Consolas,monospace;white-space:pre-wrap}
+.copy{position:absolute;right:7px;top:7px;background:#fff;color:#172033;border:0;font-size:11px;padding:5px 8px;cursor:pointer;border-radius:4px;}
+.top{position:fixed;bottom:20px;left:20px;border-radius:50%;background:var(--p);color:#fff;width:44px;height:44px;border:0;cursor:pointer}
+footer{text-align:center;color:var(--muted);padding:28px}
+@media(max-width:900px){aside{transform:translateX(100%);transition:.25s;width:290px}aside.open{transform:none}.menu{display:block}main{margin:0;padding:100px 14px 40px}.brand small{display:none}.hero h1{font-size:25px}}
+@media print{header,aside,.top,.progress,.actions,.copy{display:none!important}main{margin:0;padding:0}section{box-shadow:none;break-inside:avoid}}
+</style>
+</head>
+<body>
+<header><button class="menu" onclick="document.querySelector('aside').classList.toggle('open')">☰</button>
+
+ 
+  <img src="IMG/آفاق المعرفة التقنية.png" class="logo">
+  <div class="brand"><b>منصة آفاق المعرفة التقنية</b><small>دليل SQL الشامل </small></div>
+
+
+  <div class="actions"><button onclick="toggleTheme()">◐ الوضع</button><button onclick="window.print()">🖨 طباعة</button></div></header>
+<div class="progress" id="progress"></div>
+
+<aside><input class="search" id="search" placeholder="🔎 ابحث في الدروس..." oninput="filterNav()"><nav id="nav">
+<a href="#s1">01. مقدمة في قواعد البيانات وعالم SQL</a>
+<a href="#s2">02. إنشاء قواعد البيانات CREATE DATABASE</a>
+<a href="#s3">03. حذف وإدارة قواعد البيانات DROP</a>
+<a href="#s4">04. إنشاء الجداول CREATE TABLE</a>
+<a href="#s5">05. أنواع البيانات في SQL</a>
+<a href="#s6">06. المفتاح الأساسي PRIMARY KEY</a>
+<a href="#s7">07. القيود constraints (NOT NULL, UNIQUE)</a>
+<a href="#s8">08. القيمة الافتراضية DEFAULT</a>
+<a href="#s9">09. المفتاح الأجنبي FOREIGN KEY</a>
+<a href="#s10">10. تعديل الجداول ALTER TABLE</a>
+<a href="#s11">11. حذف الجداول DROP & TRUNCATE</a>
+<a href="#s12">12. إدخال البيانات INSERT INTO</a>
+<a href="#s13">13. الاستعلام الأساسي SELECT</a>
+<a href="#s14">14. شرط التصفية WHERE</a>
+<a href="#s15">15. المعاملات المنطقية (AND, OR, NOT)</a>
+<a href="#s16">16. ترتيب النتائج ORDER BY</a>
+<a href="#s17">17. تحديد عدد النتائج LIMIT</a>
+<a href="#s18">18. تصفية القيم الفريدة DISTINCT</a>
+<a href="#s19">19. البحث النمطي باستخدام LIKE</a>
+<a href="#s20">20. معامل النطاق BETWEEN</a>
+<a href="#s21">21. معامل القوائم IN</a>
+<a href="#s22">22. التعامل مع القيم الفارغة IS NULL</a>
+<a href="#s23">23. تحديث البيانات UPDATE</a>
+<a href="#s24">24. حذف السجلات DELETE</a>
+<a href="#s25">25. دوال التجميع الأساسية COUNT, SUM, AVG</a>
+<a href="#s26">26. الدوال العددية الصغرى والكبرى MIN, MAX</a>
+<a href="#s27">27. تجميع البيانات GROUP BY</a>
+<a href="#s28">28. تصفية التجمعات HAVING</a>
+<a href="#s29">29. الربط الداخلي INNER JOIN</a>
+<a href="#s30">30. الربط اليساري LEFT JOIN</a>
+<a href="#s31">31. الربط اليميني RIGHT JOIN</a>
+<a href="#s32">32. الربط الكامل FULL OUTER JOIN</a>
+<a href="#s33">33. الربط الذاتي Self Join</a>
+<a href="#s34">34. الدمج باستخدام UNION</a>
+<a href="#s35">35. الاستعلامات الفرعية Subqueries</a>
+<a href="#s36">36. المعاملات EXISTS و NOT EXISTS</a>
+<a href="#s37">37. الدوال النصية String Functions</a>
+<a href="#s38">38. الدوال الرياضية Math Functions</a>
+<a href="#s39">39. دوال التواريخ والأوقات Date Functions</a>
+<a href="#s40">40. المعامل الشرطي CASE WHEN</a>
+<a href="#s41">41. تحويل الأنواع CAST و CONVERT</a>
+<a href="#s42">42. معالجة القيم النل COALESCE</a>
+<a href="#s43">43. إنشاء الفهارس Indexes لتسريع البحث</a>
+<a href="#s44">44. الحذف الآلي للفهارس DROP INDEX</a>
+<a href="#s45">45. الجداول الوهمية Views</a>
+<a href="#s46">46. إدارة الصلاحيات GRANT و REVOKE</a>
+<a href="#s47">47. المعاملات المالية Transactions (COMMIT & ROLLBACK)</a>
+<a href="#s48">48. الإجراءات المخزنة Stored Procedures</a>
+<a href="#s49">49. الدوال المعرفة من المستخدم Functions</a>
+<a href="#s50">50. المشغلات Triggers</a>
+<a href="#s51">51. تصميم وتطبيع قواعد البيانات Normalization (1NF, 2NF)</a>
+<a href="#s52">52. التطبيع المتقدم (3NF)</a>
+<a href="#s53">53. أداء الاستعلامات وتحليل الخطط EXPLAIN</a>
+<a href="#s54">54. النسخ الاحتياطي والاستعادة Backup & Restore</a>
+<a href="#s55">55. إدارة المستخدمين وكلمات المرور</a>
+<a href="#s56">56. هندسة تصميم قواعد البيانات العلائقية</a>
+<a href="#s57">57. مفاهيم NoSQL مقابل SQL</a>
+<a href="#s58">58. التعامل مع البيانات الكبيرة JSON في SQL</a>
+<a href="#s59">59. النوافذ التحليلية Window Functions (ROW_NUMBER)</a>
+<a href="#s60">60. الدوال الترتيبية RANK و DENSE_RANK</a>
+<a href="#s61">61. مقارنة القيم السابقة واللاحقة LAG و LEAD</a>
+<a href="#s62">62. الجداول المؤقتة Temporary Tables</a>
+<a href="#s63">63. الجداول الشائعة المشتركة CTEs (Common Table Expressions)</a>
+<a href="#s64">64. الاستعلامات التكرارية Recursive CTEs</a>
+<a href="#s65">65. تأمين قواعد البيانات وحمايتها من الاختراق</a>
+<a href="#s66">66. هندسة العلاقات متعدد لمتعدد (Many-to-Many)</a>
+<a href="#s67">67. إنشاء جداول الأرشيف التاريخية</a>
+<a href="#s68">68. تحسين استعلامات البحث النصي الكامل Full-Text Search</a>
+<a href="#s69">69. تجميع وتحليل البيانات الإحصائية</a>
+<a href="#s70">70. مراقبة أداء السيرفر وجداول العمليات</a>
+<a href="#s71">71. مشروع: تصميم قاعدة بيانات مدرسة متكاملة</a>
+<a href="#s72">72. مشروع: نظام إدارة مستودعات ومخازن</a>
+<a href="#s73">73. مشروع: نظام حسابات مالية وقيود يومية</a>
+<a href="#s74">74. مشروع: قاعدة بيانات متجر إلكتروني</a>
+<a href="#s75">75. مشروع: نظام إدارة عيادة طبية وملفات مرضى</a>
+<a href="#s76">76. مشروع: نظام حجوزات فنادق وغرف</a>
+<a href="#s77">77. مشروع: هيكل قاعدة بيانات مدونة Articles CMS</a>
+<a href="#s78">78. مشروع: إدارة شؤون employés والموظفين</a>
+<a href="#s79">79. مشروع: نظام تذاكر الدعم الفني Help Desk</a>
+<a href="#s80">80. مشروع: قاعدة بيانات شركة طيران وحجوزات</a>
+<a href="#s81">81. مشروع: نظام اشتراكات الأعضاء والرسوم</a>
+<a href="#s82">82. مشروع: تتبع حركة الشحنات واللوجستيات</a>
+<a href="#s83">83. مشروع: قاعدة بيانات مكتبة عامة واستعارة كتب</a>
+<a href="#s84">84. مشروع: نظام تقييمات ومراجعات المنتجات</a>
+<a href="#s85">85. مشروع: إدارة الصلاحيات والأدوار RBAC</a>
+<a href="#s86">86. مشروع: لوحة مؤشرات الأداء والأرباح KPIs</a>
+<a href="#s87">87. مشروع: نظام الأرشفة الرقمية والبحث</a>
+<a href="#s88">88. المرجع الشامل لأهم أوامر ودوال SQL</a>
+</nav></aside>
+
+<main>
+<div class="hero">
+  <h1>دليل SQL الشامل والمفصل لقواعد البيانات</h1>
+  <p>المرجع الهندسي المتكامل لتصميم وإدارة الاستعلامات، مزود بالأمثلة التطبيقية والشروح لكل درس من الـ 88 درساً.</p>
+  <div class="credit">إعداد الكاتبة والمهندسة: مها شهوب</div>
+</div>
+
+<section id="s1">
+  <h2>01. مقدمة في قواعد البيانات وعالم SQL</h2>
+  <p>فهم بنية قواعد البيانات العلائقية (Relational Databases) وأهمية لغة SQL في إدارتها.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- لغة هيكلة الاستعلامات القياسية
+SELECT VERSION();</pre></div>
+</section>
+
+<section id="s2">
+  <h2>02. إنشاء قواعد البيانات CREATE DATABASE</h2>
+  <p>تخصيص قاعدة بيانات جديدة مع ضبط ترميز الحروف لدعم اللغة العربية (utf8mb4).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>CREATE DATABASE technical_knowledge 
+CHARACTER SET utf8mb4 
+COLLATE utf8mb4_unicode_ci;</pre></div>
+</section>
+
+<section id="s3">
+  <h2>03. حذف وإدارة قواعد البيانات DROP</h2>
+  <p>أوامر حذف وإزالة قواعد البيانات الخاملة بشكل نهائي من الخادم.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>DROP DATABASE IF EXISTS old_database;</pre></div>
+</section>
+
+<section id="s4">
+  <h2>04. إنشاء الجداول CREATE TABLE</h2>
+  <p>تصميم الجداول وتحديد الأعمدة وأنواع البيانات الهندسية المناسبة لها.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>CREATE TABLE users (
+    id INT AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE
+);</pre></div>
+</section>
+
+<section id="s5">
+  <h2>05. أنواع البيانات في SQL</h2>
+  <p>استعراض أنواع البيانات الرقمية والنصية والتاريخية مثل INT, VARCHAR, TEXT, DATE.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- أمثلة لأنواع البيانات الشائعة
+-- INT للأرقام، VARCHAR للنصوص القصيرة، TEXT للنصوص الطويلة</pre></div>
+</section>
+
+<section id="s6">
+  <h2>06. المفتاح الأساسي PRIMARY KEY</h2>
+  <p>تحديد عمود فريد وغير مكرر لتعريف كل سجل داخل الجدول بتميز تام.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>CREATE TABLE books (
+    book_id INT PRIMARY KEY,
+    title VARCHAR(200)
+);</pre></div>
+</section>
+
+<section id="s7">
+  <h2>07. القيود constraints (NOT NULL, UNIQUE)</h2>
+  <p>فرض قواعد أمان تمنع ترك الحقول فارغة أو تكرار القيم الخاصة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>CREATE TABLE authors (
+    id INT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE
+);</pre></div>
+</section>
+
+<section id="s8">
+  <h2>08. القيمة الافتراضية DEFAULT</h2>
+  <p>إسناد قيمة تلقائية للحقل في حال لم يتم إدخالها أثناء عملية الإضافة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>CREATE TABLE settings (
+    id INT PRIMARY KEY,
+    status VARCHAR(20) DEFAULT 'active'
+);</pre></div>
+</section>
+
+<section id="s9">
+  <h2>09. المفتاح الأجنبي FOREIGN KEY</h2>
+  <p>ربط الجداول ببعضها البعض لضمان السلامة المرجعية (Referential Integrity).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>CREATE TABLE articles (
+    article_id INT PRIMARY KEY,
+    author_id INT,
+    FOREIGN KEY (author_id) REFERENCES authors(id)
+);</pre></div>
+</section>
+
+<section id="s10">
+  <h2>10. تعديل الجداول ALTER TABLE</h2>
+  <p>إضافة، حذف، أو تعديل الأعمدة والقيود في جدول موجود مسبقاً.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>ALTER TABLE users ADD COLUMN phone VARCHAR(20);</pre></div>
+</section>
+
+<section id="s11">
+  <h2>11. حذف الجداول DROP & TRUNCATE</h2>
+  <p>الفرق بين مسح الجدول بالكامل أو تفريغ محتوياته مع الاحتفاظ بالهيكل.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>TRUNCATE TABLE logs;</pre></div>
+</section>
+
+<section id="s12">
+  <h2>12. إدخال البيانات INSERT INTO</h2>
+  <p>إضافة سجلات جديدة وبيانات فعلية داخل أعمدة الجداول.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>INSERT INTO users (name, email) 
+VALUES ('مها شهوب', 'maha@tech.ly');</pre></div>
+</section>
+
+<section id="s13">
+  <h2>13. الاستعلام الأساسي SELECT</h2>
+  <p>جلب واستعراض البيانات من الجداول المحددة بكل مرونة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>SELECT name, email FROM users;</pre></div>
+</section>
+
+<section id="s14">
+  <h2>14. شرط التصفية WHERE</h2>
+  <p>تحديد السجلات المطلوبة فقط بناءً على شروط منطقية محددة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>SELECT * FROM users WHERE id = 1;</pre></div>
+</section>
+
+<section id="s15">
+  <h2>15. المعاملات المنطقية (AND, OR, NOT)</h2>
+  <p>دمج شروط متعددة لتصفية دقيقة ومتقدمة للبيانات.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>SELECT * FROM books WHERE price < 50 AND category = 'Programming';</pre></div>
+</section>
+
+<section id="s16">
+  <h2>16. ترتيب النتائج ORDER BY</h2>
+  <p>تنظيم شكل عرض النتائج تصاعدياً (ASC) أو تنازلياً (DESC).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>SELECT * FROM articles ORDER BY created_at DESC;</pre></div>
+</section>
+
+<section id="s17">
+  <h2>17. تحديد عدد النتائج LIMIT</h2>
+  <p>اقتصار عرض النتائج على عدد معين من السجلات أو لغايات التقسيم (Pagination).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>SELECT * FROM users LIMIT 10;</pre></div>
+</section>
+
+<section id="s18">
+  <h2>18. تصفية القيم الفريدة DISTINCT</h2>
+  <p>إزالة التكرارات وعرض القيم الفريدة فقط من الأعمدة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>SELECT DISTINCT category FROM books;</pre></div>
+</section>
+
+<section id="s19">
+  <h2>19. البحث النمطي باستخدام LIKE</h2>
+  <p>البحث عن النصوص المطابقة لأنماط معينة باستخدام الأحرف البديلة (مثل %).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>SELECT * FROM books WHERE title LIKE '%أساسيات%';</pre></div>
+</section>
+
+<section id="s20">
+  <h2>20. معامل النطاق BETWEEN</h2>
+  <p>جلب القيم الواقعة ضمن نطاق محدد بين حد أدنى وأقصى.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>SELECT * FROM products WHERE price BETWEEN 100 AND 500;</pre></div>
+</section>
+
+<section id="s21">
+  <h2>21. معامل القوائم IN</h2>
+  <p>التحقق مما إذا كانت القيمة مطابقة لأي عنصر ضمن قائمة محددة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>SELECT * FROM users WHERE city IN ('طرابلس', 'بنغازي', 'مصراتة');</pre></div>
+</section>
+
+<section id="s22">
+  <h2>22. التعامل مع القيم الفارغة IS NULL</h2>
+  <p>البحث وفحص السجلات التي تحوي قيماً فارغة (NULL) في حقل معين.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>SELECT * FROM users WHERE phone IS NULL;</pre></div>
+</section>
+
+<section id="s23">
+  <h2>23. تحديث البيانات UPDATE</h2>
+  <p>تعديل وتحديث القيم المخزنة مسبقاً في السجلات بناءً على الشروط.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>UPDATE users SET status = 'active' WHERE id = 5;</pre></div>
+</section>
+
+<section id="s24">
+  <h2>24. حذف السجلات DELETE</h2>
+  <p>إزالة سجلات معينة من الجداول مع إمكانية استخدام شروط التصفية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>DELETE FROM logs WHERE created_at < '2025-01-01';</pre></div>
+</section>
+
+<section id="s25">
+  <h2>25. دوال التجميع الأساسية COUNT, SUM, AVG</h2>
+  <p>حساب أعداد السجلات، مجموع القيم، والمعدلات الحسابية للأعمدة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>SELECT COUNT(*), AVG(price) FROM products;</pre></div>
+</section>
+
+<section id="s26">
+  <h2>26. الدوال العددية الصغرى والكبرى MIN, MAX</h2>
+  <p>استخراج أقل وأكبر قيمة رقمية أو تاريخية من حقل معين.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>SELECT MIN(price), MAX(price) FROM products;</pre></div>
+</section>
+
+<section id="s27">
+  <h2>27. تجميع البيانات GROUP BY</h2>
+  <p>تجميع السجلات المتشابهة لتطبيق دوال التجميع عليها لكل مجموعة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>SELECT category, COUNT(*) FROM books GROUP BY category;</pre></div>
+</section>
+
+<section id="s28">
+  <h2>28. تصفية التجمعات HAVING</h2>
+  <p>فلترة النتائج الناتجة عن عمليات التجميع GROUP BY (على عكس WHERE).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>SELECT category, COUNT(*) FROM books GROUP BY category HAVING COUNT(*) > 5;</pre></div>
+</section>
+
+<section id="s29">
+  <h2>29. الربط الداخلي INNER JOIN</h2>
+  <p>دمج جدولين أو أكثر استناداً إلى عمود مشترك وجلب البيانات المتاحة في الطرفين.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>SELECT articles.title, users.name 
+FROM articles 
+INNER JOIN users ON articles.author_id = users.id;</pre></div>
+</section>
+
+<section id="s30">
+  <h2>30. الربط اليساري LEFT JOIN</h2>
+  <p>جلب كافة السجلات من الجدول الأيسر حتى وإن لم توجد مطابقة في الجدول الأيمن.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>SELECT users.name, articles.title 
+FROM users 
+LEFT JOIN articles ON users.id = articles.author_id;</pre></div>
+</section>
+
+<section id="s31">
+  <h2>31. الربط اليميني RIGHT JOIN</h2>
+  <p>جلب كافة السجلات من الجدول الأيمن بغض النظر عن وجود مطابقة في الأيسر.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>SELECT articles.title, categories.name 
+FROM articles 
+RIGHT JOIN categories ON articles.cat_id = categories.id;</pre></div>
+</section>
+
+<section id="s32">
+  <h2>32. الربط الكامل FULL OUTER JOIN</h2>
+  <p>عرض كافة السجلات من الجدولين عند توفر مطابقة في أي منهما.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>SELECT * FROM table1 
+FULL OUTER JOIN table2 ON table1.id = table2.ref_id;</pre></div>
+</section>
+
+<section id="s33">
+  <h2>33. الربط الذاتي Self Join</h2>
+  <p>ربط الجدول بنفسه لمقارنة الصفوف الداخلية (مثل علاقة المدير والموظف).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>SELECT e1.name AS employee, e2.name AS manager 
+FROM employees e1 
+LEFT JOIN employees e2 ON e1.manager_id = e2.id;</pre></div>
+</section>
+
+<section id="s34">
+  <h2>34. الدمج باستخدام UNION</h2>
+  <p>دمج نتائج استعلامين أو أكثر في جدول نتائج واحد مع إزالة التكرار.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>SELECT email FROM users UNION SELECT email FROM clients;</pre></div>
+</section>
+
+<section id="s35">
+  <h2>35. الاستعلامات الفرعية Subqueries</h2>
+  <p>تضمين استعلام داخل استعلام آخر لمعالجة شروط معقدة ومتداخلة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>SELECT * FROM products WHERE price > (SELECT AVG(price) FROM products);</pre></div>
+</section>
+
+<section id="s36">
+  <h2>36. المعاملات EXISTS و NOT EXISTS</h2>
+  <p>التحقق من وجود سجلات مطابقة ضمن الاستعلامات الفرعية بكفاءة عالية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>SELECT * FROM users u WHERE EXISTS (SELECT * FROM orders o WHERE o.user_id = u.id);</pre></div>
+</section>
+
+<section id="s37">
+  <h2>37. الدوال النصية String Functions</h2>
+  <p>معالجة النصوص عبر الحروف الكبيرة والصغيرة والدمج والقص (CONCAT, SUBSTRING).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>SELECT CONCAT(first_name, ' ', last_name) AS full_name FROM employees;</pre></div>
+</section>
+
+<section id="s38">
+  <h2>38. الدوال الرياضية Math Functions</h2>
+  <p>إجراء العمليات الحسابية المتقدمة كالتقريب الجذر التربيعي والقيمة المطلقة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>SELECT ROUND(price, 2) FROM products;</pre></div>
+</section>
+
+<section id="s39">
+  <h2>39. دوال التواريخ والأوقات Date Functions</h2>
+  <p>استخراج السنة والشهر واليوم وحساب الفترات الزمنية بين التواريخ.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>SELECT NOW(), DATEDIFF(expiration_date, NOW()) FROM subscriptions;</pre></div>
+</section>
+
+<section id="s40">
+  <h2>40. المعامل الشرطي CASE WHEN</h2>
+  <p>تطبيق الشروط البرمجية المنطقية داخل استعلامات SQL وتوليد أعمدة ديناميكية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>SELECT name, 
+    CASE WHEN score >= 90 THEN 'ممتاز' ELSE 'جيد' END AS rating 
+FROM students;</pre></div>
+</section>
+
+<section id="s41">
+  <h2>41. تحويل الأنواع CAST و CONVERT</h2>
+  <p>تحويل أنواع بيانات الحقول مؤقتاً أثناء عرض واستعلام النتائج.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>SELECT CAST('2026-06-01' AS DATE);</pre></div>
+</section>
+
+<section id="s42">
+  <h2>42. معالجة القيم النل COALESCE</h2>
+  <p>إرجاع أول قيمة غير فارغة من قائمة القيم المُمررة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>SELECT COALESCE(phone, mobile, 'غير متوفر') FROM users;</pre></div>
+</section>
+
+<section id="s43">
+  <h2>43. إنشاء الفهارس Indexes لتسريع البحث</h2>
+  <p>بناء فهارس على الأعمدة التي يتم البحث بها بكثرة لمضاعفة سرعة الأداء.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>CREATE INDEX idx_user_email ON users(email);</pre></div>
+</section>
+
+<section id="s44">
+  <h2>44. الحذف الآلي للفهارس DROP INDEX</h2>
+  <p>إزالة الفهارس غير المستخدمة لتخفيف العبء على عمليات التعديل والإدخال.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>DROP INDEX idx_user_email ON users;</pre></div>
+</section>
+
+<section id="s45">
+  <h2>45. الجداول الوهمية Views</h2>
+  <p>حفظ استعلام معقد كجدول افتراضي يتم استدعاؤه بسهولة تامة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>CREATE VIEW active_users AS SELECT * FROM users WHERE status = 'active';</pre></div>
+</section>
+
+<section id="s46">
+  <h2>46. إدارة الصلاحيات GRANT و REVOKE</h2>
+  <p>منح وسحب صلاحيات الوصول وقراءة وتعديل البيانات للمستخدمين.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>GRANT SELECT, INSERT ON db.* TO 'maha'@'localhost';</pre></div>
+</section>
+
+<section id="s47">
+  <h2>47. المعاملات المالية Transactions (COMMIT & ROLLBACK)</h2>
+  <p>ضمان تنفيذ مجموعة أوامر معاً بنجاح أو التراجع عنها بالكامل عند حدوث خطأ.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>START TRANSACTION;
+UPDATE accounts SET balance = balance - 100 WHERE id = 1;
+COMMIT;</pre></div>
+</section>
+
+<section id="s48">
+  <h2>48. الإجراءات المخزنة Stored Procedures</h2>
+  <p>تخزين مجموعات الأوامر المعقدة داخل الخادم لتنفيذها بنداء مباشر.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>CREATE PROCEDURE GetActiveUsers()
+BEGIN
+    SELECT * FROM users WHERE status = 'active';
+END;</pre></div>
+</section>
+
+<section id="s49">
+  <h2>49. الدوال المعرفة من المستخدم Functions</h2>
+  <p>تصميم دوال مخصصة تعيد قيمة أو نتيجة حسابية محددة للاستعلامات.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>CREATE FUNCTION CalcTax(amount DECIMAL) RETURNS DECIMAL
+RETURN amount * 0.15;</pre></div>
+</section>
+
+<section id="s50">
+  <h2>50. المشغلات Triggers</h2>
+  <p>تنفيذ أوامر تلقائية فور حدوث عمليات إدخال أو تحديث أو حذف على الجداول.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>CREATE TRIGGER before_insert_user 
+BEFORE INSERT ON users 
+FOR EACH ROW SET NEW.status = 'active';</pre></div>
+</section>
+
+<section id="s51">
+  <h2>51. تصميم وتطبيع قواعد البيانات Normalization (1NF, 2NF)</h2>
+  <p>القواعد الهندسية لمنع تكرار البيانات وتنظيم الجداول في الصيغ الطبيعية الأولى والثانية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- فصل البيانات المتكررة إلى جداول مستقلة لضمان الكفاءة</pre></div>
+</section>
+
+<section id="s52">
+  <h2>52. التطبيع المتقدم (3NF)</h2>
+  <p>الصيغة الطبيعية الثالثة لضمان خلو الجداول من الاعتماديات غير المباشرة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- إزالة الأعمدة التي لا تعتمد كلياً على المفتاح الأساسي</pre></div>
+</section>
+
+<section id="s53">
+  <h2>53. أداء الاستعلامات وتحليل الخطط EXPLAIN</h2>
+  <p>فحص وتحليل كيفية تنفيذ محرك القاعدة للاستعلامات لتحسين السرعة والأداء.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>EXPLAIN SELECT * FROM users WHERE email = 'test@test.com';</pre></div>
+</section>
+
+<section id="s54">
+  <h2>54. النسخ الاحتياطي والاستعادة Backup & Restore</h2>
+  <p>حماية بيانات النظام وتصدير واستيراد قواعد البيانات عبر أدوات السيرفر.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- أمر النسخ الاحتياطي من موجه الأوامر:
+-- mysqldump -u root -p database > backup.sql</pre></div>
+</section>
+
+<section id="s55">
+  <h2>55. إدارة المستخدمين وكلمات المرور</h2>
+  <p>إنشاء حسابات المستخدمين وتأمين كلمات المرور الخاصة بالوصول للقاعدة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>CREATE USER 'admin_user'@'localhost' IDENTIFIED BY 'SecurePass2026';</pre></div>
+</section>
+
+<section id="s56">
+  <h2>56. هندسة تصميم قواعد البيانات العلائقية</h2>
+  <p>بناء المخططات التיאغرافية والربط الصحيح بين الكيانات (ER Diagrams).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- تحديد علاقات واحد لواحد، واحد لمتعدد، ومتعدد لمتعدد</pre></div>
+</section>
+
+<section id="s57">
+  <h2>57. مفاهيم NoSQL مقابل SQL</h2>
+  <p>فارق الفلسفة الهندسية بين قواعد البيانات العلائقية وغير العلائقية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- SQL تعتمد على الجداول والصرامة، بينما NoSQL تعتمد على المستندات والمرونة</pre></div>
+</section>
+
+<section id="s58">
+  <h2>58. التعامل مع البيانات الكبيرة JSON في SQL</h2>
+  <p>تخزين واستعلام بيانات بصيغة JSON داخل قواعد بيانات SQL العلائقية الحديثة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>SELECT settings->>'$.theme' FROM users;</pre></div>
+</section>
+
+<section id="s59">
+  <h2>59. النوافذ التحليلية Window Functions (ROW_NUMBER)</h2>
+  <p>ترقيم الصفوف وحساب العمليات ضمن نوافذ بيانات محددة دون تجميع الجدول.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>SELECT name, salary, ROW_NUMBER() OVER(ORDER BY salary DESC) as row_num FROM employees;</pre></div>
+</section>
+
+<section id="s60">
+  <h2>60. الدوال الترتيبية RANK و DENSE_RANK</h2>
+  <p>توزيع الرتب والدرجات على السجلات مع التعامل مع القيم المتطابقة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>SELECT score, RANK() OVER(ORDER BY score DESC) FROM exams;</pre></div>
+</section>
+
+<section id="s61">
+  <h2>61. مقارنة القيم السابقة واللاحقة LAG و LEAD</h2>
+  <p>جلب قيم الصفوف السابقة أو اللاحقة للمقارنة التحليلية المباشرة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>SELECT salary, LAG(salary, 1) OVER(ORDER BY id) FROM employees;</pre></div>
+</section>
+
+<section id="s62">
+  <h2>62. الجداول المؤقتة Temporary Tables</h2>
+  <p>إنشاء جداول مؤقتة لتخزين العمليات الحسابية الوسطية وتدمج تلقائياً بانتهاء الجلسة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>CREATE TEMPORARY TABLE temp_summary AS SELECT * FROM sales WHERE year = 2026;</pre></div>
+</section>
+
+<section id="s63">
+  <h2>63. الجداول الشائعة المشتركة CTEs</h2>
+  <p>استخدام تعبيرات الجداول المشتركة (WITH) لكتابة استعلامات أكثر نظافة وهندسة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>WITH TopSales AS (SELECT * FROM sales WHERE amount > 1000)
+SELECT * FROM TopSales;</pre></div>
+</section>
+
+<section id="s64">
+  <h2>64. الاستعلامات التكرارية Recursive CTEs</h2>
+  <p>معالجة البيانات الهرمية والشجرية عبر الاستعلامات المتكررة ذاتياً.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>WITH RECURSIVE nums AS (SELECT 1 as n UNION ALL SELECT n+1 FROM nums WHERE n < 5)
+SELECT * FROM nums;</pre></div>
+</section>
+
+<section id="s65">
+  <h2>65. تأمين قواعد البيانات وحمايتها من الاختراق</h2>
+  <p>تطبيق معايير أمان الحماية ضد هجمات الحقن وسد ثغرات الوصول غير المصرح.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- استخدام الاستعلامات المُجهزة Prepared Statements وقصر الصلاحيات</pre></div>
+</section>
+
+<section id="s66">
+  <h2>66. هندسة العلاقات متعدد لمتعدد (Many-to-Many)</h2>
+  <p>استخدام جدول وسيط (Junction Table) لربط كيانين بعلاقة متعدد لمتعدد.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>CREATE TABLE student_courses (student_id INT, course_id INT);</pre></div>
+</section>
+
+<section id="s67">
+  <h2>67. إنشاء جداول الأرشيف التاريخية</h2>
+  <p>فصل السجلات القديمة وأرشفتها لتخفيف أحمال قاعدة البيانات الحية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>CREATE TABLE orders_archive LIKE orders;</pre></div>
+</section>
+
+<section id="s68">
+  <h2>68. تحسين استعلامات البحث النصي الكامل Full-Text Search</h2>
+  <p>تفعيل فهارس البحث النصي المتقدم للكلمات والجمل داخل المقالات والمحتوى.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>ALTER TABLE articles ADD FULLTEXT(title, body);
+SELECT * FROM articles WHERE MATCH(title, body) AGAINST('برمجة');</pre></div>
+</section>
+
+<section id="s69">
+  <h2>69. تجميع وتحليل البيانات الإحصائية</h2>
+  <p>استخراج مؤشرات الأداء والتقارير الإحصائية المتقدمة للجداول الكبرى.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>SELECT DATE(created_at), COUNT(*) FROM logs GROUP BY DATE(created_at);</pre></div>
+</section>
+
+<section id="s70">
+  <h2>70. مراقبة أداء السيرفر وجداول العمليات</h2>
+  <p>متابعة العمليات الجارية وحل مشاكل البطء والعمليات العالقة (Processlist).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>SHOW FULL PROCESSLIST;</pre></div>
+</section>
+
+<section id="s71">
+  <h2>71. مشروع: تصميم قاعدة بيانات مدرسة متكاملة</h2>
+  <p>هندسة جداول الطلاب، المعلمين، الفصول، والمواد الدراسية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>CREATE TABLE school_classes (id INT PRIMARY KEY, class_name VARCHAR(50));</pre></div>
+</section>
+
+<section id="s72">
+  <h2>72. مشروع: نظام إدارة مستودعات ومخازن</h2>
+  <p>تتبع الأصناف، الواردات، الصادرات، والأرصدة الحالية للمخزون.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>CREATE TABLE inventory (item_id INT, stock_qty INT);</pre></div>
+</section>
+
+<section id="s73">
+  <h2>73. مشروع: نظام حسابات مالية وقيود يومية</h2>
+  <p>تسجيل الأرصدة، المدين والدائن، وإصدار موازين المراجعة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>CREATE TABLE journal_entries (entry_id INT, debit DECIMAL, credit DECIMAL);</pre></div>
+</section>
+
+<section id="s74">
+  <h2>74. مشروع: قاعدة بيانات متجر إلكتروني</h2>
+  <p>هندسة المنتجات، العملاء، الطلبات، وعربة التسوق.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>CREATE TABLE shop_orders (order_id INT PRIMARY KEY, customer_id INT, total_price DECIMAL);</pre></div>
+</section>
+
+<section id="s75">
+  <h2>75. مشروع: نظام إدارة عيادة طبية وملفات مرضى</h2>
+  <p>إدارة المواعيد، تشخيصات المرضى، والوصفات الطبية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>CREATE TABLE appointments (apt_id INT, patient_id INT, apt_date DATETIME);</pre></div>
+</section>
+
+<section id="s76">
+  <h2>76. مشروع: نظام حجوزات فنادق وغرف</h2>
+  <p>إدارة الغرف المتاحة، فترات الحجز، وبيانات النزلاء.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>CREATE TABLE room_bookings (booking_id INT, room_no INT, check_in DATE, check_out DATE);</pre></div>
+</section>
+
+<section id="s77">
+  <h2>77. مشروع: هيكل قاعدة بيانات مدونة Articles CMS</h2>
+  <p>إدارة المقالات، التصنيفات، التعليقات، والمستخدمين.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>CREATE TABLE cms_posts (id INT PRIMARY KEY, title VARCHAR(255), content TEXT);</pre></div>
+</section>
+
+<section id="s78">
+  <h2>78. مشروع: إدارة شؤون الموظفين</h2>
+  <p>تتبع الأقسام، الرواتب، الحضور والانصراف، والإجازات.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>CREATE TABLE hr_employees (emp_id INT PRIMARY KEY, salary DECIMAL, department_id INT);</pre></div>
+</section>
+
+<section id="s79">
+  <h2>79. مشروع: نظام تذاكر الدعم الفني Help Desk</h2>
+  <p>متابعة مشاكل العملاء، حالة التذاكر، والموظفين المسؤولين عن الحل.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>CREATE TABLE support_tickets (ticket_id INT, status VARCHAR(20), priority INT);</pre></div>
+</section>
+
+<section id="s80">
+  <h2>80. مشروع: قاعدة بيانات شركة طيران وحجوزات</h2>
+  <p>إدارة الرحلات الجوية، الطائرات، المقاعد، وتذاكر المسافرين.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>CREATE TABLE flights (flight_id INT PRIMARY KEY, origin VARCHAR(50), destination VARCHAR(50));</pre></div>
+</section>
+
+<section id="s81">
+  <h2>81. مشروع: نظام اشتراكات الأعضاء والرسوم</h2>
+  <p>متابعة تواريخ انتهاء الاشتراكات، المدفوعات، وتجديد الحسابات.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>CREATE TABLE memberships (member_id INT, expires_at DATE, status VARCHAR(20));</pre></div>
+</section>
+
+<section id="s82">
+  <h2>82. مشروع: تتبع حركة الشحنات واللوجستيات</h2>
+  <p>متابعة خطوط سير الطرود، نقاط التوقف، والحالة اللوجستية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>CREATE TABLE shipments (shipment_id INT, current_location VARCHAR(100), status VARCHAR(50));</pre></div>
+</section>
+
+<section id="s83">
+  <h2>83. مشروع: قاعدة بيانات مكتبة عامة واستعارة كتب</h2>
+  <p>إدارة طوابير استعارة الكتب، المواعيد، وغرامات التأخير.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>CREATE TABLE book_loans (loan_id INT, book_id INT, borrower_id INT, due_date DATE);</pre></div>
+</section>
+
+<section id="s84">
+  <h2>84. مشروع: نظام تقييمات ومراجعات المنتجات</h2>
+  <p>تخزين تقييمات النجوم والتعليقات الخاصة بالمستخدمين على السلع.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>CREATE TABLE product_reviews (review_id INT, product_id INT, rating INT, comment TEXT);</pre></div>
+</section>
+
+<section id="s85">
+  <h2>85. مشروع: إدارة الصلاحيات والأدوار RBAC</h2>
+  <p>هندسة صلاحيات النظام عبر ربط المستخدمين بالأدوار والأذونات المفصلة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>CREATE TABLE user_roles (user_id INT, role_id INT);</pre></div>
+</section>
+
+<section id="s86">
+  <h2>86. مشروع: لوحة مؤشرات الأداء والأرباح KPIs</h2>
+  <p>استخراج مؤشرات الأداء اللحظية وإجماليات المبيعات والأرباح.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>SELECT SUM(amount) AS total_revenue FROM sales WHERE DATE(created_at) = CURDATE();</pre></div>
+</section>
+
+<section id="s87">
+  <h2>87. مشروع: نظام الأرشفة الرقمية والبحث</h2>
+  <p>فهرسة المستندات الرقمية والملفات النصية للرجوع إليها بسرعة وسهولة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>CREATE TABLE digital_archives (doc_id INT PRIMARY KEY, file_title VARCHAR(255), file_path TEXT);</pre></div>
+</section>
+
+<section id="s88">
+  <h2>88. المرجع الشامل لأهم أوامر ودوال SQL</h2>
+  <p>خلاصة هندسية نهائية لأبرز تعليمات ودوال لغة الاستعلامات المهيكلة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>/* خلاصة أوامر SQL الأساسية: SELECT, INSERT, UPDATE, DELETE, JOIN, GROUP BY */</pre></div>
+</section>
+
+<footer>منصة آفاق المعرفة التقنية — مكتبة | مها شهوب<br>إعداد الكاتبة والمهندسة: مها شهوب</footer>
+</main>
+<button class="top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+function toggleTheme(){document.documentElement.dataset.theme=document.documentElement.dataset.theme==="dark"?"light":"dark";localStorage.setItem("sql-theme-88-full",document.documentElement.dataset.theme)}
+if(localStorage.getItem("sql-theme-88-full"))document.documentElement.dataset.theme=localStorage.getItem("sql-theme-88-full");
+document.querySelectorAll(".copy").forEach(b=>b.onclick=()=>{navigator.clipboard.writeText(b.parentElement.querySelector("pre").innerText);let x=b.innerText;b.innerText="تم النسخ ✓";setTimeout(()=>b.innerText=x,1100)});
+function filterNav(){let q=document.getElementById("search").value.toLowerCase();document.querySelectorAll("#nav a").forEach(a=>a.style.display=a.innerText.toLowerCase().includes(q)?"block":"none")}
+window.addEventListener("scroll",()=>{let d=document.documentElement;document.getElementById("progress").style.width=(d.scrollTop/(d.scrollHeight-d.clientHeight)*100)+"%";let cur="";document.querySelectorAll("section").forEach(s=>{if(scrollY>=s.offsetTop-130)cur=s.id});document.querySelectorAll("#nav a").forEach(a=>a.classList.toggle("active",a.hash==="#"+cur))});
+document.querySelectorAll("#nav a").forEach(a=>a.onclick=()=>document.querySelector("aside").classList.remove("open"));
+</script>
+</body>
+</html>

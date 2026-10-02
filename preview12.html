@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="دليل PHP الشامل والمفصل للأكواد والشروح الهندسية - آفاق المعرفة التقنية - مها شهوب">
+<title>دليل PHP الشامل والمفصل | مها شهوب</title>
+<style>
+:root{--bg:#eef3f8;--card:#fff;--text:#172033;--muted:#64748b;--p:#4f5d95;--p2:#3c4875;--b:#d7e1eb;--code:#0b1220;--shadow:0 8px 24px rgba(20,55,90,.09)}
+[data-theme=dark]{--bg:#0c1420;--card:#151f2c;--text:#e7eef8;--muted:#a9b7c8;--p:#3c4875;--p2:#a2aee8;--b:#2b3a4b;--code:#070b12;--shadow:0 8px 24px rgba(0,0,0,.25)}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",Tahoma,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.9}
+header{position:fixed;top:0;right:0;left:0;height:72px;z-index:1000;background:var(--card);border-bottom:1px solid var(--b);display:flex;align-items:center;padding:0 20px;box-shadow:var(--shadow)}
+.logo{width:67px;height:54px;border-radius:50%;display:grid;place-items:center;}
+.brand{margin-right:12px}.brand b{display:block;color:var(--p2)}.brand small{color:var(--muted)}
+.actions{margin-right:auto;display:flex;gap:8px}button{border:1px solid var(--b);background:var(--card);color:var(--text);border-radius:9px;padding:8px 12px;cursor:pointer}.menu{display:none}
+.progress{position:fixed;top:72px;right:0;height:4px;background:var(--p);width:0;z-index:1001}
+aside{position:fixed;top:76px;right:0;bottom:0;width:310px;background:var(--card);border-left:1px solid var(--b);padding:16px;overflow:auto}
+.search{width:100%;padding:10px;border:1px solid var(--b);border-radius:9px;background:var(--bg);color:var(--text);margin-bottom:10px}
+nav a{display:block;color:var(--muted);text-decoration:none;padding:5px 8px;border-radius:7px;font-size:12.5px}
+nav a:hover,nav a.active{background:#4f5d951a;color:var(--p);font-weight:700}
+main{margin-right:310px;padding:110px 34px 50px;max-width:1300px}
+.hero{background:linear-gradient(135deg,var(--p2),var(--p));color:#ffffff;border-radius:18px;padding:34px;margin-bottom:22px;box-shadow:var(--shadow)}
+.hero h1{font-size:32px}.credit{font-weight:700;margin-top:8px}
+section{background:var(--card);border:1px solid var(--b);border-radius:14px;padding:24px;margin-bottom:18px;box-shadow:var(--shadow);scroll-margin-top:95px}
+h2{font-size:21px;color:var(--p2);border-right:4px solid var(--p);padding-right:9px;margin-bottom:12px}
+p {margin-bottom: 12px;}
+.code{position:relative;margin:13px 0}.code pre{background:var(--code);color:#dbeafe;direction:ltr;text-align:left;overflow:auto;border-radius:9px;padding:17px;font:13px/1.7 Consolas,monospace;white-space:pre-wrap}
+.copy{position:absolute;right:7px;top:7px;background:#fff;color:#172033;border:0;font-size:11px;padding:5px 8px;cursor:pointer;border-radius:4px;}
+.top{position:fixed;bottom:20px;left:20px;border-radius:50%;background:var(--p);color:#fff;width:44px;height:44px;border:0;cursor:pointer}
+footer{text-align:center;color:var(--muted);padding:28px}
+@media(max-width:900px){aside{transform:translateX(100%);transition:.25s;width:290px}aside.open{transform:none}.menu{display:block}main{margin:0;padding:100px 14px 40px}.brand small{display:none}.hero h1{font-size:25px}}
+@media print{header,aside,.top,.progress,.actions,.copy{display:none!important}main{margin:0;padding:0}section{box-shadow:none;break-inside:avoid}}
+</style>
+</head>
+<body>
+<header><button class="menu" onclick="document.querySelector('aside').classList.toggle('open')">☰</button>
+  
+  <img src="IMG/آفاق المعرفة التقنية.png" class="logo">
+  <div class="brand"><b>منصة آفاق المعرفة التقنية</b><small>دليل PHP الشامل </small></div>
+
+<div class="actions"><button onclick="toggleTheme()">◐ الوضع</button><button onclick="window.print()">🖨 طباعة</button></div></header>
+<div class="progress" id="progress"></div>
+
+<aside><input class="search" id="search" placeholder="🔎 ابحث في الدروس..." oninput="filterNav()"><nav id="nav">
+<a href="#s1">01. مقدمة في لغة PHP</a>
+<a href="#s2">02. تركيب ووسوم PHP الأساسية</a>
+<a href="#s3">03. التعليقات والتوثيق</a>
+<a href="#s4">04. إخراج البيانات echo و print</a>
+<a href="#s5">05. المتغيرات وثوابت define</a>
+<a href="#s6">06. أنواع البيانات Data Types</a>
+<a href="#s7">07. العمليات الحسابية والرياضية</a>
+<a href="#s8">08. معاملات التخصيص والمقارنة</a>
+<a href="#s9">09. المعاملات المنطقية</a>
+<a href="#s10">10. معالجة النصوص Strings</a>
+<a href="#s11">11. العمليات المتقدمة على النصوص</a>
+<a href="#s12">12. الثوابت السحرية Magic Constants</a>
+<a href="#s13">13. الجمل الشرطية If / Elseif / Else</a>
+<a href="#s14">14. جملة الاختيار Switch</a>
+<a href="#s15">15. المعامل الثلاثي وتحديد النل</a>
+<a href="#s16">16. حلقة التكرار For</a>
+<a href="#s17">17. حلقة التكرار While و Do...While</a>
+<a href="#s18">18. حلقة التكرار Foreach</a>
+<a href="#s19">19. التحكم بالتكرار Break و Continue</a>
+<a href="#s20">20. الدوال الأساسية Functions</a>
+<a href="#s21">22. تمرير الوسائط بالمرجع والقيمة</a>
+<a href="#s23">23. نطاق المتغيرات Global & Local</a>
+<a href="#s24">24. مقدمة المصفوفات Indexed Arrays</a>
+<a href="#s25">25. المصفوفات الترابطية Associative</a>
+<a href="#s26">26. المصفوفات متعددة الأبعاد Multi-dimensional</a>
+<a href="#s27">27. دوال ترتيب ومعالجة المصفوفات</a>
+<a href="#s28">28. دوال Map, Filter و Reduce</a>
+<a href="#s29">29. النماذج وإرسال البيانات GET</a>
+<a href="#s30">30. النماذج وإرسال البيانات POST</a>
+<a href="#s31">31. التحقق من المدخلات والفلاتر</a>
+<a href="#s32">32. التعامل مع الملفات المرفوعة Uploads</a>
+<a href="#s33">33. ملفات الكوكيز Cookies</a>
+<a href="#s34">34. الجلسات Sessions</a>
+<a href="#s35">35. تضمين الملفات include و require</a>
+<a href="#s36">36. معالجة التواريخ والأوقات Date/Time</a>
+<a href="#s37">37. معالجة الأخطاء الاستثناءات Try/Catch</a>
+<a href="#s38">38. الدوال مجهولة الاسم Closures</a>
+<a href="#s39">39. الدوال السهمية Arrow Functions</a>
+<a href="#s40">40. التعامل مع الملفات fopen و fread</a>
+<a href="#s41">41. كتابة وتعديل الملفات file_put_contents</a>
+<a href="#s42">42. فحص حالة الملفات والمجلدات</a>
+<a href="#s43">43. مقدمة قواعد البيانات MySQLi</a>
+<a href="#s44">44. الاتصال بقاعدة البيانات عبر PDO</a>
+<a href="#s45">45. تنفيذ الاستعلامات بأمان Prepared Statements</a>
+<a href="#s46">46. إدخال وجلب البيانات من القاعدة</a>
+<a href="#s47">47. تحديث وحذف البيانات SQL</a>
+<a href="#s48">48. البرمجة كائنية التوجه OOP الأساسية</a>
+<a href="#s49">49. الأصناف Classes والخصائص Properties</a>
+<a href="#s50">50. دوال البناء والهدم Construct & Destruct</a>
+<a href="#s51">51. الوراثة Inheritance</a>
+<a href="#s52">52. الوصول العام والخاص Public/Private/Protected</a>
+<a href="#s53">53. الخصائص والدوال الساكنة Static</a>
+<a href="#s54">54. الواجهات Interfaces</a>
+<a href="#s55">55. الأصناف المجردة Abstract Classes</a>
+<a href="#s56">56. السمات Traits لتجاوز قيود الوراثة</a>
+<a href="#s57">57. مساحات الأسماء Namespaces</a>
+<a href="#s58">58. التحميل التلقائي للملفات Autoloading</a>
+<a href="#s59">59. نظام إدارة الحزم Composer</a>
+<a href="#s60">60. التعبيرات النمطية RegEx في PHP</a>
+<a href="#s61">61. إرسال البريد الإلكتروني mail</a>
+<a href="#s62">62. تنظيف وتأمين المدخلات Sanitization</a>
+<a href="#s63">63. تشفير كلمات المرور Password Hashing</a>
+<a href="#s64">64. منع هجمات حقن SQL Injections</a>
+<a href="#s65">65. منع هجمات Cross-Site Scripting</a>
+<a href="#s66">66. حماية النماذج من CSRF Tokens</a>
+<a href="#s67">67. إنشاء واجهات برمجة التطبيقات REST API</a>
+<a href="#s68">68. التعامل مع البيانات بصيغة JSON</a>
+<a href="#s69">69. جلب بيانات خارجية cURL</a>
+<a href="#s70">70. معالجة الصور ومكتبة GD Library</a>
+<a href="#s71">71. الذاكرة المؤقتة Caching</a>
+<a href="#s72">72. تحسين الأداء وسرعة التنفيذ</a>
+<a href="#s73">73. تتبع الأخطاء وسجلات السيرفر Logs</a>
+<a href="#s74">74. اختبار الأكواد وحدياً PHPUnit</a>
+<a href="#s75">75. إطارات العمل الهندسية MVC Pattern</a>
+<a href="#s76">76. مشروع: بناء نظام تسجيل دخول آمن</a>
+<a href="#s77">77. مشروع: نظام إدارة محتوى مصغر CMS</a>
+<a href="#s78">78. مشروع: عربة تسوق إلكترونية Shopping Cart</a>
+<a href="#s79">79. مشروع: نظام رفع وفلترة الملفات</a>
+<a href="#s80">80. مشروع: بناء مدونة تفاعلية Blog System</a>
+<a href="#s81">81. مشروع: نظام تعليقات تفاعلي</a>
+<a href="#s82">82. مشروع: لوحة تحكم إدارية Admin Panel</a>
+<a href="#s83">83. مشروع: نظام صلاحيات المستخدمين Roles</a>
+<a href="#s84">84. مشروع: إنشاء API لإدارة المنتجات</a>
+<a href="#s85">85. مشروع: نظام بحث متقدم في قاعدة بيانات</a>
+<a href="#s86">86. مشروع: صفحة الاتصال بنا مع التحقق</a>
+<a href="#s87">87. مشروع: تطبيق إحصائيات وزوار الموقع</a>
+<a href="#s88">88. المرجع الشامل لأهم دوال PHP البرمجية</a>
+</nav></aside>
+
+<main>
+<div class="hero">
+  <h1>دليل PHP الشامل والمفصل للأكواد</h1>
+  <p>المرجع الهندسي المتكامل لتطوير الويب من جهة الخادم، مزود بالأمثلة التطبيقية والشروح لكل درس من الـ 88 درساً.</p>
+  <div class="credit">إعداد الكاتبة والمهندسة: مها شهوب</div>
+</div>
+
+<section id="s1">
+  <h2>01. مقدمة في لغة PHP</h2>
+  <p>لغة PHP هي لغة برمجة نصية تُنفذ على الخادم (Server-side) وتُستخدم لبناء وتطوير تطبيقات الويب الديناميكية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+// التحقق من إصدار لغة PHP المشغل للخادم
+echo "إصدار PHP الحالي: " . PHP_VERSION;
+?&gt;</pre></div>
+</section>
+
+<section id="s2">
+  <h2>02. تركيب ووسوم PHP الأساسية</h2>
+  <p>كيفية كتابة الوسوم القياسية والقصيرة لدمج أكواد PHP داخل صفحات HTML بأمان.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+echo "&lt;h3&gt;مرحباً بكم في منصة آفاق المعرفة التقنية&lt;/h3&gt;";
+?&gt;</pre></div>
+</section>
+
+<section id="s3">
+  <h2>03. التعليقات والتوثيق</h2>
+  <p>كتابة الملاحظات وشرح الأكواد البرمجية لتسهيل الصيانة وقراءة الشفرات الهندسية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+// تعليق أحادي السطر
+# تعليق بديل
+/* تعليق متعدد الأسطر 
+   لتوثيق المكونات الكبرى */
+?&gt;</pre></div>
+</section>
+
+<section id="s4">
+  <h2>04. إخراج البيانات echo و print</h2>
+  <p>استخدام الأوامر الأساسية لعرض النصوص والبيانات وإرسالها إلى المتصفح.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+echo "مها شهوب", " - ", "سلسلة أساسيات التقنية";
+print("&lt;br&gt;تم الطباعة بنجاح");
+?&gt;</pre></div>
+</section>
+
+<section id="s5">
+  <h2>05. المتغيرات وثوابت define</h2>
+  <p>تخزين البيانات في متغيرات تبدأ بعلامة الدولار ($) وتعريف الثابتة عبر define أو const.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+$author = "مها شهوب";
+define("SITE_NAME", "آفاق المعرفة التقنية");
+echo SITE_NAME . " بواسطة " . $author;
+?&gt;</pre></div>
+</section>
+
+<section id="s6">
+  <h2>06. أنواع البيانات Data Types</h2>
+  <p>التعرف على أنواع البيانات البرمجية مثل النصوص، الأرقام الصحيحة والعائمة، والقيم المنطقية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+$string = "نص برمجي";
+$intVal = 2026;
+$floatVal = 99.9;
+$isActive = true;
+var_dump($isActive);
+?&gt;</pre></div>
+</section>
+
+<section id="s7">
+  <h2>07. العمليات الحسابية والرياضية</h2>
+  <p>إجراء العمليات الحسابية الأساسية كالجمع، الطرح، الضرب، القسمة، وباقي القسمة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+$x = 10;
+$y = 3;
+echo $x % $y; // باقي القسمة = 1
+?&gt;</pre></div>
+</section>
+
+<section id="s8">
+  <h2>08. معاملات التخصيص والمقارنة</h2>
+  <p>تحديث قيم المتغيرات واختبار مطابقة القيم والأنواع عبر (===).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+$score = 80;
+$score += 20; // تصبح 100
+var_dump(100 === "100"); // خطأ لأن النوع مختلف
+?&gt;</pre></div>
+</section>
+
+<section id="s9">
+  <h2>09. المعاملات المنطقية</h2>
+  <p>ربط الشروط البرمجية المتعددة باستخدام and, or, &&, ||, !.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+$isAdmin = true;
+$isLoggedIn = true;
+if ($isAdmin && $isLoggedIn) {
+    echo "مرحباً بك في لوحة الإدارة";
+}
+?&gt;</pre></div>
+</section>
+
+<section id="s10">
+  <h2>10. معالجة النصوص Strings</h2>
+  <p>دمج النصوص باستخدام النقطة (.) وقراءة طول السلسلة النصية عبر strlen.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+$name = "مها شهوب";
+echo "طول النص: " . mb_strlen($name, 'UTF-8');
+?&gt;</pre></div>
+</section>
+
+<section id="s11">
+  <h2>11. العمليات المتقدمة على النصوص</h2>
+  <p>البحث، الاستبدال، وتقطيع النصوص عبر دوال مثل str_replace و strpos.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+$text = "مرحباً بك في عالم البرمجة";
+echo str_replace("البرمجة", "تطوير الويب", $text);
+?&gt;</pre></div>
+</section>
+
+<section id="s12">
+  <h2>12. الثوابت السحرية Magic Constants</h2>
+  <p>استخدام الثوابت الجاهزة التي يتغير قُيمها حسب مكان استخدامها في الكود مثل __FILE__.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+echo "مسار الملف الحالي: " . __FILE__;
+?&gt;</pre></div>
+</section>
+
+<section id="s13">
+  <h2>13. الجمل الشرطية If / Elseif / Else</h2>
+  <p>توجيه مسار التنفيذ البرمجي بناءً على تحقق الشروط المنطقية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+$grade = 85;
+if ($grade >= 90) {
+    echo "امتياز";
+} elseif ($grade >= 75) {
+    echo "جيد جداً";
+} else {
+    echo "ناجح";
+}
+?&gt;</pre></div>
+</section>
+
+<section id="s14">
+  <h2>14. جملة الاختيار Switch</h2>
+  <p>مقارنة متغير محدد مع عدة حالات محتملة بشكل منظم وواضح.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+$role = "admin";
+switch ($role) {
+    case "admin": echo "صلاحيات كاملة"; break;
+    case "user": echo "صلاحيات محدودة"; break;
+    default: echo "زائر";
+}
+?&gt;</pre></div>
+</section>
+
+<section id="s15">
+  <h2>15. المعامل الثلاثي وتحديد النل</h2>
+  <p>اختصار الشروط السريعة واستخدام معامل الدمج Null Coalescing (??).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+$username = $_GET['user'] ?? "زائر مجهول";
+echo $username;
+?&gt;</pre></div>
+</section>
+
+<section id="s16">
+  <h2>16. حلقة التكرار For</h2>
+  <p>تكرار تنفيذ كتلة برمجية لعدد محدد ومعروف من المرات.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+for ($i = 1; $i <= 5; $i++) {
+    echo "الرقم: $i &lt;br&gt;";
+}
+?&gt;</pre></div>
+</section>
+
+<section id="s17">
+  <h2>17. حلقة التكرار While و Do...While</h2>
+  <p>التكرار استناداً إلى بقاء الشرط صحيحاً حتى يتم استيفاء القاعدة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+$counter = 1;
+while ($counter <= 3) {
+    echo "التكرار رقم: $counter<br>";
+    $counter++;
+}
+?&gt;</pre></div>
+</section>
+
+<section id="s18">
+  <h2>18. حلقة التكرار Foreach</h2>
+  <p>الحلقة المخصصة للمرور على عناصر المصفوفات بسهولة فائقة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+$techs = ["HTML", "CSS", "JS", "PHP"];
+foreach ($techs as $tech) {
+    echo "- $tech &lt;br&gt;";
+}
+?&gt;</pre></div>
+</section>
+
+<section id="s19">
+  <h2>19. التحكم بالتكرار Break و Continue</h2>
+  <p>إيقاف حلقة التكرار نهائياً أو تجاوز دورة معينة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+for ($i = 1; $i <= 5; $i++) {
+    if ($i == 3) continue;
+    echo "$i ";
+}
+?&gt;</pre></div>
+</section>
+
+<section id="s20">
+  <h2>20. الدوال الأساسية Functions</h2>
+  <p>تجميع الأكواد المتكررة في دوال قابلة لإعادة الاستخدام والنداء.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+function welcomeUser($name) {
+    return "أهلاً بك يا $name في المنصة";
+}
+echo welcomeUser("مها");
+?&gt;</pre></div>
+</section>
+
+<section id="s22">
+  <h2>22. تمرير الوسائط بالمرجع والقيمة</h2>
+  <p>تعديل قيمة المتغير الأصلي داخل الدالة عبر استخدام علامة العطف (&).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+function addFive(&$num) {
+    $num += 5;
+}
+$val = 10;
+addFive($val);
+echo $val; // تصبح 15
+?&gt;</pre></div>
+</section>
+
+<section id="s23">
+  <h2>23. نطاق المتغيرات Global & Local</h2>
+  <p>فهم مدى رؤية المتغيرات المحلية داخل الدوال والعامة على مستوى الملف.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+$x = 10;
+function testScope() {
+    global $x;
+    echo $x;
+}
+testScope();
+?&gt;</pre></div>
+</section>
+
+<section id="s24">
+  <h2>24. مقدمة المصفوفات Indexed Arrays</h2>
+  <p>تخزين عدة قيم برمجية مرتبة برقم تسلسلي يبدأ من الصفر.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+$books = array("كتاب C++", "كتاب جافاسكريبت", "كتاب PHP");
+echo $books[0];
+?&gt;</pre></div>
+</section>
+
+<section id="s25">
+  <h2>25. المصفوفات الترابطية Associative</h2>
+  <p>استخدام مفاتيح نصية مخصصة بدلاً من الأرقام للوصول إلى القيم.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+$authorInfo = ["name" => "مها شهوب", "role" => "مهندسة برمجيات"];
+echo $authorInfo["name"];
+?&gt;</pre></div>
+</section>
+
+<section id="s26">
+  <h2>26. المصفوفات متعددة الأبعاد Multi-dimensional</h2>
+  <p>مصفوفات تحوي داخلها مصفوفات أخرى لتنظيم البيانات المركبة والجداول.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+$matrix = [
+    [1, 2, 3],
+    [4, 5, 6]
+];
+echo $matrix[0][1]; // النتيجة 2
+?&gt;</pre></div>
+</section>
+
+<section id="s27">
+  <h2>27. دوال ترتيب ومعالجة المصفوفات</h2>
+  <p>ترتيب العناصر تصاعدياً وتنازلياً عبر sort و rsort ودوال الفحص.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+$nums = [5, 2, 9, 1];
+sort($nums);
+print_r($nums);
+?&gt;</pre></div>
+</section>
+
+<section id="s28">
+  <h2>28. دوال Map, Filter و Reduce</h2>
+  <p>الأساليب الاحترافية للتعامل مع المصفوفات وتحويل بياناتها برمجياً.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+$numbers = [1, 2, 3, 4];
+$squared = array_map(fn($n) => $n * $n, $numbers);
+print_r($squared);
+?&gt;</pre></div>
+</section>
+
+<section id="s29">
+  <h2>29. النماذج وإرسال البيانات GET</h2>
+  <p>استقبال البيانات المُرسلة عبر الرابط وظهورها في مصفوفة $_GET.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+// رابط مثل: index.php?search=php
+$search = $_GET['search'] ?? '';
+echo "كلمة البحث: " . htmlspecialchars($search);
+?&gt;</pre></div>
+</section>
+
+<section id="s30">
+  <h2>30. النماذج وإرسال البيانات POST</h2>
+  <p>استقبال بيانات النماذج الآمنة والسرية عبر مصفوفة $_POST.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST['username'] ?? '';
+    echo "مرحباً: " . htmlspecialchars($username);
+}
+?&gt;</pre></div>
+</section>
+
+<section id="s31">
+  <h2>31. التحقق من المدخلات والفلاتر</h2>
+  <p>استخدام مرشحات الفحص filter_var للتحقق من صحة الإيميلات والروابط.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+$email = "maha@example.com";
+if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    echo "البريد الإلكتروني صحيح";
+}
+?&gt;</pre></div>
+</section>
+
+<section id="s32">
+  <h2>32. التعامل مع الملفات المرفوعة Uploads</h2>
+  <p>إدارة استقبال الملفات والصور عبر مصفوفة $_FILES وتخزينها بأمان في الخادم.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+if (isset($_FILES['image'])) {
+    $fileTmp = $_FILES['image']['tmp_name'];
+    move_uploaded_file($fileTmp, "uploads/" . $_FILES['image']['name']);
+}
+?&gt;</pre></div>
+</section>
+
+<section id="s33">
+  <h2>33. ملفات الكوكيز Cookies</h2>
+  <p>حفظ وتخزين البيانات الصغيرة في متصفح المستخدم لفترة زمنية محددة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+setcookie("username", "مها", time() + 86400, "/");
+echo $_COOKIE['username'] ?? 'غير موجود';
+?&gt;</pre></div>
+</section>
+
+<section id="s34">
+  <h2>34. الجلسات Sessions</h2>
+  <p>حفظ بيانات المستخدم على الخادم مؤقتاً أثناء تصفحه للموقع عبر session_start.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+session_start();
+$_SESSION['auth'] = true;
+echo $_SESSION['auth'] ? "مفعلة" : "معطلة";
+?&gt;</pre></div>
+</section>
+
+<section id="s35">
+  <h2>35. تضمين الملفات include و require</h2>
+  <p>تقسيم التصميم إلى أجزاء (مثل الهدر والفوتر) واستدعائها لتجنب تكرار الكود.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+// استدعاء ملف القالب الأساسي
+include 'header.php';
+?&gt;</pre></div>
+</section>
+
+<section id="s36">
+  <h2>36. معالجة التواريخ والأوقات Date/Time</h2>
+  <p>ضبط النطاق الزمني وجلب التواريخ الحالية ومنسقاتها عبر دالة date.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+date_default_timezone_set('Africa/Tripoli');
+echo "تاريخ اليوم: " . date("Y-m-d H:i:s");
+?&gt;</pre></div>
+</section>
+
+<section id="s37">
+  <h2>37. معالجة الأخطاء الاستثناءات Try/Catch</h2>
+  <p>التقاط الأخطاء وتشغيل آليات حماية لمنع توقف التطبيق المعماري.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+try {
+    throw new Exception("خطأ في الاتصال بالخدمة");
+} catch (Exception $e) {
+    echo "تم رصد الخطأ: " . $e->getMessage();
+}
+?&gt;</pre></div>
+</section>
+
+<section id="s38">
+  <h2>38. الدوال مجهولة الاسم Closures</h2>
+  <p>كتابة دوال بدون اسم وإسنادها لمتغيرات أو تمريرها كمعاملات.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+$greet = function($name) {
+    return "أهلاً $name";
+};
+echo $greet("مهندسة مها");
+?&gt;</pre></div>
+</section>
+
+<section id="s39">
+  <h2>39. الدوال السهمية Arrow Functions</h2>
+  <p>الصيغة الحديثة والموجزة لكتابة الدوال المختصرة في PHP 7.4+.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+$multiplier = fn($n) => $n * 10;
+echo $multiplier(5); // 50
+?&gt;</pre></div>
+</section>
+
+<section id="s40">
+  <h2>40. التعامل مع الملفات fopen و fread</h2>
+  <p>فتح وقراءة محتويات الملفات النصية الموجودة على الخادم.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+$file = fopen("data.txt", "r");
+if ($file) {
+    echo fread($file, filesize("data.txt"));
+    fclose($file);
+}
+?&gt;</pre></div>
+</section>
+
+<section id="s41">
+  <h2>41. كتابة وتعديل الملفات file_put_contents</h2>
+  <p>الطريقة المختصرة والسريعة لكتابة وحفظ النصوص داخل الملفات.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+file_put_contents("log.txt", "تسجيل دخول جديد بالنظام\n", FILE_APPEND);
+?&gt;</pre></div>
+</section>
+
+<section id="s42">
+  <h2>42. فحص حالة الملفات والمجلدات</h2>
+  <p>التحقق من وجود الملفات وصلاحياتها وحجمها عبر file_exists.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+if (file_exists("config.php")) {
+    echo "ملف الإعدادات موجود ومتاحة";
+}
+?&gt;</pre></div>
+</section>
+
+<section id="s43">
+  <h2>43. مقدمة قواعد البيانات MySQLi</h2>
+  <p>الاتصال بقواعد بيانات MySQL باستخدام مكتبة MySQLi الإجرائية أو الكائنية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+$conn = new mysqli("localhost", "root", "", "my_db");
+if ($conn->connect_error) {
+    die("فشل الاتصال: " . $conn->connect_error);
+}
+?&gt;</pre></div>
+</section>
+
+<section id="s44">
+  <h2>44. الاتصال بقاعدة البيانات عبر PDO</h2>
+  <p>استخدام كائن PDO الموحد والمرن للاتصال بمختلف أنواع قواعد البيانات.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+try {
+    $pdo = new PDO("mysql:host=localhost;dbname=my_db", "root", "");
+    echo "تم الاتصال بنجاح عبر PDO";
+} catch (PDOException $e) {
+    echo "خطأ: " . $e->getMessage();
+}
+?&gt;</pre></div>
+</section>
+
+<section id="s45">
+  <h2>45. تنفيذ الاستعلامات بأمان Prepared Statements</h2>
+  <p>حماية قاعدة البيانات من الاختراق واستخدام الاستعلامات المُجهزة (Prepared Statements).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+$stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
+$stmt->execute([$email]);
+$user = $stmt->fetch();
+?&gt;</pre></div>
+</section>
+
+<section id="s46">
+  <h2>46. إدخال وجلب البيانات من القاعدة</h2>
+  <p>كتابة أوامر الإدخال (INSERT) وجلب النتائج برمجياً عبر الحلقات.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+$stmt = $pdo->prepare("INSERT INTO posts (title) VALUES (?)");
+$stmt->execute(["دليل PHP الشامل"]);
+?&gt;</pre></div>
+</section>
+
+<section id="s47">
+  <h2>47. تحديث وحذف البيانات SQL</h2>
+  <p>إدارة عمليات التعديل (UPDATE) والحذف (DELETE) لسجلات الجداول.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+$pdo->query("UPDATE settings SET value = 'active' WHERE id = 1");
+?&gt;</pre></div>
+</section>
+
+<section id="s48">
+  <h2>48. البرمجة كائنية التوجه OOP الأساسية</h2>
+  <p>بناء البرمجيات باستخدام مفهوم الكائنات والأصناف لتنظيم المشاريع الكبرى.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+class SystemApp {
+    public $name = "آفاق المعرفة التقنية";
+}
+$app = new SystemApp();
+echo $app->name;
+?&gt;</pre></div>
+</section>
+
+<section id="s49">
+  <h2>49. الأصناف Classes والخصائص Properties</h2>
+  <p>تعريف مكونات الأصناف البرمجية وإسناد الخصائص والأساليب المرتبطة بها.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+class UserProfile {
+    public $username;
+    public function getProfile() { return $this->username; }
+}
+?&gt;</pre></div>
+</section>
+
+<section id="s50">
+  <h2>50. دوال البناء والهدم Construct & Destruct</h2>
+  <p>تهيئة الخصائص تلقائياً فور إنشاء الكائن باستخدام دالة البناء __construct.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+class DatabaseManager {
+    public function __construct() {
+        echo "تم تهيئة الاتصال";
+    }
+}
+$db = new DatabaseManager();
+?&gt;</pre></div>
+</section>
+
+<section id="s51">
+  <h2>51. الوراثة Inheritance</h2>
+  <p>توريث الخصائص والدوال من صنف أساسي (Parent) إلى صنف فرعي (Child).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+class Person { public $name; }
+class Admin extends Person { public $level = 1; }
+?&gt;</pre></div>
+</section>
+
+<section id="s52">
+  <h2>52. الوصول العام والخاص Public/Private/Protected</h2>
+  <p>حماية وتغليف البيانات داخل الأصناف وتحديد صلاحيات الرؤية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+class Account {
+    private $password = "secret123";
+    public function getPass() { return $this->password; }
+}
+?&gt;</pre></div>
+</section>
+
+<section id="s53">
+  <h2>53. الخصائص والدوال الساكنة Static</h2>
+  <p>استدعاء الخصائص والدوال مباشرة دون الحاجة لإنشاء كائن من الصنف.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+class MathUtil {
+    public static function square($n) { return $n * $n; }
+}
+echo MathUtil::square(4); // 16
+?&gt;</pre></div>
+</section>
+
+<section id="s54">
+  <h2>54. الواجهات Interfaces</h2>
+  <p>تحديد القوالب المعيارية والدوال الواجب تنفيذها في الأصناف الفرعية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+interface Logger {
+    public function logMessage($msg);
+}
+?&gt;</pre></div>
+</section>
+
+<section id="s55">
+  <h2>55. الأصناف المجردة Abstract Classes</h2>
+  <p>بناء قوالب أساسية تحتوي على دوال معرفة وأخرى مجردة يجب توريثها.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+abstract class BaseController {
+    abstract public function render();
+}
+?&gt;</pre></div>
+</section>
+
+<section id="s56">
+  <h2>56. السمات Traits لتجاوز قيود الوراثة</h2>
+  <p>إعادة استخدام مجموعات من الدوال في عدة أصناف مختلفة بلا قيود الوراثة الأحادية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+trait LoggerTrait {
+    public function log() { echo "تسجيل الأحداث"; }
+}
+?&gt;</pre></div>
+</section>
+
+<section id="s57">
+  <h2>57. مساحات الأسماء Namespaces</h2>
+  <p>تنظيم الملفات والأصناف ومنع تداخل الأسماء المتشابهة في المشاريع الضخمة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+namespace App\Controllers;
+class HomeController {}
+?&gt;</pre></div>
+</section>
+
+<section id="s58">
+  <h2>58. التحميل التلقائي للملفات Autoloading</h2>
+  <p>تحميل الأصناف والملفات برمجياً وتلقائياً عبر spl_autoload_register.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+spl_autoload_register(function ($class) {
+    include 'classes/' . $class . '.php';
+});
+?&gt;</pre></div>
+</section>
+
+<section id="s59">
+  <h2>59. نظام إدارة الحزم Composer</h2>
+  <p>تثبيت وإدارة المكتبات الخارجية والحزم البرمجية لمشاريع PHP الحديثة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>// ملف التكوين الأساسي composer.json
+{ "require": { "monolog/monolog": "^2.0" } }</pre></div>
+</section>
+
+<section id="s60">
+  <h2>60. التعبيرات النمطية RegEx في PHP</h2>
+  <p>استخدام دوال preg_match للبحث والتحقق من تطابق الأنماط النصية المعقدة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+if (preg_match("/^[a-zA-Z]+$/", "Maha")) {
+    echo "النص يحوي حروفاً فقط";
+}
+?&gt;</pre></div>
+</section>
+
+<section id="s61">
+  <h2>61. إرسال البريد الإلكتروني mail</h2>
+  <p>استخدام دالة البريد الافتراضية أو مكتبات احترافية لإرسال الرسائل.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+mail("admin@example.com", "رسالة جديدة", "محتوى الرسالة التقنية");
+?&gt;</pre></div>
+</section>
+
+<section id="s62">
+  <h2>62. تنظيف وتأمين المدخلات Sanitization</h2>
+  <p>تنظيف النصوص وحمايتها من الأكواد الخبيثة عبر htmlspecialchars.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+$safeInput = htmlspecialchars($_POST['comment'], ENT_QUOTES, 'UTF-8');
+?&gt;</pre></div>
+</section>
+
+<section id="s63">
+  <h2>63. تشفير كلمات المرور Password Hashing</h2>
+  <p>استخدام خوارزميات التشفير الآمنة password_hash لتخزين كلمات المرور.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+$hash = password_hash("mySecurePass", PASSWORD_DEFAULT);
+if (password_verify("mySecurePass", $hash)) {
+    echo "كلمة المرور مطابقة";
+}
+?&gt;</pre></div>
+</section>
+
+<section id="s64">
+  <h2>64. منع هجمات حقن SQL Injections</h2>
+  <p>تأمين الاستعلامات نهائياً ومنع الاختراقات عبر الوسائط المُجهزة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+// استخدام PDO Prepared Statements يحمي تماماً من الحقن
+$stmt = $pdo->prepare("SELECT * FROM users WHERE id = ?");
+?&gt;</pre></div>
+</section>
+
+<section id="s65">
+  <h2>65. منع هجمات Cross-Site Scripting</h2>
+  <p>تأمين مخرجات الموقع ومنع تشغيل السكريبتات الخبيثة في متصفحات المستخدمين.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+echo strip_tags($userInput); // إزالة وسوم HTML الخطرة
+?&gt;</pre></div>
+</section>
+
+<section id="s66">
+  <h2>66. حماية النماذج من CSRF Tokens</h2>
+  <p>توليد رموز أمان فريدة لكل جلسة لمنع عمليات التزوير والاختراق الخارجي للنماذج.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+session_start();
+$_SESSION['token'] = bin2hex(random_bytes(32));
+?&gt;</pre></div>
+</section>
+
+<section id="s67">
+  <h2>67. إنشاء واجهات برمجة التطبيقات REST API</h2>
+  <p>بناء خوادم ترد بصيغة JSON لربط تطبيقات الويب والجوال بالباك اند.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+header('Content-Type: application/json');
+echo json_encode(["status" => "success", "data" => []]);
+?&gt;</pre></div>
+</section>
+
+<section id="s68">
+  <h2>68. التعامل مع البيانات بصيغة JSON</h2>
+  <p>تحويل المصفوفات إلى JSON والعكس عبر json_encode و json_decode.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+$data = ["site" => "آفاق المعرفة التقنية"];
+$json = json_encode($data, JSON_UNESCAPED_UNICODE);
+?&gt;</pre></div>
+</section>
+
+<section id="s69">
+  <h2>69. جلب بيانات خارجية cURL</h2>
+  <p>التواصل مع السيرفرات الخارجية وجلب البيانات عبر مكتبة cURL الاحترافية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+$ch = curl_init("https://api.github.com");
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+$res = curl_exec($ch);
+curl_close($ch);
+?&gt;</pre></div>
+</section>
+
+<section id="s70">
+  <h2>70. معالجة الصور ومكتبة GD Library</h2>
+  <p>قص، تغيير أحجام، وتعديل الصور وإضافة العلامات المائية برمجياً.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+$img = imagecreatetruecolor(200, 200);
+$bg = imagecolorallocate($img, 255, 255, 255);
+imagefill($img, 0, 0, $bg);
+?&gt;</pre></div>
+</section>
+
+<section id="s71">
+  <h2>71. الذاكرة المؤقتة Caching</h2>
+  <p>حفظ النتائج المتكررة مؤقتاً لتسريع الاستجابة وتقليل الضغط على قاعدة البيانات.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+// نموذج تخزين مؤقت للملفات
+file_put_contents('cache.html', $htmlOutput);
+?&gt;</pre></div>
+</section>
+
+<section id="s72">
+  <h2>72. تحسين الأداء وسرعة التنفيذ</h2>
+  <p>مراقبة الموارد الزمنية وتحسين الخوارزميات لضمان استجابة السيرفر الفورية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+$start = microtime(true);
+// تنفيذ الأكواد الثقيلة
+$time = microtime(true) - $start;
+?&gt;</pre></div>
+</section>
+
+<section id="s73">
+  <h2>73. تتبع الأخطاء وسجلات السيرفر Logs</h2>
+  <p>تسجيل الأخطاء البرمجية في ملفات السيرفر الخفية عبر error_log.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+error_log("حدث خطأ في النظام الداخلي", 0);
+?&gt;</pre></div>
+</section>
+
+<section id="s74">
+  <h2>74. اختبار الأكواد وحدياً PHPUnit</h2>
+  <p>كتابة اختبارات تلقائية لضمان عمل دوال الفئات البرمجية بكفاءة وموثوقية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+use PHPUnit\Framework\TestCase;
+class SampleTest extends TestCase {
+    public function testTrue() { $this->assertTrue(true); }
+}
+?&gt;</pre></div>
+</section>
+
+<section id="s75">
+  <h2>75. إطارات العمل الهندسية MVC Pattern</h2>
+  <p>فهم هندسة فصل نموذج البيانات (Model) عن العرض (View) والتحكم (Controller).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+// هيكل توجيه الطلبات الأساسي للمتحكم
+class Router { public function dispatch() { /* ... */ } }
+?&gt;</pre></div>
+</section>
+
+<section id="s76">
+  <h2>76. مشروع: بناء نظام تسجيل دخول آمن</h2>
+  <p>تطبيق عملي متكامل لتسجيل وتحقق دخول المستخدمين بالكلمات المشفرة والجلسات.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+// نظام التحقق من الجلسة والصلاحية
+session_start(); if(!isset($_SESSION['auth'])) { header("Location: login.php"); }
+?&gt;</pre></div>
+</section>
+
+<section id="s77">
+  <h2>77. مشروع: نظام إدارة محتوى مصغر CMS</h2>
+  <p>بناء لوحة لإضافة وتعديل المقالات والصفحات النصية المخزنة بقاعدة البيانات.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+$posts = $pdo->query("SELECT * FROM articles")->fetchAll();
+?&gt;</pre></div>
+</section>
+
+<section id="s78">
+  <h2>78. مشروع: عربة تسوق إلكترونية Shopping Cart</h2>
+  <p>إدارة المنتجات المضافة للسلة وحساب الإجماليات عبر الجلسات.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+$_SESSION['cart'][] = ['id' => 1, 'qty' => 2];
+?&gt;</pre></div>
+</section>
+
+<section id="s79">
+  <h2>79. مشروع: نظام رفع وفلترة الملفات</h2>
+  <p>التحقق من أنواع وأحجام الملفات المرفوعة وحفظها بمجلد مخصص بأمان.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+// فحص امتداد الملف المرفوع
+$ext = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
+?&gt;</pre></div>
+</section>
+
+<section id="s80">
+  <h2>80. مشروع: بناء مدونة تفاعلية Blog System</h2>
+  <p>عرض المقالات مع صفحة تفاصيل لكل مقال ونظام تعليقات مرن.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+$articleId = $_GET['id'] ?? 1;
+$stmt = $pdo->prepare("SELECT * FROM posts WHERE id = ?");
+?&gt;</pre></div>
+</section>
+
+<section id="s81">
+  <h2>81. مشروع: نظام تعليقات تفاعلي</h2>
+  <p>استقبال تعليقات الزوار وحفظها وعرضها أسفل المقالات والصفحات.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+$stmt = $pdo->prepare("INSERT INTO comments (post_id, body) VALUES (?, ?)");
+?&gt;</pre></div>
+</section>
+
+<section id="s82">
+  <h2>82. مشروع: لوحة تحكم إدارية Admin Panel</h2>
+  <p>عرض احصائيات سريعة وجداول إدارة المستخدمين والمحتوى بصلاحيات حصرية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+$usersCount = $pdo->query("SELECT COUNT(*) FROM users")->fetchColumn();
+?&gt;</pre></div>
+</section>
+
+<section id="s83">
+  <h2>83. مشروع: نظام صلاحيات المستخدمين Roles</h2>
+  <p>التحقق من نوع حساب المستخدم (مدير، مشرف، مستخدم عادي) لمنع التجاوزات.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+if($_SESSION['role'] !== 'admin') { die("عذراً، لا تمتلك الصلاحية"); }
+?&gt;</pre></div>
+</section>
+
+<section id="s84">
+  <h2>84. مشروع: إنشاء API لإدارة المنتجات</h2>
+  <p>تطوير خادم REST API يرسل ويستقبل بيانات المنتجات بصيغة JSON.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+$products = $pdo->query("SELECT * FROM products")->fetchAll(PDO::FETCH_ASSOC);
+echo json_encode($products);
+?&gt;</pre></div>
+</section>
+
+<section id="s85">
+  <h2>85. مشروع: نظام بحث متقدم في قاعدة بيانات</h2>
+  <p>تفعيل حقول البحث الشامل وجلب النتائج المطابقة للكلمات المفتاحية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+$keyword = "%" . $_GET['q'] . "%";
+$stmt = $pdo->prepare("SELECT * FROM items WHERE title LIKE ?");
+?&gt;</pre></div>
+</section>
+
+<section id="s86">
+  <h2>86. مشروع: صفحة الاتصال بنا مع التحقق</h2>
+  <p>معالجة الرسائل القادمة من نموذج التواصل والتحقق من صحة البريد قبل الإرسال.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+// معالجة نموذج التواصل وإرسال الإشعار
+$msg = filter_input(INPUT_POST, 'message', FILTER_SANITIZE_DEFAULT);
+?&gt;</pre></div>
+</section>
+
+<section id="s87">
+  <h2>87. مشروع: تطبيق إحصائيات وزوار الموقع</h2>
+  <p>تتبع عدد زيارات الصفحات وتخزين العدادات في قاعدة البيانات بدقة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+$pdo->query("UPDATE stats SET views = views + 1 WHERE id = 1");
+?&gt;</pre></div>
+</section>
+
+<section id="s88">
+  <h2>88. المرجع الشامل لأهم دوال PHP البرمجية</h2>
+  <p>خلاصة هندسية نهائية لأهم الدوال والأوامر المساعدة للرجوع إليها فورياً.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
+/* مرجع دوال PHP الأساسية */
+$php_ref = ["arrays" => "array_map", "db" => "PDO", "strings" => "strlen"];
+?&gt;</pre></div>
+</section>
+
+<footer>منصة آفاق المعرفة التقنية — مكتبة | مها شهوب<br>إعداد الكاتبة والمهندسة: مها شهوب</footer>
+</main>
+<button class="top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+function toggleTheme(){document.documentElement.dataset.theme=document.documentElement.dataset.theme==="dark"?"light":"dark";localStorage.setItem("php-theme-88-full",document.documentElement.dataset.theme)}
+if(localStorage.getItem("php-theme-88-full"))document.documentElement.dataset.theme=localStorage.getItem("php-theme-88-full");
+document.querySelectorAll(".copy").forEach(b=>b.onclick=()=>{navigator.clipboard.writeText(b.parentElement.querySelector("pre").innerText);let x=b.innerText;b.innerText="تم النسخ ✓";setTimeout(()=>b.innerText=x,1100)});
+function filterNav(){let q=document.getElementById("search").value.toLowerCase();document.querySelectorAll("#nav a").forEach(a=>a.style.display=a.innerText.toLowerCase().includes(q)?"block":"none")}
+window.addEventListener("scroll",()=>{let d=document.documentElement;document.getElementById("progress").style.width=(d.scrollTop/(d.scrollHeight-d.clientHeight)*100)+"%";let cur="";document.querySelectorAll("section").forEach(s=>{if(scrollY>=s.offsetTop-130)cur=s.id});document.querySelectorAll("#nav a").forEach(a=>a.classList.toggle("active",a.hash==="#"+cur))});
+document.querySelectorAll("#nav a").forEach(a=>a.onclick=()=>document.querySelector("aside").classList.remove("open"));
+</script>
+</body>
+</html>

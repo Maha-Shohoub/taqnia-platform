@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="دليل لغة البرمجة C الشامل والمفصل للأكواد وإدارة الذاكرة - آفاق المعرفة التقنية - مها شهوب">
+<title>دليل C الشامل والمفصل | مها شهوب</title>
+<style>
+:root{--bg:#eef3f8;--card:#fff;--text:#172033;--muted:#64748b;--p:#1677c8;--p2:#0b4f88;--b:#d7e1eb;--code:#0b1220;--shadow:0 8px 24px rgba(20,55,90,.09)}
+[data-theme=dark]{--bg:#0c1420;--card:#151f2c;--text:#e7eef8;--muted:#d1e0f3;--p:#6184bc;--p2:#346186;--b:#6d86a2;--code:#070b12;--shadow:0 8px 24px rgba(0,0,0,.25)}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",Tahoma,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.9}
+header{position:fixed;top:0;right:0;left:0;height:72px;z-index:1000;background:var(--card);border-bottom:1px solid var(--b);display:flex;align-items:center;padding:0 20px;box-shadow:var(--shadow)}
+.logo{width:67px;height:54px;border-radius:50%;display:grid;place-items:center;}
+.brand{margin-right:12px}.brand b{display:block;color:var(--p2)}.brand small{color:var(--muted)}
+.actions{margin-right:auto;display:flex;gap:8px}button{border:1px solid var(--b);background:var(--card);color:var(--text);border-radius:9px;padding:8px 12px;cursor:pointer}.menu{display:none}
+.progress{position:fixed;top:72px;right:0;height:4px;background:var(--p);width:0;z-index:1001}
+aside{position:fixed;top:76px;right:0;bottom:0;width:310px;background:var(--card);border-left:1px solid var(--b);padding:16px;overflow:auto}
+.search{width:100%;padding:10px;border:1px solid var(--b);border-radius:9px;background:var(--bg);color:var(--text);margin-bottom:10px}
+nav a{display:block;color:var(--muted);text-decoration:none;padding:5px 8px;border-radius:7px;font-size:12.5px}
+nav a:hover,nav a.active{background:#2563eb1a;color:var(--p);font-weight:700}
+main{margin-right:310px;padding:110px 34px 50px;max-width:1300px}
+.hero{background:linear-gradient(135deg,var(--p2),var(--p));color:#ffffff;border-radius:18px;padding:34px;margin-bottom:22px;box-shadow:var(--shadow)}
+.hero h1{font-size:32px}.credit{font-weight:700;margin-top:8px}
+section{background:var(--card);border:1px solid var(--b);border-radius:14px;padding:24px;margin-bottom:18px;box-shadow:var(--shadow);scroll-margin-top:95px}
+h2{font-size:21px;color:var(--p2);border-right:4px solid var(--p);padding-right:9px;margin-bottom:12px}
+p {margin-bottom: 12px;}
+.code{position:relative;margin:13px 0}.code pre{background:var(--code);color:#dbeafe;direction:ltr;text-align:left;overflow:auto;border-radius:9px;padding:17px;font:13px/1.7 Consolas,monospace;white-space:pre-wrap}
+.copy{position:absolute;right:7px;top:7px;background:#fff;color:#172033;border:0;font-size:11px;padding:5px 8px;cursor:pointer;border-radius:4px;}
+.top{position:fixed;bottom:20px;left:20px;border-radius:50%;background:var(--p);color:#fff;width:44px;height:44px;border:0;cursor:pointer}
+footer{text-align:center;color:var(--muted);padding:28px}
+@media(max-width:900px){aside{transform:translateX(100%);transition:.25s;width:290px}aside.open{transform:none}.menu{display:block}main{margin:0;padding:100px 14px 40px}.brand small{display:none}.hero h1{font-size:25px}}
+@media print{header,aside,.top,.progress,.actions,.copy{display:none!important}main{margin:0;padding:0}section{box-shadow:none;break-inside:avoid}}
+</style>
+</head>
+<body>
+<header><button class="menu" onclick="document.querySelector('aside').classList.toggle('open')">☰</button>
+
+   
+  <img src="IMG/آفاق المعرفة التقنية.png" class="logo">
+  <div class="brand"><b>منصة آفاق المعرفة التقنية</b><small>دليل C الشامل </small></div>
+
+
+  <div class="actions"><button onclick="toggleTheme()">◐ الوضع</button><button onclick="window.print()">🖨 طباعة</button></div></header>
+<div class="progress" id="progress"></div>
+
+<aside><input class="search" id="search" placeholder="🔎 ابحث في الوحدات والدروس..." oninput="filterNav()"><nav id="nav">
+<a href="#s1">01. مقدمة عن لغة C وتاريخها</a>
+<a href="#s2">02. الهيكل العام للبرنامج ودالة Main</a>
+<a href="#s3">03. أنواع البيانات الأساسية ومقاساتها</a>
+<a href="#s4">04. المتغيرات والثوابت وقواعد التسمية</a>
+<a href="#s5">05. العمليات الحسابية ومعاملات الإسناد</a>
+<a href="#s6">06. المدخلات والمخرجات الأساسية (printf / scanf)</a>
+<a href="#s7">07. الجمل الشرطية (if, else if, else)</a>
+<a href="#s8">08. جملة الاختيار المتعدد (switch)</a>
+<a href="#s9">09. الحلقات التكرارية (for loop)</a>
+<a href="#s10">10. الحلقات التكرارية (while & do-while)</a>
+<a href="#s11">12. الدوال (Functions) وتعريفها</a>
+<a href="#s12">13. تمرير المعاملات بالقيم</a>
+<a href="#s13">14. نطاق المتغيرات المحلية والعامة (Scope)</a>
+<a href="#s14">15. المصفوفات أحادية الأبعاد (Arrays)</a>
+<a href="#s15">16. المصفوفات ثنائية الأبعاد (Multi-dimensional)</a>
+<a href="#s16">17. النصوص (Strings) ومعالجة الحروف</a>
+<a href="#s17">18. مقدمة في المؤشرات (Pointers) وعناوين الذاكرة</a>
+<a href="#s18">19. المؤشرات والمصفوفات</a>
+<a href="#s19">20. تمرير المؤشرات للدوال</a>
+<a href="#s20">21. تخصيص الذاكرة الديناميكية (malloc, calloc, free)</a>
+<a href="#s21">22. الهياكل (Structures) وتجميع البيانات</a>
+<a href="#s22">23. الاتحادات (Unions) والتعدادات (Enums)</a>
+<a href="#s23">24. التعامل مع الملفات (File I/O: fopen, fread, fwrite)</a>
+<a href="#s24">25. الموجهات المسبقة للمترجم (Preprocessor Directives)</a>
+<a href="#s25">26. معالجة الأخطاء وأكواد الخروج</a>
+<a href="#s26">27. تحسين الكود وإدارة الذاكرة بكفاءة</a>
+<a href="#s28">28. مشروع هندسي: نظام إدارة شؤون موظفين</a>
+<a href="#s29">29. مشروع هندسي: آلة حاسبة متقدمة بالذاكرة</a>
+<a href="#s30">30. الخلاصة الهندسية لمفاهيم لغة C</a>
+</nav></aside>
+
+<main>
+<div class="hero">
+  <h1>دليل لغة البرمجة C الشامل</h1>
+  <p>المرجع الهندسي المتكامل لتطوير البرمجيات الأساسية، التحكم المباشر بالذاكرة، وهندسة النظم بكفاءة عالية.</p>
+  <div class="credit">إعداد الكاتبة والمهندسة: مها شهوب</div>
+</div>
+
+<section id="s1">
+  <h2>01. مقدمة عن لغة C وتاريخها</h2>
+  <p>تم تطوير لغة C بواسطة دينيس ريتشي في مختبرات بيل عام 1972 لتصميم نظام التشغيل يونكس، وتتميز بالسرعة والقدرة على التحكم المباشر بالعتاد.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>// C Language Initialization
+#include &lt;stdio.h&gt;</pre></div>
+</section>
+
+<section id="s2">
+  <h2>02. الهيكل العام للبرنامج ودالة Main</h2>
+  <p>يبدأ تنفيذ أي برنامج مكتوب بلغة C حصرياً من الدالة الرئيسية main والتي تعيد قيمة صحيحة تدل على حالة الإنهاء.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>int main() {
+    printf("مرحباً بك في دليل لغة C\n");
+    return 0;
+}</pre></div>
+</section>
+
+<section id="s3">
+  <h2>03. أنواع البيانات الأساسية ومقاساتها</h2>
+  <p>تشمل أنواع البيانات الصحيحة (int)، الحقيقية (float, double)، والحرفية (char) مع تباين مساحاتها التخزينية في الذاكرة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>int age = 30;
+float temperature = 36.5;
+double precise_val = 19.987654;
+char grade = 'A';</pre></div>
+</section>
+
+<section id="s4">
+  <h2>04. المتغيرات والثوابت وقواعد التسمية</h2>
+  <p>حجز أماكن في الذاكرة لتخزين القيم المتغيرة، أو استخدام الثوابت (const / #define) لمنع تعديل البيانات.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>const int MAX_USERS = 100;
+#define PI 3.14159</pre></div>
+</section>
+
+<section id="s5">
+  <h2>05. العمليات الحسابية ومعاملات الإسناد</h2>
+  <p>تطبيق العمليات الرياضية الأربع الكبرى بالإضافة إلى باقي القسمة (%) ومعاملات الاختصار (++, --).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>int x = 10, y = 3;
+int sum = x + y;
+int rem = x % y; // الباقي 1</pre></div>
+</section>
+
+<section id="s6">
+  <h2>06. المدخلات والمخرجات الأساسية (printf / scanf)</h2>
+  <p>استخدام الدوال القياسية لطباعة النصوص وقراءة المدخلات من لوحة المفاتيح عبر محددات التنسيق (%d, %f, %s).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>int num;
+printf("أدخل رقماً: ");
+scanf("%d", &num);
+printf("الرقم المدخل: %d\n", num);</pre></div>
+</section>
+
+<section id="s7">
+  <h2>07. الجمل الشرطية (if, else if, else)</h2>
+  <p>التحكم في مسار تنفيذ الأكواد بناءً على تقييم الشروط المنطقية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>int score = 85;
+if (score >= 90) {
+    printf("ممتاز\n");
+} else if (score >= 75) {
+    printf("جيد جداً\n");
+} else {
+    printf("مقبول\n");
+}</pre></div>
+</section>
+
+<section id="s8">
+  <h2>08. جملة الاختيار المتعدد (switch)</h2>
+  <p>تنفيذ مسارات مختلفة بناءً على قيمة متغيرة واحدة بكفاءة وتنظيم.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>int day = 2;
+switch(day) {
+    case 1: printf("السبت"); break;
+    case 2: printf("الأحد"); break;
+    default: printf("يوم آخر");
+}</pre></div>
+</section>
+
+<section id="s9">
+  <h2>09. الحلقات التكرارية (for loop)</h2>
+  <p>تنفيذ مجموعة من التعليمات عدد محدد مسبقاً من المرات عبر التحكم بالعداد.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>for(int i = 0; i &lt; 5; i++) {
+    printf("التكرار رقم: %d\n", i);
+}</pre></div>
+</section>
+
+<section id="s10">
+  <h2>10. الحلقات التكرارية (while & do-while)</h2>
+  <p>التكرار بناءً على تحقق شرط مستمر، مع ضمان تنفيذ الكود لمرة واحدة على الأقل في حلقة do-while.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>int count = 3;
+while(count > 0) {
+    count--;
+}</pre></div>
+</section>
+
+<section id="s11">
+  <h2>12. الدوال (Functions) وتعريفها</h2>
+  <p>تقسيم البرنامج إلى وحدات برمجية مستقلة لتسهيل القراءة والصيانة وتجنب تكرار الكود.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>int multiply(int a, int b) {
+    return a * b;
+}</pre></div>
+</section>
+
+<section id="s12">
+  <h2>13. تمرير المعاملات بالقيم</h2>
+  <p>آلية تمرير النسخ للدوال بحيث لا تتأثر المتغيرات الأصلية خارج نطاق الدالة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>void modify(int x) {
+    x = 50; // لا يؤثر على المتغير الأصلي في الخارج
+}</pre></div>
+</section>
+
+<section id="s13">
+  <h2>14. نطاق المتغيرات المحلية والعامة (Scope)</h2>
+  <p>الفرق بين المتغيرات المعرفة داخل الدوال (محليه) وتلك المعرفة في بداية الملف (عامة).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>int global_var = 100; // متغير عام مرئي لجميع الدوال</pre></div>
+</section>
+
+<section id="s14">
+  <h2>15. المصفوفات أحادية الأبعاد (Arrays)</h2>
+  <p>تخزين مجموعة متجانسة من العناصر في مواقع ذاكرة متتالية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>int numbers[5] = {10, 20, 30, 40, 50};
+printf("%d", numbers[2]); // طباعة 30</pre></div>
+</section>
+
+<section id="s15">
+  <h2>16. المصفوفات ثنائية الأبعاد (Multi-dimensional)</h2>
+  <p>تمثيل الجداول والصفوف والأعمدة مثل المصفوفات الرياضية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>int matrix[2][2] = {
+    {1, 2},
+    {3, 4}
+};</pre></div>
+</section>
+
+<section id="s16">
+  <h2>17. النصوص (Strings) ومعالجة الحروف</h2>
+  <p>تمثيل النصوص كمصفوفات من الحروف تنتهي بحرف الإلغاء (Null Terminator '\0').</p>
+  <div class="code"><button class="copy">نسخ</button><pre>char name[] = "مها شهوب";
+printf("الاسم: %s\n", name);</pre></div>
+</section>
+
+<section id="s17">
+  <h2>18. مقدمة في المؤشرات (Pointers) وعناوين الذاكرة</h2>
+  <p>المتغيرات التي تخزن عناوين الذاكرة للمتغيرات الأخرى، وتعتبر جوهر قوة لغة C.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>int var = 25;
+int *ptr = &var; // ptr يحمل عنوان var
+printf("العنوان: %p القيمة: %d\n", ptr, *ptr);</pre></div>
+</section>
+
+<section id="s18">
+  <h2>19. المؤشرات والمصفوفات</h2>
+  <p>الارتباط الوثيق بين اسم المصفوفة والمؤشر المؤدي لأول عنصر فيها.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>int arr[3] = {5, 10, 15};
+int *p = arr;
+printf("%d", *(p + 1)); // طباعة العنصر الثاني 10</pre></div>
+</section>
+
+<section id="s19">
+  <h2>20. تمرير المؤشرات للدوال</h2>
+  <p>تمكين الدوال من تعديل القيم الأصلية للمتغيرات عبر تمرير عناوينها في الذاكرة (Pass by Reference).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>void updateValue(int *val) {
+    *val = 500; // تعديل القيمة في العنوان الأصلي
+}</pre></div>
+</section>
+
+<section id="s20">
+  <h2>21. تخصيص الذاكرة الديناميكية (malloc, calloc, free)</h2>
+  <p>حجز المساحات في الذاكرة العشوائية أثناء تشغيل البرنامج وتحريرها يدوياً لمنع التسريب.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>int *arr = (int*) malloc(10 * sizeof(int));
+if (arr != NULL) {
+    // استخدام الذاكرة المحجوزة
+    free(arr); // تحرير الذاكرة
+}</pre></div>
+</section>
+
+<section id="s21">
+  <h2>22. الهياكل (Structures) وتجميع البيانات</h2>
+  <p>إنشاء أنواع بيانات مخصصة تجمع متغيرات ذات أنواع مختلفة تحت كيان واحد.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>struct Book {
+    char title[50];
+    int pages;
+};
+struct Book b1 = {"أساسيات التقنية", 250};</pre></div>
+</section>
+
+<section id="s22">
+  <h2>23. الاتحادات (Unions) والتعدادات (Enums)</h2>
+  <p>الاتحادات تشترك في نفس مساحة الذاكرة، بينما التعدادات تعطي أسماء واضحة للقيم العددية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>enum Status { SUCCESS = 0, FAILURE = 1 };
+enum Status current = SUCCESS;</pre></div>
+</section>
+
+<section id="s23">
+  <h2>24. التعامل مع الملفات (File I/O: fopen, fread, fwrite)</h2>
+  <p>فتح، قراءة، وكتابة البيانات في الملفات النصية والثنائية على القرص الصلب.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>FILE *f = fopen("data.txt", "w");
+fprintf(f, "توثيق بيانات النظام\n");
+fclose(f);</pre></div>
+</section>
+
+<section id="s24">
+  <h2>25. الموجهات المسبقة للمترجم (Preprocessor Directives)</h2>
+  <p>أوامر مثل #define و #include لمعالجة الكود قبل عملية الترجمة الفعلية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>#define SQUARE(x) ((x) * (x))</pre></div>
+</section>
+
+<section id="s25">
+  <h2>26. معالجة الأخطاء وأكواد الخروج</h2>
+  <p>التعامل مع الأخطاء عبر متغير النظام errno ومكتبة &lt;errno.h&gt;.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>#include &lt;errno.h&gt;
+#include &lt;string.h&gt;
+// فحص أخطاء فتح الملفات والعمليات الحرجة</pre></div>
+</section>
+
+<section id="s26">
+  <h2>27. تحسين الكود وإدارة الذاكرة بكفاءة</h2>
+  <p>تجنب مشاكل Buffer Overflow، تفادي تكرار الحجز، ومراقبة مؤشرات الذاكرة بدقة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>// ممارسات برمجية نظيفة وآمنة في لغة C</pre></div>
+</section>
+
+<section id="s28">
+  <h2>28. مشروع هندسي: نظام إدارة شؤون موظفين</h2>
+  <p>تطبيق الهياكل والمصفوفات لإدارة بيانات العاملين والرواتب.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>struct Employee { int id; char name[30]; };</pre></div>
+</section>
+
+<section id="s29">
+  <h2>29. مشروع هندسي: آلة حاسبة متقدمة بالذاكرة</h2>
+  <p>محاكاة العمليات الحسابية وتخزين سجل العمليات في الذاكرة الديناميكية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>// برنامج تنفيذي متكامل يدعم العمليات والذاكرة المؤقتة</pre></div>
+</section>
+
+<section id="s30">
+  <h2>30. الخلاصة الهندسية لمفاهيم لغة C</h2>
+  <p>الخلاصة النهائية لأبرز أسس ومعماريات لغة C في برمجة النظم وإدارة الذاكرة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>/* خلاصة C: السرعة، المؤشرات، الذاكرة الديناميكية، وهندسة النظم */</pre></div>
+</section>
+
+<footer>منصة آفاق المعرفة التقنية — مكتبة | مها شهوب<br>إعداد الكاتبة والمهندسة: مها شهوب</footer>
+</main>
+<button class="top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+function toggleTheme(){document.documentElement.dataset.theme=document.documentElement.dataset.theme==="dark"?"light":"dark";localStorage.setItem("c-theme-full",document.documentElement.dataset.theme)}
+if(localStorage.getItem("c-theme-full"))document.documentElement.dataset.theme=localStorage.getItem("c-theme-full");
+document.querySelectorAll(".copy").forEach(b=>b.onclick=()=>{navigator.clipboard.writeText(b.parentElement.querySelector("pre").innerText);let x=b.innerText;b.innerText="تم النسخ ✓";setTimeout(()=>b.innerText=x,1100)});
+function filterNav(){let q=document.getElementById("search").value.toLowerCase();document.querySelectorAll("#nav a").forEach(a=>a.style.display=a.innerText.toLowerCase().includes(q)?"block":"none")}
+window.addEventListener("scroll",()=>{let d=document.documentElement;document.getElementById("progress").style.width=(d.scrollTop/(d.scrollHeight-d.clientHeight)*100)+"%";let cur="";document.querySelectorAll("section").forEach(s=>{if(scrollY>=s.offsetTop-130)cur=s.id});document.querySelectorAll("#nav a").forEach(a=>a.classList.toggle("active",a.hash==="#"+cur))});
+document.querySelectorAll("#nav a").forEach(a=>a.onclick=()=>document.querySelector("aside").classList.remove("open"));
+</script>
+</body>
+</html>

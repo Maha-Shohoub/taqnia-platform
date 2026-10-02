@@ -1,0 +1,3587 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>دليل Python الشامل | منصة آفاق المعرفة التقنية</title>
+
+<meta name="description"
+content="دليل Python الشامل من أساسيات لغة Python إلى البرمجة الكائنية وقواعد البيانات وواجهات API وFlask وDjango وFastAPI والذكاء الاصطناعي وتحليل البيانات.">
+
+<meta name="keywords"
+content="Python, بايثون, تعلم Python, برمجة, Flask, Django, FastAPI, NumPy, Pandas, Machine Learning, SQLAlchemy">
+
+<style>
+
+/* =========================
+   ROOT
+========================= */
+
+:root{
+    --bg:#eef3f9;
+    --card:#ffffff;
+    --text:#172033;
+    --muted:#637087;
+    --primary:#1677c8;
+    --primary2:#0b4f88;
+    --border:#d8e1ec;
+    --code:#111827;
+    --codeText:#e5eef9;
+    --nav:#ffffff;
+    --shadow:0 8px 28px rgba(15,45,75,.08);
+}
+
+[data-theme="dark"]{
+    --bg:#0b1220;
+    --card:#111b2d;
+    --text:#e8eef8;
+    --muted:#a8b5c8;
+    --primary:#48a9ff;
+    --primary2:#1677c8;
+    --border:#263750;
+    --code:#07101d;
+    --codeText:#dbeafe;
+    --nav:#0e1727;
+    --shadow:0 8px 28px rgba(0,0,0,.25);
+}
+
+/* =========================
+   GENERAL
+========================= */
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:"Segoe UI",Tahoma,Arial,sans-serif;
+    line-height:1.85;
+}
+
+/* =========================
+   TOP BAR
+========================= */
+
+.top{
+    position:fixed;
+    top:0;
+    right:0;
+    left:0;
+    height:68px;
+    background:var(--nav);
+    border-bottom:1px solid var(--border);
+    z-index:1000;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:0 22px;
+    box-shadow:0 3px 15px rgba(0,0,0,.04);
+}
+
+.logo{width:67px;height:54px;border-radius:50%;display:grid;place-items:center;}
+
+
+.brand{
+    font-weight:800;
+    font-size:18px;
+}
+
+.brand small{
+    display:block;
+    color:var(--muted);
+    font-size:11px;
+    line-height:1.2;
+}
+
+.top-actions{
+    margin-right:auto;
+    display:flex;
+    gap:8px;
+}
+
+.btn{
+    border:1px solid var(--border);
+    background:var(--card);
+    color:var(--text);
+    border-radius:10px;
+    padding:9px 13px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.btn:hover{
+    border-color:var(--primary);
+    color:var(--primary);
+}
+
+/* =========================
+   LAYOUT
+========================= */
+
+.layout{
+    display:flex;
+    max-width:1500px;
+    margin:auto;
+    padding-top:68px;
+}
+
+aside{
+    width:300px;
+    position:fixed;
+    top:68px;
+    bottom:0;
+    right:max(0px,calc((100vw - 1500px)/2));
+    background:var(--nav);
+    border-left:1px solid var(--border);
+    padding:20px 15px;
+    overflow:auto;
+}
+
+.search{
+    width:100%;
+    padding:12px;
+    border:1px solid var(--border);
+    border-radius:12px;
+    background:var(--card);
+    color:var(--text);
+    outline:none;
+    margin-bottom:14px;
+}
+
+.search:focus{
+    border-color:var(--primary);
+    box-shadow:0 0 0 3px rgba(22,119,200,.12);
+}
+
+.nav-title{
+    font-weight:800;
+    color:var(--primary);
+    margin:8px 0 10px;
+}
+
+nav a{
+    display:block;
+    text-decoration:none;
+    color:var(--muted);
+    padding:7px 10px;
+    border-radius:8px;
+    font-size:13px;
+    margin:2px 0;
+    transition:.2s;
+}
+
+nav a:hover,
+nav a.active{
+    background:rgba(22,119,200,.1);
+    color:var(--primary);
+    font-weight:700;
+}
+
+main{
+    margin-right:300px;
+    width:calc(100% - 300px);
+    padding:32px 34px 70px;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    background:linear-gradient(135deg,#071b31,#0b4f88 55%,#1677c8);
+    color:#fff;
+    border-radius:20px;
+    padding:36px;
+    box-shadow:var(--shadow);
+    margin-bottom:25px;
+}
+
+.hero h1{
+    font-size:34px;
+    margin:0 0 8px;
+}
+
+.hero p{
+    margin:7px 0;
+}
+
+.badges{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:20px;
+}
+
+.badge{
+    background:rgba(255,255,255,.13);
+    border:1px solid rgba(255,255,255,.22);
+    padding:6px 11px;
+    border-radius:30px;
+    font-size:12px;
+}
+
+/* =========================
+   SECTIONS
+========================= */
+
+section{
+    scroll-margin-top:88px;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:17px;
+    padding:27px;
+    margin-bottom:22px;
+    box-shadow:var(--shadow);
+}
+
+h2{
+    margin:0 0 13px;
+    color:var(--primary2);
+    font-size:25px;
+    border-right:5px solid var(--primary);
+    padding-right:12px;
+}
+
+[data-theme="dark"] h2{
+    color:#70bdff;
+}
+
+h3{
+    color:var(--primary);
+    margin-top:22px;
+}
+
+p{
+    margin:9px 0;
+}
+
+.muted{
+    color:var(--muted);
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:14px;
+    margin:15px 0;
+}
+
+.card{
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:15px;
+    background:var(--bg);
+}
+
+.card b{
+    color:var(--primary);
+}
+
+/* =========================
+   TOC
+========================= */
+
+.toc{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:10px;
+}
+
+.toc a{
+    text-decoration:none;
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:11px;
+    background:var(--bg);
+    color:var(--text);
+    transition:.2s;
+}
+
+.toc a:hover{
+    border-color:var(--primary);
+    color:var(--primary);
+    transform:translateY(-2px);
+}
+
+/* =========================
+   CODE
+========================= */
+
+.code{
+    position:relative;
+    background:var(--code);
+    color:var(--codeText);
+    border-radius:12px;
+    margin:15px 0;
+    overflow:auto;
+    direction:ltr;
+    text-align:left;
+}
+
+.code pre{
+    margin:0;
+    padding:20px;
+    white-space:pre;
+    min-width:max-content;
+    font-family:Consolas,"Courier New",monospace;
+    font-size:13px;
+    line-height:1.7;
+}
+
+.copy{
+    position:absolute;
+    top:8px;
+    right:8px;
+    border:1px solid #334155;
+    background:#182538;
+    color:#dbeafe;
+    border-radius:7px;
+    padding:5px 9px;
+    cursor:pointer;
+    font-size:12px;
+}
+
+/* =========================
+   TABLE
+========================= */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin:15px 0;
+    font-size:14px;
+}
+
+th,
+td{
+    border:1px solid var(--border);
+    padding:10px;
+    text-align:right;
+    vertical-align:top;
+}
+
+th{
+    background:rgba(22,119,200,.1);
+    color:var(--primary2);
+}
+
+/* =========================
+   NOTES
+========================= */
+
+.note{
+    padding:14px 16px;
+    border-radius:10px;
+    margin:14px 0;
+    border-right:4px solid var(--primary);
+    background:rgba(22,119,200,.08);
+}
+
+.warning{
+    padding:14px 16px;
+    border-radius:10px;
+    margin:14px 0;
+    border-right:4px solid #d08a00;
+    background:rgba(208,138,0,.09);
+}
+
+.success{
+    padding:14px 16px;
+    border-radius:10px;
+    margin:14px 0;
+    border-right:4px solid #16845a;
+    background:rgba(22,132,90,.09);
+}
+
+/* =========================
+   PROGRESS
+========================= */
+
+.progress-wrap{
+    position:fixed;
+    top:68px;
+    right:0;
+    left:0;
+    height:3px;
+    z-index:1001;
+}
+
+.progress{
+    height:100%;
+    width:0;
+    background:#3fb5ff;
+}
+
+/* =========================
+   TOP BUTTON
+========================= */
+
+.topbtn{
+    position:fixed;
+    bottom:20px;
+    left:20px;
+    width:45px;
+    height:45px;
+    border:0;
+    border-radius:50%;
+    background:var(--primary);
+    color:#fff;
+    font-size:20px;
+    cursor:pointer;
+    display:none;
+    z-index:900;
+}
+
+/* =========================
+   MENU
+========================= */
+
+.menu{
+    display:none;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    text-align:center;
+    color:var(--muted);
+    padding:30px 10px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:950px){
+
+    .menu{
+        display:block;
+    }
+
+    aside{
+        display:none;
+        right:0;
+        width:300px;
+        z-index:950;
+        box-shadow:-8px 0 25px rgba(0,0,0,.12);
+    }
+
+    aside.open{
+        display:block;
+    }
+
+    main{
+        margin:0;
+        width:100%;
+        padding:24px 15px 60px;
+    }
+
+    .hero{
+        padding:25px;
+    }
+
+    .hero h1{
+        font-size:27px;
+    }
+}
+
+@media(max-width:600px){
+
+    .brand{
+        font-size:15px;
+    }
+
+    .top{
+        padding:0 10px;
+    }
+
+    .top-actions .btn:nth-child(2){
+        display:none;
+    }
+
+    section{
+        padding:20px 15px;
+    }
+
+    h2{
+        font-size:21px;
+    }
+
+    table{
+        font-size:12px;
+    }
+
+    .code pre{
+        font-size:12px;
+    }
+}
+
+/* =========================
+   PRINT
+========================= */
+
+@media print{
+
+    .top,
+    aside,
+    .progress-wrap,
+    .topbtn{
+        display:none!important;
+    }
+
+    main{
+        margin:0;
+        width:100%;
+        padding:0;
+    }
+
+    section{
+        box-shadow:none;
+        break-inside:avoid;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     TOP
+========================= -->
+
+<header class="top">
+
+    <button class="btn menu" onclick="toggleMenu()">☰</button>
+
+  <img src="IMG/آفاق المعرفة التقنية.png" class="logo">
+
+    <div class="brand">
+منصة آفاق المعرفة التقنية       
+ <small>         دليل Python الشامل  | مها شهوب</small>
+    </div>
+
+    <div class="top-actions">
+
+        <button class="btn" onclick="toggleTheme()">
+            🌓 الوضع
+        </button>
+
+        <button class="btn" onclick="window.print()">
+            🖨 طباعة
+        </button>
+
+    </div>
+
+</header>
+
+<div class="progress-wrap">
+    <div class="progress" id="progress"></div>
+</div>
+
+<div class="layout">
+
+<!-- =========================
+     SIDEBAR
+========================= -->
+
+<aside id="sidebar">
+
+    <input
+        type="text"
+        id="navSearch"
+        class="search"
+        placeholder="🔎 ابحث داخل الدليل..."
+        oninput="filterNav()"
+    >
+
+    <div class="nav-title">فهرس الدليل</div>
+
+    <nav id="nav">
+
+        <a href="#intro">1. مقدمة Python</a>
+        <a href="#install">2. تثبيت Python</a>
+        <a href="#syntax">3. Syntax</a>
+        <a href="#variables">4. المتغيرات</a>
+        <a href="#datatypes">5. أنواع البيانات</a>
+        <a href="#operators">6. Operators</a>
+        <a href="#conditions">7. الشروط</a>
+        <a href="#loops">8. الحلقات</a>
+        <a href="#lists">9. Lists</a>
+        <a href="#tuples">10. Tuples</a>
+        <a href="#sets">11. Sets</a>
+        <a href="#dicts">12. Dictionaries</a>
+        <a href="#strings">13. Strings</a>
+        <a href="#functions">14. Functions</a>
+        <a href="#args">15. args وkwargs</a>
+        <a href="#scope">16. Scope وLEGB</a>
+        <a href="#lambda">17. Lambda</a>
+        <a href="#comprehension">18. Comprehensions</a>
+        <a href="#modules">19. Modules</a>
+        <a href="#packages">20. Packages وpip</a>
+        <a href="#venv">21. Virtual Environment</a>
+        <a href="#exceptions">22. Exceptions</a>
+        <a href="#files">23. Files</a>
+        <a href="#jsoncsv">24. JSON وCSV</a>
+        <a href="#oop">25. OOP</a>
+        <a href="#inheritance">26. Inheritance</a>
+        <a href="#iterators">27. Iterators وGenerators</a>
+        <a href="#decorators">28. Decorators</a>
+        <a href="#context">29. Context Managers</a>
+        <a href="#typing">30. Type Hints</a>
+        <a href="#regex">31. Regular Expressions</a>
+        <a href="#logging">32. Logging</a>
+        <a href="#testing">33. Testing</a>
+        <a href="#database">34. SQLite وMySQL</a>
+        <a href="#sqlalchemy">35. SQLAlchemy</a>
+        <a href="#http">36. HTTP وRequests</a>
+        <a href="#rest">37. REST API</a>
+        <a href="#flask">38. Flask</a>
+        <a href="#django">39. Django</a>
+        <a href="#fastapi">40. FastAPI</a>
+        <a href="#security">41. Security وJWT</a>
+        <a href="#async">42. Async وConcurrency</a>
+        <a href="#scraping">43. Scraping وAutomation</a>
+        <a href="#numpy">44. NumPy</a>
+        <a href="#pandas">45. Pandas</a>
+        <a href="#matplotlib">46. Matplotlib</a>
+        <a href="#ml">47. Machine Learning</a>
+        <a href="#network">48. Networking وSockets</a>
+        <a href="#deployment">49. Docker وGit والنشر</a>
+        <a href="#projects">50. مشاريع Python</a>
+        <a href="#reference">51. المرجع السريع</a>
+
+    </nav>
+
+</aside>
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main>
+
+<!-- HERO -->
+
+<div class="hero">
+
+    <h1>🐍 دليل Python الشامل</h1>
+
+    <p>
+        مرجع تعليمي متكامل لتعلم لغة Python من الصفر
+        حتى بناء التطبيقات وواجهات API وتحليل البيانات
+        والذكاء الاصطناعي.
+    </p>
+
+    <p>
+        <strong>إعداد الكاتبة والمهندسة: مها شهوب</strong>
+    </p>
+
+    <div class="badges">
+
+        <span class="badge">Python</span>
+        <span class="badge">Programming</span>
+        <span class="badge">OOP</span>
+        <span class="badge">Databases</span>
+        <span class="badge">APIs</span>
+        <span class="badge">Flask</span>
+        <span class="badge">Django</span>
+        <span class="badge">FastAPI</span>
+        <span class="badge">NumPy</span>
+        <span class="badge">Pandas</span>
+        <span class="badge">Machine Learning</span>
+
+    </div>
+
+</div>
+
+
+<!-- INTRO -->
+
+<section id="intro">
+
+<h2>1. مقدمة في Python</h2>
+
+<p>
+Python هي لغة برمجة عالية المستوى، سهلة القراءة، متعددة الاستخدامات،
+وتستخدم في تطوير الويب، الأتمتة، تحليل البيانات، الذكاء الاصطناعي،
+التعلم الآلي، الشبكات، الأمن السيبراني والتطبيقات المختلفة.
+</p>
+
+<div class="grid">
+
+<div class="card">
+<b>سهولة التعلم</b>
+<p>Syntax واضح وقريب من اللغة الطبيعية.</p>
+</div>
+
+<div class="card">
+<b>مرونة عالية</b>
+<p>يمكن استخدامها في مجالات برمجية متعددة.</p>
+</div>
+
+<div class="card">
+<b>مكتبات كثيرة</b>
+<p>توفر Python منظومة ضخمة من Packages وLibraries.</p>
+</div>
+
+<div class="card">
+<b>Cross Platform</b>
+<p>يمكن تشغيل البرامج على أنظمة تشغيل مختلفة.</p>
+</div>
+
+</div>
+
+<div class="note">
+Python تعتمد بشكل كبير على المسافات البادئة Indentation لتنظيم الكتل البرمجية.
+</div>
+
+</section>
+
+
+<!-- INSTALL -->
+
+<section id="install">
+
+<h2>2. تثبيت Python وبيئة العمل</h2>
+
+<p>
+بعد تثبيت Python يمكن التأكد من وجوده باستخدام Terminal أو Command Prompt.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>python --version</pre>
+</div>
+
+<p>
+يمكن أيضًا تجربة:
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>python -c "print('Hello Python')"</pre>
+</div>
+
+<h3>بيئات التطوير</h3>
+
+<ul>
+<li>Visual Studio Code</li>
+<li>PyCharm</li>
+<li>IDLE</li>
+<li>Jupyter Notebook</li>
+</ul>
+
+</section>
+
+
+<!-- SYNTAX -->
+
+<section id="syntax">
+
+<h2>3. Syntax وأول برنامج</h2>
+
+<p>
+أبسط برنامج Python يمكن أن يكون أمر طباعة واحد.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>print("Hello Python")
+print("منصة آفاق المعرفة التقنية")</pre>
+</div>
+
+<p>
+لا تحتاج Python إلى الأقواس المعقوفة لتحديد الكتل البرمجية؛
+بل تستخدم Indentation.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>if True:
+    print("Python")</pre>
+</div>
+
+</section>
+
+
+<!-- VARIABLES -->
+
+<section id="variables">
+
+<h2>4. المتغيرات Variables</h2>
+
+<p>
+المتغير هو اسم يشير إلى قيمة مخزنة في الذاكرة.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>name = "Maha"
+age = 25
+price = 99.90
+active = True</pre>
+</div>
+
+<table>
+
+<tr>
+<th>المتغير</th>
+<th>القيمة</th>
+</tr>
+
+<tr>
+<td>name</td>
+<td>نص String</td>
+</tr>
+
+<tr>
+<td>age</td>
+<td>عدد صحيح Integer</td>
+</tr>
+
+<tr>
+<td>price</td>
+<td>عدد عشري Float</td>
+</tr>
+
+<tr>
+<td>active</td>
+<td>Boolean</td>
+</tr>
+
+</table>
+
+</section>
+
+
+<!-- DATATYPES -->
+
+<section id="datatypes">
+
+<h2>5. أنواع البيانات Data Types</h2>
+
+<table>
+
+<tr>
+<th>النوع</th>
+<th>مثال</th>
+</tr>
+
+<tr>
+<td>int</td>
+<td>100</td>
+</tr>
+
+<tr>
+<td>float</td>
+<td>10.5</td>
+</tr>
+
+<tr>
+<td>str</td>
+<td>"Python"</td>
+</tr>
+
+<tr>
+<td>bool</td>
+<td>True / False</td>
+</tr>
+
+<tr>
+<td>list</td>
+<td>[1,2,3]</td>
+</tr>
+
+<tr>
+<td>tuple</td>
+<td>(1,2,3)</td>
+</tr>
+
+<tr>
+<td>set</td>
+<td>{1,2,3}</td>
+</tr>
+
+<tr>
+<td>dict</td>
+<td>{"name":"Maha"}</td>
+</tr>
+
+<tr>
+<td>NoneType</td>
+<td>None</td>
+</tr>
+
+</table>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>value = 100
+
+print(type(value))</pre>
+</div>
+
+</section>
+
+
+<!-- OPERATORS -->
+
+<section id="operators">
+
+<h2>6. Operators</h2>
+
+<p>تستخدم Operators لتنفيذ العمليات على البيانات.</p>
+
+<table>
+
+<tr>
+<th>Operator</th>
+<th>المعنى</th>
+</tr>
+
+<tr>
+<td>+</td>
+<td>جمع</td>
+</tr>
+
+<tr>
+<td>-</td>
+<td>طرح</td>
+</tr>
+
+<tr>
+<td>*</td>
+<td>ضرب</td>
+</tr>
+
+<tr>
+<td>/</td>
+<td>قسمة</td>
+</tr>
+
+<tr>
+<td>//</td>
+<td>قسمة صحيحة</td>
+</tr>
+
+<tr>
+<td>%</td>
+<td>باقي القسمة</td>
+</tr>
+
+<tr>
+<td>**</td>
+<td>الأس</td>
+</tr>
+
+<tr>
+<td>==</td>
+<td>يساوي</td>
+</tr>
+
+<tr>
+<td>!=</td>
+<td>لا يساوي</td>
+</tr>
+
+<tr>
+<td>&gt;</td>
+<td>أكبر من</td>
+</tr>
+
+<tr>
+<td>&lt;</td>
+<td>أصغر من</td>
+</tr>
+
+</table>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>a = 10
+b = 3
+
+print(a + b)
+print(a / b)
+print(a % b)
+print(a ** b)</pre>
+</div>
+
+</section>
+
+
+<!-- CONDITIONS -->
+
+<section id="conditions">
+
+<h2>7. الشروط Conditions</h2>
+
+<p>
+تستخدم if وelif وelse لاتخاذ القرارات.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>age = 20
+
+if age >= 18:
+    print("Adult")
+elif age >= 13:
+    print("Teenager")
+else:
+    print("Child")</pre>
+</div>
+
+<h3>الشروط المركبة</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>age = 25
+active = True
+
+if age >= 18 and active:
+    print("Allowed")</pre>
+</div>
+
+</section>
+
+
+<!-- LOOPS -->
+
+<section id="loops">
+
+<h2>8. الحلقات Loops</h2>
+
+<h3>For</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>for i in range(1, 6):
+    print(i)</pre>
+</div>
+
+<h3>While</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>counter = 1
+
+while counter <= 5:
+    print(counter)
+    counter += 1</pre>
+</div>
+
+<h3>break وcontinue</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>for i in range(10):
+
+    if i == 5:
+        break
+
+    print(i)</pre>
+</div>
+
+</section>
+
+
+<!-- LISTS -->
+
+<section id="lists">
+
+<h2>9. Lists</h2>
+
+<p>
+List هي مجموعة مرتبة وقابلة للتعديل.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>numbers = [10, 20, 30]
+
+numbers.append(40)
+
+print(numbers[0])
+print(numbers)</pre>
+</div>
+
+<h3>أهم العمليات</h3>
+
+<div class="grid">
+
+<div class="card"><b>append()</b><p>إضافة عنصر.</p></div>
+<div class="card"><b>remove()</b><p>حذف عنصر.</p></div>
+<div class="card"><b>pop()</b><p>حذف وإرجاع عنصر.</p></div>
+<div class="card"><b>sort()</b><p>ترتيب القائمة.</p></div>
+<div class="card"><b>reverse()</b><p>عكس الترتيب.</p></div>
+
+</div>
+
+</section>
+
+
+<!-- TUPLES -->
+
+<section id="tuples">
+
+<h2>10. Tuples</h2>
+
+<p>
+Tuple تشبه List لكنها غير قابلة للتعديل بعد إنشائها.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>point = (10, 20)
+
+print(point[0])
+print(point[1])</pre>
+</div>
+
+<div class="note">
+استخدم Tuple عندما تريد مجموعة مرتبة لا تحتاج إلى تعديل عناصرها.
+</div>
+
+</section>
+
+
+<!-- SETS -->
+
+<section id="sets">
+
+<h2>11. Sets</h2>
+
+<p>
+Set مجموعة لا تسمح بتكرار العناصر.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>numbers = {1, 2, 3, 3, 4}
+
+print(numbers)
+
+numbers.add(5)
+numbers.remove(2)</pre>
+</div>
+
+<h3>عمليات المجموعات</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>a = {1, 2, 3}
+b = {3, 4, 5}
+
+print(a | b)
+print(a & b)
+print(a - b)</pre>
+</div>
+
+</section>
+
+
+<!-- DICTIONARIES -->
+
+<section id="dicts">
+
+<h2>12. Dictionaries</h2>
+
+<p>
+Dictionary يخزن البيانات على شكل Key / Value.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>user = {
+    "id": 1,
+    "name": "Maha",
+    "active": True
+}
+
+print(user["name"])</pre>
+</div>
+
+<h3>إضافة وتعديل البيانات</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>user["email"] = "maha@example.com"
+
+user["active"] = False
+
+print(user)</pre>
+</div>
+
+</section>
+
+
+<!-- STRINGS -->
+
+<section id="strings">
+
+<h2>13. Strings</h2>
+
+<p>
+String يستخدم للتعامل مع النصوص.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>name = "Maha Shahoub"
+
+print(name.upper())
+print(name.lower())
+print(name.strip())
+print(name.replace("Maha", "مهندسة مها"))</pre>
+</div>
+
+<h3>F-Strings</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>name = "Maha"
+age = 25
+
+message = f"My name is {name} and I am {age}"
+
+print(message)</pre>
+</div>
+
+</section>
+
+
+<!-- FUNCTIONS -->
+
+<section id="functions">
+
+<h2>14. Functions</h2>
+
+<p>
+Function هي كتلة برمجية يمكن إعادة استخدامها.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>def add(a, b):
+    return a + b
+
+result = add(10, 20)
+
+print(result)</pre>
+</div>
+
+<h3>Type Hints مع Functions</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>def add(a: int, b: int) -> int:
+    return a + b</pre>
+</div>
+
+</section>
+
+
+<!-- ARGS -->
+
+<section id="args">
+
+<h2>15. *args و **kwargs</h2>
+
+<p>
+تسمح Python بتمرير عدد متغير من Arguments إلى Function.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>def show(*args, **kwargs):
+
+    print(args)
+    print(kwargs)
+
+show(
+    10,
+    20,
+    name="Maha",
+    active=True
+)</pre>
+</div>
+
+<table>
+
+<tr>
+<th>الصيغة</th>
+<th>الاستخدام</th>
+</tr>
+
+<tr>
+<td>*args</td>
+<td>عدد متغير من القيم الموضعية.</td>
+</tr>
+
+<tr>
+<td>**kwargs</td>
+<td>عدد متغير من القيم المسماة.</td>
+</tr>
+
+</table>
+
+</section>
+
+
+<!-- SCOPE -->
+
+<section id="scope">
+
+<h2>16. Scope وLEGB</h2>
+
+<p>
+Python تبحث عن المتغيرات وفق نطاقات محددة تعرف غالبًا باسم LEGB:
+</p>
+
+<div class="grid">
+
+<div class="card"><b>L</b><p>Local</p></div>
+<div class="card"><b>E</b><p>Enclosing</p></div>
+<div class="card"><b>G</b><p>Global</p></div>
+<div class="card"><b>B</b><p>Built-in</p></div>
+
+</div>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>name = "Global"
+
+def test():
+
+    name = "Local"
+
+    print(name)
+
+test()
+
+print(name)</pre>
+</div>
+
+</section>
+
+
+<!-- LAMBDA -->
+
+<section id="lambda">
+
+<h2>17. Lambda</h2>
+
+<p>
+Lambda هي Function صغيرة مجهولة الاسم.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>square = lambda x: x * x
+
+print(square(5))</pre>
+</div>
+
+<h3>مثال مع sorted</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>users = [
+    {"name": "Ali", "age": 30},
+    {"name": "Maha", "age": 25},
+    {"name": "Sara", "age": 28}
+]
+
+users.sort(key=lambda user: user["age"])</pre>
+</div>
+
+</section>
+
+
+<!-- COMPREHENSION -->
+
+<section id="comprehension">
+
+<h2>18. Comprehensions</h2>
+
+<p>
+تستخدم Comprehensions لإنشاء Collections بطريقة مختصرة.
+</p>
+
+<h3>List Comprehension</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>squares = [n * n for n in range(1, 6)]
+
+print(squares)</pre>
+</div>
+
+<h3>مع شرط</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>even = [
+    n for n in range(1, 11)
+    if n % 2 == 0
+]
+
+print(even)</pre>
+</div>
+
+</section>
+
+
+<!-- MODULES -->
+
+<section id="modules">
+
+<h2>19. Modules وImports</h2>
+
+<p>
+Module هو ملف Python يحتوي على Functions أو Classes أو Variables يمكن استيرادها.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>import math
+
+print(math.sqrt(25))
+print(math.pi)</pre>
+</div>
+
+<h3>Import محدد</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>from math import sqrt
+
+print(sqrt(49))</pre>
+</div>
+
+</section>
+
+
+<!-- PACKAGES -->
+
+<section id="packages">
+
+<h2>20. Packages وpip</h2>
+
+<p>
+pip يستخدم لإدارة Python Packages.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>python -m pip install requests</pre>
+</div>
+
+<p>عرض الحزم:</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>python -m pip list</pre>
+</div>
+
+<p>حفظ المتطلبات:</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>python -m pip freeze &gt; requirements.txt</pre>
+</div>
+
+</section>
+
+
+<!-- VENV -->
+
+<section id="venv">
+
+<h2>21. Virtual Environment</h2>
+
+<p>
+Virtual Environment تعزل مكتبات المشروع عن بقية مشاريع Python.
+</p>
+
+<h3>إنشاء البيئة</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>python -m venv .venv</pre>
+</div>
+
+<h3>Windows</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>.venv\Scripts\activate</pre>
+</div>
+
+<h3>Linux / macOS</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>source .venv/bin/activate</pre>
+</div>
+
+</section>
+
+
+<!-- EXCEPTIONS -->
+
+<section id="exceptions">
+
+<h2>22. Exception Handling</h2>
+
+<p>
+تستخدم Exceptions للتعامل مع الأخطاء أثناء تنفيذ البرنامج.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>try:
+
+    result = 10 / 0
+
+except ZeroDivisionError as e:
+
+    print("Error:", e)
+
+finally:
+
+    print("Finished")</pre>
+</div>
+
+<h3>رفع Exception</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>age = -1
+
+if age &lt; 0:
+    raise ValueError("Age cannot be negative")</pre>
+</div>
+
+</section>
+
+
+<!-- FILES -->
+
+<section id="files">
+
+<h2>23. التعامل مع الملفات Files</h2>
+
+<p>
+يمكن استخدام pathlib للتعامل مع الملفات والمسارات بطريقة منظمة.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>from pathlib import Path
+
+path = Path("data.txt")
+
+path.write_text(
+    "Hello Python",
+    encoding="utf-8"
+)
+
+text = path.read_text(
+    encoding="utf-8"
+)
+
+print(text)</pre>
+</div>
+
+<h3>File Modes</h3>
+
+<table>
+
+<tr>
+<th>Mode</th>
+<th>الاستخدام</th>
+</tr>
+
+<tr>
+<td>r</td>
+<td>قراءة</td>
+</tr>
+
+<tr>
+<td>w</td>
+<td>كتابة واستبدال المحتوى</td>
+</tr>
+
+<tr>
+<td>a</td>
+<td>إضافة إلى الملف</td>
+</tr>
+
+<tr>
+<td>x</td>
+<td>إنشاء ملف جديد</td>
+</tr>
+
+</table>
+
+</section>
+
+
+<!-- JSON CSV -->
+
+<section id="jsoncsv">
+
+<h2>24. JSON وCSV</h2>
+
+<h3>JSON</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>import json
+
+data = {
+    "name": "Maha",
+    "active": True
+}
+
+text = json.dumps(
+    data,
+    ensure_ascii=False,
+    indent=2
+)
+
+print(text)</pre>
+</div>
+
+<h3>CSV</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>import csv
+
+with open(
+    "users.csv",
+    "w",
+    newline="",
+    encoding="utf-8"
+) as file:
+
+    writer = csv.writer(file)
+
+    writer.writerow(["id", "name"])
+    writer.writerow([1, "Maha"])</pre>
+</div>
+
+</section>
+
+
+<!-- OOP -->
+
+<section id="oop">
+
+<h2>25. البرمجة الكائنية OOP</h2>
+
+<p>
+OOP هي طريقة لبناء البرامج اعتمادًا على Classes وObjects.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>class Student:
+
+    def __init__(self, name):
+        self.name = name
+
+    def greet(self):
+        return f"Hello {self.name}"
+
+
+student = Student("Maha")
+
+print(student.greet())</pre>
+</div>
+
+<h3>المفاهيم الأساسية</h3>
+
+<div class="grid">
+
+<div class="card"><b>Class</b><p>قالب لإنشاء Objects.</p></div>
+
+<div class="card"><b>Object</b><p>نسخة من Class.</p></div>
+
+<div class="card"><b>Attribute</b><p>بيانات مرتبطة بالكائن.</p></div>
+
+<div class="card"><b>Method</b><p>وظيفة مرتبطة بالكائن.</p></div>
+
+</div>
+
+</section>
+
+
+<!-- INHERITANCE -->
+
+<section id="inheritance">
+
+<h2>26. Inheritance وPolymorphism</h2>
+
+<h3>Inheritance</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>class Animal:
+
+    def sound(self):
+        print("Animal sound")
+
+
+class Dog(Animal):
+
+    def sound(self):
+        print("Woof")
+
+
+dog = Dog()
+
+dog.sound()</pre>
+</div>
+
+<p>
+هنا قامت Dog بالوراثة من Animal ثم أعادت تعريف Method باسم sound.
+</p>
+
+</section>
+
+
+<!-- ITERATORS -->
+
+<section id="iterators">
+
+<h2>27. Iterators وGenerators</h2>
+
+<p>
+Generator يسمح بإنتاج القيم عند الحاجة باستخدام yield.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>def numbers():
+
+    for i in range(5):
+        yield i
+
+
+for number in numbers():
+    print(number)</pre>
+</div>
+
+<div class="note">
+Generators مفيدة عندما نتعامل مع بيانات كبيرة ونريد تقليل استهلاك الذاكرة.
+</div>
+
+</section>
+
+
+<!-- DECORATORS -->
+
+<section id="decorators">
+
+<h2>28. Decorators</h2>
+
+<p>
+Decorator يسمح بإضافة سلوك إلى Function دون تعديل جسمها مباشرة.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>def log_call(func):
+
+    def wrapper(*args, **kwargs):
+
+        print("Calling:", func.__name__)
+
+        return func(*args, **kwargs)
+
+    return wrapper
+
+
+@log_call
+def hello():
+
+    print("Hello Python")
+
+
+hello()</pre>
+</div>
+
+</section>
+
+
+<!-- CONTEXT -->
+
+<section id="context">
+
+<h2>29. Context Managers</h2>
+
+<p>
+أشهر استخدام لها هو with عند التعامل مع الملفات والموارد.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>with open(
+    "data.txt",
+    "r",
+    encoding="utf-8"
+) as file:
+
+    content = file.read()
+
+print(content)</pre>
+</div>
+
+<div class="success">
+استخدام with يساعد على إدارة الموارد وإغلاقها بصورة صحيحة بعد انتهاء الكتلة.
+</div>
+
+</section>
+
+
+<!-- TYPING -->
+
+<section id="typing">
+
+<h2>30. Type Hints وDataclasses</h2>
+
+<h3>Type Hints</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>def calculate(
+    price: float,
+    quantity: int
+) -> float:
+
+    return price * quantity</pre>
+</div>
+
+<h3>Dataclass</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>from dataclasses import dataclass
+
+
+@dataclass
+class User:
+
+    name: str
+    age: int
+
+
+user = User(
+    name="Maha",
+    age=25
+)
+
+print(user)</pre>
+</div>
+
+</section>
+
+
+<!-- REGEX -->
+
+<section id="regex">
+
+<h2>31. Regular Expressions</h2>
+
+<p>
+Regex تستخدم للبحث عن أنماط معينة داخل النصوص.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>import re
+
+text = "Email: maha@example.com"
+
+match = re.search(
+    r"[\w.-]+@[\w.-]+\.\w+",
+    text
+)
+
+if match:
+    print(match.group())</pre>
+</div>
+
+</section>
+
+
+<!-- LOGGING -->
+
+<section id="logging">
+
+<h2>32. Logging</h2>
+
+<p>
+Logging أفضل من الاعتماد على print فقط في التطبيقات الكبيرة.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>import logging
+
+logging.basicConfig(
+    level=logging.INFO
+)
+
+logging.info("Application started")
+logging.warning("Warning message")
+logging.error("Error message")</pre>
+</div>
+
+<table>
+
+<tr>
+<th>Level</th>
+<th>الاستخدام</th>
+</tr>
+
+<tr>
+<td>DEBUG</td>
+<td>معلومات تفصيلية للتطوير.</td>
+</tr>
+
+<tr>
+<td>INFO</td>
+<td>معلومات تشغيلية.</td>
+</tr>
+
+<tr>
+<td>WARNING</td>
+<td>تحذير.</td>
+</tr>
+
+<tr>
+<td>ERROR</td>
+<td>خطأ.</td>
+</tr>
+
+<tr>
+<td>CRITICAL</td>
+<td>خطأ خطير.</td>
+</tr>
+
+</table>
+
+</section>
+
+
+<!-- TESTING -->
+
+<section id="testing">
+
+<h2>33. Testing وpytest</h2>
+
+<p>
+Testing يساعد على التأكد من أن أجزاء البرنامج تعمل كما هو متوقع.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>def add(a, b):
+    return a + b
+
+
+def test_add():
+    assert add(2, 3) == 5</pre>
+</div>
+
+<p>تشغيل الاختبارات باستخدام pytest:</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>pytest</pre>
+</div>
+
+</section>
+
+
+<!-- DATABASE -->
+
+<section id="database">
+
+<h2>34. SQLite وMySQL</h2>
+
+<h3>SQLite</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>import sqlite3
+
+con = sqlite3.connect("app.db")
+
+cur = con.cursor()
+
+cur.execute("""
+CREATE TABLE IF NOT EXISTS users(
+    id INTEGER PRIMARY KEY,
+    name TEXT
+)
+""")
+
+con.commit()
+
+con.close()</pre>
+</div>
+
+<h3>مفهوم الاتصال بقواعد البيانات</h3>
+
+<div class="grid">
+
+<div class="card">
+<b>Connection</b>
+<p>إنشاء اتصال بقاعدة البيانات.</p>
+</div>
+
+<div class="card">
+<b>Cursor</b>
+<p>تنفيذ SQL والاستعلامات.</p>
+</div>
+
+<div class="card">
+<b>Query</b>
+<p>طلب أو تعديل البيانات.</p>
+</div>
+
+<div class="card">
+<b>Transaction</b>
+<p>مجموعة عمليات يتم تأكيدها أو التراجع عنها.</p>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- SQLALCHEMY -->
+
+<section id="sqlalchemy">
+
+<h2>35. SQLAlchemy</h2>
+
+<p>
+SQLAlchemy هي مكتبة شهيرة للتعامل مع قواعد البيانات وORM في Python.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>from sqlalchemy import create_engine
+
+engine = create_engine(
+    "sqlite:///app.db"
+)
+
+with engine.connect() as connection:
+
+    result = connection.exec_driver_sql(
+        "SELECT 1"
+    )
+
+    print(result.scalar())</pre>
+</div>
+
+<div class="note">
+ORM يسمح بالتعامل مع الجداول باستخدام Objects وClasses بدل كتابة كل SQL يدويًا.
+</div>
+
+</section>
+
+
+<!-- HTTP -->
+
+<section id="http">
+
+<h2>36. HTTP وRequests</h2>
+
+<p>
+يمكن لـ Python إرسال HTTP Requests إلى المواقع والخدمات البرمجية.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>import requests
+
+response = requests.get(
+    "https://example.com",
+    timeout=10
+)
+
+print(response.status_code)
+print(response.text)</pre>
+</div>
+
+<h3>POST Request</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>import requests
+
+data = {
+    "name": "Maha"
+}
+
+response = requests.post(
+    "https://example.com/api/users",
+    json=data,
+    timeout=10
+)
+
+print(response.status_code)</pre>
+</div>
+
+</section>
+
+
+<!-- REST -->
+
+<section id="rest">
+
+<h2>37. REST API</h2>
+
+<p>
+REST API تسمح للتطبيقات بالتواصل من خلال HTTP.
+</p>
+
+<table>
+
+<tr>
+<th>Method</th>
+<th>الغرض الشائع</th>
+</tr>
+
+<tr>
+<td>GET</td>
+<td>قراءة البيانات.</td>
+</tr>
+
+<tr>
+<td>POST</td>
+<td>إنشاء بيانات.</td>
+</tr>
+
+<tr>
+<td>PUT</td>
+<td>تحديث مورد.</td>
+</tr>
+
+<tr>
+<td>PATCH</td>
+<td>تحديث جزئي.</td>
+</tr>
+
+<tr>
+<td>DELETE</td>
+<td>حذف مورد.</td>
+</tr>
+
+</table>
+
+</section>
+
+
+<!-- FLASK -->
+
+<section id="flask">
+
+<h2>38. Flask</h2>
+
+<p>
+Flask إطار Web خفيف ومرن لبناء تطبيقات الويب وواجهات API.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>from flask import Flask
+
+app = Flask(__name__)
+
+
+@app.get("/")
+def home():
+
+    return {
+        "message": "Hello Python"
+    }
+
+
+if __name__ == "__main__":
+    app.run(debug=True)</pre>
+</div>
+
+</section>
+
+
+<!-- DJANGO -->
+
+<section id="django">
+
+<h2>39. Django</h2>
+
+<p>
+Django إطار Web متكامل يوفر العديد من المكونات الجاهزة لتطوير التطبيقات.
+</p>
+
+<div class="grid">
+
+<div class="card">
+<b>ORM</b>
+<p>التعامل مع قواعد البيانات.</p>
+</div>
+
+<div class="card">
+<b>Admin</b>
+<p>لوحة إدارة جاهزة.</p>
+</div>
+
+<div class="card">
+<b>Authentication</b>
+<p>أنظمة المستخدمين والصلاحيات.</p>
+</div>
+
+<div class="card">
+<b>Routing</b>
+<p>إدارة مسارات الموقع.</p>
+</div>
+
+</div>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>python -m pip install django
+
+django-admin startproject mysite</pre>
+</div>
+
+</section>
+
+
+<!-- FASTAPI -->
+
+<section id="fastapi">
+
+<h2>40. FastAPI</h2>
+
+<p>
+FastAPI إطار حديث لبناء APIs باستخدام Python مع دعم Type Hints.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>from fastapi import FastAPI
+
+app = FastAPI()
+
+
+@app.get("/users")
+def users():
+
+    return [
+        {
+            "id": 1,
+            "name": "Maha"
+        }
+    ]</pre>
+</div>
+
+<p>
+يمكن تشغيل التطبيق باستخدام ASGI Server مثل Uvicorn.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>uvicorn main:app --reload</pre>
+</div>
+
+</section>
+
+
+<!-- SECURITY -->
+
+<section id="security">
+
+<h2>41. Security وAuthentication وJWT</h2>
+
+<p>
+عند بناء تطبيقات Python يجب الاهتمام بالمصادقة والصلاحيات وحماية البيانات.
+</p>
+
+<h3>أهم المبادئ</h3>
+
+<ul>
+
+<li>عدم تخزين كلمات المرور كنص واضح.</li>
+
+<li>استخدام Password Hashing.</li>
+
+<li>التحقق من المدخلات.</li>
+
+<li>تجنب SQL Injection.</li>
+
+<li>حماية مفاتيح API.</li>
+
+<li>استخدام HTTPS عند نقل البيانات الحساسة.</li>
+
+<li>تطبيق Authentication وAuthorization بشكل صحيح.</li>
+
+</ul>
+
+<h3>JWT</h3>
+
+<p>
+JSON Web Token يستخدم في بعض الأنظمة لنقل Claims موقعة بين الأطراف.
+</p>
+
+<div class="warning">
+لا تضع كلمات المرور أو الأسرار الخاصة داخل JWT أو داخل الكود المرفوع إلى GitHub.
+</div>
+
+</section>
+
+
+<!-- ASYNC -->
+
+<section id="async">
+
+<h2>42. Asyncio وThreading وMultiprocessing</h2>
+
+<h3>Async / Await</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>import asyncio
+
+
+async def main():
+
+    await asyncio.sleep(1)
+
+    print("Done")
+
+
+asyncio.run(main())</pre>
+</div>
+
+<h3>المفاهيم</h3>
+
+<div class="grid">
+
+<div class="card">
+<b>asyncio</b>
+<p>مفيد للعمليات غير المتزامنة وعمليات I/O.</p>
+</div>
+
+<div class="card">
+<b>Threading</b>
+<p>تشغيل مهام باستخدام Threads.</p>
+</div>
+
+<div class="card">
+<b>Multiprocessing</b>
+<p>تشغيل عمليات مستقلة.</p>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- SCRAPING -->
+
+<section id="scraping">
+
+<h2>43. Web Scraping وAutomation</h2>
+
+<p>
+يمكن استخدام Python لأتمتة المهام والتعامل مع صفحات الويب والبيانات وفق شروط المواقع والقوانين المعمول بها.
+</p>
+
+<h3>BeautifulSoup</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>import requests
+
+from bs4 import BeautifulSoup
+
+
+html = requests.get(
+    "https://example.com",
+    timeout=10
+).text
+
+
+soup = BeautifulSoup(
+    html,
+    "html.parser"
+)
+
+
+print(soup.title.text)</pre>
+</div>
+
+<div class="note">
+يجب احترام شروط استخدام المواقع وسياسات الوصول والخصوصية عند تنفيذ عمليات Scraping.
+</div>
+
+</section>
+
+
+<!-- NUMPY -->
+
+<section id="numpy">
+
+<h2>44. NumPy</h2>
+
+<p>
+NumPy مكتبة أساسية للحسابات العددية والمصفوفات في Python.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>import numpy as np
+
+numbers = np.array(
+    [10, 20, 30, 40]
+)
+
+print(numbers)
+print(numbers.mean())
+print(numbers.sum())</pre>
+</div>
+
+<h3>المصفوفات</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>matrix = np.array([
+    [1, 2],
+    [3, 4]
+])
+
+print(matrix.shape)
+print(matrix)</pre>
+</div>
+
+</section>
+
+
+<!-- PANDAS -->
+
+<section id="pandas">
+
+<h2>45. Pandas</h2>
+
+<p>
+Pandas تستخدم للتعامل مع البيانات الجدولية وتحليلها.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>import pandas as pd
+
+data = {
+    "name": ["Maha", "Ali", "Sara"],
+    "age": [25, 30, 28]
+}
+
+df = pd.DataFrame(data)
+
+print(df)
+
+print(df["age"].mean())</pre>
+</div>
+
+<h3>قراءة CSV</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>import pandas as pd
+
+df = pd.read_csv("data.csv")
+
+print(df.head())</pre>
+</div>
+
+</section>
+
+
+<!-- MATPLOTLIB -->
+
+<section id="matplotlib">
+
+<h2>46. Matplotlib وتحليل البيانات</h2>
+
+<p>
+Matplotlib تستخدم لإنشاء الرسوم البيانية.
+</p>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>import matplotlib.pyplot as plt
+
+x = [1, 2, 3, 4]
+y = [10, 20, 15, 30]
+
+plt.plot(x, y)
+
+plt.title("Python Data")
+plt.xlabel("X")
+plt.ylabel("Y")
+
+plt.show()</pre>
+</div>
+
+<h3>مراحل تحليل البيانات</h3>
+
+<ol>
+
+<li>جمع البيانات.</li>
+<li>تنظيف البيانات.</li>
+<li>استكشاف البيانات.</li>
+<li>تحليل البيانات.</li>
+<li>تصوير البيانات.</li>
+<li>استخلاص النتائج.</li>
+
+</ol>
+
+</section>
+
+
+<!-- MACHINE LEARNING -->
+
+<section id="ml">
+
+<h2>47. Machine Learning</h2>
+
+<p>
+Python من اللغات المستخدمة على نطاق واسع في مجال Machine Learning.
+</p>
+
+<h3>المفاهيم الأساسية</h3>
+
+<div class="grid">
+
+<div class="card">
+<b>Features</b>
+<p>الخصائص التي تدخل إلى النموذج.</p>
+</div>
+
+<div class="card">
+<b>Target</b>
+<p>القيمة التي يحاول النموذج توقعها.</p>
+</div>
+
+<div class="card">
+<b>Training</b>
+<p>تدريب النموذج على البيانات.</p>
+</div>
+
+<div class="card">
+<b>Testing</b>
+<p>اختبار النموذج على بيانات لم يتدرب عليها.</p>
+</div>
+
+</div>
+
+<h3>مثال مبسط باستخدام Scikit-Learn</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>from sklearn.linear_model import LinearRegression
+
+model = LinearRegression()
+
+X = [
+    [1],
+    [2],
+    [3],
+    [4]
+]
+
+y = [
+    2,
+    4,
+    6,
+    8
+]
+
+model.fit(X, y)
+
+prediction = model.predict([[5]])
+
+print(prediction)</pre>
+</div>
+
+<div class="note">
+Machine Learning مجال واسع يشمل Supervised Learning وUnsupervised Learning وغيرها من الأساليب.
+</div>
+
+</section>
+
+
+<!-- NETWORK -->
+
+<section id="network">
+
+<h2>48. Networking وSocket Programming</h2>
+
+<p>
+يمكن استخدام Python في برمجة الشبكات والتواصل بين الأجهزة باستخدام Sockets.
+</p>
+
+<h3>Socket Server مبسط</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>import socket
+
+server = socket.socket(
+    socket.AF_INET,
+    socket.SOCK_STREAM
+)
+
+server.bind(
+    ("127.0.0.1", 5000)
+)
+
+server.listen(1)
+
+print("Server started")
+
+connection, address = server.accept()
+
+print("Connected:", address)
+
+connection.close()
+server.close()</pre>
+</div>
+
+<h3>مصطلحات مهمة</h3>
+
+<table>
+
+<tr>
+<th>المصطلح</th>
+<th>المعنى</th>
+</tr>
+
+<tr>
+<td>IP Address</td>
+<td>عنوان الجهاز على الشبكة.</td>
+</tr>
+
+<tr>
+<td>Port</td>
+<td>رقم منطقي للخدمة.</td>
+</tr>
+
+<tr>
+<td>Socket</td>
+<td>نقطة اتصال برمجية.</td>
+</tr>
+
+<tr>
+<td>TCP</td>
+<td>بروتوكول اتصال موثوق قائم على الاتصال.</td>
+</tr>
+
+<tr>
+<td>UDP</td>
+<td>بروتوكول نقل لا يعتمد على إنشاء اتصال TCP.</td>
+</tr>
+
+</table>
+
+</section>
+
+
+<!-- DEPLOYMENT -->
+
+<section id="deployment">
+
+<h2>49. Docker وGit والنشر والأداء</h2>
+
+<h3>Git</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>git init
+
+git add .
+
+git commit -m "Initial commit"
+
+git status</pre>
+</div>
+
+<h3>Docker</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>FROM python:3-slim
+
+WORKDIR /app
+
+COPY requirements.txt .
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+CMD ["python", "app.py"]</pre>
+</div>
+
+<h3>أفكار لتحسين الأداء</h3>
+
+<ul>
+
+<li>استخدم Data Structures المناسبة.</li>
+
+<li>تجنب العمليات المتكررة غير الضرورية.</li>
+
+<li>استخدم Generators للبيانات الكبيرة عند الحاجة.</li>
+
+<li>استخدم Database Indexes المناسبة.</li>
+
+<li>قلل عمليات I/O غير الضرورية.</li>
+
+<li>استخدم Caching عند الحاجة.</li>
+
+<li>قِس الأداء قبل وبعد التعديل.</li>
+
+</ul>
+
+</section>
+
+
+<!-- PROJECTS -->
+
+<section id="projects">
+
+<h2>50. مشاريع عملية باستخدام Python</h2>
+
+<p>
+أفضل طريقة لتثبيت مهارات Python هي الانتقال من الأمثلة الصغيرة إلى مشاريع متكاملة.
+</p>
+
+<div class="grid">
+
+<div class="card">
+<b>المشروع 1</b>
+<p>آلة حاسبة Python.</p>
+</div>
+
+<div class="card">
+<b>المشروع 2</b>
+<p>نظام إدارة الطلاب.</p>
+</div>
+
+<div class="card">
+<b>المشروع 3</b>
+<p>نظام مكتبة إلكترونية.</p>
+</div>
+
+<div class="card">
+<b>المشروع 4</b>
+<p>نظام إدارة المخزون.</p>
+</div>
+
+<div class="card">
+<b>المشروع 5</b>
+<p>REST API باستخدام FastAPI.</p>
+</div>
+
+<div class="card">
+<b>المشروع 6</b>
+<p>لوحة بيانات باستخدام Pandas.</p>
+</div>
+
+<div class="card">
+<b>المشروع 7</b>
+<p>تطبيق Web باستخدام Flask.</p>
+</div>
+
+<div class="card">
+<b>المشروع 8</b>
+<p>نظام إدارة محتوى باستخدام Django.</p>
+</div>
+
+<div class="card">
+<b>المشروع 9</b>
+<p>برنامج تحليل بيانات.</p>
+</div>
+
+<div class="card">
+<b>المشروع 10</b>
+<p>مشروع Machine Learning.</p>
+</div>
+
+</div>
+
+
+<h3>مشروع تطبيقي شامل: المكتبة الإلكترونية</h3>
+
+<p>
+يمكن بناء نظام مكتبة إلكترونية باستخدام مجموعة من تقنيات Python.
+</p>
+
+<table>
+
+<tr>
+<th>المكون</th>
+<th>التقنية المقترحة</th>
+</tr>
+
+<tr>
+<td>Backend</td>
+<td>FastAPI أو Django</td>
+</tr>
+
+<tr>
+<td>Database</td>
+<td>MySQL أو PostgreSQL</td>
+</tr>
+
+<tr>
+<td>ORM</td>
+<td>SQLAlchemy أو Django ORM</td>
+</tr>
+
+<tr>
+<td>Authentication</td>
+<td>JWT أو نظام المصادقة الخاص بالإطار</td>
+</tr>
+
+<tr>
+<td>API</td>
+<td>REST API</td>
+</tr>
+
+<tr>
+<td>Frontend</td>
+<td>HTML / CSS / JavaScript</td>
+</tr>
+
+<tr>
+<td>Deployment</td>
+<td>Docker + Server</td>
+</tr>
+
+</table>
+
+<h3>هيكل مشروع مقترح</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>python-library/
+│
+├── app/
+│   ├── __init__.py
+│   ├── main.py
+│   ├── models/
+│   ├── schemas/
+│   ├── routers/
+│   ├── services/
+│   └── database/
+│
+├── tests/
+│
+├── requirements.txt
+├── .env
+├── Dockerfile
+└── README.md</pre>
+</div>
+
+</section>
+
+
+<!-- QUICK REFERENCE -->
+
+<section id="reference">
+
+<h2>51. المرجع السريع لـ Python</h2>
+
+<h3>الطباعة</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>print("Hello")</pre>
+</div>
+
+<h3>المتغيرات</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>name = "Maha"
+age = 25</pre>
+</div>
+
+<h3>الشرط</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>if age >= 18:
+    print("Adult")</pre>
+</div>
+
+<h3>For</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>for i in range(5):
+    print(i)</pre>
+</div>
+
+<h3>Function</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>def hello(name):
+    return f"Hello {name}"</pre>
+</div>
+
+<h3>List</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>items = [1, 2, 3]
+
+items.append(4)</pre>
+</div>
+
+<h3>Dictionary</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>user = {
+    "name": "Maha",
+    "age": 25
+}</pre>
+</div>
+
+<h3>Class</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>class User:
+
+    def __init__(self, name):
+        self.name = name</pre>
+</div>
+
+<h3>استيراد مكتبة</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>import math
+
+print(math.sqrt(16))</pre>
+</div>
+
+<h3>تثبيت Package</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>python -m pip install package_name</pre>
+</div>
+
+<h3>إنشاء Virtual Environment</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>python -m venv .venv</pre>
+</div>
+
+<h3>تشغيل ملف Python</h3>
+
+<div class="code">
+<button class="copy" onclick="copyCode(this)">
+نسخ
+</button>
+<pre>python app.py</pre>
+</div>
+
+<div class="success">
+
+<strong>مسار تعلم Python المقترح:</strong>
+
+<br>
+
+Python Basics
+→ Data Structures
+→ Functions
+→ OOP
+→ Files
+→ Exceptions
+→ Modules
+→ Databases
+→ APIs
+→ Web Frameworks
+→ Async
+→ Data Analysis
+→ Machine Learning
+→ Deployment
+
+</div>
+
+</section>
+
+
+<!-- FINAL -->
+
+<section id="final">
+
+<h2>الخلاصة</h2>
+
+<p>
+Python ليست مجرد لغة برمجة للمبتدئين، بل منظومة واسعة يمكن استخدامها
+في تطوير الويب، قواعد البيانات، الشبكات، الأتمتة، تحليل البيانات،
+الذكاء الاصطناعي، Machine Learning، الاختبارات، والأدوات البرمجية.
+</p>
+
+<p>
+بعد إتقان أساسيات Python، من المفيد اختيار مسار متخصص بدل محاولة
+تعلم جميع المكتبات والأطر في الوقت نفسه.
+</p>
+
+<div class="grid">
+
+<div class="card">
+<b>مسار Web</b>
+<p>Flask / Django / FastAPI</p>
+</div>
+
+<div class="card">
+<b>مسار البيانات</b>
+<p>NumPy / Pandas / Matplotlib</p>
+</div>
+
+<div class="card">
+<b>مسار الذكاء الاصطناعي</b>
+<p>Machine Learning / Deep Learning</p>
+</div>
+
+<div class="card">
+<b>مسار Backend</b>
+<p>APIs / Databases / Authentication</p>
+</div>
+
+<div class="card">
+<b>مسار Automation</b>
+<p>Scripts / APIs / File Processing</p>
+</div>
+
+<div class="card">
+<b>مسار الشبكات</b>
+<p>Socket Programming / HTTP / Network Tools</p>
+</div>
+
+</div>
+
+</section>
+
+
+<footer>
+
+<strong>منصة آفاق المعرفة التقنية</strong>
+
+<br>
+
+مكتبة | مها شهوب
+
+<br>
+
+سلسلة أساسيات التقنية
+
+<br><br>
+
+إعداد الكاتبة والمهندسة: مها شهوب
+
+<br>
+
+© جميع الحقوق محفوظة
+
+</footer>
+
+</main>
+
+</div>
+
+
+<!-- =========================
+     TOP BUTTON
+========================= -->
+
+<button
+    id="topbtn"
+    class="topbtn"
+    onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    ↑
+</button>
+
+
+<script>
+
+/* =========================
+   THEME
+========================= */
+
+function toggleTheme(){
+
+    const html = document.documentElement;
+
+    const dark =
+        html.getAttribute("data-theme") === "dark";
+
+    const newTheme =
+        dark ? "light" : "dark";
+
+    html.setAttribute(
+        "data-theme",
+        newTheme
+    );
+
+    localStorage.setItem(
+        "python-theme",
+        newTheme
+    );
+}
+
+
+(function(){
+
+    const saved =
+        localStorage.getItem("python-theme");
+
+    if(saved){
+
+        document.documentElement
+            .setAttribute(
+                "data-theme",
+                saved
+            );
+    }
+
+})();
+
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+function toggleMenu(){
+
+    document
+        .getElementById("sidebar")
+        .classList
+        .toggle("open");
+}
+
+
+/* =========================
+   SEARCH NAVIGATION
+========================= */
+
+function filterNav(){
+
+    const input =
+        document.getElementById("navSearch");
+
+    const query =
+        input.value.toLowerCase();
+
+    document
+        .querySelectorAll("#nav a")
+        .forEach(function(link){
+
+            const text =
+                link.textContent.toLowerCase();
+
+            link.style.display =
+                text.includes(query)
+                ? "block"
+                : "none";
+
+        });
+}
+
+
+/* =========================
+   COPY CODE
+========================= */
+
+async function copyCode(button){
+
+    const code =
+        button
+        .parentElement
+        .querySelector("pre")
+        .innerText;
+
+    try{
+
+        await navigator.clipboard.writeText(code);
+
+    }catch(error){
+
+        const textarea =
+            document.createElement("textarea");
+
+        textarea.value = code;
+
+        document.body.appendChild(textarea);
+
+        textarea.select();
+
+        document.execCommand("copy");
+
+        textarea.remove();
+    }
+
+    const oldText =
+        button.textContent;
+
+    button.textContent =
+        "✓ تم النسخ";
+
+    setTimeout(function(){
+
+        button.textContent =
+            oldText;
+
+    },1200);
+}
+
+
+/* =========================
+   READING PROGRESS
+========================= */
+
+function updateProgress(){
+
+    const html =
+        document.documentElement;
+
+    const scrollTop =
+        html.scrollTop;
+
+    const total =
+        html.scrollHeight -
+        html.clientHeight;
+
+    const percent =
+        total > 0
+        ? (scrollTop / total) * 100
+        : 0;
+
+    document
+        .getElementById("progress")
+        .style.width =
+        percent + "%";
+
+
+    const topButton =
+        document.getElementById("topbtn");
+
+    topButton.style.display =
+        scrollTop > 500
+        ? "block"
+        : "none";
+}
+
+window.addEventListener(
+    "scroll",
+    updateProgress
+);
+
+updateProgress();
+
+
+/* =========================
+   ACTIVE NAVIGATION
+========================= */
+
+const navLinks =
+    Array.from(
+        document.querySelectorAll("#nav a")
+    );
+
+
+const sections =
+    navLinks
+    .map(function(link){
+
+        return document.querySelector(
+            link.getAttribute("href")
+        );
+
+    })
+    .filter(Boolean);
+
+
+const observer =
+    new IntersectionObserver(
+        function(entries){
+
+            entries.forEach(
+                function(entry){
+
+                    if(entry.isIntersecting){
+
+                        navLinks.forEach(
+                            function(link){
+
+                                link.classList.remove(
+                                    "active"
+                                );
+
+                            }
+                        );
+
+                        const active =
+                            document.querySelector(
+                                '#nav a[href="#' +
+                                entry.target.id +
+                                '"]'
+                            );
+
+                        if(active){
+
+                            active.classList.add(
+                                "active"
+                            );
+
+                        }
+
+                    }
+
+                }
+            );
+
+        },
+        {
+            rootMargin:
+                "-90px 0px -65% 0px"
+        }
+    );
+
+
+sections.forEach(
+    function(section){
+
+        observer.observe(section);
+
+    }
+);
+
+
+/* =========================
+   CLOSE MOBILE MENU
+========================= */
+
+document
+    .querySelectorAll("#nav a")
+    .forEach(function(link){
+
+        link.addEventListener(
+            "click",
+            function(){
+
+                if(
+                    window.innerWidth <= 950
+                ){
+
+                    document
+                        .getElementById("sidebar")
+                        .classList
+                        .remove("open");
+
+                }
+
+            }
+        );
+
+    });
+
+</script>
+
+</body>
+</html>

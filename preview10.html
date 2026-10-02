@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="دليل CSS الشامل والمفصل بالأسطر البرمجية - منصة آفاق المعرفة التقنية - مها شهوب">
+<title>دليل CSS الشامل والمفصل | مها شهوب</title>
+<style>
+:root{--bg:#eef3f8;--card:#fff;--text:#172033;--muted:#64748b;--p:#1677c8;--p2:#0b4f88;--b:#d7e1eb;--code:#0b1220;--shadow:0 8px 24px rgba(20,55,90,.09)}
+[data-theme=dark]{--bg:#0c1420;--card:#151f2c;--text:#e7eef8;--muted:#a9b7c8;--p:#0b4f88;--p2:#a7d9fb;--b:#2b3a4b;--code:#070b12;--shadow:0 8px 24px rgba(0,0,0,.25)}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",Tahoma,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.9}
+header{position:fixed;top:0;right:0;left:0;height:72px;z-index:1000;background:var(--card);border-bottom:1px solid var(--b);display:flex;align-items:center;padding:0 20px;box-shadow:var(--shadow)}
+.logo{width:67px;height:54px;border-radius:50%;display:grid;place-items:center;}
+.brand{margin-right:12px}.brand b{display:block;color:var(--p2)}.brand small{color:var(--muted)}
+.actions{margin-right:auto;display:flex;gap:8px}button{border:1px solid var(--b);background:var(--card);color:var(--text);border-radius:9px;padding:8px 12px;cursor:pointer}.menu{display:none}
+.progress{position:fixed;top:72px;right:0;height:4px;background:var(--p);width:0;z-index:1001}
+aside{position:fixed;top:76px;right:0;bottom:0;width:310px;background:var(--card);border-left:1px solid var(--b);padding:16px;overflow:auto}
+.search{width:100%;padding:10px;border:1px solid var(--b);border-radius:9px;background:var(--bg);color:var(--text);margin-bottom:10px}
+nav a{display:block;color:var(--muted);text-decoration:none;padding:5px 8px;border-radius:7px;font-size:12.5px}
+nav a:hover,nav a.active{background:#1677c81a;color:var(--p);font-weight:700}
+main{margin-right:310px;padding:110px 34px 50px;max-width:1300px}
+.hero{background:linear-gradient(135deg,var(--p2),var(--p));color:#ffffff;border-radius:18px;padding:34px;margin-bottom:22px;box-shadow:var(--shadow)}
+.hero h1{font-size:32px}.credit{font-weight:700;margin-top:8px}
+section{background:var(--card);border:1px solid var(--b);border-radius:14px;padding:24px;margin-bottom:18px;box-shadow:var(--shadow);scroll-margin-top:95px}
+h2{font-size:21px;color:var(--p2);border-right:4px solid var(--p);padding-right:9px;margin-bottom:12px}
+p {margin-bottom: 12px;}
+.code{position:relative;margin:13px 0}.code pre{background:var(--code);color:#dbeafe;direction:ltr;text-align:left;overflow:auto;border-radius:9px;padding:17px;font:13px/1.7 Consolas,monospace;white-space:pre-wrap}
+.copy{position:absolute;right:7px;top:7px;background:#fff;color:#172033;border:0;font-size:11px;padding:5px 8px;cursor:pointer;border-radius:4px;}
+.top{position:fixed;bottom:20px;left:20px;border-radius:50%;background:var(--p);color:#fff;width:44px;height:44px;border:0;cursor:pointer}
+footer{text-align:center;color:var(--muted);padding:28px}
+@media(max-width:900px){aside{transform:translateX(100%);transition:.25s;width:290px}aside.open{transform:none}.menu{display:block}main{margin:0;padding:100px 14px 40px}.brand small{display:none}.hero h1{font-size:25px}}
+@media print{header,aside,.top,.progress,.actions,.copy{display:none!important}main{margin:0;padding:0}section{box-shadow:none;break-inside:avoid}}
+</style>
+</head>
+<body>
+<header><button class="menu" onclick="document.querySelector('aside').classList.toggle('open')">☰</button>
+
+  <img src="IMG/آفاق المعرفة التقنية.png" class="logo">
+ <div class="brand"><b>منصة آفاق المعرفة التقنية</b><small>دليل CSS الشامل </small></div>
+ 
+<div class="actions"><button onclick="toggleTheme()">◐ الوضع</button><button onclick="window.print()">🖨 طباعة</button></div></header>
+<div class="progress" id="progress"></div>
+
+<aside><input class="search" id="search" placeholder="🔎 ابحث في الدروس..." oninput="filterNav()"><nav id="nav">
+<a href="#s1">01. مقدمة في CSS</a>
+<a href="#s2">02. تركيب قواعد CSS</a>
+<a href="#s3">03. طرق تضمين CSS</a>
+<a href="#s4">04. المحددات البسيطة</a>
+<a href="#s5">05. الفئات والمعرفات</a>
+<a href="#s6">06. المحددات المركبة والمجموعات</a>
+<a href="#s7">07. المحددات التابعة</a>
+<a href="#s8">08. محددات الحالات</a>
+<a href="#s9">09. العناصر الوهمية</a>
+<a href="#s10">10. الخصائص والوراثة</a>
+<a href="#s11">11. الخصوصية وقوة المحددات</a>
+<a href="#s12">12. ألوان CSS</a>
+<a href="#s13">13. الوحدات المطلقة</a>
+<a href="#s14">14. الوحدات النسبية</a>
+<a href="#s15">15. وحدات الشاشة</a>
+<a href="#s16">16. نموذج الصندوق الأساسي</a>
+<a href="#s17">17. خاصية Box-Sizing</a>
+<a href="#s18">18. الهوامش الخارجية</a>
+<a href="#s19">19. الحشوة الداخلية</a>
+<a href="#s20">20. الحدود وأنواعها</a>
+<a href="#s21">21. الزوايا الدائرية</a>
+<a href="#s22">22. العرض والارتفاع</a>
+<a href="#s23">23. أقصى وأدنى الأبعاد</a>
+<a href="#s24">24. أنواع العرض Display</a>
+<a href="#s25">25. الإخفاء والظهور</a>
+<a href="#s26">26. التموضع النسبي</a>
+<a href="#s27">27. التموضع المطلق</a>
+<a href="#s28">28. التموضع الثابت والملاصق</a>
+<a href="#s29">29. طبقات التراكب Z-Index</a>
+<a href="#s30">30. الطفو والمسح</a>
+<a href="#s31">32. تجاوز المحتوى Overflow</a>
+<a href="#s32">32. خطوط النصوص</a>
+<a href="#s33">33. أحجام وأوزان الخطوط</a>
+<a href="#s34">34. تباعد النصوص والأسطر</a>
+<a href="#s35">35. محاذاة واتجاه النصوص</a>
+<a href="#s36">36. تأثيرات النصوص الظلال</a>
+<a href="#s37">37. خلفيات الألوان والصور</a>
+<a href="#s38">38. تحجيم وتكرار الخلفيات</a>
+<a href="#s39">39. التدرجات الخطية</a>
+<a href="#s40">40. التدرجات الدائرية</a>
+<a href="#s41">41. الظلال Box-Shadow</a>
+<a href="#s42">42. المرشحات البصرية Filters</a>
+<a href="#s43">43. الشفافية Opacity</a>
+<a href="#s44">44. مقدمة Flexbox</a>
+<a href="#s45">45. المحور الرئيسي Flex</a>
+<a href="#s46">46. المحاذاة في الاتجاهين</a>
+<a href="#s47">47. التفاف العناصر Wrap</a>
+<a href="#s48">48. خصائص العناصر المرنة</a>
+<a href="#s49">49. ترتيب العناصر Order</a>
+<a href="#s50">50. مقدمة CSS Grid</a>
+<a href="#s51">51. تعريف الصفوف والأعمدة</a>
+<a href="#s52">52. الفجوات بين الشبكات Gap</a>
+<a href="#s53">53. دمج الخلايا في Grid</a>
+<a href="#s54">54. التوزيع التلقائي Auto-fit</a>
+<a href="#s55">55. التصميم المتجاوب Media Queries</a>
+<a href="#s56">56. نهج الموبايل أولاً</a>
+<a href="#s57">57. الانتقالات السلسة Transitions</a>
+<a href="#s58">58. مدة وتوقيت الانتقالات</a>
+<a href="#s59">59. إطار الحركات Keyframes</a>
+<a href="#s60">60. تشغيل وإدارة الحركات</a>
+<a href="#s61">62. التحويلات ثنائية الأبعاد 2D</a>
+<a href="#s62">62. التحويلات ثلاثية الأبعاد 3D</a>
+<a href="#s63">63. المتغيرات CSS Variables</a>
+<a href="#s64">64. نطاق المتغيرات Scope</a>
+<a href="#s65">65. تصميم الوضع المظلم Dark Mode</a>
+<a href="#s66">66. تنسيق الجداول Tables</a>
+<a href="#s67">67. تنسيق القوائم والروابط</a>
+<a href="#s68">68. تنسيق النماذج Forms</a>
+<a href="#s69">69. حالات التركيز Focus-within</a>
+<a href="#s70">70. المتغيرات الرياضية Calc</a>
+<a href="#s71">71. الدوال الشرطية Clamp</a>
+<a href="#s72">72. العدادات التلقائية Counters</a>
+<a href="#s73">73. تخصيص شريط التمرير Scrollbar</a>
+<a href="#s74">74. دمج الألوان Blend Modes</a>
+<a href="#s75">75. قص العناصر Clip-Path</a>
+<a href="#s76">76. اتجاه النصوص RTL & LTR</a>
+<a href="#s77">77. تنسيق صفحة الطباعة Print</a>
+<a href="#s78">78. تحسين الأداء وسرعة التحميل</a>
+<a href="#s79">79. أخطاء شائعة في الكتابة</a>
+<a href="#s80">80. تنظيم ملفات CSS</a>
+<a href="#s81">81. مشروع: بطاقات منتجات</a>
+<a href="#s82">82. مشروع: شريط تنقل Navbar</a>
+<a href="#s83">83. مشروع: معرض صور شبكي</a>
+<a href="#s84">84. مشروع: لوحة تحكم Dashboard</a>
+<a href="#s85">85. مشروع: نموذج تسجيل دخول</a>
+<a href="#s86">86. بناء نظام ثيمات متقدم</a>
+<a href="#s87">87. أفضل الممارسات البرمجية</a>
+<a href="#s88">88. المرجع السريع للخصائص</a>
+</nav></aside>
+
+<main>
+<div class="hero">
+  <h1>دليل CSS الشامل والمفصل للأكواد</h1>
+  <p>المرجع الهندسي المتكامل والمزود بالأمثلة الحية والشروح لكل درس من الـ 88 درساً.</p>
+  <div class="credit">إعداد الكاتبة والمهندسة: مها شهوب</div>
+</div>
+
+<section id="s1">
+  <h2>01. مقدمة في CSS</h2>
+  <p>لغة Cascading Style Sheets هي المسؤولة عن تصميم المظهر الجمالي وتوزيع العناصر لفصل الهيكل (HTML) عن الشكل البصري لجعل صيانة المواقع أسهل بكثير.</p>
+</section>
+
+<section id="s2">
+  <h2>02. تركيب قواعد CSS</h2>
+  <p>تتكون القاعدة من محدد (Selector) وكتلة إعلانات بين قوسين مجعدين تحتوى على الخاصية (Property) والقيمة (Value).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>selector {
+  property: value;
+}</pre></div>
+</section>
+
+<section id="s3">
+  <h2>03. طرق تضمين CSS</h2>
+  <p>يمكن تضمين التنسيقات بثلاث طرق: داخلية عبر الوسم style، مضمنة (Inline) داخل العنصر، أو خارجية عبر ملف مستقل.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;link rel="stylesheet" href="style.css"&gt;</pre></div>
+</section>
+
+<section id="s4">
+  <h2>04. المحددات البسيطة (Selectors)</h2>
+  <p>تستهدف عناصر الـ HTML مباشرة عبر كتابة اسم الوسم العام مثل الفقرات أو العناوين الرئيسية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>p {
+  color: #333;
+}</pre></div>
+</section>
+
+<section id="s5">
+  <h2>05. محددات العناصر والفئات (Classes & IDs)</h2>
+  <p>الفئات تستخدم لنقاط التكرار باستخدام النقطة (.), بينما المعرفات (IDs) فريدة وتستخدم بالرمز (#).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>.card { background: #fff; }
+#main-header { padding: 20px; }</pre></div>
+</section>
+
+<section id="s6">
+  <h2>06. المحددات المركبة والمجموعات</h2>
+  <p>تطبيق نفس كود التنسيق على عدة عناصر مختلفة دفعة واحدة عن طريق فصلها بالفواصل.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>h1, h2, h3 {
+  color: #0b4f88;
+}</pre></div>
+</section>
+
+<section id="s7">
+  <h2>07. المحددات التابعة (Descendant & Child)</h2>
+  <p>استهداف العناصر المتواجدة حصرياً داخل أب أو حاوية معينة لتجنب تأثير باقي عناصر الصفحة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>div > p {
+  font-size: 14px;
+}</pre></div>
+</section>
+
+<section id="s8">
+  <h2>08. محددات الحالات (Pseudo-classes)</h2>
+  <p>التحكم بتغير شكل العناصر بناءً على حالة تفاعل المستخدم مثل المرور بالفأرة أو الضغط.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>a:hover {
+  color: #1677c8;
+  text-decoration: underline;
+}</pre></div>
+</section>
+
+<section id="s9">
+  <h2>09. محددات العناصر الوهمية (Pseudo-elements)</h2>
+  <p>إضافة وتصميم أجزاء غير موجودة في الـ HTML الأصلي مثل الحرف الأول أو الرموز التعبيرية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>p::first-letter {
+  font-size: 2em;
+  font-weight: bold;
+}</pre></div>
+</section>
+
+<section id="s10">
+  <h2>10. الخصائص والوراثة (Inheritance)</h2>
+  <p>آلية ترث من خلالها العناصر الابنة بعض خصائص الأب (مثل خصائص النصوص والخطوط تلقائياً).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>body {
+  font-family: "Segoe UI", Tahoma, sans-serif;
+}</pre></div>
+</section>
+
+<section id="s11">
+  <h2>11. الخصوصية وقوة المحددات (Specificity)</h2>
+  <p>نظام الحساب الرياضي للمتصفح لتحديد أية قاعدة تُطبق عند تداخل الأكواد (IDs أقوى من Classes وأقوى من الوسوم).</p>
+</section>
+
+<section id="s12">
+  <h2>12. ألوان CSS (HEX, RGB, HSL)</h2>
+  <p>طرق تمثيل الألوان برمجياً، سواء بالنظام السداسي عشري، أو نظام الألوان الأحمر والأخضر والأزرق.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>.box {
+  background-color: rgb(22, 119, 200);
+}</pre></div>
+</section>
+
+<section id="s13">
+  <h2>13. الوحدات المطلقة (px, cm)</h2>
+  <p>وحدات قياس ثابتة لا تتغير مهما تبدلت أبعاد شاشة العرض، وأشبرها البيكسل (px).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>.element {
+  width: 300px;
+}</pre></div>
+</section>
+
+<section id="s14">
+  <h2>14. الوحدات النسبية (em, rem, %)</h2>
+  <p>قياسات مرنة تتكيف بناءً على حجم خط العنصر الأب (em) أو خط الجذر الأساسي (rem).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>html { font-size: 16px; }
+h1 { font-size: 2rem; /* يعادل 32px */ }</pre></div>
+</section>
+
+<section id="s15">
+  <h2>15. وحدات الشاشة (vw, vh, vmin)</h2>
+  <p>قياسات تعتمد بشكل مباشر على نسبة مئوية من عرض (vw) أو ارتفاع (vh) شاشة المتصفح.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>.hero {
+  height: 100vh;
+}</pre></div>
+</section>
+
+<section id="s16">
+  <h2>16. نموذج الصندوق الأساسي (Box Model)</h2>
+  <p>العمود الفقري لتصميم الويب والذي يتعامل مع كل عنصر على أنه صندوق مؤلف من محتوى وحشوة وحدود وهوامش.</p>
+</section>
+
+<section id="s17">
+  <h2>17. خاصية Box-Sizing</h2>
+  <p>استخدام قيمة border-box تضمن عدم تمدد عرض الصندوق عند إضافة الحشوة والحدود.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>* {
+  box-sizing: border-box;
+}</pre></div>
+</section>
+
+<section id="s18">
+  <h2>18. الهوامش الخارجية (Margin)</h2>
+  <p>التحكم في المساحات الفارغة المحيطة بالعنصر من الخارج، وتستخدم لتوسيط العناصر أفقياً بـ auto.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>.container {
+  margin: 20px auto;
+}</pre></div>
+</section>
+
+<section id="s19">
+  <h2>19. الحشوة الداخلية (Padding)</h2>
+  <p>المسافة الفارغة الواقعة بين محتوى العنصر الداخلي وحدوده الخارجية لزيادة الراحة البصرية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>.card {
+  padding: 15px 25px;
+}</pre></div>
+</section>
+
+<section id="s20">
+  <h2>20. الحدود (Borders) وأنواعها</h2>
+  <p>التحكم في سمك، نمط (متصل، منقط، مزدوج)، ولون الإطار المحيط بالعنصر.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>.box {
+  border: 1px solid #d7e1eb;
+}</pre></div>
+</section>
+
+<section id="s21">
+  <h2>21. الزوايا الدائرية (Border-Radius)</h2>
+  <p>إعطاء انحناء لزوايا الصناديق والبطاقات، أو تحويلها إلى دوائر تامة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>.avatar {
+  border-radius: 50%;
+}</pre></div>
+</section>
+
+<section id="s22">
+  <h2>22. العرض والارتفاع (Width & Height)</h2>
+  <p>تحديد الأبعاد الأساسية للعناصر والحاويات على الشاشة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>.box {
+  width: 100%;
+  height: 200px;
+}</pre></div>
+</section>
+
+<section id="s23">
+  <h2>23. أقصى وأدنى الأبعاد (Min/Max)</h2>
+  <p>حماية التخطيط من الانهيار عبر وضع قيود دنيا وعليا للعرض والارتفاع.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>.container {
+  max-width: 1200px;
+  min-height: 400px;
+}</pre></div>
+</section>
+
+<section id="s24">
+  <h2>24. أنواع العرض (Display)</h2>
+  <p>التحكم بسلوك ظهور العنصر، هل يشغل سطراً كاملاً (block) أم يتقاسم السطر (inline).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>.element {
+  display: block;
+}</pre></div>
+</section>
+
+<section id="s25">
+  <h2>25. الإخفاء والظهور (Visibility & Display)</h2>
+  <p>الفرق بين إخفاء العنصر تماماً وإلغاء مساحته (display: none) أو إخفائه مع الحفاظ على فراغه (visibility: hidden).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>.hidden {
+  display: none;
+}</pre></div>
+</section>
+
+<section id="s26">
+  <h2>26. التموضع النسبي (Relative)</h2>
+  <p>إزاحة العنصر قليلاً عن مكانه الأصلي دون التأثير على تدفق باقي عناصر الصفحة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>.box {
+  position: relative;
+  top: 10px;
+}</pre></div>
+</section>
+
+<section id="s27">
+  <h2>27. التموضع المطلق (Absolute)</h2>
+  <p>إخراج العنصر من التدفق الطبيعي وتثبيته بدقة إحداثية داخل أب يمتلك تموضعاً نسبياً.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>.badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+}</pre></div>
+</section>
+
+<section id="s28">
+  <h2>28. التموضع الثابت والملاصق (Fixed & Sticky)</h2>
+  <p>تثبيت العناصر (مثل الهيدر العلوي) أثناء عملية التمرير في الصفحة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}</pre></div>
+</section>
+
+<section id="s29">
+  <h2>29. طبقات التراكب (Z-Index)</h2>
+  <p>التحكم بأي العناصر تظهر في المقدمة وأيها تقع في الخلف عند تداخل العناصر المتموضعة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>.modal {
+  z-index: 1050;
+}</pre></div>
+</section>
+
+<section id="s30">
+  <h2>30. الطفو والمسح (Float & Clear)</h2>
+  <p>التقنية الكلاسيكية لإزاحة العناصر يميناً ويساراً وجعل النصوص يلتفون حولها.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>.float-left {
+  float: left;
+}</pre></div>
+</section>
+
+<section id="s31">
+  <h2>31. تجاوز المحتوى (Overflow)</h2>
+  <p>التحكم بما يحدث عندما يكون محتوى الصندوق أكبر من أبعاده المحددة (ظهور تمرير أو إخفاء الزائد).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>.scrollable {
+  overflow: auto;
+}</pre></div>
+</section>
+
+<section id="s32">
+  <h2>32. خطوط النصوص (Font-Family)</h2>
+  <p>تحديد نوع الخط المستخدم وطبقات الاحتياط في حال عدم توفر الخط الأساسي.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>body {
+  font-family: "Segoe UI", Tahoma, sans-serif;
+}</pre></div>
+</section>
+
+<section id="s33">
+  <h2>33. أحجام وأوزان الخطوط</h2>
+  <p>التحكم بسماكة ونحافة الخطوط العريضة عبر خاصية الأوزان.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>.bold-text {
+  font-weight: 700;
+  font-size: 18px;
+}</pre></div>
+</section>
+
+<section id="s34">
+  <h2>34. تباعد النصوص والأسطر</h2>
+  <p>ضبط مسافات الحروف وارتفاعات السطور لتسهيل القراءة المريحة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>p {
+  line-height: 1.8;
+  letter-spacing: 0.5px;
+}</pre></div>
+</section>
+
+<section id="s35">
+  <h2>35. محاذاة واتجاه النصوص</h2>
+  <p>توزيع النصوص يميناً، يساراً، توسيطاً، أو ضبط الحواف المتساوية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>.text-center {
+  text-align: center;
+}</pre></div>
+</section>
+
+<section id="s36">
+  <h2>36. تأثيرات النصوص الظلال</h2>
+  <p>إضافة ظلال جمالية للنصوص البارزة عبر text-shadow.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>h1 {
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}</pre></div>
+</section>
+
+<section id="s37">
+  <h2>37. خلفيات الألوان والصور</h2>
+  <p>تضمين الألوان والخلفيات المصورة داخل الصناديق.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>.bg {
+  background-color: #fff;
+  background-image: url('img.jpg');
+}</pre></div>
+</section>
+
+<section id="s38">
+  <h2>38. تحجيم وتكرار الخلفيات</h2>
+  <p>منع تكرار صورة الخلفية وضبط تغطيتها الكاملة للحاوية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>.hero-bg {
+  background-repeat: no-repeat;
+  background-size: cover;
+}</pre></div>
+</section>
+
+<section id="s39">
+  <h2>39. التدرجات الخطية (Linear Gradient)</h2>
+  <p>دمج لونين أو أكثر بتدرج هندسي سلس واتجاهي.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>.hero {
+  background: linear-gradient(135deg, #0b4f88, #1677c8);
+}</pre></div>
+</section>
+
+<section id="s40">
+  <h2>40. التدرجات الدائرية (Radial Gradient)</h2>
+  <p>صنع تدرجات لونية تبدأ من مركز الدائرة وتتوسع للأطراف.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>.circle-grad {
+  background: radial-gradient(circle, #fff, #d7e1eb);
+}</pre></div>
+</section>
+
+<section id="s41">
+  <h2>41. الظلال (Box-Shadow)</h2>
+  <p>إعطاء عمق وثلاثية أبعاد للبطاقات والصناديق.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>.card {
+  box-shadow: 0 8px 24px rgba(20,55,90,.09);
+}</pre></div>
+</section>
+
+<section id="s42">
+  <h2>42. المرشحات البصرية (Filters)</h2>
+  <p>تطبيق تأثيرات تشويش، تباعد ألوان، أو إضاءة على الصور.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>.blurred {
+  filter: blur(5px);
+}</pre></div>
+</section>
+
+<section id="s43">
+  <h2>43. الشفافية (Opacity & RGBA)</h2>
+  <p>التحكم بنسب الشفافية للعناصر الكاملة أو الألوان المنفصلة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>.transparent {
+  opacity: 0.8;
+}</pre></div>
+</section>
+
+<section id="s44">
+  <h2>44. مقدمة نظام Flexbox</h2>
+  <p>النظام المرن لترتيب وتوزيع العناصر في اتجاه واحد بكفاءة عالية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>.flex-container {
+  display: flex;
+}</pre></div>
+</section>
+
+<section id="s45">
+  <h2>45. المحور الرئيسي والعرض في Flex</h2>
+  <p>تحديد ما إذا كان توزيع العناصر أفقياً أم عمودياً.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>.col-flex {
+  flex-direction: column;
+}</pre></div>
+</section>
+
+<section id="s46">
+  <h2>46. المحاذاة في الاتجاهين (Align & Justify)</h2>
+  <p>توسيط وتوزيع العناصر داخل الحاوية المرنة بكل يسر.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>.centered {
+  justify-content: space-between;
+  align-items: center;
+}</pre></div>
+</section>
+
+<section id="s47">
+  <h2>47. التفاف العناصر (Flex-Wrap)</h2>
+  <p>السماح للعناصر بالانتقال لسطر جديد عند ضيق مساحة الشاشة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>.wrap-box {
+  flex-wrap: wrap;
+}</pre></div>
+</section>
+
+<section id="s48">
+  <h2>48. خصائص العناصر المرنة (Grow, Shrink, Basis)</h2>
+  <p>التحكم بنسب تمدد وانكماش العناصر المرنة داخل الحاوية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>.item {
+  flex: 1 1 auto;
+}</pre></div>
+</section>
+
+<section id="s49">
+  <h2>49. ترتيب العناصر (Order)</h2>
+  <p>تغيير ترتيب ظهور العناصر بصرياً دون تعديل الكود المصدري HTML.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>.first-item {
+  order: -1;
+}</pre></div>
+</section>
+
+<section id="s50">
+  <h2>50. مقدمة نظام الشبكات (CSS Grid)</h2>
+  <p>النظام الأقوى لتصميم التخطيطات المعقدة ثنائية الأبعاد (صفوف وأعمدة).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>.grid {
+  display: grid;
+}</pre></div>
+</section>
+
+<section id="s51">
+  <h2>51. تعريف الصفوف والأعمدة (Grid Template)</h2>
+  <p>تخصيص قياسات الأعمدة والصفوف للشبكة بدقة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>.grid-cols {
+  grid-template-columns: repeat(3, 1fr);
+}</pre></div>
+</section>
+
+<section id="s52">
+  <h2>52. الفجوات بين الشبكات (Gap)</h2>
+  <p>صنع مسافات فاصلة ومنتظمة بين خلايا الشبكة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>.grid {
+  gap: 20px;
+}</pre></div>
+</section>
+
+<section id="s53">
+  <h2>53. دمج الخلايا في Grid</h2>
+  <p>جعل العنصر يعبر أكثر من عمود أو صف داخل الشبكة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>.span-col {
+  grid-column: span 2;
+}</pre></div>
+</section>
+
+<section id="s54">
+  <h2>54. التوزيع التلقائي (Auto-fit & Minmax)</h2>
+  <p>إنشاء شبكات متجاوبة بالكامل تتكيف ذاتياً مع أبعاد الأجهزة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>.auto-grid {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}</pre></div>
+</section>
+
+<section id="s55">
+  <h2>55. التصميم المتجاوب (Media Queries)</h2>
+  <p>استهداف مقاسات شاشات معينة لتعديل مظهر الموقع وتخطيطه.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>@media (max-width: 900px) {
+  aside { transform: translateX(100%); }
+}</pre></div>
+</section>
+
+<section id="s56">
+  <h2>56. نهج تصميم الموبايل أولاً (Mobile First)</h2>
+  <p>استراتيجية كتابة التجاوب بدءاً من الشاشات الصغيرة صعوداً للشاشات الكبيرة عبر min-width.</p>
+</section>
+
+<section id="s57">
+  <h2>57. الانتقالات السلسة (Transitions)</h2>
+  <p>إعطاء نعومة وسلاسة عند تغير خصائص العنصر (مثل تأثيرات الأزرار).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>.btn {
+  transition: background-color 0.3s ease;
+}</pre></div>
+</section>
+
+<section id="s58">
+  <h2>58. مدة وتوقيت الانتقالات (Timing Functions)</h2>
+  <p>التحكم في سرعة التسارع والتباطؤ أثناء حدوث الانتقال البصري.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>.box {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}</pre></div>
+</section>
+
+<section id="s59">
+  <h2>59. إطار الحركات (Keyframes Animations)</h2>
+  <p>صنع حركات تفاعلية متقدمة ومتعددة المراحل عبر الإطارات المفتاحية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}</pre></div>
+</section>
+
+<section id="s60">
+  <h2>60. تشغيل وإدارة الحركات</h2>
+  <p>التحكم بعدد مرات التكرار، الاتجاه، وحالة إيقاف الحركة أو تشغيلها.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>.animated {
+  animation: fadeIn 0.5s ease infinite alternate;
+}</pre></div>
+</section>
+
+<section id="s61">
+  <h2>61. التحويلات ثنائية الأبعاد (2D Transforms)</h2>
+  <p>تدوير، تكبير، إزاحة، أو ميل العناصر على المستويين الأفقي والعمودي.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>.box:hover {
+  transform: scale(1.05) rotate(3deg);
+}</pre></div>
+</section>
+
+<section id="s62">
+  <h2>62. التحويلات ثلاثية الأبعاد (3D Transforms)</h2>
+  <p>صنع تأثيرات المنظور والعمق الثلاثي الأبعاد في واجهات الويب.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>.card-3d {
+  transform: perspective(1000px) rotateY(45deg);
+}</pre></div>
+</section>
+
+<section id="s63">
+  <h2>63. المتغيرات في CSS (Custom Properties)</h2>
+  <p>حفظ القيم المتكررة والألوان في الجذر لتسهيل إدارتها.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>:root {
+  --main-color: #1677c8;
+}</pre></div>
+</section>
+
+<section id="s64">
+  <h2>64. نطاق المتغيرات (Scope)</h2>
+  <p>الفرق بين المتغيرات المعرفة في الجذر ومتغيرات النطاق المحلي داخل الصناديق.</p>
+</section>
+
+<section id="s65">
+  <h2>65. تصميم الوضع المظلم (Dark Mode)</h2>
+  <p>تغيير ثيم الألوان بالكامل عبر تبديل قيم المتغيرات بحسب سمة البيانات.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>[data-theme="dark"] {
+  --bg: #0c1420;
+  --card: #151f2c;
+}</pre></div>
+</section>
+
+<section id="s66">
+  <h2>66. تنسيق الجداول (Tables)</h2>
+  <p>إضافة التخطيطات، الحدود، والتداخل اللوني لصفوف وأعمدة الجداول.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>tr:nth-child(even) {
+  background-color: rgba(0,0,0,0.02);
+}</pre></div>
+</section>
+
+<section id="s67">
+  <h2>67. تنسيق القوائم والروابط (Lists)</h2>
+  <p>إزالة الرموز الافتراضية للقوائم وتنسيق الروابط لتلائم القوائم الجانبية والهيدر.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>ul {
+  list-style: none;
+}</pre></div>
+</section>
+
+<section id="s68">
+  <h2>68. تنسيق النماذج وحقول الإدخال (Forms)</h2>
+  <p>جعل حقول النص والأزرار عصرية، مريحة، وذات حدود متناسقة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>input {
+  border: 1px solid var(--b);
+  border-radius: 9px;
+  padding: 10px;
+}</pre></div>
+</section>
+
+<section id="s69">
+  <h2>69. حالات التركيز والتفاعل (Focus-within)</h2>
+  <p>تنسيق الحاوية بالكامل عندما يقوم المستخدم بالنقر أو الكتابة داخل أي حقل داخلي.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>.form-group:focus-within {
+  border-color: var(--p);
+}</pre></div>
+</section>
+
+<section id="s70">
+  <h2>70. المتغيرات الرياضية (Calc function)</h2>
+  <p>إجراء عمليات حسابية ديناميكية للقياسات والأبعاد مباشرة داخل الأكواد.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>.sidebar {
+  width: calc(100% - 310px);
+}</pre></div>
+</section>
+
+<section id="s71">
+  <h2>71. الدوال الشرطية (Clamp, Min, Max)</h2>
+  <p>ضبط قياسات مرنة للخطوط والمسافات تتكيف بسلاسة تامة مع عرض الشاشة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>h1 {
+  font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+}</pre></div>
+</section>
+
+<section id="s72">
+  <h2>72. العدادات التلقائية (Counters)</h2>
+  <p>ترقيم العناوين والبنود تلقائياً عبر خصائص الـ CSS دون تدخل يدوي في HTML.</p>
+</section>
+
+<section id="s73">
+  <h2>73. تخصيص شريط التمرير (Scrollbar)</h2>
+  <p>تلوين وتصغير أشرطة التمرير لتتطابق تماماً مع الهوية البصرية للمنصة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>::-webkit-scrollbar {
+  width: 8px;
+}</pre></div>
+</section>
+
+<section id="s74">
+  <h2>74. تأثيرات دمج الألوان (Blend Modes)</h2>
+  <p>صنع تداخلات بصرية مذهلة واحترافية بين الصور والخلفيات الملونة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>.blend {
+  mix-blend-mode: multiply;
+}</pre></div>
+</section>
+
+<section id="s75">
+  <h2>75. قص العناصر (Clip-Path)</h2>
+  <p>عرض الصور والصناديق بأشكال هندسية مخصصة ومضلعات غير تقليدية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>.polygon {
+  clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+}</pre></div>
+</section>
+
+<section id="s76">
+  <h2>76. اتجاه النصوص واللغات (RTL & LTR)</h2>
+  <p>دعم اللغات المختلفة وتغيير اتجاه التخطيط والمحاذاة بسلاسة تامة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>html {
+  direction: rtl;
+}</pre></div>
+</section>
+
+<section id="s77">
+  <h2>77. تنسيق صفحة الطباعة (@media print)</h2>
+  <p>إخفاء القوائم غير الضرورية والأزرار وتنسيق المحتوى الرئيسي حصرياً للطباعة الورقية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>@media print {
+  header, aside, .actions { display: none !important; }
+}</pre></div>
+</section>
+
+<section id="s78">
+  <h2>78. تحسين الأداء وسرعة التحميل</h2>
+  <p>تنظيف الأكواد، ضغط الملفات، وتجنب الخصائص الثقيلة التي تبطئ تحميل وتصفح الصفحة.</p>
+</section>
+
+<section id="s79">
+  <h2>79. أخطاء شائعة في كتابة الكود</h2>
+  <p>تجنب الإفراط في استخدام !important وفوضى تداخل الفئات البرمجية.</p>
+</section>
+
+<section id="s80">
+  <h2>80. تنظيم وترتيب ملفات CSS</h2>
+  <p>طرق تقسيم الملفات الكبيرة إلى أجزاء ونظام الهيكلة لتسهيل الصيانة والتطوير.</p>
+</section>
+
+<section id="s81">
+  <h2>81. مشروع عملي: تصميم بطاقات منتجات</h2>
+  <p>تطبيق عملي لتنسيق بطاقات عرض ديناميكية متطورة مع تأثيرات المرور بالفأرة.</p>
+</section>
+
+<section id="s82">
+  <h2>82. مشروع عملي: شريط تنقل متجاوب (Navbar)</h2>
+  <p>تصميم هيدر متكامل مع قائمة جانبية متجاوبة للشاشات المصغرة.</p>
+</section>
+
+<section id="s83">
+  <h2>83. مشروع عملي: معرض صور شبكي</h2>
+  <p>بناء معرض صور متناسق باستخدام تقنيات CSS Grid المتقدمة.</p>
+</section>
+
+<section id="s84">
+  <h2>84. مشروع عملي: لوحة تحكم متكاملة (Dashboard)</h2>
+  <p>تصميم الواجهات الإدارية الاحترافية والجانبية للأنظمة الكبرى.</p>
+</section>
+
+<section id="s85">
+  <h2>85. مشروع عملي: نموذج تسجيل الدخول</h2>
+  <p>بناء فورم أنيق ومرن يدعم الوضعين المظلم والفاتح بمتغيرات النظام.</p>
+</section>
+
+<section id="s86">
+  <h2>86. بناء نظام ثيمات متقدم</h2>
+  <p>إدارة تعدد الثيمات والألوان للمنصات الرقمية باستخدام الخصائص الديناميكية المتطورة.</p>
+</section>
+
+<section id="s87">
+  <h2>87. أفضل الممارسات البرمجية في CSS</h2>
+  <p>معايير كتابة أكواد نظيفة وقابلة للتطوير والصيانة طويلة الأمد (Clean Code Principles).</p>
+</section>
+
+<section id="s88">
+  <h2>88. المرجع السريع لأهم الخصائص</h2>
+  <p>خلاصة شاملة وسريعة لأهم أوامر وخصائص الـ CSS الأساسية والمتقدمة للرجوع إليها فورياً.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>/* خلاصة الختام لأهم المحددات والخصائص */
+.quick-reference { display: grid; gap: 1rem; }</pre></div>
+</section>
+
+<footer>منصة آفاق المعرفة التقنية — مكتبة | مها شهوب<br>إعداد الكاتبة والمهندسة: مها شهوب</footer>
+</main>
+<button class="top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+function toggleTheme(){document.documentElement.dataset.theme=document.documentElement.dataset.theme==="dark"?"light":"dark";localStorage.setItem("css-theme-88-full",document.documentElement.dataset.theme)}
+if(localStorage.getItem("css-theme-88-full"))document.documentElement.dataset.theme=localStorage.getItem("css-theme-88-full");
+document.querySelectorAll(".copy").forEach(b=>b.onclick=()=>{navigator.clipboard.writeText(b.parentElement.querySelector("pre").innerText);let x=b.innerText;b.innerText="تم النسخ ✓";setTimeout(()=>b.innerText=x,1100)});
+function filterNav(){let q=document.getElementById("search").value.toLowerCase();document.querySelectorAll("#nav a").forEach(a=>a.style.display=a.innerText.toLowerCase().includes(q)?"block":"none")}
+window.addEventListener("scroll",()=>{let d=document.documentElement;document.getElementById("progress").style.width=(d.scrollTop/(d.scrollHeight-d.clientHeight)*100)+"%";let cur="";document.querySelectorAll("section").forEach(s=>{if(scrollY>=s.offsetTop-130)cur=s.id});document.querySelectorAll("#nav a").forEach(a=>a.classList.toggle("active",a.hash==="#"+cur))});
+document.querySelectorAll("#nav a").forEach(a=>a.onclick=()=>document.querySelector("aside").classList.remove("open"));
+</script>
+</body>
+</html>

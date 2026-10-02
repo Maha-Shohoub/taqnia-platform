@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="دليل أنظمة إدارة قواعد البيانات DBMS الشامل والمفصل للأكواد والشروح الهندسية - آفاق المعرفة التقنية - مها شهوب">
+<title>دليل DBMS الشامل والمفصل | مها شهوب</title>
+<style>
+:root{--bg:#eef3f8;--card:#fff;--text:#172033;--muted:#64748b;--p:#0b4f88;--p2:#1d4ed8;--b:#d7e1eb;--code:#0b1220;--shadow:0 8px 24px rgba(20,55,90,.09)}
+[data-theme=dark]{--bg:#0c1420;--card:#151f2c;--text:#e7eef8;--muted:#a9b7c8;--p:#0b4f88;--p2:#60a5fa;--b:#2b3a4b;--code:#070b12;--shadow:0 8px 24px rgba(0,0,0,.25)}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",Tahoma,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.9}
+header{position:fixed;top:0;right:0;left:0;height:72px;z-index:1000;background:var(--card);border-bottom:1px solid var(--b);display:flex;align-items:center;padding:0 20px;box-shadow:var(--shadow)}
+.logo{width:67px;height:54px;border-radius:50%;display:grid;place-items:center;}
+.brand{margin-right:12px}.brand b{display:block;color:var(--p2)}.brand small{color:var(--muted)}
+.actions{margin-right:auto;display:flex;gap:8px}button{border:1px solid var(--b);background:var(--card);color:var(--text);border-radius:9px;padding:8px 12px;cursor:pointer}.menu{display:none}
+.progress{position:fixed;top:72px;right:0;height:4px;background:var(--p);width:0;z-index:1001}
+aside{position:fixed;top:76px;right:0;bottom:0;width:310px;background:var(--card);border-left:1px solid var(--b);padding:16px;overflow:auto}
+.search{width:100%;padding:10px;border:1px solid var(--b);border-radius:9px;background:var(--bg);color:var(--text);margin-bottom:10px}
+nav a{display:block;color:var(--muted);text-decoration:none;padding:5px 8px;border-radius:7px;font-size:12.5px}
+nav a:hover,nav a.active{background:#2563eb1a;color:var(--p);font-weight:700}
+main{margin-right:310px;padding:110px 34px 50px;max-width:1300px}
+.hero{background:linear-gradient(135deg,var(--p2),var(--p));color:#ffffff;border-radius:18px;padding:34px;margin-bottom:22px;box-shadow:var(--shadow)}
+.hero h1{font-size:32px}.credit{font-weight:700;margin-top:8px}
+section{background:var(--card);border:1px solid var(--b);border-radius:14px;padding:24px;margin-bottom:18px;box-shadow:var(--shadow);scroll-margin-top:95px}
+h2{font-size:21px;color:var(--p2);border-right:4px solid var(--p);padding-right:9px;margin-bottom:12px}
+p {margin-bottom: 12px;}
+.code{position:relative;margin:13px 0}.code pre{background:var(--code);color:#dbeafe;direction:ltr;text-align:left;overflow:auto;border-radius:9px;padding:17px;font:13px/1.7 Consolas,monospace;white-space:pre-wrap}
+.copy{position:absolute;right:7px;top:7px;background:#fff;color:#172033;border:0;font-size:11px;padding:5px 8px;cursor:pointer;border-radius:4px;}
+.top{position:fixed;bottom:20px;left:20px;border-radius:50%;background:var(--p);color:#fff;width:44px;height:44px;border:0;cursor:pointer}
+footer{text-align:center;color:var(--muted);padding:28px}
+@media(max-width:900px){aside{transform:translateX(100%);transition:.25s;width:290px}aside.open{transform:none}.menu{display:block}main{margin:0;padding:100px 14px 40px}.brand small{display:none}.hero h1{font-size:25px}}
+@media print{header,aside,.top,.progress,.actions,.copy{display:none!important}main{margin:0;padding:0}section{box-shadow:none;break-inside:avoid}}
+</style>
+</head>
+<body>
+<header><button class="menu" onclick="document.querySelector('aside').classList.toggle('open')">☰</button>
+
+   
+  <img src="IMG/آفاق المعرفة التقنية.png" class="logo">
+  <div class="brand"><b>منصة آفاق المعرفة التقنية</b><small>دليل DBMS الشامل </small></div>
+
+
+  <div class="actions"><button onclick="toggleTheme()">◐ الوضع</button><button onclick="window.print()">🖨 طباعة</button></div></header>
+<div class="progress" id="progress"></div>
+
+<aside><input class="search" id="search" placeholder="🔎 ابحث في الوحدات والدروس..." oninput="filterNav()"><nav id="nav">
+<a href="#s1">01. مفهوم نظم إدارة قواعد البيانات DBMS</a>
+<a href="#s2">02. تطور وتاريخ هندسة قواعد البيانات</a>
+<a href="#s3">03. الهندسة ثلاثية المستويات لـ ANSI-SPARC</a>
+<a href="#s4">04. استقلال البيانات المنطقي والفيزيائي</a>
+<a href="#s5">05. مكونات هندسة نظام DBMS الأساسية</a>
+<a href="#s6">06. نموذج البيانات الهرمي (Hierarchical)</a>
+<a href="#s7">07. نموذج البيانات الشبكي (Network)</a>
+<a href="#s8">08. النموذج العلائقي Relational Model</a>
+<a href="#s9">09. نموذج الكيان والعلاقة ER Diagram</a>
+<a href="#s10">10. خصائص الجداول والصفوف والأعمدة</a>
+<a href="#s11">11. قيود النزاهة التكاملية Integrity Constraints</a>
+<a href="#s12">12. مفاهيم لغة التعريف DDL</a>
+<a href="#s13">13. مفاهيم لغة المعالجة DML</a>
+<a href="#s14">14. مفاهيم لغة التحكم DCL & TCL</a>
+<a href="#s15">15. مقدمة في الجبر العلائقي Relational Algebra</a>
+<a href="#s16">16. عمليات الانتقاء والاسقاط (Select & Project)</a>
+<a href="#s17">17. عمليات الربط الديكارتي والتقاطع</a>
+<a href="#s18">18. تطبيع قواعد البيانات Normalization الأساسي</a>
+<a href="#s19">19. الصيغة الطبيعية الأولى 1NF</a>
+<a href="#s20">20. الصيغة الطبيعية الثانية 2NF</a>
+<a href="#s21">21. الصيغة الطبيعية الثالثة 3NF</a>
+<a href="#s22">22. صيغة بويس-كود Boyce-Codd NF</a>
+<a href="#s23">23. الاعتمادات الوظيفية Functional Dependencies</a>
+<a href="#s24">24. فك التطبيع Denormalization ومبرراته</a>
+<a href="#s25">25. إدارة المعاملات Transactions وعيوب التزامن</a>
+<a href="#s26">26. خصائص المعاملات الخمسة ACID Properties</a>
+<a href="#s27">27. جداول الجدولة والتزامن Concurrency Control</a>
+<a href="#s28">28. البروتوكولات القائمة على القفل Locking Protocols</a>
+<a href="#s29">29. قفل المرحلتين Two-Phase Locking (2PL)</a>
+<a href="#s30">30. مشكلة التعارض الميت Deadlocks وإدارتها</a>
+<a href="#s31">31. طوابع الزمن Timestamp-based Protocols</a>
+<a href="#s32">32. إدارة الاسترجاع والتعافي Recovery System</a>
+<a href="#s33">33. سجل المعاملات Write-Ahead Logging (WAL)</a>
+<a href="#s34">34. آليات الاسترداد بالحفظ الاحتياطي Checkpoints</a>
+<a href="#s35">35. تجميع الصفحات والتخزين المؤقت Buffer Management</a>
+<a href="#s36">36. هياكل التخزين الفيزيائي للملفات</a>
+<a href="#s37">37. تنظيم الملفات وتخزين السجلات</a>
+<a href="#s38">38. أساسيات فهرسة البيانات Indexing Structures</a>
+<a href="#s39">39. الفهارس كثيفة التوزيع Dense & Sparse Indexes</a>
+<a href="#s40">40. أشجار البحث الثنائية B-Trees و B+ Trees</a>
+<a href="#s41">41. التجزئة القائمة Hashing في التخزين</a>
+<a href="#s42">42. محرك تحسين الاستعلامات Query Optimizer</a>
+<a href="#s43">43. تكلفة تنفيذ الاستعلامات واستراتيجيات الخطط</a>
+<a href="#s44">44. محرك قواعد البيانات العلائقية المفتوح MySQL/MariaDB</a>
+<a href="#s45">45. محرك قواعد البيانات المؤسسي PostgreSQL</a>
+<a href="#s46">46. معمارية قواعد البيانات الموزعة Distributed DBMS</a>
+<a href="#s47">47. تجزئة البيانات والنسخ المتماثل Replication</a>
+<a href="#s48">48. قواعد البيانات السحابية Cloud Databases</a>
+<a href="#s49">49. قواعد البيانات غير العلائقية NoSQL ومحركاتها</a>
+<a href="#s50">50. مقارنة هندسية بين SQL و NoSQL</a>
+<a href="#s51">51. أمان قواعد البيانات وحماية الخصوصية</a>
+<a href="#s52">52. تشفير البيانات في الذاكرة وعلى الأقراص</a>
+<a href="#s53">53. التحكم في الوصول المستند إلى الأدوار RBAC</a>
+<a href="#s54">54. تدقيق السجلات والعمليات Audit Logging</a>
+<a href="#s55">55. استراتيجيات النسخ الاحتياطي الكامل والتزايدي</a>
+<a href="#s56">56. استعادة البيانات بعد الكوارث Disaster Recovery</a>
+<a href="#s57">57. معالجة البيانات الكبيرة Big Data في DBMS</a>
+<a href="#s58">58. تخزين المستودعات Data Warehouses</a>
+<a href="#s59">59. منصات استخراج البيانات وتحليلها OLAP مقابل OLTP</a>
+<a href="#s60">60. استخراج قواعد المعرفة Knowledge Discovery</a>
+<a href="#s61">61. استخدام الذاكرة المؤقتة Redis و Memcached</a>
+<a href="#s62">62. قواعد البيانات الزمنية Temporal Databases</a>
+<a href="#s63">63. قواعد البيانات المكانية Spatial Databases</a>
+<a href="#s64">64. ربط وتكامل البيانات المستقلة ETL Pipelines</a>
+<a href="#s65">65. ترحيل البيانات وتحديث الهياكل Migration</a>
+<a href="#s66">66. مراقبة أداء الذاكرة ومعالجات السيرفر</a>
+<a href="#s67">67. ضبط الأداء Tuning وضبط الفهارس</a>
+<a href="#s68">68. إدارة اتصالات التطبيقات Connection Pooling</a>
+<a href="#s69">69. هندسة التعامل مع الأخطاء Exceptions في DBMS</a>
+<a href="#s70">70. سيناريوهات الصيانة الوقائية الدورية</a>
+<a href="#s71">71. مشروع هندسي: تصميم نظام إدارة مكتبة رقمية متكامل</a>
+<a href="#s72">72. مشروع هندسي: محاكاة محرك تخزين وبحث بسيط</a>
+<a href="#s73">73. مشروع هندسي: تصميم نظام بنكي ومعاملات آمنة</a>
+<a href="#s74">74. مشروع هندسي: إدارة مخازن وسلاسل الإمداد</a>
+<a href="#s75">75. مشروع هندسي: نظام تسجيل وعلامات جامعة</a>
+<a href="#s76">76. مشروع هندسي: منصة تجارة إلكترونية وعربات</a>
+<a href="#s77">77. مشروع هندسي: نظام إدارة عيادة طبية وملفات</a>
+<a href="#s78">78. مشروع هندسي: أرشفة مستندات حكومية رقمية</a>
+<a href="#s79">79. مشروع هندسي: نظام تذاكر دعم فني وتوزيع مهام</a>
+<a href="#s80">80. مشروع هندسي: حجز طيران وإدارة مقاعد</a>
+<a href="#s81">81. مشروع هندسي: نظام اشتراكات أعضاء وإيصالات</a>
+<a href="#s82">82. مشروع هندسي: تتبع حركة شحنات جغرافية</a>
+<a href="#s83">83. مشروع هندسي: مدونة رقمية ونظام مقالات وفئات</a>
+<a href="#s84">84. مشروع هندسي: منصة تقييمات مراجعات ومتاجر</a>
+<a href="#s85">85. مشروع هندسي: نظام صلاحيات متقدم ومستخدمين RBAC</a>
+<a href="#s86">86. مشروع هندسي: لوحة مؤشرات أداء وأرباح لحظية KPIs</a>
+<a href="#s87">87. مشروع هندسي: نظام تتبع وتحليل الأخطاء واللوغاريتمات</a>
+<a href="#s88">88. المرجع الشامل لهندسة DBMS وخلاصة المفاهيم</a>
+</nav></aside>
+
+<main>
+<div class="hero">
+  <h1>دليل نظم إدارة قواعد البيانات (DBMS) الشامل</h1>
+  <p>المرجع الهندسي المتكامل لتصميم، هيكلة، وإدارة أنظمة قواعد البيانات ومحركات التخزين والتزامن.</p>
+  <div class="credit">إعداد الكاتبة والمهندسة: مها شهوب</div>
+</div>
+
+<section id="s1">
+  <h2>01. مفهوم نظم إدارة قواعد البيانات DBMS</h2>
+  <p>تعريف النظام البرمجي الوسيط الذي يتحكم في إنشاء، تنظيم، قراءة، وتحديث البيانات بأمان.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- النظام يدير التواصل بين التطبيق وملفات التخزين الفيزيائية
+SELECT 'DBMS Architecture Initialized' AS status;</pre></div>
+</section>
+
+<section id="s2">
+  <h2>02. تطور وتاريخ هندسة قواعد البيانات</h2>
+  <p>التحول من الملفات النصية المسطحة والأنظمة الهرمية إلى النماذج العلائقية والحديثة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- الانتقال التاريخي من Flat Files إلى Relational Models في السبعينيات</pre></div>
+</section>
+
+<section id="s3">
+  <h2>03. الهندسة ثلاثية المستويات لـ ANSI-SPARC</h2>
+  <p>فصل مستويات النظام إلى الداخلي (Internal)، المفاهيمي (Conceptual)، والخارجي (External).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- ضمان استقلال البيانات عبر حجب البنية الفيزيائية عن المستخدم النهائي</pre></div>
+</section>
+
+<section id="s4">
+  <h2>04. استقلال البيانات المنطقي والفيزيائي</h2>
+  <p>القدرة على تعديل بنية البيانات الداخلية أو الخارجية دون الحاجة لتعديل التطبيقات البرمجية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- Logical Data Independence vs Physical Data Independence</pre></div>
+</section>
+
+<section id="s5">
+  <h2>05. مكونات هندسة نظام DBMS الأساسية</h2>
+  <p>مُحلل الاستعلامات، مُحسن الخطط، مدير التخزين، مدير المعاملات، ومدير السجلات.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- Query Processor + Storage Manager + Transaction Manager</pre></div>
+</section>
+
+<section id="s6">
+  <h2>06. نموذج البيانات الهرمي (Hierarchical)</h2>
+  <p>تنظيم البيانات على شكل شجرة تترابط فيها السجلات بعلاقة الأب والابن (Parent-Child).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- نموذج يعتمد على روابط تشعبية صارمة باتجاه واحد</pre></div>
+</section>
+
+<section id="s7">
+  <h2>07. نموذج البيانات الشبكي (Network)</h2>
+  <p>تطوير للنموذج الهرمي يتيح للأب الواحد امتلاك أبناء متعددين، وللابن امتلاك آباء متعددين.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- استخدام المؤشرات (Pointers) لربط السجلات العقدية</pre></div>
+</section>
+
+<section id="s8">
+  <h2>08. النموذج العلائقي Relational Model</h2>
+  <p>النموذج الرياضي لإدгар البيانات في جداول ثنائية الأبعاد (صفوف وأعمدة) أسسه إدگار كود.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>CREATE TABLE relations_model (id INT PRIMARY KEY, attribute_name VARCHAR(50));</pre></div>
+</section>
+
+<section id="s9">
+  <h2>09. نموذج الكيان والعلاقة ER Diagram</h2>
+  <p>التصميم الرسومي المسبق لتحديد الكيانات (Entities)، الخصائص (Attributes)، والعلاقات.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- تحويل مخططات ER إلى جداول ومفاتيح أجنبية فعلية</pre></div>
+</section>
+
+<section id="s10">
+  <h2>10. خصائص الجداول والصفوف والأعمدة</h2>
+  <p>التجانس الرياضي، عدم أهمية ترتيب الصفوف، وفرادة أسماء الأعمدة داخل الجدول الواحد.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'users';</pre></div>
+</section>
+
+<section id="s11">
+  <h2>11. قيود النزاهة التكاملية Integrity Constraints</h2>
+  <p>القواعد التي تضمن صحة وسلامة البيانات مثل مفتاح الأساس، القيود الفريدة، وفحص الشروط.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>ALTER TABLE accounts ADD CONSTRAINT chk_balance CHECK (balance >= 0);</pre></div>
+</section>
+
+<section id="s12">
+  <h2>12. مفاهيم لغة التعريف DDL</h2>
+  <p>مجموعة الأوامر المسؤولة عن إنشاء وتعديل وهندسة هياكل الكيانات (CREATE, ALTER, DROP).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>CREATE TABLE schema_definition (id INT);</pre></div>
+</section>
+
+<section id="s13">
+  <h2>13. مفاهيم لغة المعالجة DML</h2>
+  <p>أوامر إدارة محتوى الجداول وإدخال واسترجاع وتحديث وحذف السجلات (SELECT, INSERT, UPDATE, DELETE).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>INSERT INTO schema_definition VALUES (1);</pre></div>
+</section>
+
+<section id="s14">
+  <h2>14. مفاهيم لغة التحكم DCL & TCL</h2>
+  <p>أوامر إدارة الصلاحيات (GRANT, REVOKE) والتحكم بالمعاملات (COMMIT, ROLLBACK).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>GRANT SELECT ON db.* TO 'user'@'localhost';</pre></div>
+</section>
+
+<section id="s15">
+  <h2>15. مقدمة في الجبر العلائقي Relational Algebra</h2>
+  <p>الأساس الرياضي النظري لعمليات الاستعلام ومعالجة الجداول في نظم DBMS.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- العمليات الأساسية: Selection, Projection, Union, Set Difference, Cartesian Product</pre></div>
+</section>
+
+<section id="s16">
+  <h2>16. عمليات الانتقاء والاسقاط (Select & Project)</h2>
+  <p>الانتقاء (فلاتر الصفوف بشروط) والإسقاط (تحديد أعمدة معينة دون غيرها رياضياً).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>SELECT name FROM employees WHERE salary > 5000;</pre></div>
+</section>
+
+<section id="s17">
+  <h2>17. عمليات الربط الديكارتي والتقاطع</h2>
+  <p>دمج مجموعتين رياضياً واستخراج العناصر المشتركة أو ضرب المجموعات.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>SELECT * FROM table1 CROSS JOIN table2;</pre></div>
+</section>
+
+<section id="s18">
+  <h2>18. تطبيع قواعد البيانات Normalization الأساسي</h2>
+  <p>المنهجية الهندسية للقضاء على التكرار والشذوذ في الإدخال والحذف والتحديث.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- القضاء على Anomalies (Insertion, Update, Deletion Anomalies)</pre></div>
+</section>
+
+<section id="s19">
+  <h2>19. الصيغة الطبيعية الأولى 1NF</h2>
+  <p>اشتراط أن تكون قيم الأعمدة ذرية (Atomic) وغير مركبة أو متعددة القيم.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- فصل القيم المتعددة في خلايا مستقلة لصفوف جديدة</pre></div>
+</section>
+
+<section id="s20">
+  <h2>20. الصيغة الطبيعية الثانية 2NF</h2>
+  <p>تحقيق الصيغة الأولى مع خلو الجدول من الاعتماد الجزئي على جزء من المفتاح المركب.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- الاعتماد التام لجميع الأعمدة على المفتاح الأساسي كاملاً</pre></div>
+</section>
+
+<section id="s21">
+  <h2>21. الصيغة الطبيعية الثالثة 3NF</h2>
+  <p>تحقيق الصيغة الثانية وإزالة الاعتماديات المتعدية (Transitive Dependencies) بين الأعمدة غير المفتاحية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- يجب ألا يعتمد عمود غير مفتاحي على عمود غير مفتاحي آخر</pre></div>
+</section>
+
+<section id="s22">
+  <h2>22. صيغة بويس-كود Boyce-Codd NF</h2>
+  <p>صيغة أكثر صرامة من الثالثة، تشترط أن يكون كل محدد (Determinant) مفتاحاً رئيسياً.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- BCNF حل لحالات شاذة لا تعالجها الصيغة الثالثة وحدها</pre></div>
+</section>
+
+<section id="s23">
+  <h2>23. الاعتمادات الوظيفية Functional Dependencies</h2>
+  <p>العلاقة الرياضية التي يحدد فيها عمود (أو مجموعة أعمدة) قيمة عمود آخر بفرادة تامة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- X -> Y (معرفة X تؤدي بالضرورة لمعرفة Y بدقة)</pre></div>
+</section>
+
+<section id="s24">
+  <h2>24. فك التطبيع Denormalization ومبرراته</h2>
+  <p>إعادة دمج بعض الجداول عمداً لتحسين أداء سرعة الاستعلامات وتقليل عمليات الربط (JOINs) المكلفة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- استخدام Denormalization بحذر لرفع كفاءة قراءة البيانات الضخمة</pre></div>
+</section>
+
+<section id="s25">
+  <h2>25. إدارة المعاملات Transactions وعيوب التزامن</h2>
+  <p>معالجة المشاكل الناتجة عن تداخل تنفيذ العمليات المتزامنة (Lost Update, Dirty Read).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>START TRANSACTION;
+-- تنفيذ أوامر مالية متزامنة
+COMMIT;</pre></div>
+</section>
+
+<section id="s26">
+  <h2>26. خصائص المعاملات الخمسة ACID Properties</h2>
+  <p>الذرية (Atomicity)، الاتساق (Consistency)، العزلة (Isolation)، والمتانة (Durability).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- ضمان التزام نظام DBMS بهذه المعايير لسلامة البيانات المطلقة</pre></div>
+</section>
+
+<section id="s27">
+  <h2>27. جداول الجدولة والتزامن Concurrency Control</h2>
+  <p>تنظيم تنفيذ العمليات المتداخلة بطريقة قابلة للتسلسل (Serializability) لضمان صحة النتائج.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- Conflict Serializability & View Serializability</pre></div>
+</section>
+
+<section id="s28">
+  <h2>28. البروتوكولات القائمة على القفل Locking Protocols</h2>
+  <p>آليات التحكم في قفل البيانات المشتركة (Shared Locks و Exclusive Locks) لمنع التضارب.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>LOCK TABLES accounts WRITE;
+-- تنفيذ العمليات
+UNLOCK TABLES;</pre></div>
+</section>
+
+<section id="s29">
+  <h2>29. قفل المرحلتين Two-Phase Locking (2PL)</h2>
+  <p>بروتوكول يضمن القابلية للتسلسل عبر مرحلتين: مرحلة نمو الأقفال ومرحلة تحريرها.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- Strict 2PL & Rigorous 2PL لضمان عدم حدوث Dirty Reads</pre></div>
+</section>
+
+<section id="s30">
+  <h2>30. مشكلة التعارض الميت Deadlocks وإدارتها</h2>
+  <p>الحالة التي تنتظر فيها معاملتان تحرير أقفال تمتلكها كل منهما، وكيفية كشفها وحلها.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>SHOW ENGINE INNODB STATUS; -- مراقبة حالات Deadlock في محركات InnoDB</pre></div>
+</section>
+
+<section id="s31">
+  <h2>31. طوابع الزمن Timestamp-based Protocols</h2>
+  <p>تنظيم أولوية تنفيذ المعاملات باستخدام طوابع زمنية فريدة تمنع التعارض دون أقفال.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- Thomas's Write Rule وتنظيم طوابع قراءة وكتابة البيانات</pre></div>
+</section>
+
+<section id="s32">
+  <h2>32. إدارة الاسترجاع والتعافي Recovery System</h2>
+  <p>قدرة نظام DBMS على إعادة القاعدة لحالة سليمة بعد انقطاع التيار الكهربائي أو انهيار النظام.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- ARIES Algorithm للتعافي الفعال القائم على السجلات</pre></div>
+</section>
+
+<section id="s33">
+  <h2>33. سجل المعاملات Write-Ahead Logging (WAL)</h2>
+  <p>كتابة التغييرات في سجل العمليات على القرص الصلب قبل تعديل البيانات الفعلية لضمان الاسترجاع.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- ضمان عدم ضياع أي معاملة تمت الموافقة عليها (Commit)</pre></div>
+</section>
+
+<section id="s34">
+  <h2>34. آليات الاسترداد بالحفظ الاحتياطي Checkpoints</h2>
+  <p>حفظ الحالة الراهنة للذاكرة على القرص بشكل دوري لتسريع عمليات التعافي لاحقاً.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- تقليل الوقت اللازم لمسح سجلات WAL عند إعادة التشغيل</pre></div>
+</section>
+
+<section id="s35">
+  <h2>35. تجميع الصفحات والتخزين المؤقت Buffer Management</h2>
+  <p>إدارة الذاكرة العشوائية (RAM) ونقل صفحات البيانات بين القرص والذاكرة عبر خوارزميات الاستبدال.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- خوارزميات مثل LRU (Least Recently Used) لإدارة Buffer Pool</pre></div>
+</section>
+
+<section id="s36">
+  <h2>36. هياكل التخزين الفيزيائي للملفات</h2>
+  <p>كيفية تنظيم الملفات والكتل (Blocks) على الأقراص الصلبة وإدارتها بواسطة النظام.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- Fixed-Length Records vs Variable-Length Records Storage</pre></div>
+</section>
+
+<section id="s37">
+  <h2>37. تنظيم الملفات وتخزين السجلات</h2>
+  <p>طرق ترتيب السجلات داخل الملفات (Heap Files, Sequential Files, Hashed Files).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- تنظيم التخزين المتسلسل وغير المنظم لرفع كفاءة الإدخال</pre></div>
+</section>
+
+<section id="s38">
+  <h2>38. أساسيات فهرسة البيانات Indexing Structures</h2>
+  <p>بناء هياكل بيانات مساعدة لتسريع عملية البحث عن السجلات دون مسح الجدول بالكامل.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>CREATE INDEX idx_employee_name ON employees(name);</pre></div>
+</section>
+
+<section id="s39">
+  <h2>39. الفهارس كثيفة التوزيع Dense & Sparse Indexes</h2>
+  <p>الفرق بين فهرسة كل سجل على حدة (Dense) أو فهرسة مفاتيح كتل البيانات الرئيسية (Sparse).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- Primary Index vs Secondary Index مقارنة الأداء والمساحة</pre></div>
+</section>
+
+<section id="s40">
+  <h2>40. أشجار البحث الثنائية B-Trees و B+ Trees</h2>
+  <p>الهيكل الأساسي والأكثر شهرة في فهارس قواعد البيانات لضمان سرعة البحث والتحديث.</p>
+  <div class="code"><button class="copy">نسخ5</button><pre>-- B+ Tree تحفظ البيانات في الأوراق وتسمح بالبحث المتسلسل السريع</pre></div>
+</section>
+
+<section id="s41">
+  <h2>41. التجزئة القائمة Hashing في التخزين</h2>
+  <p>استخدام دال تجزئة لتحديد موقع التخزين المباشر للسجل عبر مفتاحه الفريد.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- Static Hashing vs Dynamic Hashing (Extendable Hashing)</pre></div>
+</section>
+
+<section id="s42">
+  <h2>42. محرك تحسين الاستعلامات Query Optimizer</h2>
+  <p>المكون الذكي في DBMS الذي يحلل الاستعلام ويختار أفضل خطة تنفيذ أقل كلفة واستهلاكاً.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>EXPLAIN FORMAT=JSON SELECT * FROM employees WHERE id = 10;</pre></div>
+</section>
+
+<section id="s43">
+  <h2>43. تكلفة تنفيذ الاستعلامات واستراتيجيات الخطط</h2>
+  <p>حساب تكلفة الإدخال، القراءة، التخزين المؤقت، وعمليات الفحص (Table Scan vs Index Scan).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- تقييم I/O Cost و CPU Cost لكل خططة تنفيذ مقترحة</pre></div>
+</section>
+
+<section id="s44">
+  <h2>44. محرك قواعد البيانات العلائقية المفتوح MySQL/MariaDB</h2>
+  <p>دراسة هندسة محرك InnoDB واستخداماته الواسعة في الويب وإدارة البيانات.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>SHOW ENGINES; -- استعراض المحركات المدعومة</pre></div>
+</section>
+
+<section id="s45">
+  <h2>45. محرك قواعد البيانات المؤسسي PostgreSQL</h2>
+  <p>استعراض بنية PostgreSQL المتقدمة، دعمها لأنواع بيانات معقدة ولغات البرمجة والوظائف.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>SELECT version(); -- فحص إصدار النظام المؤسسي</pre></div>
+</section>
+
+<section id="s46">
+  <h2>46. معمارية قواعد البيانات الموزعة Distributed DBMS</h2>
+  <p>توزيع البيانات ومعالجتها عبر خوادم متعددة جغرافياً بطريقة تبدو وكأنها قاعدة مركزية واحدة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- Homogeneous DDBMS vs Heterogeneous DDBMS</pre></div>
+</section>
+
+<section id="s47">
+  <h2>47. تجزئة البيانات والنسخ المتماثل Replication</h2>
+  <p>توزيع الجداول أفقياً أو عمودياً (Sharding & Partitioning) ونسخ البيانات لمواجهة الأعطال.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- Master-Slave Replication vs Multi-Master Replication</pre></div>
+</section>
+
+<section id="s48">
+  <h2>48. قواعد البيانات السحابية Cloud Databases</h2>
+  <p>إدارة قواعد البيانات كخدمة (DBaaS) على المنصات السحابية الكبرى مع مرونة التوسيع التلقائي.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- مرونة التوسيع العمودي والأفقي (Vertical & Horizontal Scaling)</pre></div>
+</section>
+
+<section id="s49">
+  <h2>49. قواعد البيانات غير العلائقية NoSQL ومحركاتها</h2>
+  <p>أنظمة إدارة البيانات المرنة المستندة إلى الوثائق، الأزواج، والمخططات الحرة (MongoDB, Cassandra).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>// مثال مستند JSON في NoSQL
+{ "name": "مها شهوب", "role": "مهندسة قواعد بيانات", "active": true }</pre></div>
+</section>
+
+<section id="s50">
+  <h2>50. مقارنة هندسية بين SQL و NoSQL</h2>
+  <p>تحليل نظرية CAP Theorem والفرق بين قواعد ACID و BASE في إدارة البيانات الضخمة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- Consistency, Availability, Partition Tolerance (CAP Theorem)</pre></div>
+</section>
+
+<section id="s51">
+  <h2>51. أمان قواعد البيانات وحماية الخصوصية</h2>
+  <p>تأمين الوصول، منع الهجمات، وإدارة الثغرات الأمنية في أنظمة DBMS.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- حماية مشددة ضد ثغرات SQL Injection عبر Prepared Statements</pre></div>
+</section>
+
+<section id="s52">
+  <h2>52. تشفير البيانات في الذاكرة وعلى الأقراص</h2>
+  <p>تطبيق آليات التشفير التام (Transparent Data Encryption - TDE) لحماية الملفات السرية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- تشفير الملفات الفيزيائية على القرص لمنع القراءة غير المصرحة</pre></div>
+</section>
+
+<section id="s53">
+  <h2>53. التحكم في الوصول المستند إلى الأدوار RBAC</h2>
+  <p>منح الصلاحيات للمستخدمين عبر أدوار وظيفية محددة بدلاً من الصلاحيات الفردية المعقدة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>CREATE ROLE 'db_analyst';
+GRANT SELECT ON database.* TO 'db_analyst';</pre></div>
+</section>
+
+<section id="s54">
+  <h2>54. تدقيق السجلات والعمليات Audit Logging</h2>
+  <p>تسجيل كافة الأنشطة الحساسة وعمليات الدخول والتعديل لأغراض الرقابة الأمنية والقانونية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- تفعيل مسارات التدقيق والـ Audit Trail في السيرفر</pre></div>
+</section>
+
+<section id="s55">
+  <h2>55. استراتيجيات النسخ الاحتياطي الكامل والتزايدي</h2>
+  <p>حماية النظام عبر نسخ احتياطي كامل (Full)، تفاضلي (Differential)، وتزايدي (Incremental).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- mysqldump -u root -p --all-databases > full_backup.sql</pre></div>
+</section>
+
+<section id="s56">
+  <h2>56. استعادة البيانات بعد الكوارث Disaster Recovery</h2>
+  <p>خطط وبروتوكولات إعادة تشغيل النظام والتعافي السريع في حالات الطوارئ وتعطل الخوادم.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- تحديد RTO (Recovery Time Objective) و RPO (Recovery Point Objective)</pre></div>
+</section>
+
+<section id="s57">
+  <h2>57. معالجة البيانات الكبيرة Big Data في DBMS</h2>
+  <p>كيف تتعامل الأنظمة الحديثة مع أطنان البيانات المتدفقة وتخزينها وتحليلها بكفاءة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- استخدام تقنيات التوزيع والتوازي المعماري في المعالجة</pre></div>
+</section>
+
+<section id="s58">
+  <h2>58. تخزين المستودعات Data Warehouses</h2>
+  <p>هندسة قواعد البيانات المخصصة لعمليات التحليل واتخاذ القرار بدلاً من العمليات اليومية (OLTP).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- تصميم الجداول النجمية Star Schema وجداول الندوة Snowflake Schema</pre></div>
+</section>
+
+<section id="s59">
+  <h2>59. منصات استخراج البيانات OLAP مقابل OLTP</h2>
+  <p>الفرق المعماري بين أنظمة المعالجة السريعة للعمليات اليومية وأنظمة التحليل متعدد الأبعاد.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- Online Transaction Processing vs Online Analytical Processing</pre></div>
+</section>
+
+<section id="s60">
+  <h2>60. استخراج قواعد المعرفة Knowledge Discovery</h2>
+  <p>تطبيق خوارزميات استخراج الأنماط، التنقيب عن البيانات، واكتشاف العلاقات الكامنة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- Data Mining & Machine Learning integrations inside modern DBMS</pre></div>
+</section>
+
+<section id="s61">
+  <h2>61. استخدام الذاكرة المؤقتة Redis و Memcached</h2>
+  <p>تسريع الاستعلامات المتكررة عبر التخزين المؤقت في الذاكرة العشوائية (In-Memory Caching).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>SET user:100 "مها شهوب" EX 3600;</pre></div>
+</section>
+
+<section id="s62">
+  <h2>62. قواعد البيانات الزمنية Temporal Databases</h2>
+  <p>تتبع التغييرات التاريخية للبيانات عبر أبعاد زمنية صالحة للفترة (Valid Time و Transaction Time).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- تتبع التاريخ الإصداري للسجلات تلقائياً عبر نظام الأرشفة</pre></div>
+</section>
+
+<section id="s63">
+  <h2>63. قواعد البيانات المكانية Spatial Databases</h2>
+  <p>إدارة البيانات الجغرافية والإحداثيات وتحليل المسافات والخرائط (GIS & PostGIS).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>SELECT ST_Distance(point1, point2) FROM locations;</pre></div>
+</section>
+
+<section id="s64">
+  <h2>64. ربط وتكامل البيانات المستقلة ETL Pipelines</h2>
+  <p>استخراج، تحويل، وتحميل البيانات بين الأنظمة المختلفة (Extract, Transform, Load).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- خطوط معالجة وتدفق البيانات المجدولة دورياً</pre></div>
+</section>
+
+<section id="s65">
+  <h2>65. ترحيل البيانات وتحديث الهياكل Migration</h2>
+  <p>نقل هياكل وقواعد البيانات بين الأنظمة المختلفة أو ترقية الإصدارات دون فقدان أو تلف.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- استخدام أدوات Version Control للملفات الهيكلية (Migrations Scripts)</pre></div>
+</section>
+
+<section id="s66">
+  <h2>66. مراقبة أداء الذاكرة ومعالجات السيرفر</h2>
+  <p>متابعة استهلاك الموارد واختناقات الأداء والعمليات الجارية في خادم DBMS.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>SHOW STATUS LIKE 'Innodb_buffer_pool_%';</pre></div>
+</section>
+
+<section id="s67">
+  <h2>67. ضبط الأداء Tuning وضبط الفهارس</h2>
+  <p>مراجعة الاستعلامات البطيئة وإضافة الفهارس المناسبة لخفض زمن الاستجابة إلى أدنى حد.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>SET GLOBAL slow_query_log = 'ON';</pre></div>
+</section>
+
+<section id="s68">
+  <h2>68. إدارة اتصالات التطبيقات Connection Pooling</h2>
+  <p>الحتفاظ بمجموعة اتصالات نشطة وجاهزة لخدمة طلبات التطبيقات دون الحاجة لفتح اتصال جديد كل مرة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- تقليل الحمل الزمني (Overhead) الناتج عن إنشاء اتصالات متكررة بالخادم</pre></div>
+</section>
+
+<section id="s69">
+  <h2>69. هندسة التعامل مع الأخطاء Exceptions في DBMS</h2>
+  <p>التقاط الأخطاء البرمجية ومعالجتها داخل الإجراءات المخزنة بأمان.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET @has_error = 1;</pre></div>
+</section>
+
+<section id="s70">
+  <h2>70. سيناريوهات الصيانة الوقائية الدورية</h2>
+  <p>جدولة صيانة الجداول، إصلاح الفهارس التالفة، وتفريغ المساحات الفارغة (OPTIMIZE TABLE).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>OPTIMIZE TABLE users, logs;</pre></div>
+</section>
+
+<section id="s71">
+  <h2>71. مشروع هندسي: تصميم نظام إدارة مكتبة رقمية متكامل</h2>
+  <p>هندسة جداول الكتب، المستعيرين، فترات الاستعارة، والغرامات المالية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>CREATE TABLE lib_books (book_id INT PRIMARY KEY, title VARCHAR(200), available BOOLEAN);</pre></div>
+</section>
+
+<section id="s72">
+  <h2>72. مشروع هندسي: محاكاة محرك تخزين وبحث بسيط</h2>
+  <p>بناء نموذج برمجي لإدارة كتل الملفات والفهارس الثنائية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- نموذج محاكاة تخزين الكتل (Block Storage Engine Simulation)</pre></div>
+</section>
+
+<section id="s73">
+  <h2>73. مشروع هندسي: تصميم نظام بنكي ومعاملات آمنة</h2>
+  <p>تطبيق قيود ACID وحسابات الأرصدة والتحويلات المالية المضمونة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>CREATE TABLE bank_accounts (acc_no INT PRIMARY KEY, balance DECIMAL(12,2));</pre></div>
+</section>
+
+<section id="s74">
+  <h2>74. مشروع هندسي: إدارة مخازن وسلاسل الإمداد</h2>
+  <p>متابعة الواردات، الصادرات، ونقاط إعادة الطلب للمستودعات.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>CREATE TABLE warehouse_stock (item_id INT, quantity INT, min_limit INT);</pre></div>
+</section>
+
+<section id="s75">
+  <h2>75. مشروع هندسي: نظام تسجيل وعلامات جامعة</h2>
+  <p>هندسة جداول المقررات، الأساتذة، الطلاب، والدرجات الفصلية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>CREATE TABLE student_grades (student_id INT, course_id INT, grade DECIMAL(5,2));</pre></div>
+</section>
+
+<section id="s76">
+  <h2>76. مشروع هندسي: منصة تجارة إلكترونية وعربات</h2>
+  <p>إدارة المنتجات، الطلبات، المخزون، وعربات التسوق المؤقتة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>CREATE TABLE cart_items (cart_id INT, product_id INT, qty INT);</pre></div>
+</section>
+
+<section id="s77">
+  <h2>77. مشروع هندسي: نظام إدارة عيادة طبية وملفات</h2>
+  <p>إدارة مواعيد المرضى، الأطباء، التشخيصات، والوصفات الطبية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>CREATE TABLE medical_records (record_id INT PRIMARY KEY, diagnosis TEXT);</pre></div>
+</section>
+
+<section id="s78">
+  <h2>78. مشروع هندسي: أرشفة مستندات حكومية رقمية</h2>
+  <p>فهرسة المستندات الرقمية وتتبع صلاحيات الوصول والأختام الزمنية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>CREATE TABLE gov_archives (doc_hash VARCHAR(64) PRIMARY KEY, metadata JSON);</pre></div>
+</section>
+
+<section id="s79">
+  <h2>79. مشروع هندسي: نظام تذاكر دعم فني وتوزيع مهام</h2>
+  <p>إدارة تذاكر العملاء، حالات المعالجة، والفرق التقنية المسؤولية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>CREATE TABLE support_tickets (ticket_id INT PRIMARY KEY, status VARCHAR(30));</pre></div>
+</section>
+
+<section id="s80">
+  <h2>80. مشروع هندسي: حجز طيران وإدارة مقاعد</h2>
+  <p>إدارة الرحلات الجوية، اختيار المقاعد، وحالة الحجوزات المؤكدة والمُلغاة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>CREATE TABLE flight_seats (seat_no VARCHAR(5), is_reserved BOOLEAN);</pre></div>
+</section>
+
+<section id="s81">
+  <h2>81. مشروع هندسي: نظام اشتراكات أعضاء وإيصالات</h2>
+  <p>متابعة تواريخ انتهاء العضويات، المدفوعات الدورية، وتجديد الحسابات.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>CREATE TABLE member_subscriptions (sub_id INT, expiry_date DATE);</pre></div>
+</section>
+
+<section id="s82">
+  <h2>82. مشروع هندسي: تتبع حركة شحنات جغرافية</h2>
+  <p>تسجيل الإحداثيات والنقاط اللوجستية لخطوط سير الطرود والشحنات.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>CREATE TABLE shipment_tracking (track_id INT, lat DECIMAL(10,8), lng DECIMAL(11,8));</pre></div>
+</section>
+
+<section id="s83">
+  <h2>83. مشروع هندسي: مدونة رقمية ونظام مقالات وفئات</h2>
+  <p>إدارة المقالات، التصنيفات، التعليقات، والكلمات المفتاحية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>CREATE TABLE blog_posts (post_id INT PRIMARY KEY, title VARCHAR(255), body TEXT);</pre></div>
+</section>
+
+<section id="s84">
+  <h2>84. مشروع هندسي: منصة تقييمات مراجعات ومتاجر</h2>
+  <p>تخزين تقييمات العملاء، النجوم، والتعليقات الخاصة بالمنتجات والخدمات.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>CREATE TABLE merchant_reviews (review_id INT, rating TINYINT, comment TEXT);</pre></div>
+</section>
+
+<section id="s85">
+  <h2>85. مشروع هندسي: نظام صلاحيات متقدم ومستخدمين RBAC</h2>
+  <p>هندسة صلاحيات النظام الشاملة بربط المستخدمين بالأدوار والأذونات المفصلة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>CREATE TABLE sys_user_roles (user_id INT, role_id INT);</pre></div>
+</section>
+
+<section id="s86">
+  <h2>86. مشروع هندسي: لوحة مؤشرات أداء وأرباح لحظية KPIs</h2>
+  <p>استخراج مؤشرات الأداء الحية وإجماليات العمليات والمبيعات عبر استعلامات تجميعية سريعة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>SELECT SUM(revenue) FROM daily_metrics WHERE metric_date = CURDATE();</pre></div>
+</section>
+
+<section id="s87">
+  <h2>87. مشروع هندسي: نظام تتبع وتحليل الأخطاء واللوغاريتمات</h2>
+  <p>هندسة جداول لتخزين أخطاء النظام، مستويات الخطورة، وتتبع المشاكل برمجياً.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>CREATE TABLE error_logs (log_id INT AUTO_INCREMENT PRIMARY KEY, error_msg TEXT, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);</pre></div>
+</section>
+
+<section id="s88">
+  <h2>88. المرجع الشامل لهندسة DBMS وخلاصة المفاهيم</h2>
+  <p>الخلاصة الهندسية النهائية لأبرز أسس ومعماريات نظم إدارة قواعد البيانات.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>/* خلاصة مفاهيم DBMS: التخزين، التزامن، المعاملات، الأمان، وتحسين الأداء */</pre></div>
+</section>
+
+<footer>منصة آفاق المعرفة التقنية — مكتبة | مها شهوب<br>إعداد الكاتبة والمهندسة: مها شهوب</footer>
+</main>
+<button class="top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+function toggleTheme(){document.documentElement.dataset.theme=document.documentElement.dataset.theme==="dark"?"light":"dark";localStorage.setItem("dbms-theme-88-full",document.documentElement.dataset.theme)}
+if(localStorage.getItem("dbms-theme-88-full"))document.documentElement.dataset.theme=localStorage.getItem("dbms-theme-88-full");
+document.querySelectorAll(".copy").forEach(b=>b.onclick=()=>{navigator.clipboard.writeText(b.parentElement.querySelector("pre").innerText);let x=b.innerText;b.innerText="تم النسخ ✓";setTimeout(()=>b.innerText=x,1100)});
+function filterNav(){let q=document.getElementById("search").value.toLowerCase();document.querySelectorAll("#nav a").forEach(a=>a.style.display=a.innerText.toLowerCase().includes(q)?"block":"none")}
+window.addEventListener("scroll",()=>{let d=document.documentElement;document.getElementById("progress").style.width=(d.scrollTop/(d.scrollHeight-d.clientHeight)*100)+"%";let cur="";document.querySelectorAll("section").forEach(s=>{if(scrollY>=s.offsetTop-130)cur=s.id});document.querySelectorAll("#nav a").forEach(a=>a.classList.toggle("active",a.hash==="#"+cur))});
+document.querySelectorAll("#nav a").forEach(a=>a.onclick=()=>document.querySelector("aside").classList.remove("open"));
+</script>
+</body>
+</html>

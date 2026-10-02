@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="دليل VB.NET الشامل من إعداد الكاتبة والمهندسة مها شهوب - أساسيات VB.NET والبرمجة الكائنية وWindows Forms وقواعد البيانات وMySQL وLINQ وAsync وواجهات API والمشاريع العملية.">
+<meta name="author" content="مها شهوب">
+<title>دليل VB.NET الشامل | مها شهوب</title>
+<style>
+:root{
+  --bg:#eef3f9;--card:#fff;--text:#172033;--muted:#637087;--primary:#1677c8;
+  --primary2:#0b4f88;--border:#d8e1ec;--code:#111827;--codeText:#e5eef9;
+  --shadow:0 8px 28px rgba(15,45,75,.08);--nav:#fff;
+}
+[data-theme="dark"]{
+  --bg:#0b1220;--card:#111b2d;--text:#e8eef8;--muted:#a8b5c8;--primary:#48a9ff;
+  --primary2:#1677c8;--border:#263750;--code:#07101d;--codeText:#dbeafe;--nav:#0e1727;
+  --shadow:0 8px 28px rgba(0,0,0,.25);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Segoe UI",Tahoma,Arial,sans-serif;line-height:1.85}
+.top{position:fixed;top:0;right:0;left:0;height:68px;background:var(--nav);border-bottom:1px solid var(--border);z-index:1000;display:flex;align-items:center;gap:14px;padding:0 22px;box-shadow:0 3px 15px rgba(0,0,0,.04)}
+.logo{width:67px;height:54px;border-radius:50%;display:grid;place-items:center;}
+.brand{font-weight:800;font-size:18px}.brand small{display:block;color:var(--muted);font-size:11px;font-weight:500;line-height:1.2}
+.top-actions{margin-right:auto;display:flex;gap:8px}
+.btn{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:10px;padding:9px 13px;cursor:pointer;font-size:14px}
+.btn:hover{border-color:var(--primary);color:var(--primary)}
+.layout{display:flex;max-width:1500px;margin:auto;padding-top:68px}
+aside{width:300px;position:fixed;top:68px;bottom:0;right:max(0px,calc((100vw - 1500px)/2));background:var(--nav);border-left:1px solid var(--border);padding:20px 15px;overflow:auto}
+.search{width:100%;padding:12px 13px;border:1px solid var(--border);border-radius:12px;background:var(--card);color:var(--text);outline:none;margin-bottom:14px}
+.search:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(22,119,200,.12)}
+.nav-title{font-weight:800;margin:8px 0 10px;color:var(--primary)}
+nav a{display:block;text-decoration:none;color:var(--muted);padding:7px 10px;border-radius:8px;font-size:13px;margin:2px 0}
+nav a:hover,nav a.active{background:rgba(22,119,200,.1);color:var(--primary);font-weight:700}
+main{margin-right:300px;width:calc(100% - 300px);padding:32px 34px 70px}
+.hero{background:linear-gradient(135deg,#071b31,#0b4f88 55%,#1677c8);color:#fff;border-radius:20px;padding:36px;box-shadow:var(--shadow);margin-bottom:25px}
+.hero h1{font-size:34px;margin:0 0 8px}.hero p{margin:6px 0;opacity:.92}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}.badge{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.22);padding:6px 11px;border-radius:30px;font-size:12px}
+.progress-wrap{position:fixed;top:68px;right:0;left:0;height:3px;background:transparent;z-index:1001}.progress{height:100%;width:0;background:#3fb5ff}
+section{scroll-margin-top:88px;background:var(--card);border:1px solid var(--border);border-radius:17px;padding:27px;margin-bottom:22px;box-shadow:var(--shadow)}
+h2{margin:0 0 13px;color:var(--primary2);font-size:25px;border-right:5px solid var(--primary);padding-right:12px}
+[data-theme="dark"] h2{color:#70bdff}
+h3{color:var(--primary);margin-top:22px}
+p{margin:9px 0}.muted{color:var(--muted)}
+ul,ol{padding-right:25px}
+table{width:100%;border-collapse:collapse;margin:15px 0;font-size:14px;overflow:hidden;border-radius:10px}
+th,td{border:1px solid var(--border);padding:10px;text-align:right;vertical-align:top}
+th{background:rgba(22,119,200,.1);color:var(--primary2)}
+.code{position:relative;background:var(--code);color:var(--codeText);border-radius:12px;margin:15px 0;overflow:auto;direction:ltr;text-align:left}
+.code pre{margin:0;padding:19px;white-space:pre;min-width:max-content;font-family:Consolas,"Courier New",monospace;font-size:13px;line-height:1.65}
+.copy{position:absolute;top:8px;right:8px;border:1px solid #334155;background:#182538;color:#dbeafe;border-radius:7px;padding:5px 9px;cursor:pointer;font-size:12px}
+.note,.warn,.success{padding:13px 16px;border-radius:10px;margin:14px 0;border-right:4px solid var(--primary)}
+.note{background:rgba(22,119,200,.08)}.warn{border-color:#d08a00;background:rgba(208,138,0,.09)}.success{border-color:#16845a;background:rgba(22,132,90,.09)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:15px 0}
+.card{border:1px solid var(--border);border-radius:12px;padding:15px;background:var(--bg)}
+.card b{color:var(--primary)}
+.chip{display:inline-block;background:rgba(22,119,200,.1);color:var(--primary);padding:3px 8px;border-radius:15px;font-size:12px;margin:2px}
+footer{text-align:center;color:var(--muted);padding:30px 10px}
+.topbtn{position:fixed;bottom:20px;left:20px;width:45px;height:45px;border:0;border-radius:50%;background:var(--primary);color:#fff;font-size:20px;cursor:pointer;display:none;z-index:900}
+.menu{display:none}
+@media(max-width:950px){
+  .menu{display:block}.layout{display:block}aside{display:none;position:fixed;right:0;width:300px;z-index:950;box-shadow:-8px 0 25px rgba(0,0,0,.12)}
+  aside.open{display:block}main{margin:0;width:100%;padding:24px 15px 60px}.hero{padding:25px}.hero h1{font-size:27px}
+}
+@media(max-width:600px){.brand{font-size:15px}.top{padding:0 10px}.top-actions .btn:nth-child(2){display:none}section{padding:20px 15px}h2{font-size:21px}table{font-size:12px}.code pre{font-size:12px}}
+</style>
+</head>
+<body>
+<div class="progress-wrap"><div class="progress" id="progress"></div></div>
+<header class="top">
+  <button class="btn menu" onclick="toggleMenu()">☰</button>
+  <img src="IMG/آفاق المعرفة التقنية.png" class="logo">
+  <div class="brand">منصة آفاق المعرفة التقنية<small>دليل VB.NET الشامل</small></div>
+  <div class="top-actions">
+    <button class="btn" onclick="toggleTheme()">◐ الوضع</button>
+    <button class="btn" onclick="window.print()">🖨 طباعة</button>
+  </div>
+</header>
+
+<div class="layout">
+<aside id="side">
+<input class="search" id="search" placeholder="🔎 ابحث داخل الدليل..." oninput="filterNav()">
+<div class="nav-title">فهرس الدليل</div>
+<nav id="nav">
+<a href="#s1">01 — مقدمة VB.NET</a>
+<a href="#s2">02 — Visual Studio والمشاريع</a>
+<a href="#s3">03 — بناء الجملة والأساسيات</a>
+<a href="#s4">04 — المتغيرات وأنواع البيانات</a>
+<a href="#s5">05 — العمليات Operators</a>
+<a href="#s6">06 — الشروط واتخاذ القرار</a>
+<a href="#s7">07 — الحلقات Loops</a>
+<a href="#s8">08 — Arrays وCollections</a>
+<a href="#s9">09 — Functions وSub</a>
+<a href="#s10">10 — OOP والكلاسات</a>
+<a href="#s11">11 — الوراثة والواجهات</a>
+<a href="#s12">12 — معالجة الأخطاء</a>
+<a href="#s13">13 — النصوص والتواريخ والملفات</a>
+<a href="#s14">14 — JSON</a>
+<a href="#s15">15 — LINQ</a>
+<a href="#s16">16 — Async وAwait وTasks</a>
+<a href="#s17">17 — Windows Forms</a>
+<a href="#s18">18 — Controls وEvents</a>
+<a href="#s19">19 — الصور والطباعة والملفات</a>
+<a href="#s20">20 — HTTP وREST وAPIs</a>
+<a href="#s21">21 — MySQL وADO.NET</a>
+<a href="#s22">22 — Entity Framework Core</a>
+<a href="#s23">23 — الأمان والتحقق</a>
+<a href="#s24">24 — هندسة المشاريع</a>
+<a href="#s25">25 — مشاريع تطبيقية كاملة</a>
+<a href="#s26">26 — NuGet وNamespaces وGenerics</a>
+<a href="#s27">27 — Delegates وEvents المتقدمة</a>
+<a href="#s28">28 — الشبكات TCP/UDP</a>
+<a href="#s29">29 — الاختبار والتصحيح والأداء</a>
+<a href="#s30">30 — مرجع سريع VB.NET</a>
+</nav>
+</aside>
+
+<main>
+<div class="hero">
+<h1>دليل VB.NET الشامل</h1>
+<p>مرجع تعليمي عملي من أساسيات Visual Basic .NET إلى البرمجة الكائنية، Windows Forms، قواعد البيانات، APIs، LINQ، البرمجة غير المتزامنة والمشاريع العملية.</p>
+<p><b>إعداد الكاتبة والمهندسة: مها شهوب</b></p>
+<div class="badges">
+<span class="badge">VB.NET</span><span class="badge">.NET</span><span class="badge">Visual Studio</span>
+<span class="badge">Windows Forms</span><span class="badge">MySQL</span><span class="badge">ADO.NET</span>
+<span class="badge">LINQ</span><span class="badge">REST API</span><span class="badge">Async/Await</span>
+</div>
+</div>
+
+<section id="s1"><h2>01 — مقدمة VB.NET</h2>
+<p><b>VB.NET (Visual Basic .NET)</b> لغة برمجة من عائلة لغات .NET، وتستخدم لبناء تطبيقات سطح المكتب، تطبيقات قواعد البيانات، الأدوات الداخلية، والخدمات والتطبيقات التي تعمل ضمن منظومة .NET.</p>
+<div class="grid">
+<div class="card"><b>VB.NET</b><br>لغة البرمجة وكتابة الكود.</div>
+<div class="card"><b>.NET</b><br>منصة تشغيل ومكتبات وأدوات تطوير.</div>
+<div class="card"><b>Visual Studio</b><br>بيئة تطوير متكاملة IDE.</div>
+<div class="card"><b>NuGet</b><br>مدير حزم لإضافة المكتبات.</div>
+</div>
+<h3>VB6 وVB.NET</h3>
+<p>VB.NET ليست مجرد نسخة محسنة من VB6؛ إنها جزء من منظومة .NET وتدعم OOP والأنواع الحديثة والمكتبات المشتركة مع .NET. لذلك يجب التفريق بين مشاريع VB6 القديمة ومشاريع VB.NET الحديثة.</p>
+<div class="code"><button class="copy">نسخ</button><pre>Module Program
+    Sub Main()
+        Console.WriteLine("Hello, VB.NET!")
+    End Sub
+End Module</pre></div>
+</section>
+
+<section id="s2"><h2>02 — Visual Studio والمشاريع</h2>
+<p>يمكن إنشاء مشروع VB.NET من Visual Studio ثم اختيار نوع التطبيق المناسب، مثل Console أو Windows Forms. إعدادات المشروع والـTarget Framework تحدد المكتبات والميزات المتاحة.</p>
+<h3>إعدادات مفيدة</h3>
+<ul><li><b>Option Strict On</b> لتقليل التحويلات غير الآمنة.</li><li><b>Option Explicit On</b> لإجبار تعريف المتغيرات.</li><li><b>Option Infer On</b> للسماح بالاستدلال على النوع عند الحاجة.</li></ul>
+<div class="code"><button class="copy">نسخ</button><pre>Option Strict On
+Option Explicit On
+Option Infer On</pre></div>
+<h3>مكونات المشروع</h3>
+<table><tr><th>العنصر</th><th>وظيفته</th></tr>
+<tr><td>.vb</td><td>ملفات الكود.</td></tr><tr><td>Form</td><td>واجهة Windows Forms.</td></tr>
+<tr><td>Project</td><td>إعدادات التطبيق والمراجع والحزم.</td></tr><tr><td>Solution</td><td>حاوية تضم مشروعاً أو عدة مشاريع.</td></tr></table>
+</section>
+
+<section id="s3"><h2>03 — بناء الجملة والأساسيات</h2>
+<p>الكود في VB.NET يعتمد على كلمات واضحة مثل <b>Dim</b> و<b>Sub</b> و<b>Function</b> و<b>If</b>. التعليقات تبدأ بعلامة apostrophe.</p>
+<div class="code"><button class="copy">نسخ</button><pre>' هذا تعليق
+Module Program
+    Sub Main()
+        Dim name As String = "Maha"
+        Console.WriteLine("مرحباً " & name)
+    End Sub
+End Module</pre></div>
+<h3>التعليقات</h3><div class="code"><button class="copy">نسخ</button><pre>' تعليق سطر واحد
+Rem تعليق قديم/بديل</pre></div>
+</section>
+
+<section id="s4"><h2>04 — المتغيرات وأنواع البيانات</h2>
+<table><tr><th>النوع</th><th>الاستخدام</th></tr>
+<tr><td>String</td><td>النصوص</td></tr><tr><td>Integer</td><td>أعداد صحيحة</td></tr>
+<tr><td>Long</td><td>أعداد صحيحة أكبر</td></tr><tr><td>Decimal</td><td>القيم المالية والحسابات الدقيقة</td></tr>
+<tr><td>Double</td><td>الأعداد العشرية</td></tr><tr><td>Boolean</td><td>True / False</td></tr>
+<tr><td>DateTime</td><td>التاريخ والوقت</td></tr><tr><td>Char</td><td>حرف واحد</td></tr>
+<tr><td>Object</td><td>نوع عام؛ يفضل تجنب استخدامه دون حاجة</td></tr></table>
+<div class="code"><button class="copy">نسخ</button><pre>Dim name As String = "Maha"
+Dim age As Integer = 30
+Dim price As Decimal = 125.5D
+Dim active As Boolean = True
+Dim createdAt As DateTime = DateTime.Now
+
+Console.WriteLine($"{name} - {age} - {price}")</pre></div>
+<div class="note"><b>نصيحة:</b> استخدمي النوع الأنسب للبيانات، ولا تعتمدي على Object بشكل عشوائي.</div>
+</section>
+
+<section id="s5"><h2>05 — العمليات Operators</h2>
+<table><tr><th>الفئة</th><th>أمثلة</th></tr>
+<tr><td>حسابية</td><td>+ - * / \ Mod ^</td></tr>
+<tr><td>مقارنة</td><td>= &lt;&gt; &lt; &gt; &lt;= &gt;=</td></tr>
+<tr><td>منطقية</td><td>And, Or, Not, AndAlso, OrElse</td></tr>
+<tr><td>نصوص</td><td>&amp;</td></tr>
+</table>
+<div class="code"><button class="copy">نسخ</button><pre>Dim a As Integer = 10
+Dim b As Integer = 3
+
+Console.WriteLine(a + b)
+Console.WriteLine(a / b)
+Console.WriteLine(a Mod b)
+
+If a &gt; b AndAlso b &gt; 0 Then
+    Console.WriteLine("شرط صحيح")
+End If</pre></div>
+</section>
+
+<section id="s6"><h2>06 — الشروط واتخاذ القرار</h2>
+<div class="code"><button class="copy">نسخ</button><pre>Dim mark As Integer = 85
+
+If mark &gt;= 90 Then
+    Console.WriteLine("ممتاز")
+ElseIf mark &gt;= 60 Then
+    Console.WriteLine("ناجح")
+Else
+    Console.WriteLine("راسب")
+End If</pre></div>
+<h3>Select Case</h3>
+<div class="code"><button class="copy">نسخ</button><pre>Dim day As Integer = 2
+
+Select Case day
+    Case 1
+        Console.WriteLine("Saturday")
+    Case 2
+        Console.WriteLine("Sunday")
+    Case Else
+        Console.WriteLine("Other")
+End Select</pre></div>
+</section>
+
+<section id="s7"><h2>07 — الحلقات Loops</h2>
+<div class="code"><button class="copy">نسخ</button><pre>For i As Integer = 1 To 5
+    Console.WriteLine(i)
+Next
+
+For Each item As String In {"VB", "SQL", "HTML"}
+    Console.WriteLine(item)
+Next
+
+Dim x As Integer = 0
+While x &lt; 5
+    x += 1
+End While
+
+Do While x &lt; 10
+    x += 1
+Loop</pre></div>
+<p><b>Exit For</b> و<b>Exit While</b> للخروج من الحلقة، و<b>Continue For</b> و<b>Continue While</b> لتجاوز الدورة الحالية.</p>
+</section>
+
+<section id="s8"><h2>08 — Arrays وCollections</h2>
+<h3>Array</h3><div class="code"><button class="copy">نسخ</button><pre>Dim numbers() As Integer = {10, 20, 30, 40}
+Console.WriteLine(numbers(0))</pre></div>
+<h3>List</h3><div class="code"><button class="copy">نسخ</button><pre>Dim names As New List(Of String) From {"Maha", "Ali"}
+names.Add("Sara")
+names.Remove("Ali")
+
+For Each n In names
+    Console.WriteLine(n)
+Next</pre></div>
+<h3>Dictionary</h3><div class="code"><button class="copy">نسخ</button><pre>Dim users As New Dictionary(Of Integer, String)
+users(1) = "Maha"
+users(2) = "Sara"
+
+Console.WriteLine(users(1))</pre></div>
+</section>
+
+<section id="s9"><h2>09 — Functions وSub</h2>
+<p><b>Sub</b> تنفذ إجراءً ولا ترجع قيمة، بينما <b>Function</b> ترجع قيمة.</p>
+<div class="code"><button class="copy">نسخ</button><pre>Sub ShowMessage(message As String)
+    Console.WriteLine(message)
+End Sub
+
+Function Add(a As Integer, b As Integer) As Integer
+    Return a + b
+End Function
+
+Dim result = Add(10, 20)
+ShowMessage(result.ToString())</pre></div>
+<h3>ByVal وByRef</h3>
+<p>ByVal يمرر قيمة المعامل، أما ByRef فيسمح للدالة بتعديل المتغير المرسل إليها مباشرة. استخدمي ByRef فقط عندما يكون ذلك مقصوداً.</p>
+</section>
+
+<section id="s10"><h2>10 — OOP والكلاسات</h2>
+<p>البرمجة الكائنية OOP تبني البرنامج حول كائنات تجمع البيانات والسلوك.</p>
+<div class="code"><button class="copy">نسخ</button><pre>Public Class Student
+    Public Property Name As String
+    Public Property Age As Integer
+
+    Public Sub New(name As String, age As Integer)
+        Me.Name = name
+        Me.Age = age
+    End Sub
+
+    Public Function GetInfo() As String
+        Return $"{Name} - {Age}"
+    End Function
+End Class
+
+Dim s As New Student("Maha", 30)
+Console.WriteLine(s.GetInfo())</pre></div>
+<h3>Access Modifiers</h3>
+<p>أهمها: <span class="chip">Public</span><span class="chip">Private</span><span class="chip">Protected</span><span class="chip">Friend</span><span class="chip">Protected Friend</span>.</p>
+</section>
+
+<section id="s11"><h2>11 — الوراثة والواجهات وتعدد الأشكال</h2>
+<div class="code"><button class="copy">نسخ</button><pre>Public MustInherit Class Animal
+    Public MustOverride Sub Speak()
+End Class
+
+Public Class Cat
+    Inherits Animal
+
+    Public Overrides Sub Speak()
+        Console.WriteLine("Meow")
+    End Sub
+End Class</pre></div>
+<h3>Interface</h3>
+<div class="code"><button class="copy">نسخ</button><pre>Public Interface IRepository
+    Function GetName() As String
+End Interface
+
+Public Class UserRepository
+    Implements IRepository
+
+    Public Function GetName() As String Implements IRepository.GetName
+        Return "Users"
+    End Function
+End Class</pre></div>
+</section>
+
+<section id="s12"><h2>12 — معالجة الأخطاء Exceptions</h2>
+<div class="code"><button class="copy">نسخ</button><pre>Try
+    Dim number As Integer = Integer.Parse("123")
+    Console.WriteLine(number)
+Catch ex As FormatException
+    Console.WriteLine("القيمة ليست رقماً صحيحاً")
+Catch ex As Exception
+    Console.WriteLine(ex.Message)
+Finally
+    Console.WriteLine("انتهت العملية")
+End Try</pre></div>
+<div class="warn"><b>مهم:</b> لا تستخدمي Catch Exception لإخفاء الأخطاء. سجلي الخطأ وتعاملِي معه حسب نوعه، ولا تعرضي تفاصيل حساسة للمستخدم النهائي.</div>
+</section>
+
+<section id="s13"><h2>13 — النصوص والتواريخ والملفات</h2>
+<h3>String</h3><div class="code"><button class="copy">نسخ</button><pre>Dim text As String = "  Hello VB.NET  "
+Console.WriteLine(text.Trim())
+Console.WriteLine(text.ToUpper())
+Console.WriteLine(text.Contains("VB"))
+Console.WriteLine(text.Replace("VB.NET", ".NET"))</pre></div>
+<h3>DateTime</h3><div class="code"><button class="copy">نسخ</button><pre>Dim now As DateTime = DateTime.Now
+Console.WriteLine(now.ToString("yyyy-MM-dd HH:mm:ss"))
+
+Dim tomorrow = now.AddDays(1)</pre></div>
+<h3>الملفات</h3><div class="code"><button class="copy">نسخ</button><pre>Imports System.IO
+
+File.WriteAllText("data.txt", "Hello")
+Dim content As String = File.ReadAllText("data.txt")
+
+If File.Exists("data.txt") Then
+    Console.WriteLine(content)
+End If</pre></div>
+</section>
+
+<section id="s14"><h2>14 — JSON</h2>
+<p>في المشاريع الحديثة يمكن استخدام <b>System.Text.Json</b> لتحويل الكائنات إلى JSON والعكس.</p>
+<div class="code"><button class="copy">نسخ</button><pre>Imports System.Text.Json
+
+Public Class User
+    Public Property Name As String
+    Public Property Age As Integer
+End Class
+
+Dim user As New User With {.Name = "Maha", .Age = 30}
+
+Dim json = JsonSerializer.Serialize(user)
+Console.WriteLine(json)
+
+Dim obj = JsonSerializer.Deserialize(Of User)(json)</pre></div>
+</section>
+
+<section id="s15"><h2>15 — LINQ</h2>
+<p>LINQ تسمح بكتابة استعلامات على المجموعات والكائنات ومصادر بيانات مختلفة بطريقة موحدة.</p>
+<div class="code"><button class="copy">نسخ</button><pre>Dim numbers = New List(Of Integer) From {1,2,3,4,5,6}
+
+Dim evenNumbers = numbers.Where(Function(x) x Mod 2 = 0).ToList()
+
+For Each n In evenNumbers
+    Console.WriteLine(n)
+Next</pre></div>
+<h3>OrderBy وSelect</h3>
+<div class="code"><button class="copy">نسخ</button><pre>Dim names = New List(Of String) From {"Maha", "Ali", "Sara"}
+
+Dim result = names.
+    OrderBy(Function(x) x).
+    Select(Function(x) x.ToUpper()).
+    ToList()</pre></div>
+</section>
+
+<section id="s16"><h2>16 — Async وAwait وTasks</h2>
+<p>البرمجة غير المتزامنة تساعد التطبيق على تنفيذ عمليات انتظار مثل الشبكة أو الملفات دون تجميد واجهة المستخدم.</p>
+<div class="code"><button class="copy">نسخ</button><pre>Imports System.Threading.Tasks
+
+Async Function LoadDataAsync() As Task(Of String)
+    Await Task.Delay(1000)
+    Return "تم تحميل البيانات"
+End Function
+
+Async Function RunAsync() As Task
+    Dim result = Await LoadDataAsync()
+    Console.WriteLine(result)
+End Function</pre></div>
+<div class="note">في Windows Forms، استخدمي Await للعمليات الطويلة مثل طلبات API أو قواعد البيانات لتقليل تجمد الواجهة.</div>
+</section>
+
+<section id="s17"><h2>17 — Windows Forms</h2>
+<p>Windows Forms خيار شائع لبناء تطبيقات سطح المكتب باستخدام VB.NET. أهم العناصر: Form, Button, Label, TextBox, ComboBox, CheckBox, RadioButton, ListBox, DataGridView, PictureBox, MenuStrip وغيرها.</p>
+<div class="code"><button class="copy">نسخ</button><pre>Public Class Form1
+
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.Text = "منصة مها شهوب"
+    End Sub
+
+End Class</pre></div>
+</section>
+
+<section id="s18"><h2>18 — Controls وEvents</h2>
+<div class="code"><button class="copy">نسخ</button><pre>Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+    Dim name As String = txtName.Text.Trim()
+
+    If name = "" Then
+        MessageBox.Show("أدخلي الاسم")
+        Return
+    End If
+
+    MessageBox.Show("تم الحفظ: " & name)
+End Sub</pre></div>
+<h3>أحداث مهمة</h3>
+<p>Click، Load، TextChanged، SelectedIndexChanged، KeyDown، MouseClick، FormClosing وغيرها حسب العنصر.</p>
+</section>
+
+<section id="s19"><h2>19 — الصور والطباعة والملفات</h2>
+<p>يمكن استخدام PictureBox لعرض الصور، OpenFileDialog وSaveFileDialog لاختيار الملفات، وPrintDocument للطباعة.</p>
+<div class="code"><button class="copy">نسخ</button><pre>Using dialog As New OpenFileDialog()
+    dialog.Filter = "Images|*.jpg;*.jpeg;*.png;*.bmp"
+
+    If dialog.ShowDialog() = DialogResult.OK Then
+        PictureBox1.Image = Image.FromFile(dialog.FileName)
+    End If
+End Using</pre></div>
+<div class="warn">عند التعامل مع الصور والملفات الكبيرة، انتبهي إلى إدارة الموارد وإغلاق Streams وعدم قفل الملفات دون حاجة.</div>
+</section>
+
+<section id="s20"><h2>20 — HTTP وREST وAPIs</h2>
+<p>يمكن لتطبيق VB.NET الاتصال بخدمات الويب باستخدام HttpClient وإرسال GET وPOST وغيرها، ثم قراءة JSON.</p>
+<div class="code"><button class="copy">نسخ</button><pre>Imports System.Net.Http
+
+Async Function GetDataAsync() As Task(Of String)
+    Using client As New HttpClient()
+        client.Timeout = TimeSpan.FromSeconds(30)
+
+        Dim response = Await client.GetAsync("https://example.com/api/users")
+        response.EnsureSuccessStatusCode()
+
+        Return Await response.Content.ReadAsStringAsync()
+    End Using
+End Function</pre></div>
+<div class="note">في المشاريع الحقيقية استخدمي HTTPS، وتحققي من الاستجابات والأخطاء، ولا تضعي مفاتيح API السرية داخل الواجهة أو المستودع العام.</div>
+</section>
+
+<section id="s21"><h2>21 — MySQL وADO.NET</h2>
+<p>يمكن ربط VB.NET بقاعدة MySQL عبر مكتبة مناسبة مثل <b>MySqlConnector</b> أو Oracle <b>MySql.Data</b>. يجب الالتزام بتوثيق المكتبة المستخدمة لأن أسماء بعض الأنواع وواجهاتها تختلف.</p>
+<h3>اتصال باستخدام MySqlConnector</h3>
+<div class="code"><button class="copy">نسخ</button><pre>Imports MySqlConnector
+
+Dim cs As String =
+    "Server=localhost;Database=school;User ID=appuser;Password=YOUR_PASSWORD;"
+
+Using con As New MySqlConnection(cs)
+    con.Open()
+
+    Using cmd As New MySqlCommand(
+        "SELECT id, name FROM students WHERE age &gt;= @age", con)
+
+        cmd.Parameters.AddWithValue("@age", 18)
+
+        Using reader = cmd.ExecuteReader()
+            While reader.Read()
+                Console.WriteLine(reader("name").ToString())
+            End While
+        End Using
+    End Using
+End Using</pre></div>
+<h3>INSERT آمن</h3>
+<div class="code"><button class="copy">نسخ</button><pre>Using cmd As New MySqlCommand(
+    "INSERT INTO students(name, age) VALUES(@name, @age)", con)
+
+    cmd.Parameters.AddWithValue("@name", txtName.Text.Trim())
+    cmd.Parameters.AddWithValue("@age", Integer.Parse(txtAge.Text))
+
+    cmd.ExecuteNonQuery()
+End Using</pre></div>
+<div class="success"><b>قاعدة أساسية:</b> استخدمي Parameters بدلاً من دمج مدخلات المستخدم داخل SQL لتقليل خطر SQL Injection.</div>
+</section>
+
+<section id="s22"><h2>22 — Entity Framework Core</h2>
+<p>EF Core هو ORM يسمح بالتعامل مع قواعد البيانات من خلال الكائنات بدلاً من كتابة كل SQL يدوياً. اختيار مزود MySQL يعتمد على قاعدة البيانات والمكتبة المستخدمة في المشروع.</p>
+<div class="code"><button class="copy">نسخ</button><pre>Public Class Student
+    Public Property Id As Integer
+    Public Property Name As String
+    Public Property Age As Integer
+End Class
+
+Public Class AppDbContext
+    Inherits DbContext
+
+    Public Property Students As DbSet(Of Student)
+
+    Protected Overrides Sub OnConfiguring(
+        optionsBuilder As DbContextOptionsBuilder)
+
+        optionsBuilder.UseMySql(
+            "Server=localhost;Database=school;User ID=appuser;Password=YOUR_PASSWORD;",
+            ServerVersion.AutoDetect(
+                "Server=localhost;Database=school;User ID=appuser;Password=YOUR_PASSWORD;"))
+    End Sub
+End Class</pre></div>
+<div class="warn">تحققي من إصدار EF Core وموفر MySQL المستخدم قبل نسخ الكود إلى مشروع فعلي، لأن API والإعدادات قد تتغير بين الإصدارات.</div>
+</section>
+
+<section id="s23"><h2>23 — الأمان والتحقق</h2>
+<div class="grid">
+<div class="card"><b>SQL Injection</b><br>استخدمي Parameters.</div>
+<div class="card"><b>Passwords</b><br>لا تخزني كلمات المرور كنص صريح؛ استخدمي hashing مناسباً.</div>
+<div class="card"><b>Secrets</b><br>لا تضعي كلمات المرور ومفاتيح API في الكود المنشور.</div>
+<div class="card"><b>Validation</b><br>تحققي من المدخلات قبل المعالجة والحفظ.</div>
+<div class="card"><b>Least Privilege</b><br>امنحي حساب قاعدة البيانات الصلاحيات اللازمة فقط.</div>
+<div class="card"><b>TLS</b><br>استخدمي اتصالات مشفرة عند نقل البيانات الحساسة.</div>
+</div>
+<h3>التحقق من رقم</h3>
+<div class="code"><button class="copy">نسخ</button><pre>Dim age As Integer
+
+If Not Integer.TryParse(txtAge.Text, age) Then
+    MessageBox.Show("أدخلي عمراً صحيحاً")
+    Return
+End If</pre></div>
+</section>
+
+<section id="s24"><h2>24 — هندسة المشاريع</h2>
+<p>كلما كبر المشروع، يصبح فصل المسؤوليات مهماً. يمكن استخدام طبقات مثل UI وBusiness وData وModels.</p>
+<table><tr><th>الطبقة</th><th>المسؤولية</th></tr>
+<tr><td>UI</td><td>النماذج والأزرار وعرض البيانات.</td></tr>
+<tr><td>Business</td><td>قواعد العمل والتحقق والمنطق.</td></tr>
+<tr><td>Data Access</td><td>الاتصال بقاعدة البيانات والاستعلامات.</td></tr>
+<tr><td>Models</td><td>الكلاسات التي تمثل البيانات.</td></tr>
+<tr><td>Services</td><td>التعامل مع API أو خدمات خارجية.</td></tr>
+</table>
+<div class="code"><button class="copy">نسخ</button><pre>Project
+│
+├── Forms
+├── Models
+├── Services
+├── Repositories
+├── Data
+├── Helpers
+└── Configuration</pre></div>
+</section>
+
+<section id="s25"><h2>25 — مشاريع تطبيقية كاملة</h2>
+<div class="grid">
+<div class="card"><b>مشروع 1: إدارة الطلاب</b><br>إضافة، تعديل، حذف، بحث، DataGridView وMySQL.</div>
+<div class="card"><b>مشروع 2: مكتبة</b><br>كتب، مؤلفون، استعارة، مستخدمون، تقارير.</div>
+<div class="card"><b>مشروع 3: نظام مخزون</b><br>منتجات، أصناف، مشتريات، مبيعات، تنبيهات.</div>
+<div class="card"><b>مشروع 4: تسجيل دخول</b><br>Users، صلاحيات، Sessions داخل التطبيق، Password Hashing.</div>
+<div class="card"><b>مشروع 5: برنامج فواتير</b><br>عملاء، أصناف، فاتورة، تفاصيل الفاتورة، طباعة.</div>
+<div class="card"><b>مشروع 6: مستهلك API</b><br>جلب JSON وعرضه في DataGridView.</div>
+</div>
+<h3>مثال هيكل مشروع إدارة مكتبة</h3>
+<div class="code"><button class="copy">نسخ</button><pre>LibraryApp
+├── Forms
+│   ├── LoginForm.vb
+│   ├── BooksForm.vb
+│   └── MembersForm.vb
+├── Models
+│   ├── Book.vb
+│   └── Member.vb
+├── Data
+│   └── Db.vb
+├── Repositories
+│   └── BookRepository.vb
+├── Services
+│   └── BookService.vb
+└── Helpers
+    └── ValidationHelper.vb</pre></div>
+</section>
+
+<section id="s26"><h2>26 — NuGet وNamespaces وGenerics</h2>
+<h3>Imports وNamespace</h3>
+<div class="code"><button class="copy">نسخ</button><pre>Namespace MyApp.Models
+    Public Class Product
+        Public Property Name As String
+    End Class
+End Namespace
+
+' في ملف آخر:
+Imports MyApp.Models</pre></div>
+<h3>Generics</h3>
+<div class="code"><button class="copy">نسخ</button><pre>Public Class Repository(Of T)
+    Private items As New List(Of T)
+
+    Public Sub Add(item As T)
+        items.Add(item)
+    End Sub
+
+    Public Function GetAll() As List(Of T)
+        Return items
+    End Function
+End Class</pre></div>
+<p>NuGet يستخدم لإضافة مكتبات خارجية مثل موفري قواعد البيانات ومكتبات JSON وغيرها.</p>
+</section>
+
+<section id="s27"><h2>27 — Delegates وEvents المتقدمة</h2>
+<h3>Delegate</h3>
+<div class="code"><button class="copy">نسخ</button><pre>Delegate Function MathOperation(a As Integer, b As Integer) As Integer
+
+Function Add(a As Integer, b As Integer) As Integer
+    Return a + b
+End Function
+
+Dim operation As MathOperation = AddressOf Add
+Console.WriteLine(operation(5, 3))</pre></div>
+<h3>Lambda</h3>
+<div class="code"><button class="copy">نسخ</button><pre>Dim square = Function(x As Integer) x * x
+Console.WriteLine(square(6))</pre></div>
+<p>الأحداث في .NET تعتمد على delegates، وتسمح للكائنات بإبلاغ أجزاء أخرى من البرنامج بحدوث حدث معين.</p>
+</section>
+
+<section id="s28"><h2>28 — الشبكات TCP/UDP</h2>
+<p>يمكن لتطبيقات .NET العمل مع الشبكات عبر مكتبات مثل <b>System.Net.Sockets</b>. TCP يعتمد على اتصال موثوق، بينما UDP يركز على السرعة دون ضمان تسليم كل حزمة.</p>
+<table><tr><th>TCP</th><th>UDP</th></tr><tr><td>Connection-oriented</td><td>Connectionless</td></tr><tr><td>موثوقية وترتيب للبيانات</td><td>لا يضمن التسليم والترتيب</td></tr><tr><td>مناسب للاتصالات التي تحتاج موثوقية</td><td>مفيد في حالات يكون فيها التأخير أهم</td></tr></table>
+<div class="code"><button class="copy">نسخ</button><pre>Imports System.Net.Sockets
+
+Using client As New TcpClient()
+    Await client.ConnectAsync("127.0.0.1", 5000)
+    Console.WriteLine("Connected")
+End Using</pre></div>
+</section>
+
+<section id="s29"><h2>29 — الاختبار والتصحيح والأداء</h2>
+<h3>Debugging</h3>
+<ul><li>Breakpoints لإيقاف التنفيذ.</li><li>Watch لمراقبة المتغيرات.</li><li>Immediate Window للتجارب أثناء التصحيح.</li><li>قراءة Stack Trace لمعرفة مسار الخطأ.</li></ul>
+<h3>تحسين الأداء</h3>
+<ul><li>تجنبي العمليات الثقيلة على UI Thread.</li><li>استخدمي Async/Await للعمليات الانتظارية المناسبة.</li><li>استخدمي استعلامات محددة بدلاً من جلب بيانات غير ضرورية.</li><li>أضيفي Indexes مناسبة في قاعدة البيانات.</li><li>لا تفتحي اتصالات قاعدة البيانات دون داعٍ.</li><li>استخدمي <b>Using</b> أو <b>Using ... End Using</b> لإدارة الموارد القابلة للتخلص.</li></ul>
+<div class="code"><button class="copy">نسخ</button><pre>Using con As New MySqlConnection(connectionString)
+    con.Open()
+    ' تنفيذ العمل
+End Using</pre></div>
+</section>
+
+<section id="s30"><h2>30 — مرجع سريع VB.NET</h2>
+<table><tr><th>المطلوب</th><th>الأداة / الصيغة</th></tr>
+<tr><td>متغير</td><td>Dim x As Integer</td></tr>
+<tr><td>شرط</td><td>If ... Then ... Else</td></tr>
+<tr><td>اختيار</td><td>Select Case</td></tr>
+<tr><td>تكرار</td><td>For / For Each / While / Do</td></tr>
+<tr><td>دالة</td><td>Function ... As Type</td></tr>
+<tr><td>إجراء</td><td>Sub ... End Sub</td></tr>
+<tr><td>كلاس</td><td>Class ... End Class</td></tr>
+<tr><td>وراثة</td><td>Inherits</td></tr>
+<tr><td>واجهة</td><td>Interface / Implements</td></tr>
+<tr><td>استثناء</td><td>Try / Catch / Finally</td></tr>
+<tr><td>قائمة</td><td>List(Of T)</td></tr>
+<tr><td>قاموس</td><td>Dictionary(Of TKey,TValue)</td></tr>
+<tr><td>استعلام</td><td>LINQ / Where / Select / OrderBy</td></tr>
+<tr><td>غير متزامن</td><td>Async / Await / Task</td></tr>
+<tr><td>ملف</td><td>System.IO</td></tr>
+<tr><td>JSON</td><td>System.Text.Json</td></tr>
+<tr><td>HTTP</td><td>HttpClient</td></tr>
+<tr><td>MySQL</td><td>MySqlConnector أو MySql.Data</td></tr>
+<tr><td>ORM</td><td>Entity Framework Core</td></tr>
+</table>
+<h3>مسار تعلم مقترح</h3>
+<ol>
+<li>Syntax والمتغيرات والعمليات.</li><li>Conditions وLoops.</li><li>Arrays وCollections.</li>
+<li>Functions وSub.</li><li>OOP.</li><li>Windows Forms وEvents.</li>
+<li>Files وJSON.</li><li>LINQ.</li><li>Async/Await.</li><li>MySQL وADO.NET.</li>
+<li>APIs وHttpClient.</li><li>EF Core.</li><li>Security.</li><li>Architecture.</li>
+<li>تنفيذ مشاريع كاملة.</li>
+</ol>
+<div class="success"><b>الخلاصة:</b> VB.NET تصبح أقوى عندما تجمعين اللغة مع OOP و.NET وWindows Forms وقواعد البيانات وواجهات API وهندسة المشاريع، ثم تطبقين ذلك في مشاريع حقيقية.</div>
+</section>
+
+<footer>
+<div><b>إعداد الكاتبة والمهندسة: مها شهوب</b></div>
+<div>منصة آفاق المعرفة التقنية | مكتبة | مها شهوب | سلسلة أساسيات التقنية</div>
+<div>دليل VB.NET الشامل — مرجع تعليمي قابل للتطوير</div>
+</footer>
+</main>
+</div>
+
+<button class="topbtn" id="topbtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+const root=document.documentElement;
+function toggleTheme(){
+  const dark=root.getAttribute("data-theme")==="dark";
+  root.setAttribute("data-theme",dark?"light":"dark");
+  localStorage.setItem("vbTheme",dark?"light":"dark");
+}
+(function(){const t=localStorage.getItem("vbTheme");if(t)root.setAttribute("data-theme",t)})();
+
+function toggleMenu(){document.getElementById("side").classList.toggle("open")}
+
+function filterNav(){
+  const q=document.getElementById("search").value.trim().toLowerCase();
+  document.querySelectorAll("#nav a").forEach(a=>{
+    a.style.display=a.textContent.toLowerCase().includes(q)?"block":"none";
+  });
+}
+
+document.querySelectorAll(".copy").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    const code=btn.parentElement.querySelector("pre").innerText;
+    navigator.clipboard.writeText(code).then(()=>{
+      const old=btn.textContent;btn.textContent="✓ تم النسخ";
+      setTimeout(()=>btn.textContent=old,1200);
+    });
+  });
+});
+
+const sections=[...document.querySelectorAll("main section")];
+const links=[...document.querySelectorAll("#nav a")];
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      links.forEach(a=>a.classList.toggle("active",a.getAttribute("href")==="#"+entry.target.id));
+    }
+  });
+},{rootMargin:"-20% 0px -65% 0px"});
+sections.forEach(s=>observer.observe(s));
+
+window.addEventListener("scroll",()=>{
+  const doc=document.documentElement;
+  const max=doc.scrollHeight-doc.clientHeight;
+  document.getElementById("progress").style.width=(max>0?(scrollY/max)*100:0)+"%";
+  document.getElementById("topbtn").style.display=scrollY>500?"block":"none";
+});
+</script>
+</body>
+</html>

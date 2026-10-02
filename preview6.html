@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>دليل Excel الشامل | مها شهوب</title>
+<style>
+:root{
+--bg:#eef3f9;--card:#fff;--text:#172033;--muted:#637087;
+--primary:#1677c8;--primary2:#0b4f88;--border:#d8e1ec;
+--code:#111827;--codeText:#e5eef9;--nav:#fff
+}
+[data-theme=dark]{
+--bg:#0b1220;--card:#111b2d;--text:#e8eef8;--muted:#a8b5c8;
+--primary:#48a9ff;--primary2:#70bdff;--border:#263750;
+--code:#07101d;--codeText:#dbeafe;--nav:#0e1727
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+margin:0;background:var(--bg);color:var(--text);
+font-family:"Segoe UI",Tahoma,Arial,sans-serif;line-height:1.85
+}
+header{
+position:fixed;top:0;right:0;left:0;height:68px;
+background:var(--nav);border-bottom:1px solid var(--border);
+z-index:1000;display:flex;align-items:center;gap:12px;padding:0 20px
+}
+.logo{width:67px;height:54px;border-radius:50%;display:grid;place-items:center;}
+
+.brand{font-weight:800;font-size:18px}
+.brand small{display:block;color:var(--muted);font-size:11px}
+.actions{margin-right:auto;display:flex;gap:8px}
+button{
+border:1px solid var(--border);background:var(--card);color:var(--text);
+border-radius:9px;padding:9px 13px;cursor:pointer
+}
+.progress{
+position:fixed;top:68px;right:0;height:3px;width:0;
+background:#3fb5ff;z-index:1001
+}
+.layout{max-width:1550px;margin:auto;padding-top:68px}
+aside{
+position:fixed;top:68px;bottom:0;width:315px;
+background:var(--nav);border-left:1px solid var(--border);
+padding:18px 14px;overflow:auto
+}
+.search{
+width:100%;padding:12px;border:1px solid var(--border);
+border-radius:11px;background:var(--card);color:var(--text);
+margin-bottom:12px
+}
+.nav-title{font-weight:800;color:var(--primary);margin:8px 0}
+nav a{
+display:block;text-decoration:none;color:var(--muted);
+padding:6px 9px;border-radius:8px;font-size:12px;margin:2px 0
+}
+nav a:hover,nav a.active{
+background:rgba(22,119,200,.1);color:var(--primary);font-weight:700
+}
+main{margin-right:315px;padding:32px 34px 70px}
+.hero{
+background:linear-gradient(135deg,#071b31,#0b4f88 55%,#1677c8);
+color:white;border-radius:20px;padding:38px;margin-bottom:25px
+}
+.hero h1{font-size:36px;margin:0}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.badge{
+padding:6px 12px;border-radius:20px;
+background:rgba(255,255,255,.13);font-size:12px
+}
+section{
+background:var(--card);border:1px solid var(--border);
+border-radius:17px;padding:27px;margin-bottom:22px
+}
+h2{
+color:var(--primary2);font-size:25px;
+border-right:5px solid var(--primary);padding-right:12px
+}
+h3{color:var(--primary)}
+.grid{
+display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px
+}
+.card{
+border:1px solid var(--border);border-radius:12px;
+padding:15px;background:var(--bg)
+}
+.toc{
+display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:9px
+}
+.toc a{
+text-decoration:none;color:var(--text);
+border:1px solid var(--border);border-radius:10px;
+padding:10px;background:var(--bg)
+}
+.code{
+position:relative;background:var(--code);color:var(--codeText);
+border-radius:12px;overflow:auto;margin:15px 0;direction:ltr;text-align:left
+}
+pre{
+margin:0;padding:20px;font-family:Consolas,monospace;
+font-size:13px;line-height:1.7
+}
+.copy{
+position:absolute;top:8px;right:8px;
+background:#182538;color:#dbeafe;border:1px solid #334155
+}
+.note{
+padding:14px;border-right:4px solid var(--primary);
+background:rgba(22,119,200,.08);border-radius:9px
+}
+table{width:100%;border-collapse:collapse}
+th,td{border:1px solid var(--border);padding:10px;text-align:right}
+th{background:rgba(22,119,200,.1);color:var(--primary2)}
+.top{
+position:fixed;bottom:20px;left:20px;
+width:45px;height:45px;border-radius:50%;
+background:var(--primary);color:white;display:none
+}
+.menu{display:none}
+
+@media(max-width:950px){
+.menu{display:block}
+aside{display:none;right:0;width:310px;z-index:950}
+aside.open{display:block}
+main{margin:0;padding:24px 15px 60px}
+.hero h1{font-size:28px}
+}
+@media print{
+header,aside,.progress,.top{display:none!important}
+main{margin:0}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<button class="menu" onclick="toggleMenu()">☰</button>
+  <img src="IMG/آفاق المعرفة التقنية.png" class="logo">
+<div class="brand">
+منصة آفاق المعرفة التقنية
+    <small>دليل Excel الشامل | مها شهوب</small>
+</div>
+<div class="actions">
+<button onclick="toggleTheme()">☾ الوضع</button>
+<button onclick="window.print()">🖨 طباعة</button>
+</div>
+</header>
+
+<div class="progress" id="progress"></div>
+
+<div class="layout">
+
+<aside id="sidebar">
+<input class="search" id="search"
+placeholder="ابحث في الدليل..."
+oninput="filterNav()">
+
+<div class="nav-title">فهرس Excel الشامل</div>
+
+<nav id="nav">
+<a href="#s1">01 — مقدمة Excel</a>
+<a href="#s2">02 — واجهة Excel</a>
+<a href="#s3">03 — Workbook وWorksheet</a>
+<a href="#s4">04 — الخلايا والصفوف والأعمدة</a>
+<a href="#s5">05 — إدخال البيانات</a>
+<a href="#s6">06 — أنواع البيانات والتنسيق</a>
+<a href="#s7">07 — المراجع والنطاقات</a>
+<a href="#s8">08 — المعادلات</a>
+<a href="#s9">09 — SUM وAVERAGE وMIN وMAX</a>
+<a href="#s10">10 — COUNT وCOUNTA</a>
+<a href="#s11">11 — IF</a>
+<a href="#s12">12 — AND وOR وNOT</a>
+<a href="#s13">13 — IFS</a>
+<a href="#s14">14 — دوال النصوص</a>
+<a href="#s15">15 — تنظيف النصوص</a>
+<a href="#s16">16 — التاريخ والوقت</a>
+<a href="#s17">17 — التاريخ المتقدم</a>
+<a href="#s18">18 — ROUND</a>
+<a href="#s19">19 — SUMIF وSUMIFS</a>
+<a href="#s20">20 — COUNTIF وCOUNTIFS</a>
+<a href="#s21">21 — AVERAGEIF</a>
+<a href="#s22">22 — VLOOKUP</a>
+<a href="#s23">23 — XLOOKUP</a>
+<a href="#s24">24 — INDEX وMATCH</a>
+<a href="#s25">25 — FILTER وSORT وUNIQUE</a>
+<a href="#s26">26 — أخطاء Excel</a>
+<a href="#s27">27 — Tables</a>
+<a href="#s28">28 — Sort وFilter</a>
+<a href="#s29">29 — Conditional Formatting</a>
+<a href="#s30">30 — Data Validation</a>
+<a href="#s31">31 — Remove Duplicates</a>
+<a href="#s32">32 — Find وReplace</a>
+<a href="#s33">33 — Text to Columns</a>
+<a href="#s34">34 — Charts</a>
+<a href="#s35">35 — PivotTable</a>
+<a href="#s36">36 — PivotChart وSlicers</a>
+<a href="#s37">37 — What-If Analysis</a>
+<a href="#s38">38 — Goal Seek وSolver</a>
+<a href="#s39">39 — حماية الملفات</a>
+<a href="#s40">40 — استيراد وتصدير البيانات</a>
+<a href="#s41">41 — Power Query</a>
+<a href="#s42">42 — تنظيف البيانات</a>
+<a href="#s43">43 — Merge وAppend</a>
+<a href="#s44">44 — Power Pivot</a>
+<a href="#s45">45 — العلاقات وStar Schema</a>
+<a href="#s46">46 — DAX</a>
+<a href="#s47">47 — Dashboards</a>
+<a href="#s48">48 — التحليل المالي</a>
+<a href="#s49">49 — المبيعات والمخزون</a>
+<a href="#s50">50 — الموارد البشرية</a>
+<a href="#s51">51 — Excel للطلاب</a>
+<a href="#s52">52 — Excel وقواعد البيانات</a>
+<a href="#s53">53 — CSV وTXT</a>
+<a href="#s54">54 — مصادر البيانات الخارجية</a>
+<a href="#s55">55 — VBA وMacros</a>
+<a href="#s56">56 — أول برنامج VBA</a>
+<a href="#s57">57 — المتغيرات والشروط VBA</a>
+<a href="#s58">58 — الحلقات VBA</a>
+<a href="#s59">59 — الخلايا والأوراق VBA</a>
+<a href="#s60">60 — أخطاء VBA</a>
+<a href="#s61">61 — تحسين الأداء</a>
+<a href="#s62">62 — مشروع كشف درجات</a>
+<a href="#s63">63 — مشروع مبيعات</a>
+<a href="#s64">64 — مشروع مخزون</a>
+<a href="#s65">65 — مشروع Power Query</a>
+<a href="#s66">66 — مشروع مكتبة إلكترونية</a>
+<a href="#s67">67 — الاختصارات</a>
+<a href="#s68">68 — الأخطاء الشائعة</a>
+<a href="#s69">69 — مسار التعلم</a>
+<a href="#s70">70 — المرجع السريع</a>
+</nav>
+</aside>
+
+<main>
+
+<div class="hero">
+<h1>دليل Excel الشامل</h1>
+<p>من الصفر إلى التحليل المتقدم والأتمتة</p>
+<p>إعداد الكاتبة والمهندسة: <b>مها شهوب</b></p>
+
+<div class="badges">
+<span class="badge">Excel Basics</span>
+<span class="badge">Formulas</span>
+<span class="badge">Functions</span>
+<span class="badge">PivotTable</span>
+<span class="badge">Power Query</span>
+<span class="badge">Power Pivot</span>
+<span class="badge">DAX</span>
+<span class="badge">VBA</span>
+</div>
+</div>
+
+<section>
+<h2>عن هذا الدليل</h2>
+<p>
+هذا الدليل يشرح Excel بصورة متدرجة من أساسيات التعامل مع الخلايا والبيانات
+إلى الدوال المتقدمة وتحليل البيانات وبناء Dashboards واستخدام Power Query
+وPower Pivot وDAX ثم الأتمتة باستخدام VBA.
+</p>
+<div class="grid">
+<div class="card"><b>المستوى الأساسي</b><br>الخلايا، الجداول، التنسيق والمعادلات.</div>
+<div class="card"><b>المستوى المتوسط</b><br>الدوال، البحث، الشروط وتحليل البيانات.</div>
+<div class="card"><b>المستوى المتقدم</b><br>PivotTable وPower Query وPower Pivot.</div>
+<div class="card"><b>الأتمتة</b><br>VBA وMacros والمشاريع العملية.</div>
+</div>
+</section>
+
+<section>
+<h2>الفهرس</h2>
+<div class="toc">
+<a href="#s1">مقدمة Excel</a>
+<a href="#s11">IF</a>
+<a href="#s23">XLOOKUP</a>
+<a href="#s35">PivotTable</a>
+<a href="#s41">Power Query</a>
+<a href="#s44">Power Pivot</a>
+<a href="#s46">DAX</a>
+<a href="#s47">Dashboards</a>
+<a href="#s55">VBA</a>
+<a href="#s62">المشاريع</a>
+</div>
+</section>
+
+<section id="s1"><h2>01 — مقدمة Excel</h2>
+<p>Microsoft Excel برنامج جداول إلكترونية يستخدم لتنظيم البيانات والحساب والتحليل وإعداد التقارير والمخططات والأتمتة.</p>
+<p>الاستخدام الاحترافي لا يعتمد على حفظ الدوال فقط، بل على معرفة كيفية تنظيم البيانات واختيار الأداة المناسبة للمشكلة.</p>
+</section>
+
+<section id="s2"><h2>02 — واجهة Excel</h2>
+<p>تتكون الواجهة من Ribbon، Formula Bar، Name Box، Worksheet، Status Bar وغيرها.</p>
+<table>
+<tr><th>العنصر</th><th>الوظيفة</th></tr>
+<tr><td>Ribbon</td><td>أوامر Excel.</td></tr>
+<tr><td>Formula Bar</td><td>عرض وتحرير محتوى الخلية.</td></tr>
+<tr><td>Name Box</td><td>الانتقال إلى خلية أو نطاق.</td></tr>
+<tr><td>Worksheet</td><td>مساحة العمل.</td></tr>
+</table>
+</section>
+
+<section id="s3"><h2>03 — Workbook وWorksheet</h2>
+<p>Workbook هو ملف Excel، بينما Worksheet هي ورقة داخل الملف.</p>
+<p>في المشاريع الكبيرة من الأفضل فصل البيانات الخام والحسابات والتقارير والإعدادات في أوراق منظمة.</p>
+</section>
+
+<section id="s4"><h2>04 — الخلايا والصفوف والأعمدة</h2>
+<p>تقاطع العمود والصف يمثل خلية مثل A1. ويمكن التعامل مع نطاق مثل A1:D100 في الدوال.</p>
+</section>
+
+<section id="s5"><h2>05 — إدخال البيانات</h2>
+<ul>
+<li>F2 لتعديل الخلية.</li>
+<li>Ctrl+C للنسخ.</li>
+<li>Ctrl+V للصق.</li>
+<li>Ctrl+Z للتراجع.</li>
+<li>Ctrl+F للبحث.</li>
+<li>Ctrl+H للاستبدال.</li>
+</ul>
+</section>
+
+<section id="s6"><h2>06 — أنواع البيانات والتنسيق</h2>
+<p>من أهم الأنواع: النص، الرقم، التاريخ، الوقت، النسبة المئوية والعملات.</p>
+<p>التنسيق يحدد طريقة عرض القيمة، لذلك لا تعتمد على المظهر وحده لتحديد نوع البيانات الحقيقي.</p>
+</section>
+
+<section id="s7"><h2>07 — المراجع والنطاقات</h2>
+<table>
+<tr><th>المرجع</th><th>المعنى</th></tr>
+<tr><td>A1</td><td>نسبي.</td></tr>
+<tr><td>$A$1</td><td>ثابت بالكامل.</td></tr>
+<tr><td>$A1</td><td>العمود ثابت.</td></tr>
+<tr><td>A$1</td><td>الصف ثابت.</td></tr>
+</table>
+</section>
+
+<section id="s8"><h2>08 — المعادلات</h2>
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>=B2+C2
+=B2*C2
+=(B2+C2)/2
+=B2^2</pre>
+</div>
+</section>
+
+<section id="s9"><h2>09 — SUM وAVERAGE وMIN وMAX</h2>
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>=SUM(B2:B20)
+=AVERAGE(B2:B20)
+=MIN(B2:B20)
+=MAX(B2:B20)</pre>
+</div>
+</section>
+
+<section id="s10"><h2>10 — COUNT وCOUNTA وCOUNTBLANK</h2>
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>=COUNT(B2:B100)
+=COUNTA(B2:B100)
+=COUNTBLANK(B2:B100)</pre>
+</div>
+</section>
+
+<section id="s11"><h2>11 — IF</h2>
+<p>تختبر IF شرطًا وتعيد نتيجة عند تحقق الشرط ونتيجة أخرى عند عدم تحققه.</p>
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>=IF(B2>=50,"ناجح","راسب")
+=IF(C2>1000,C2*10%,0)</pre>
+</div>
+</section>
+
+<section id="s12"><h2>12 — AND وOR وNOT</h2>
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>=IF(AND(B2>=50,C2>=50),"ناجح","راسب")
+=IF(OR(B2="نعم",C2="نعم"),"مقبول","مرفوض")
+=NOT(A2="")</pre>
+</div>
+</section>
+
+<section id="s13"><h2>13 — IFS وIF المتداخلة</h2>
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>=IFS(
+B2>=90,"ممتاز",
+B2>=80,"جيد جدًا",
+B2>=70,"جيد",
+TRUE,"يحتاج تحسين"
+)</pre>
+</div>
+</section>
+
+<section id="s14"><h2>14 — دوال النصوص</h2>
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>=LEFT(A2,3)
+=RIGHT(A2,4)
+=MID(A2,2,5)
+=LEN(A2)
+=CONCAT(A2," ",B2)
+=TEXTJOIN(" - ",TRUE,A2:C2)</pre>
+</div>
+</section>
+
+<section id="s15"><h2>15 — تنظيف النصوص</h2>
+<p>TRIM للمسافات الزائدة، CLEAN للمحارف غير القابلة للطباعة، SUBSTITUTE للاستبدال.</p>
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>=TRIM(A2)
+=CLEAN(A2)
+=SUBSTITUTE(A2,"-","/")</pre>
+</div>
+</section>
+
+<section id="s16"><h2>16 — التاريخ والوقت</h2>
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>=TODAY()
+=NOW()
+=YEAR(A2)
+=MONTH(A2)
+=DAY(A2)</pre>
+</div>
+</section>
+
+<section id="s17"><h2>17 — التاريخ المتقدم</h2>
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>=EDATE(A2,3)
+=EOMONTH(A2,0)
+=NETWORKDAYS(A2,B2)
+=WORKDAY(A2,10)</pre>
+</div>
+</section>
+
+<section id="s18"><h2>18 — ROUND</h2>
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>=ROUND(12.567,2)
+=ROUNDUP(12.561,2)
+=ROUNDDOWN(12.569,2)</pre>
+</div>
+</section>
+
+<section id="s19"><h2>19 — SUMIF وSUMIFS</h2>
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>=SUMIF(B:B,"طرابلس",D:D)
+=SUMIFS(D:D,B:B,"طرابلس",C:C,"كمبيوتر")</pre>
+</div>
+</section>
+
+<section id="s20"><h2>20 — COUNTIF وCOUNTIFS</h2>
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>=COUNTIF(C:C,"ناجح")
+=COUNTIFS(B:B,"بنات",C:C,">=50")</pre>
+</div>
+</section>
+
+<section id="s21"><h2>21 — AVERAGEIF وAVERAGEIFS</h2>
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>=AVERAGEIF(B:B,"شبكات",D:D)
+=AVERAGEIFS(D:D,B:B,"شبكات",C:C,">=50")</pre>
+</div>
+</section>
+
+<section id="s22"><h2>22 — VLOOKUP</h2>
+<p>تبحث عن قيمة في أول عمود من جدول وتعيد قيمة من عمود آخر.</p>
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>=VLOOKUP(A2,F:H,3,FALSE)</pre>
+</div>
+</section>
+
+<section id="s23"><h2>23 — XLOOKUP</h2>
+<p>دالة بحث مرنة تستطيع البحث في اتجاهات مختلفة وإرجاع نتيجة بديلة.</p>
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>=XLOOKUP(A2,F:F,H:H,"غير موجود")</pre>
+</div>
+</section>
+
+<section id="s24"><h2>24 — INDEX وMATCH</h2>
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>=INDEX(H:H,MATCH(A2,F:F,0))</pre>
+</div>
+</section>
+
+<section id="s25"><h2>25 — FILTER وSORT وUNIQUE</h2>
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>=FILTER(A2:D100,C2:C100="طرابلس")
+=SORT(A2:D100,4,-1)
+=UNIQUE(B2:B100)</pre>
+</div>
+</section>
+
+<section id="s26"><h2>26 — أخطاء Excel</h2>
+<table>
+<tr><th>الخطأ</th><th>المعنى</th></tr>
+<tr><td>#DIV/0!</td><td>القسمة على صفر.</td></tr>
+<tr><td>#N/A</td><td>لم يتم العثور على قيمة.</td></tr>
+<tr><td>#REF!</td><td>مرجع غير صالح.</td></tr>
+<tr><td>#VALUE!</td><td>نوع بيانات غير مناسب.</td></tr>
+<tr><td>#NAME?</td><td>اسم دالة أو نطاق غير معروف.</td></tr>
+</table>
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>=IFERROR(XLOOKUP(A2,F:F,G:G),"غير موجود")</pre>
+</div>
+</section>
+
+<section id="s27"><h2>27 — Tables</h2>
+<p>Ctrl+T يحول البيانات إلى جدول. تتميز Tables بالتوسع التلقائي والمراجع المنظمة والتصفية المدمجة.</p>
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>=SUM(Table1[المبيعات])</pre>
+</div>
+</section>
+
+<section id="s28"><h2>28 — Sort وFilter</h2>
+<p>Sort لترتيب البيانات وFilter لإظهار السجلات المطابقة دون حذف بقية البيانات.</p>
+</section>
+
+<section id="s29"><h2>29 — Conditional Formatting</h2>
+<p>يمكن تلوين الدرجات المنخفضة أو المبيعات المرتفعة أو التواريخ المتأخرة تلقائيًا.</p>
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>=$D2="متأخر"
+=$C2<50
+=$B2>=90</pre>
+</div>
+</section>
+
+<section id="s30"><h2>30 — Data Validation</h2>
+<p>تستخدم لإنشاء قوائم منسدلة ومنع إدخال قيم غير صحيحة، مثل حالة الطلب: جديد، قيد التنفيذ، مكتمل.</p>
+</section>
+
+<section id="s31"><h2>31 — Remove Duplicates</h2>
+<p>تزيل الصفوف المكررة وفق الأعمدة المحددة. من الأفضل الاحتفاظ بنسخة من البيانات قبل الحذف.</p>
+</section>
+
+<section id="s32"><h2>32 — Find وReplace</h2>
+<p>Ctrl+F للبحث وCtrl+H للاستبدال. مفيدان لتصحيح البيانات على نطاق واسع.</p>
+</section>
+
+<section id="s33"><h2>33 — Text to Columns</h2>
+<p>تحول قيمة مثل مها,شهوب,ليبيا إلى ثلاثة أعمدة باستخدام الفاصلة كفاصل.</p>
+</section>
+
+<section id="s34"><h2>34 — Charts</h2>
+<table>
+<tr><th>الرسم</th><th>الاستخدام</th></tr>
+<tr><td>Column</td><td>مقارنة الفئات.</td></tr>
+<tr><td>Line</td><td>الاتجاه عبر الزمن.</td></tr>
+<tr><td>Bar</td><td>مقارنات أفقية.</td></tr>
+<tr><td>Pie</td><td>النسب من الكل.</td></tr>
+<tr><td>Scatter</td><td>العلاقة بين متغيرين.</td></tr>
+</table>
+</section>
+
+<section id="s35"><h2>35 — PivotTable</h2>
+<p>PivotTable تلخص آلاف السجلات بسرعة. ضع الحقول في Rows وColumns وValues وFilters.</p>
+<div class="grid">
+<div class="card"><b>Rows</b><br>الفئات.</div>
+<div class="card"><b>Columns</b><br>التقسيمات الأفقية.</div>
+<div class="card"><b>Values</b><br>Sum أو Count أو Average.</div>
+<div class="card"><b>Filters</b><br>تصفية التقرير.</div>
+</div>
+</section>
+
+<section id="s36"><h2>36 — PivotChart وSlicers</h2>
+<p>PivotChart يحول PivotTable إلى مخطط، بينما Slicers توفر فلاتر مرئية تفاعلية.</p>
+</section>
+
+<section id="s37"><h2>37 — What-If Analysis</h2>
+<p>تستخدم Scenario Manager وData Table وGoal Seek لدراسة تأثير تغير المدخلات على النتائج.</p>
+</section>
+
+<section id="s38"><h2>38 — Goal Seek وSolver</h2>
+<p>Goal Seek يبحث عن قيمة إدخال تحقق نتيجة محددة. Solver يستخدم لمسائل التحسين ذات المتغيرات والقيود المتعددة.</p>
+</section>
+
+<section id="s39"><h2>39 — حماية الملفات</h2>
+<p>يمكن حماية الورقة وبنية المصنف ووضع كلمات مرور. الحماية ليست بديلًا عن أمن نظام الملفات والصلاحيات.</p>
+</section>
+
+<section id="s40"><h2>40 — استيراد وتصدير البيانات</h2>
+<p>يمكن استيراد CSV وTXT ومصادر أخرى. تحقق من الترميز والفواصل ونوع الأعمدة والتواريخ بعد الاستيراد.</p>
+</section>
+
+<section id="s41"><h2>41 — Power Query</h2>
+<p>Power Query أداة لاستيراد وتحويل وتنظيف البيانات. أهم العمليات: تغيير النوع، حذف الأعمدة، تصفية الصفوف، تقسيم الأعمدة، الدمج والإلحاق.</p>
+<div class="note"><b>الميزة المهمة:</b> خطوات التنظيف تحفظ ويمكن إعادة تشغيلها عند وصول بيانات جديدة.</div>
+</section>
+
+<section id="s42"><h2>42 — تنظيف البيانات</h2>
+<p>استخدم Power Query لإزالة المسافات، تغيير أنواع البيانات، استبدال القيم، حذف الصفوف الفارغة، تقسيم الأعمدة ومعالجة القيم الناقصة.</p>
+</section>
+
+<section id="s43"><h2>43 — Merge وAppend</h2>
+<table>
+<tr><th>الأداة</th><th>الوظيفة</th></tr>
+<tr><td>Merge</td><td>ربط جدولين بمفتاح وإضافة أعمدة.</td></tr>
+<tr><td>Append</td><td>ضم صفوف جداول متشابهة.</td></tr>
+</table>
+</section>
+
+<section id="s44"><h2>44 — Power Pivot</h2>
+<p>Power Pivot يبني Data Model متعدد الجداول ويتيح العلاقات وMeasures باستخدام DAX.</p>
+</section>
+
+<section id="s45"><h2>45 — العلاقات وStar Schema</h2>
+<p>النموذج النجمي يتكون عادة من Fact Table في الوسط وجداول Dimensions حوله. يساعد ذلك على تنظيم التحليل والعلاقات.</p>
+</section>
+
+<section id="s46"><h2>46 — DAX</h2>
+<p>DAX لغة حسابية تستخدم مع Data Model وPower Pivot.</p>
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>Total Sales := SUM(Sales[Amount])
+
+Orders := COUNTROWS(Sales)
+
+Average Sales :=
+DIVIDE([Total Sales],[Orders],0)</pre>
+</div>
+</section>
+
+<section id="s47"><h2>47 — Dashboards</h2>
+<p>Dashboard تجمع KPIs والمخططات والفلاتر في شاشة واحدة.</p>
+<div class="grid">
+<div class="card"><b>KPI</b><br>مؤشرات رئيسية.</div>
+<div class="card"><b>Charts</b><br>عرض الاتجاهات.</div>
+<div class="card"><b>Slicers</b><br>تصفية تفاعلية.</div>
+<div class="card"><b>Summary</b><br>ملخص تنفيذي.</div>
+</div>
+</section>
+
+<section id="s48"><h2>48 — التحليل المالي</h2>
+<p>يمكن حساب الإيرادات والمصروفات والربح وهامش الربح والنمو والتدفقات النقدية.</p>
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>هامش الربح = الربح / الإيرادات
+النمو = (الحالي - السابق) / السابق</pre>
+</div>
+</section>
+
+<section id="s49"><h2>49 — المبيعات والمخزون</h2>
+<p>نظام المخزون يمكن أن يعتمد على: الرصيد الافتتاحي + المشتريات - المبيعات.</p>
+</section>
+
+<section id="s50"><h2>50 — الموارد البشرية</h2>
+<p>يمكن إدارة الموظفين والحضور والإجازات والرواتب والمؤشرات باستخدام Tables والدوال وPivotTable.</p>
+</section>
+
+<section id="s51"><h2>51 — Excel للطلاب</h2>
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>=AVERAGE(B2:F2)
+=IF(G2>=50,"ناجح","راسب")
+=RANK.EQ(G2,$G$2:$G$50,0)</pre>
+</div>
+</section>
+
+<section id="s52"><h2>52 — Excel وقواعد البيانات</h2>
+<p>Excel ممتاز للتحليل والتقارير، بينما DBMS مناسب أكثر للتخزين متعدد المستخدمين والعلاقات والمعاملات والصلاحيات.</p>
+</section>
+
+<section id="s53"><h2>53 — CSV وTXT</h2>
+<p>CSV يستخدم فاصلًا بين القيم. يجب التأكد من delimiter والترميز وأنواع الأعمدة.</p>
+</section>
+
+<section id="s54"><h2>54 — مصادر البيانات الخارجية</h2>
+<p>Get Data يساعد على بناء عمليات استيراد قابلة للتحديث بدل تكرار النسخ واللصق يدويًا.</p>
+</section>
+
+<section id="s55"><h2>55 — VBA وMacros</h2>
+<p>VBA لغة برمجة داخل Excel لأتمتة المهام وإنشاء إجراءات وأزرار ونماذج.</p>
+<div class="note"><b>أمان:</b> لا تشغل ملفات Macro مجهولة المصدر.</div>
+</section>
+
+<section id="s56"><h2>56 — أول برنامج VBA</h2>
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>Sub HelloExcel()
+    MsgBox "مرحبًا من Excel"
+End Sub</pre>
+</div>
+</section>
+
+<section id="s57"><h2>57 — المتغيرات والشروط VBA</h2>
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>Sub CheckValue()
+
+    Dim score As Double
+    score = Range("B2").Value
+
+    If score >= 50 Then
+        Range("C2").Value = "ناجح"
+    Else
+        Range("C2").Value = "راسب"
+    End If
+
+End Sub</pre>
+</div>
+</section>
+
+<section id="s58"><h2>58 — الحلقات VBA</h2>
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>Sub FillNumbers()
+
+    Dim i As Long
+
+    For i = 1 To 10
+        Cells(i,1).Value = i
+    Next i
+
+End Sub</pre>
+</div>
+</section>
+
+<section id="s59"><h2>59 — الخلايا والأوراق VBA</h2>
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>Sub EditSheet()
+
+    Worksheets("Sheet1").Range("A1").Value = "مها شهوب"
+    Worksheets("Sheet1").Range("B1").Font.Bold = True
+
+End Sub</pre>
+</div>
+</section>
+
+<section id="s60"><h2>60 — أخطاء VBA</h2>
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>Sub SafeExample()
+
+    On Error GoTo ErrorHandler
+
+    Range("A1").Value = 10 / 0
+
+    Exit Sub
+
+ErrorHandler:
+    MsgBox "حدث خطأ: " & Err.Description
+
+End Sub</pre>
+</div>
+</section>
+
+<section id="s61"><h2>61 — تحسين أداء Excel</h2>
+<ul>
+<li>قلل الصيغ المتكررة غير الضرورية.</li>
+<li>استخدم Tables بدل النطاقات العشوائية.</li>
+<li>استخدم Power Query للعمليات المتكررة.</li>
+<li>تجنب كثرة التنسيقات الشرطية على نطاقات ضخمة.</li>
+<li>نظم المصنف إلى بيانات وحسابات وتقارير.</li>
+</ul>
+</section>
+
+<section id="s62"><h2>62 — مشروع كشف درجات</h2>
+<p>أنشئ جدولًا للطلاب والمواد، احسب المتوسط والتقدير والترتيب والحضور، ثم أنشئ PivotTable ومخططًا للأداء.</p>
+</section>
+
+<section id="s63"><h2>63 — مشروع نظام مبيعات</h2>
+<p>منتجات + عملاء + فواتير + مبيعات + PivotTable + Slicers + Dashboard للمبيعات الشهرية.</p>
+</section>
+
+<section id="s64"><h2>64 — مشروع إدارة مخزون</h2>
+<p>أنشئ جداول للمشتريات والمبيعات والرصيد وحد إعادة الطلب، ثم أضف تنبيهًا بالتنسيق الشرطي للأصناف منخفضة المخزون.</p>
+</section>
+
+<section id="s65"><h2>65 — مشروع Power Query</h2>
+<p>استورد عدة ملفات CSV، نظفها، استخدم Append لضمها، ثم أنشئ PivotTable وDashboard.</p>
+</section>
+
+<section id="s66"><h2>66 — مشروع مكتبة إلكترونية</h2>
+<p>جداول للكتب والتصنيفات والقراء والإعارات، ثم تقارير للكتب الأكثر إعارة والمتأخرات والحركة الشهرية.</p>
+</section>
+
+<section id="s67"><h2>67 — الاختصارات المهمة</h2>
+<table>
+<tr><th>الاختصار</th><th>الوظيفة</th></tr>
+<tr><td>Ctrl+C</td><td>نسخ</td></tr>
+<tr><td>Ctrl+V</td><td>لصق</td></tr>
+<tr><td>Ctrl+Z</td><td>تراجع</td></tr>
+<tr><td>Ctrl+F</td><td>بحث</td></tr>
+<tr><td>Ctrl+H</td><td>استبدال</td></tr>
+<tr><td>Ctrl+T</td><td>إنشاء Table</td></tr>
+<tr><td>F2</td><td>تعديل الخلية</td></tr>
+</table>
+</section>
+
+<section id="s68"><h2>68 — الأخطاء الشائعة</h2>
+<ul>
+<li>خلط البيانات الخام بالتقرير النهائي.</li>
+<li>كتابة الأرقام كنصوص.</li>
+<li>استخدام Merge Cells داخل جداول البيانات بلا حاجة.</li>
+<li>الاعتماد على النسخ واللصق في عملية قابلة للأتمتة.</li>
+<li>عدم استخدام المراجع المطلقة عند الحاجة.</li>
+</ul>
+</section>
+
+<section id="s69"><h2>69 — مسار التعلم</h2>
+<div class="grid">
+<div class="card"><b>1</b><br>الخلايا والتنسيق والمعادلات.</div>
+<div class="card"><b>2</b><br>الدوال والشروط والبحث.</div>
+<div class="card"><b>3</b><br>Tables وCharts وPivotTable.</div>
+<div class="card"><b>4</b><br>Power Query.</div>
+<div class="card"><b>5</b><br>Power Pivot وDAX.</div>
+<div class="card"><b>6</b><br>VBA والمشاريع.</div>
+</div>
+</section>
+
+<section id="s70"><h2>70 — المرجع السريع</h2>
+<div class="code">
+<button class="copy" onclick="copyCode(this)">نسخ</button>
+<pre>SUM
+AVERAGE
+COUNT
+COUNTIF
+COUNTIFS
+SUMIF
+SUMIFS
+IF
+IFS
+AND
+OR
+XLOOKUP
+VLOOKUP
+INDEX
+MATCH
+FILTER
+SORT
+UNIQUE
+TRIM
+SUBSTITUTE
+TODAY
+EOMONTH
+IFERROR
+ROUND</pre>
+</div>
+<div class="note">
+تعلم Excel بصورة عملية: نظم البيانات أولًا، ثم استخدم الدوال، ثم التحليل،
+ثم Power Query وPower Pivot، وأخيرًا VBA للأتمتة.
+</div>
+</section>
+
+<footer>
+دليل Excel الشامل<br>
+إعداد الكاتبة والمهندسة: مها شهوب<br>
+منصة آفاق المعرفة التقنية — مكتبة | مها شهوب — سلسلة أساسيات التقنية
+</footer>
+
+</main>
+</div>
+
+<button class="top" id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+function toggleTheme(){
+const html=document.documentElement;
+const dark=html.getAttribute("data-theme")==="dark";
+html.setAttribute("data-theme",dark?"light":"dark");
+localStorage.setItem("excel-theme",html.getAttribute("data-theme"));
+}
+
+(function(){
+const theme=localStorage.getItem("excel-theme");
+if(theme)document.documentElement.setAttribute("data-theme",theme);
+})();
+
+function toggleMenu(){
+document.getElementById("sidebar").classList.toggle("open");
+}
+
+function filterNav(){
+const q=document.getElementById("search").value.toLowerCase();
+
+document.querySelectorAll("#nav a").forEach(a=>{
+a.style.display=
+a.textContent.toLowerCase().includes(q)?"block":"none";
+});
+}
+
+async function copyCode(btn){
+
+const code=btn.parentElement.querySelector("pre").innerText;
+
+try{
+await navigator.clipboard.writeText(code);
+}catch(e){
+const textarea=document.createElement("textarea");
+textarea.value=code;
+document.body.appendChild(textarea);
+textarea.select();
+document.execCommand("copy");
+textarea.remove();
+}
+
+btn.textContent="✓ تم النسخ";
+
+setTimeout(()=>{
+btn.textContent="نسخ";
+},1200);
+}
+
+function updateProgress(){
+
+const doc=document.documentElement;
+const total=doc.scrollHeight-doc.clientHeight;
+
+document.getElementById("progress").style.width=
+(total ? doc.scrollTop/total*100 : 0)+"%";
+
+document.getElementById("topBtn").style.display=
+doc.scrollTop>500?"block":"none";
+}
+
+window.addEventListener("scroll",updateProgress);
+updateProgress();
+
+const links=[...document.querySelectorAll("#nav a")];
+
+const sections=links
+.map(link=>document.querySelector(link.getAttribute("href")))
+.filter(Boolean);
+
+const observer=new IntersectionObserver(entries=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+links.forEach(link=>link.classList.remove("active"));
+
+const active=document.querySelector(
+'#nav a[href="#'+entry.target.id+'"]'
+);
+
+if(active)active.classList.add("active");
+
+}
+
+});
+
+},{rootMargin:"-90px 0px -65% 0px"});
+
+sections.forEach(section=>observer.observe(section));
+
+links.forEach(link=>{
+link.addEventListener("click",()=>{
+if(window.innerWidth<=950){
+document.getElementById("sidebar").classList.remove("open");
+}
+});
+});
+</script>
+
+</body>
+</html>
