@@ -6,31 +6,350 @@
 <meta name="description" content="دليل SQL Server الشامل من منصة آفاق المعرفة التقنية - مها شهوب">
 <title>دليل SQL Server الشامل | مها شهوب</title>
 <style>
-:root{--bg:#eef3f8;--card:#fff;--text:#172033;--muted:#64748b;--p:#0b4f88;--p2:#0b4f88;--b:#d7e1eb;--code:#0b1220;--shadow:0 8px 24px rgba(20,55,90,.09)}
-[data-theme=dark]{--bg:#0c1420;--card:#151f2c;--text:#e7eef8;--muted:#a9b7c8;--p:#0b4f88;--p2:#a7d9fb;--b:#2b3a4b;--code:#070b12;--shadow:0 8px 24px rgba(0,0,0,.25)}
-*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
-body{font-family:"Segoe UI",Tahoma,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.9}
-header{position:fixed;top:0;right:0;left:0;height:72px;z-index:1000;background:var(--card);border-bottom:1px solid var(--b);display:flex;align-items:center;padding:0 20px;box-shadow:var(--shadow)}
-.logo{width:67px;height:54px;border-radius:50%;display:grid;place-items:center;}
-.brand{margin-right:12px}.brand b{display:block;color:var(--p2)}.brand small{color:var(--muted)}
-.actions{margin-right:auto;display:flex;gap:8px}button{border:1px solid var(--b);background:var(--card);color:var(--text);border-radius:9px;padding:8px 12px;cursor:pointer}.menu{display:none}
-.progress{position:fixed;top:72px;right:0;height:4px;background:var(--p);width:0;z-index:1001}
-aside{position:fixed;top:76px;right:0;bottom:0;width:310px;background:var(--card);border-left:1px solid var(--b);padding:16px;overflow:auto}
-.search{width:100%;padding:10px;border:1px solid var(--b);border-radius:9px;background:var(--bg);color:var(--text);margin-bottom:10px}
-nav a{display:block;color:var(--muted);text-decoration:none;padding:5px 8px;border-radius:7px;font-size:12.5px}
-nav a:hover,nav a.active{background:#1677c81a;color:var(--p);font-weight:700}
-main{margin-right:310px;padding:110px 34px 50px;max-width:1300px}
-.hero{background:linear-gradient(135deg,var(--p2),var(--p));color:#ffffff;border-radius:18px;padding:34px;margin-bottom:22px;box-shadow:var(--shadow)}
-.hero h1{font-size:32px}.credit{font-weight:700;margin-top:8px}
-section{background:var(--card);border:1px solid var(--b);border-radius:14px;padding:24px;margin-bottom:18px;box-shadow:var(--shadow);scroll-margin-top:95px}
-h2{font-size:21px;color:var(--p2);border-right:4px solid var(--p);padding-right:9px;margin-bottom:12px}
-.code{position:relative;margin:13px 0}.code pre{background:var(--code);color:#dbeafe;direction:ltr;text-align:left;overflow:auto;border-radius:9px;padding:17px;font:13px/1.7 Consolas,monospace;white-space:pre-wrap}
-.copy{position:absolute;right:7px;top:7px;background:#fff;color:#172033;border:0;font-size:11px;padding:5px 8px}
-.top{position:fixed;bottom:20px;left:20px;border-radius:50%;background:var(--p);color:#fff;width:44px;height:44px;border:0}
-footer{text-align:center;color:var(--muted);padding:28px}
-@media(max-width:900px){aside{transform:translateX(100%);transition:.25s;width:290px}aside.open{transform:none}.menu{display:block}main{margin:0;padding:100px 14px 40px}.brand small{display:none}.hero h1{font-size:25px}}
-@media print{header,aside,.top,.progress,.actions,.copy{display:none!important}main{margin:0;padding:0}section{box-shadow:none;break-inside:avoid}}
+:root{
+  --bg:#eef3f8;--card:#fff;--text:#172033;--muted:#64748b;
+  --p:#0b4f88;--p2:#0b4f88;--b:#d7e1eb;--code:#0b1220;
+  --shadow:0 8px 24px rgba(20,55,90,.09);
+  --sidebar-w:310px;
+}
 
+[data-theme=dark]{
+  --bg:#0c1420;--card:#151f2c;--text:#e7eef8;--muted:#a9b7c8;
+  --p:#0b4f88;--p2:#a7d9fb;--b:#2b3a4b;--code:#070b12;
+  --shadow:0 8px 24px rgba(0,0,0,.25);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:"Segoe UI",Tahoma,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.9;
+  overflow-x:hidden; /* منع التمرير الأفقي المفاجئ */
+}
+
+header{
+  position:fixed;
+  top:0;
+  right:0;
+  left:0;
+  height:72px;
+  z-index:1000;
+  background:var(--card);
+  border-bottom:1px solid var(--b);
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:0 18px;
+  box-shadow:var(--shadow);
+}
+
+.logo{
+  width:54px;
+  height:54px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  flex-shrink:0;
+  object-fit:cover;
+}
+
+.brand{
+  margin-right:4px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.brand b{
+  display:block;
+  color:var(--p2);
+  font-size:16px;
+}
+
+.brand small{
+  color:var(--muted);
+  font-size:11px;
+}
+
+.actions{
+  margin-right:auto;
+  display:flex;
+  gap:6px;
+  flex-shrink:0;
+}
+
+button{
+  border:1px solid var(--b);
+  background:var(--card);
+  color:var(--text);
+  border-radius:9px;
+  padding:8px 11px;
+  cursor:pointer;
+  font-size:13px;
+  white-space:nowrap;
+}
+
+button:hover{
+  border-color:var(--p);
+  color:var(--p);
+}
+
+.menu{
+  display:none;
+}
+
+.progress{
+  position:fixed;
+  top:72px;
+  right:0;
+  height:4px;
+  background:var(--p);
+  width:0;
+  z-index:1001;
+}
+
+aside{
+  position:fixed;
+  top:76px;
+  right:0;
+  bottom:0;
+  width:var(--sidebar-w);
+  background:var(--card);
+  border-left:1px solid var(--b);
+  padding:16px;
+  overflow-y:auto;
+  z-index:950;
+  transition:transform .25s ease;
+}
+
+.search{
+  width:100%;
+  padding:10px;
+  border:1px solid var(--b);
+  border-radius:9px;
+  background:var(--bg);
+  color:var(--text);
+  margin-bottom:10px;
+  outline:none;
+}
+
+nav a{
+  display:block;
+  color:var(--muted);
+  text-decoration:none;
+  padding:6px 8px;
+  border-radius:7px;
+  font-size:12.5px;
+  margin:2px 0;
+}
+
+nav a:hover,
+nav a.active{
+  background:rgba(22,119,200,.1);
+  color:var(--p);
+  font-weight:700;
+}
+
+main{
+  margin-right:var(--sidebar-w);
+  padding:110px 34px 50px;
+  max-width:1300px;
+  width:100%;
+  min-width:0;
+}
+
+.hero{
+  background:linear-gradient(135deg,var(--p2),var(--p));
+  color:#ffffff;
+  border-radius:18px;
+  padding:34px;
+  margin-bottom:22px;
+  box-shadow:var(--shadow);
+}
+
+.hero h1{
+  font-size:30px;
+}
+
+.credit{
+  font-weight:700;
+  margin-top:8px;
+}
+
+section{
+  background:var(--card);
+  border:1px solid var(--b);
+  border-radius:14px;
+  padding:24px;
+  margin-bottom:18px;
+  box-shadow:var(--shadow);
+  scroll-margin-top:95px;
+}
+
+h2{
+  font-size:21px;
+  color:var(--p2);
+  border-right:4px solid var(--p);
+  padding-right:9px;
+  margin-bottom:12px;
+}
+
+.code{
+  position:relative;
+  margin:13px 0;
+}
+
+.code pre{
+  background:var(--code);
+  color:#dbeafe;
+  direction:ltr;
+  text-align:left;
+  overflow-x:auto;
+  border-radius:9px;
+  padding:17px;
+  font:13px/1.7 Consolas,monospace;
+  white-space:pre;
+  min-width:max-content;
+}
+
+.copy{
+  position:absolute;
+  right:7px;
+  top:7px;
+  background:#fff;
+  color:#172033;
+  border:0;
+  font-size:11px;
+  padding:5px 8px;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin:14px 0;
+  font-size:14px;
+  display:block;
+  overflow-x:auto;
+}
+
+th,
+td{
+  border:1px solid var(--b);
+  padding:9px;
+  text-align:right;
+  white-space:nowrap;
+}
+
+th{
+  background:rgba(22,119,200,.1);
+  color:var(--p2);
+}
+
+.top{
+  position:fixed;
+  bottom:20px;
+  left:20px;
+  border-radius:50%;
+  background:var(--p);
+  color:#fff;
+  width:44px;
+  height:44px;
+  border:0;
+  cursor:pointer;
+  display:none;
+  z-index:1001;
+  font-size:18px;
+}
+
+footer{
+  text-align:center;
+  color:var(--muted);
+  padding:28px;
+}
+
+/* الاستجابة التامة للشاشات المتوسطة والصغيرة (التابلت والهواتف) */
+@media(max-width:992px){
+  aside{
+    transform:translateX(100%);
+    width:290px;
+    box-shadow:-8px 0 25px rgba(0,0,0,.15);
+  }
+
+  aside.open{
+    transform:translateX(0);
+  }
+
+  .menu{
+    display:block;
+  }
+
+  main{
+    margin-right:0;
+    padding:100px 16px 40px;
+  }
+
+  .brand small{
+    display:none;
+  }
+
+  .hero h1{
+    font-size:24px;
+  }
+}
+
+@media(max-width:600px){
+  header{
+    padding:0 10px;
+    gap:8px;
+  }
+
+  .brand b{
+    font-size:14px;
+  }
+
+  button{
+    padding:7px 9px;
+    font-size:12px;
+  }
+
+  section{
+    padding:18px 14px;
+  }
+
+  h2{
+    font-size:19px;
+  }
+}
+
+@media print{
+  header,
+  aside,
+  .top,
+  .progress,
+  .actions,
+  .copy{
+    display:none!important;
+  }
+
+  main{
+    margin:0;
+    padding:0;
+    width:100%;
+  }
+
+  section{
+    box-shadow:none;
+    break-inside:avoid;
+  }
+}
 </style>
 </head>
 <body>
