@@ -6,129 +6,166 @@
 <title>دليل Excel الشامل | مها شهوب</title>
 <style>
 :root{
---bg:#eef3f9;--card:#fff;--text:#172033;--muted:#637087;
---primary:#1677c8;--primary2:#0b4f88;--border:#d8e1ec;
---code:#111827;--codeText:#e5eef9;--nav:#fff
+    --bg:#eef3f9;--card:#fff;--text:#172033;--muted:#637087;
+    --primary:#1677c8;--primary2:#0b4f88;--border:#d8e1ec;
+    --code:#111827;--codeText:#e5eef9;--nav:#fff
 }
 [data-theme=dark]{
---bg:#0b1220;--card:#111b2d;--text:#e8eef8;--muted:#a8b5c8;
---primary:#48a9ff;--primary2:#70bdff;--border:#263750;
---code:#07101d;--codeText:#dbeafe;--nav:#0e1727
+    --bg:#0b1220;--card:#111b2d;--text:#e8eef8;--muted:#a8b5c8;
+    --primary:#48a9ff;--primary2:#70bdff;--border:#263750;
+    --code:#07101d;--codeText:#dbeafe;--nav:#0e1727
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
-margin:0;background:var(--bg);color:var(--text);
-font-family:"Segoe UI",Tahoma,Arial,sans-serif;line-height:1.85
+    margin:0;background:var(--bg);color:var(--text);
+    font-family:"Segoe UI",Tahoma,Arial,sans-serif;line-height:1.85;
+    overflow-x:hidden; /* منع التمرير الأفقي المفاجئ على الهواتف */
 }
 header{
-position:fixed;top:0;right:0;left:0;height:68px;
-background:var(--nav);border-bottom:1px solid var(--border);
-z-index:1000;display:flex;align-items:center;gap:12px;padding:0 20px
+    position:fixed;top:0;right:0;left:0;height:68px;
+    background:var(--nav);border-bottom:1px solid var(--border);
+    z-index:1000;display:flex;align-items:center;gap:10px;padding:0 15px
 }
-.logo{width:67px;height:54px;border-radius:50%;display:grid;place-items:center;}
-
-.brand{font-weight:800;font-size:18px}
+.logo{
+    width:50px;height:50px;border-radius:50%;display:grid;place-items:center;
+    flex-shrink:0;object-fit:cover;
+}
+.brand{
+    font-weight:800;font-size:16px;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
 .brand small{display:block;color:var(--muted);font-size:11px}
-.actions{margin-right:auto;display:flex;gap:8px}
+.actions{margin-right:auto;display:flex;gap:6px;flex-shrink:0}
 button{
-border:1px solid var(--border);background:var(--card);color:var(--text);
-border-radius:9px;padding:9px 13px;cursor:pointer
+    border:1px solid var(--border);background:var(--card);color:var(--text);
+    border-radius:9px;padding:8px 11px;cursor:pointer;white-space:nowrap;font-size:13px
 }
+button:hover{border-color:var(--primary);color:var(--primary)}
+
 .progress{
-position:fixed;top:68px;right:0;height:3px;width:0;
-background:#3fb5ff;z-index:1001
+    position:fixed;top:68px;right:0;height:3px;width:0;
+    background:#3fb5ff;z-index:1001
 }
-.layout{max-width:1550px;margin:auto;padding-top:68px}
+.layout{max-width:1550px;margin:auto;padding-top:68px;width:100%}
 aside{
-position:fixed;top:68px;bottom:0;width:315px;
-background:var(--nav);border-left:1px solid var(--border);
-padding:18px 14px;overflow:auto
+    position:fixed;top:68px;bottom:0;width:315px;
+    background:var(--nav);border-left:1px solid var(--border);
+    padding:18px 14px;overflow-y:auto;z-index:950
 }
 .search{
-width:100%;padding:12px;border:1px solid var(--border);
-border-radius:11px;background:var(--card);color:var(--text);
-margin-bottom:12px
+    width:100%;padding:11px;border:1px solid var(--border);
+    border-radius:11px;background:var(--card);color:var(--text);
+    margin-bottom:12px;outline:none
 }
 .nav-title{font-weight:800;color:var(--primary);margin:8px 0}
 nav a{
-display:block;text-decoration:none;color:var(--muted);
-padding:6px 9px;border-radius:8px;font-size:12px;margin:2px 0
+    display:block;text-decoration:none;color:var(--muted);
+    padding:6px 9px;border-radius:8px;font-size:12px;margin:2px 0
 }
 nav a:hover,nav a.active{
-background:rgba(22,119,200,.1);color:var(--primary);font-weight:700
+    background:rgba(22,119,200,.1);color:var(--primary);font-weight:700
 }
-main{margin-right:315px;padding:32px 34px 70px}
+main{
+    margin-right:315px;width:calc(100% - 315px);
+    padding:32px 34px 70px;min-width:0
+}
 .hero{
-background:linear-gradient(135deg,#071b31,#0b4f88 55%,#1677c8);
-color:white;border-radius:20px;padding:38px;margin-bottom:25px
+    background:linear-gradient(135deg,#071b31,#0b4f88 55%,#1677c8);
+    color:white;border-radius:20px;padding:38px;margin-bottom:25px
 }
-.hero h1{font-size:36px;margin:0}
+.hero h1{font-size:32px;margin:0}
 .badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
 .badge{
-padding:6px 12px;border-radius:20px;
-background:rgba(255,255,255,.13);font-size:12px
+    padding:6px 12px;border-radius:20px;
+    background:rgba(255,255,255,.13);font-size:12px
 }
 section{
-background:var(--card);border:1px solid var(--border);
-border-radius:17px;padding:27px;margin-bottom:22px
+    background:var(--card);border:1px solid var(--border);
+    border-radius:17px;padding:27px;margin-bottom:22px
 }
 h2{
-color:var(--primary2);font-size:25px;
-border-right:5px solid var(--primary);padding-right:12px
+    color:var(--primary2);font-size:23px;
+    border-right:5px solid var(--primary);padding-right:12px
 }
 h3{color:var(--primary)}
 .grid{
-display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px
 }
 .card{
-border:1px solid var(--border);border-radius:12px;
-padding:15px;background:var(--bg)
+    border:1px solid var(--border);border-radius:12px;
+    padding:15px;background:var(--bg)
 }
 .toc{
-display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:9px
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:9px
 }
 .toc a{
-text-decoration:none;color:var(--text);
-border:1px solid var(--border);border-radius:10px;
-padding:10px;background:var(--bg)
+    text-decoration:none;color:var(--text);
+    border:1px solid var(--border);border-radius:10px;
+    padding:10px;background:var(--bg)
 }
 .code{
-position:relative;background:var(--code);color:var(--codeText);
-border-radius:12px;overflow:auto;margin:15px 0;direction:ltr;text-align:left
+    position:relative;background:var(--code);color:var(--codeText);
+    border-radius:12px;overflow-x:auto;margin:15px 0;direction:ltr;text-align:left
 }
 pre{
-margin:0;padding:20px;font-family:Consolas,monospace;
-font-size:13px;line-height:1.7
+    margin:0;padding:20px;font-family:Consolas,monospace;
+    font-size:13px;line-height:1.7;min-width:max-content
 }
 .copy{
-position:absolute;top:8px;right:8px;
-background:#182538;color:#dbeafe;border:1px solid #334155
+    position:absolute;top:8px;right:8px;
+    background:#182538;color:#dbeafe;border:1px solid #334155
 }
 .note{
-padding:14px;border-right:4px solid var(--primary);
-background:rgba(22,119,200,.08);border-radius:9px
+    padding:14px;border-right:4px solid var(--primary);
+    background:rgba(22,119,200,.08);border-radius:9px
 }
-table{width:100%;border-collapse:collapse}
-th,td{border:1px solid var(--border);padding:10px;text-align:right}
+
+/* دعم الجداول بالتمرير الأفقي على الشاشات الضيقة */
+table{
+    width:100%;border-collapse:collapse;
+    display:block;overflow-x:auto;
+}
+th,td{
+    border:1px solid var(--border);padding:10px;
+    text-align:right;white-space:nowrap
+}
 th{background:rgba(22,119,200,.1);color:var(--primary2)}
-.top{
-position:fixed;bottom:20px;left:20px;
-width:45px;height:45px;border-radius:50%;
-background:var(--primary);color:white;display:none
+
+.topbtn-float{
+    position:fixed;bottom:20px;left:20px;
+    width:45px;height:45px;border-radius:50%;
+    background:var(--primary);color:white;display:none;
+    border:0;cursor:pointer;z-index:900;font-size:20px
 }
 .menu{display:none}
 
-@media(max-width:950px){
-.menu{display:block}
-aside{display:none;right:0;width:310px;z-index:950}
-aside.open{display:block}
-main{margin:0;padding:24px 15px 60px}
-.hero h1{font-size:28px}
+/* التجاوب الذكي مع التابلت والهواتف */
+@media(max-width:1100px){
+    .menu{display:block}
+    aside{display:none;right:0;width:290px;z-index:950;box-shadow:-8px 0 25px rgba(0,0,0,.15)}
+    aside.open{display:block}
+    main{margin:0;width:100%;padding:24px 16px 60px}
 }
+
+@media(max-width:600px){
+    .brand{font-size:14px}
+    .brand small{display:none} /* إخفاء النص الصغير في الهواتف جداً لمنع التداخل */
+    header{padding:0 10px;gap:8px}
+    .actions button:nth-child(2){display:none} /* إخفاء زر الطباعة بالهواتف الضيقة لتوفير المساحة */
+    button{padding:7px 9px;font-size:12px}
+    .hero{padding:22px 16px}
+    .hero h1{font-size:23px}
+    section{padding:18px 14px}
+    h2{font-size:20px}
+    table{font-size:12px}
+    pre{font-size:12px}
+}
+
 @media print{
-header,aside,.progress,.top{display:none!important}
-main{margin:0}
+    header,aside,.progress,.topbtn-float{display:none!important}
+    main{margin:0;width:100%;padding:0}
+    section{box-shadow:none;break-inside:avoid}
 }
 </style>
 </head>
