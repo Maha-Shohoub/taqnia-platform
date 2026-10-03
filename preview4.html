@@ -15,9 +15,9 @@ content="Python, بايثون, تعلم Python, برمجة, Flask, Django, FastA
 
 <style>
 
-/* =========================
-   ROOT
-========================= */
+/* =========================================================
+   المتغيرات
+========================================================= */
 
 :root{
     --bg:#eef3f9;
@@ -47,9 +47,10 @@ content="Python, بايثون, تعلم Python, برمجة, Flask, Django, FastA
     --shadow:0 8px 28px rgba(0,0,0,.25);
 }
 
-/* =========================
-   GENERAL
-========================= */
+
+/* =========================================================
+   أساسيات
+========================================================= */
 
 *{
     box-sizing:border-box;
@@ -65,11 +66,22 @@ body{
     color:var(--text);
     font-family:"Segoe UI",Tahoma,Arial,sans-serif;
     line-height:1.85;
+    overflow-x:hidden; /* لمنع التمرير الأفقي غير المخطط له على الهواتف */
 }
 
-/* =========================
-   TOP BAR
-========================= */
+a{
+    color:inherit;
+}
+
+button,
+input{
+    font-family:inherit;
+}
+
+
+/* =========================================================
+   الشريط العلوي
+========================================================= */
 
 .top{
     position:fixed;
@@ -82,17 +94,27 @@ body{
     z-index:1000;
     display:flex;
     align-items:center;
-    gap:14px;
-    padding:0 22px;
+    gap:12px;
+    padding:0 18px;
     box-shadow:0 3px 15px rgba(0,0,0,.04);
 }
 
-.logo{width:67px;height:54px;border-radius:50%;display:grid;place-items:center;}
-
+.logo{
+    width:54px;
+    height:54px;
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    flex-shrink:0;
+    object-fit:cover;
+}
 
 .brand{
     font-weight:800;
-    font-size:18px;
+    font-size:17px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 
 .brand small{
@@ -100,12 +122,14 @@ body{
     color:var(--muted);
     font-size:11px;
     line-height:1.2;
+    font-weight:500;
 }
 
 .top-actions{
     margin-right:auto;
     display:flex;
-    gap:8px;
+    gap:6px;
+    flex-shrink:0;
 }
 
 .btn{
@@ -113,8 +137,10 @@ body{
     background:var(--card);
     color:var(--text);
     border-radius:10px;
-    padding:9px 13px;
+    padding:8px 11px;
     cursor:pointer;
+    font-size:13px;
+    white-space:nowrap;
     transition:.2s;
 }
 
@@ -123,15 +149,17 @@ body{
     color:var(--primary);
 }
 
-/* =========================
-   LAYOUT
-========================= */
+
+/* =========================================================
+   التخطيط
+========================================================= */
 
 .layout{
     display:flex;
     max-width:1500px;
     margin:auto;
     padding-top:68px;
+    width:100%;
 }
 
 aside{
@@ -139,16 +167,22 @@ aside{
     position:fixed;
     top:68px;
     bottom:0;
-    right:max(0px,calc((100vw - 1500px)/2));
+    right:max(0px, calc((100vw - 1500px)/2));
     background:var(--nav);
     border-left:1px solid var(--border);
     padding:20px 15px;
-    overflow:auto;
+    overflow-y:auto;
+    z-index:950;
 }
+
+
+/* =========================================================
+   البحث
+========================================================= */
 
 .search{
     width:100%;
-    padding:12px;
+    padding:11px 13px;
     border:1px solid var(--border);
     border-radius:12px;
     background:var(--card);
@@ -168,6 +202,11 @@ aside{
     margin:8px 0 10px;
 }
 
+
+/* =========================================================
+   القائمة
+========================================================= */
+
 nav a{
     display:block;
     text-decoration:none;
@@ -186,18 +225,25 @@ nav a.active{
     font-weight:700;
 }
 
+
+/* =========================================================
+   المحتوى
+========================================================= */
+
 main{
     margin-right:300px;
     width:calc(100% - 300px);
     padding:32px 34px 70px;
+    min-width:0;
 }
 
-/* =========================
-   HERO
-========================= */
+
+/* =========================================================
+   Hero
+========================================================= */
 
 .hero{
-    background:linear-gradient(135deg,#071b31,#0b4f88 55%,#1677c8);
+    background:linear-gradient(135deg, #071b31, #0b4f88 55%, #1677c8);
     color:#fff;
     border-radius:20px;
     padding:36px;
@@ -206,12 +252,13 @@ main{
 }
 
 .hero h1{
-    font-size:34px;
+    font-size:32px;
     margin:0 0 8px;
 }
 
 .hero p{
-    margin:7px 0;
+    margin:6px 0;
+    opacity:.92;
 }
 
 .badges{
@@ -229,9 +276,10 @@ main{
     font-size:12px;
 }
 
-/* =========================
-   SECTIONS
-========================= */
+
+/* =========================================================
+   الأقسام
+========================================================= */
 
 section{
     scroll-margin-top:88px;
@@ -246,7 +294,7 @@ section{
 h2{
     margin:0 0 13px;
     color:var(--primary2);
-    font-size:25px;
+    font-size:23px;
     border-right:5px solid var(--primary);
     padding-right:12px;
 }
@@ -268,13 +316,14 @@ p{
     color:var(--muted);
 }
 
-/* =========================
-   CARDS
-========================= */
+
+/* =========================================================
+   البطاقات
+========================================================= */
 
 .grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
     gap:14px;
     margin:15px 0;
 }
@@ -290,13 +339,14 @@ p{
     color:var(--primary);
 }
 
-/* =========================
-   TOC
-========================= */
+
+/* =========================================================
+   الفهرس
+========================================================= */
 
 .toc{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
     gap:10px;
 }
 
@@ -316,9 +366,10 @@ p{
     transform:translateY(-2px);
 }
 
-/* =========================
-   CODE
-========================= */
+
+/* =========================================================
+   الأكواد
+========================================================= */
 
 .code{
     position:relative;
@@ -326,19 +377,19 @@ p{
     color:var(--codeText);
     border-radius:12px;
     margin:15px 0;
-    overflow:auto;
+    overflow-x:auto;
     direction:ltr;
     text-align:left;
 }
 
 .code pre{
     margin:0;
-    padding:20px;
+    padding:19px;
     white-space:pre;
     min-width:max-content;
-    font-family:Consolas,"Courier New",monospace;
+    font-family:Consolas, "Courier New", monospace;
     font-size:13px;
-    line-height:1.7;
+    line-height:1.65;
 }
 
 .copy{
@@ -354,15 +405,18 @@ p{
     font-size:12px;
 }
 
-/* =========================
-   TABLE
-========================= */
+
+/* =========================================================
+   الجداول
+========================================================= */
 
 table{
     width:100%;
     border-collapse:collapse;
     margin:15px 0;
     font-size:14px;
+    display:block;
+    overflow-x:auto;
 }
 
 th,
@@ -371,6 +425,7 @@ td{
     padding:10px;
     text-align:right;
     vertical-align:top;
+    white-space:nowrap;
 }
 
 th{
@@ -378,37 +433,38 @@ th{
     color:var(--primary2);
 }
 
-/* =========================
-   NOTES
-========================= */
 
-.note{
-    padding:14px 16px;
+/* =========================================================
+   الملاحظات
+========================================================= */
+
+.note,
+.warning,
+.success{
+    padding:13px 16px;
     border-radius:10px;
     margin:14px 0;
     border-right:4px solid var(--primary);
+}
+
+.note{
     background:rgba(22,119,200,.08);
 }
 
 .warning{
-    padding:14px 16px;
-    border-radius:10px;
-    margin:14px 0;
-    border-right:4px solid #d08a00;
+    border-color:#d08a00;
     background:rgba(208,138,0,.09);
 }
 
 .success{
-    padding:14px 16px;
-    border-radius:10px;
-    margin:14px 0;
-    border-right:4px solid #16845a;
+    border-color:#16845a;
     background:rgba(22,132,90,.09);
 }
 
-/* =========================
-   PROGRESS
-========================= */
+
+/* =========================================================
+   شريط التقدم
+========================================================= */
 
 .progress-wrap{
     position:fixed;
@@ -425,9 +481,10 @@ th{
     background:#3fb5ff;
 }
 
-/* =========================
-   TOP BUTTON
-========================= */
+
+/* =========================================================
+   زر العودة
+========================================================= */
 
 .topbtn{
     position:fixed;
@@ -445,17 +502,19 @@ th{
     z-index:900;
 }
 
-/* =========================
-   MENU
-========================= */
+
+/* =========================================================
+   القائمة المحمولة
+========================================================= */
 
 .menu{
     display:none;
 }
 
-/* =========================
-   FOOTER
-========================= */
+
+/* =========================================================
+   Footer
+========================================================= */
 
 footer{
     text-align:center;
@@ -463,22 +522,23 @@ footer{
     padding:30px 10px;
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
 
-@media(max-width:950px){
+/* =========================================================
+   Responsive (الهواتف والتابلت)
+========================================================= */
 
+@media(max-width:1100px){
     .menu{
         display:block;
     }
 
     aside{
         display:none;
+        position:fixed;
         right:0;
-        width:300px;
+        width:290px;
         z-index:950;
-        box-shadow:-8px 0 25px rgba(0,0,0,.12);
+        box-shadow:-8px 0 25px rgba(0,0,0,.15);
     }
 
     aside.open{
@@ -488,60 +548,58 @@ footer{
     main{
         margin:0;
         width:100%;
-        padding:24px 15px 60px;
-    }
-
-    .hero{
-        padding:25px;
-    }
-
-    .hero h1{
-        font-size:27px;
+        padding:24px 16px 60px;
     }
 }
 
-@media(max-width:600px){
 
+@media(max-width:600px){
     .brand{
-        font-size:15px;
+        font-size:14px;
+    }
+
+    .brand small{
+        display:none; /* إخفاء النص الفرعي الصغير في الشاشات شديدة الصغر لعدم التداخل */
     }
 
     .top{
         padding:0 10px;
+        gap:8px;
     }
 
-    .top-actions .btn:nth-child(2){
-        display:none;
+    .btn{
+        padding:7px 9px;
+        font-size:12px;
     }
 
     section{
-        padding:20px 15px;
+        padding:18px 14px;
     }
 
     h2{
-        font-size:21px;
+        font-size:20px;
     }
 
-    table{
-        font-size:12px;
+    .hero{
+        padding:22px 16px;
     }
 
-    .code pre{
-        font-size:12px;
+    .hero h1{
+        font-size:23px;
     }
 }
 
-/* =========================
-   PRINT
-========================= */
+
+/* =========================================================
+   الطباعة
+========================================================= */
 
 @media print{
-
     .top,
     aside,
     .progress-wrap,
     .topbtn{
-        display:none!important;
+        display:none !important;
     }
 
     main{
