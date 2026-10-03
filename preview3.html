@@ -13,7 +13,6 @@ content="دليل Java الشامل من إعداد الكاتبة والمهن�
 <title>دليل Java الشامل | مها شهوب</title>
 
 <style>
-
 /* =========================================================
    المتغيرات
 ========================================================= */
@@ -65,6 +64,7 @@ body{
     color:var(--text);
     font-family:"Segoe UI",Tahoma,Arial,sans-serif;
     line-height:1.85;
+    overflow-x:hidden; /* لمنع التمرير الأفقي غير المخطط له على الهواتف */
 }
 
 a{
@@ -87,29 +87,32 @@ input{
     right:0;
     left:0;
     height:68px;
-
     background:var(--nav);
-
     border-bottom:1px solid var(--border);
-
     z-index:1000;
-
     display:flex;
     align-items:center;
-
-    gap:14px;
-
-    padding:0 22px;
-
+    gap:12px;
+    padding:0 18px;
     box-shadow:0 3px 15px rgba(0,0,0,.04);
 }
 
-.logo{width:67px;height:54px;border-radius:50%;display:grid;place-items:center;}
-
+.logo{
+    width:54px;
+    height:54px;
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    flex-shrink:0;
+    object-fit:cover;
+}
 
 .brand{
     font-weight:800;
-    font-size:18px;
+    font-size:17px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 
 .brand small{
@@ -117,28 +120,25 @@ input{
     color:var(--muted);
     font-size:11px;
     line-height:1.2;
+    font-weight:500;
 }
 
 .top-actions{
     margin-right:auto;
-
     display:flex;
-    gap:8px;
+    gap:6px;
+    flex-shrink:0;
 }
 
 .btn{
     border:1px solid var(--border);
-
     background:var(--card);
-
     color:var(--text);
-
     border-radius:10px;
-
-    padding:9px 13px;
-
+    padding:8px 11px;
     cursor:pointer;
-
+    font-size:13px;
+    white-space:nowrap;
     transition:.2s;
 }
 
@@ -154,34 +154,23 @@ input{
 
 .layout{
     display:flex;
-
     max-width:1500px;
-
     margin:auto;
-
     padding-top:68px;
+    width:100%;
 }
 
 aside{
     width:300px;
-
     position:fixed;
-
     top:68px;
     bottom:0;
-
-    right:max(
-        0px,
-        calc((100vw - 1500px)/2)
-    );
-
+    right:max(0px, calc((100vw - 1500px)/2));
     background:var(--nav);
-
     border-left:1px solid var(--border);
-
     padding:20px 15px;
-
-    overflow:auto;
+    overflow-y:auto;
+    z-index:950;
 }
 
 
@@ -191,34 +180,23 @@ aside{
 
 .search{
     width:100%;
-
-    padding:12px;
-
+    padding:11px 13px;
     border:1px solid var(--border);
-
     border-radius:12px;
-
     background:var(--card);
-
     color:var(--text);
-
     outline:none;
-
     margin-bottom:14px;
 }
 
 .search:focus{
     border-color:var(--primary);
-
-    box-shadow:
-    0 0 0 3px rgba(22,119,200,.12);
+    box-shadow:0 0 0 3px rgba(22,119,200,.12);
 }
 
 .nav-title{
     font-weight:800;
-
     color:var(--primary);
-
     margin:8px 0 10px;
 }
 
@@ -229,28 +207,19 @@ aside{
 
 nav a{
     display:block;
-
     text-decoration:none;
-
     color:var(--muted);
-
     padding:7px 10px;
-
     border-radius:8px;
-
     font-size:13px;
-
     margin:2px 0;
-
     transition:.2s;
 }
 
 nav a:hover,
 nav a.active{
     background:rgba(22,119,200,.1);
-
     color:var(--primary);
-
     font-weight:700;
 }
 
@@ -261,10 +230,9 @@ nav a.active{
 
 main{
     margin-right:300px;
-
     width:calc(100% - 300px);
-
     padding:32px 34px 70px;
+    min-width:0;
 }
 
 
@@ -273,54 +241,36 @@ main{
 ========================================================= */
 
 .hero{
-    background:
-    linear-gradient(
-        135deg,
-        #071b31,
-        #0b4f88 55%,
-        #1677c8
-    );
-
+    background:linear-gradient(135deg, #071b31, #0b4f88 55%, #1677c8);
     color:#fff;
-
     border-radius:20px;
-
     padding:36px;
-
     box-shadow:var(--shadow);
-
     margin-bottom:25px;
 }
 
 .hero h1{
-    font-size:34px;
-
+    font-size:32px;
     margin:0 0 8px;
 }
 
 .hero p{
-    margin:7px 0;
+    margin:6px 0;
+    opacity:.92;
 }
 
 .badges{
     display:flex;
-
     flex-wrap:wrap;
-
     gap:8px;
-
     margin-top:20px;
 }
 
 .badge{
     background:rgba(255,255,255,.13);
-
     border:1px solid rgba(255,255,255,.22);
-
     padding:6px 11px;
-
     border-radius:30px;
-
     font-size:12px;
 }
 
@@ -331,29 +281,19 @@ main{
 
 section{
     scroll-margin-top:88px;
-
     background:var(--card);
-
     border:1px solid var(--border);
-
     border-radius:17px;
-
     padding:27px;
-
     margin-bottom:22px;
-
     box-shadow:var(--shadow);
 }
 
 h2{
     margin:0 0 13px;
-
     color:var(--primary2);
-
-    font-size:25px;
-
+    font-size:23px;
     border-right:5px solid var(--primary);
-
     padding-right:12px;
 }
 
@@ -363,7 +303,6 @@ h2{
 
 h3{
     color:var(--primary);
-
     margin-top:22px;
 }
 
@@ -382,25 +321,15 @@ p{
 
 .grid{
     display:grid;
-
-    grid-template-columns:
-    repeat(
-        auto-fit,
-        minmax(220px,1fr)
-    );
-
+    grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
     gap:14px;
-
     margin:15px 0;
 }
 
 .card{
     border:1px solid var(--border);
-
     border-radius:12px;
-
     padding:15px;
-
     background:var(--bg);
 }
 
@@ -415,37 +344,23 @@ p{
 
 .toc{
     display:grid;
-
-    grid-template-columns:
-    repeat(
-        auto-fit,
-        minmax(220px,1fr)
-    );
-
+    grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
     gap:10px;
 }
 
 .toc a{
     text-decoration:none;
-
     border:1px solid var(--border);
-
     border-radius:10px;
-
     padding:11px;
-
     background:var(--bg);
-
     color:var(--text);
-
     transition:.2s;
 }
 
 .toc a:hover{
     border-color:var(--primary);
-
     color:var(--primary);
-
     transform:translateY(-2px);
 }
 
@@ -456,60 +371,35 @@ p{
 
 .code{
     position:relative;
-
     background:var(--code);
-
     color:var(--codeText);
-
     border-radius:12px;
-
     margin:15px 0;
-
-    overflow:auto;
-
+    overflow-x:auto;
     direction:ltr;
-
     text-align:left;
 }
 
 .code pre{
     margin:0;
-
-    padding:20px;
-
+    padding:19px;
     white-space:pre;
-
     min-width:max-content;
-
-    font-family:
-    Consolas,
-    "Courier New",
-    monospace;
-
+    font-family:Consolas, "Courier New", monospace;
     font-size:13px;
-
-    line-height:1.7;
+    line-height:1.65;
 }
 
 .copy{
     position:absolute;
-
     top:8px;
-
     right:8px;
-
     border:1px solid #334155;
-
     background:#182538;
-
     color:#dbeafe;
-
     border-radius:7px;
-
     padding:5px 9px;
-
     cursor:pointer;
-
     font-size:12px;
 }
 
@@ -520,28 +410,24 @@ p{
 
 table{
     width:100%;
-
     border-collapse:collapse;
-
     margin:15px 0;
-
     font-size:14px;
+    display:block;
+    overflow-x:auto;
 }
 
 th,
 td{
     border:1px solid var(--border);
-
     padding:10px;
-
     text-align:right;
-
     vertical-align:top;
+    white-space:nowrap;
 }
 
 th{
     background:rgba(22,119,200,.1);
-
     color:var(--primary2);
 }
 
@@ -550,39 +436,26 @@ th{
    الملاحظات
 ========================================================= */
 
-.note{
-    padding:14px 16px;
-
+.note,
+.warning,
+.success{
+    padding:13px 16px;
     border-radius:10px;
-
     margin:14px 0;
-
     border-right:4px solid var(--primary);
+}
 
+.note{
     background:rgba(22,119,200,.08);
 }
 
 .warning{
-    padding:14px 16px;
-
-    border-radius:10px;
-
-    margin:14px 0;
-
-    border-right:4px solid #d08a00;
-
+    border-color:#d08a00;
     background:rgba(208,138,0,.09);
 }
 
 .success{
-    padding:14px 16px;
-
-    border-radius:10px;
-
-    margin:14px 0;
-
-    border-right:4px solid #16845a;
-
+    border-color:#16845a;
     background:rgba(22,132,90,.09);
 }
 
@@ -593,23 +466,16 @@ th{
 
 .progress-wrap{
     position:fixed;
-
     top:68px;
-
     right:0;
-
     left:0;
-
     height:3px;
-
     z-index:1001;
 }
 
 .progress{
     height:100%;
-
     width:0;
-
     background:#3fb5ff;
 }
 
@@ -620,29 +486,17 @@ th{
 
 .topbtn{
     position:fixed;
-
     bottom:20px;
-
     left:20px;
-
     width:45px;
-
     height:45px;
-
     border:0;
-
     border-radius:50%;
-
     background:var(--primary);
-
     color:#fff;
-
     font-size:20px;
-
     cursor:pointer;
-
     display:none;
-
     z-index:900;
 }
 
@@ -662,34 +516,27 @@ th{
 
 footer{
     text-align:center;
-
     color:var(--muted);
-
     padding:30px 10px;
 }
 
 
 /* =========================================================
-   Responsive
+   Responsive (الهواتف والتابلت)
 ========================================================= */
 
-@media(max-width:950px){
-
+@media(max-width:1100px){
     .menu{
         display:block;
     }
 
     aside{
         display:none;
-
+        position:fixed;
         right:0;
-
-        width:300px;
-
+        width:290px;
         z-index:950;
-
-        box-shadow:
-        -8px 0 25px rgba(0,0,0,.12);
+        box-shadow:-8px 0 25px rgba(0,0,0,.15);
     }
 
     aside.open{
@@ -698,53 +545,45 @@ footer{
 
     main{
         margin:0;
-
         width:100%;
-
-        padding:
-        24px
-        15px
-        60px;
-    }
-
-    .hero{
-        padding:25px;
-    }
-
-    .hero h1{
-        font-size:27px;
+        padding:24px 16px 60px;
     }
 }
 
 
 @media(max-width:600px){
-
     .brand{
-        font-size:15px;
+        font-size:14px;
+    }
+
+    .brand small{
+        display:none; /* إخفاء النص الفرعي الصغير في الشاشات شديدة الصغر لعدم التداخل */
     }
 
     .top{
         padding:0 10px;
+        gap:8px;
     }
 
-    .top-actions .btn:nth-child(2){
-        display:none;
+    .btn{
+        padding:7px 9px;
+        font-size:12px;
     }
 
     section{
-        padding:20px 15px;
+        padding:18px 14px;
     }
 
     h2{
-        font-size:21px;
+        font-size:20px;
     }
 
-    table{
-        font-size:12px;
+    .hero{
+        padding:22px 16px;
     }
 
-    .code pre{
-        font-size:12px;
+    .hero h1{
+        font-size:23px;
     }
 }
 
@@ -754,7 +593,6 @@ footer{
 ========================================================= */
 
 @media print{
-
     .top,
     aside,
     .progress-wrap,
@@ -764,18 +602,14 @@ footer{
 
     main{
         margin:0;
-
         width:100%;
-
         padding:0;
     }
 
     section{
         box-shadow:none;
-
         break-inside:avoid;
     }
-
 }
 
 </style>
