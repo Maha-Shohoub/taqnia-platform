@@ -32,30 +32,157 @@
 --bg:#1a2332;--surface:#243044;--surface2:#2d3b54;--text:#f0f4f8;--muted:#9fb0c7;
 --primary:#38a3f8;--primary2:#1e88e5;--purple:#7cb3f0;--border:#3a4c6a;--shadow:0 12px 30px rgba(0,0,0,.35)
 }
-*{box-sizing:border-box}html{scroll-behavior:smooth}
-body{margin:0;font-family:Tahoma,Arial,sans-serif;background:var(--bg);color:var(--text)}
-a{text-decoration:none;color:inherit}button,input{font:inherit}
 
-/* ترويسة */
-header{position:sticky;top:0;z-index:100;background:var(--surface);border-bottom:2px solid var(--primary);box-shadow:0 4px 20px rgba(0,0,0,.05)}
-.nav{max-width:1200px;margin:auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between}
-.brand{display:flex;align-items:center;gap:15px}
+ /* إعدادات عامة ومتجاوبة */
+* {
+  box-sizing: border-box;
+}
 
-/* شعار بخلفية شفافة بدون إطار */
-.logo{width:67px;height:60px;object-fit:contain;background:transparent;border:none;padding:0;box-shadow:none}
+html {
+  scroll-behavior: smooth;
+  font-size: 16px; /* أساس الحجم المتجاوب */
+}
 
-.brand h1{font-size:1.1rem;margin:0;color:var(--primary)}.brand small{color:var(--muted);font-size:.75rem}
+body {
+  margin: 0;
+  font-family: Tahoma, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden; /* لمنع ظهور شريط تمرير أفقي مزعج */
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button, input {
+  font: inherit;
+}
+
+/* الترويسة المتجاوبة */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--surface);
+  border-bottom: 2px solid var(--primary);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, .05);
+}
+
+.nav {
+  max-width: 1200px;
+  margin: auto;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0; /* لمنع تداخل النص مع العناصر الأخرى */
+}
+
+/* شعار مرن يتناسب مع الشاشات الصغيرة */
+.logo {
+  width: clamp(50px, 12vw, 67px);
+  height: clamp(45px, 10vw, 60px);
+  object-fit: contain;
+  background: transparent;
+  border: none;
+  padding: 0;
+  box-shadow: none;
+  flex-shrink: 0;
+}
+
+.brand h1 {
+  font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+  margin: 0;
+  color: var(--primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.brand small {
+  color: var(--muted);
+  font-size: clamp(0.65rem, 2vw, 0.75rem);
+  display: block;
+}
 
 /* تنسيق أزرار التحكم العلوي */
-.nav-actions{display:flex;align-items:center;gap:10px;position:relative}
-.icon-btn{width:40px;height:40px;border:1px solid var(--border);border-radius:50%;background:var(--surface2);color:var(--text);cursor:pointer;display:grid;place-items:center;transition:.2s}
-.icon-btn:hover{background:var(--primary);color:#fff}
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  flex-shrink: 0;
+}
 
-/* تصميم الدائرتين الجديدتين للصورة */
-.circle-img-btn{width:40px;height:40px;border:1px solid var(--border);border-radius:50%;background:var(--surface2);overflow:hidden;display:grid;place-items:center;padding:0;cursor:pointer;transition:.2s}
-.circle-img-btn:hover{border-color:var(--primary);box-shadow:0 0 10px rgba(22,119,200,.3)}
-.circle-img-btn img{width:100%;height:100%;object-fit:cover}
+.icon-btn {
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--surface2);
+  color: var(--text);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: .2s ease;
+}
 
+.icon-btn:hover {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* تصميم الدوائر الجديدة للصورة */
+.circle-img-btn {
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--surface2);
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  cursor: pointer;
+  transition: .2s ease;
+  flex-shrink: 0;
+}
+
+.circle-img-btn:hover {
+  border-color: var(--primary);
+  box-shadow: 0 0 10px rgba(22, 119, 200, .3);
+}
+
+.circle-img-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* توافقية إضافية للشاشات الصغيرة جداً (الهواتف الضيقة) */
+@media (max-width: 480px) {
+  .nav {
+    padding: 8px 12px;
+  }
+  
+  .nav-actions {
+    gap: 6px;
+  }
+
+  .icon-btn, .circle-img-btn {
+    width: 35px;
+    height: 35px;
+  }
+}
 /* تصميم الشريط الأسود المعتاد (Tooltip) */
 .tooltip-box {
   position: absolute;
