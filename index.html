@@ -96,13 +96,6 @@ header {
   gap: 10px;
 }
 
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  min-width: 0;
-  margin-right: 12px; /* هذا السطر سيدفع الحاوية بالكامل نحو اليمين لتبتعد عن حافة الشاشة */
-}
 
 /* شعار مرن يتناسب مع الشاشات الصغيرة */
 .logo {
@@ -513,7 +506,15 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:20px
     color: #58a6ff;
 }
 
- .mah {
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* زيادة المسافة بين اللوجو والنص قليلاً */
+  margin-left: 10px; /* دفع مجموعة اللوجو والنص للداخل قليلاً لتظهر كاملة على الشاشات الصغيرة */
+  min-width: 0;
+}
+
+.mah {
   text-align: right;
   margin-right: 5px;
   padding-left: 8px; /* إضافة مساحة بسيطة من جهة اليسار لضمان عدم قص حرف التاء */
