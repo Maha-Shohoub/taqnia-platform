@@ -85,26 +85,27 @@ header {
   border-bottom: 2px solid var(--primary);
   box-shadow: 0 4px 20px rgba(0, 0, 0, .05);
 }
- .nav {
+.nav {
   max-width: 1200px;
   margin: auto;
   padding: 10px 16px;
   display: flex;
   align-items: center;
   justify-content: flex-start; /* تغييرها من space-between لتبقي العناصر متلاصقة من جهة اليمين */
-  gap: 5px; /* تقليل الفراغ العام بين اللوجو وباقي عناصر الناف بار */
+  gap: 8px; /* تقليل الفراغ العام بين اللوجو وباقي عناصر الناف بار */
 }
+
 /* تعديل حجم الشعار ليكون متناسقاً وملتصقاً بالنص تماماً دون فراغات */
 .logo {
-  width: 50px;  /* تثبيت مقاس مناسب وصغير للهواتف لا يصنع فراغات مزعجة */
-  height: 50px;
+  width: 42px;  /* تثبيت مقاس مناسب وصغير للهواتف لا يصنع فراغات مزعجة */
+  height: 42px;
   object-fit: contain;
   background: transparent;
   border: none;
   padding: 0;
   box-shadow: none;
   flex-shrink: 0;
- }
+}
  .brand h1 {
   font-size: clamp(0.95rem, 2.5vw, 1.1rem);
   margin: 0;
