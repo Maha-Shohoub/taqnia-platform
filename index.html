@@ -505,19 +505,19 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:20px
 .btn-tech i {
     color: #58a6ff;
 }
-
 .brand {
   display: flex;
   align-items: center;
-  gap: 15px; /* زيادة المسافة بين اللوجو والنص قليلاً */
-  margin-left: 10px; /* دفع مجموعة اللوجو والنص للداخل قليلاً لتظهر كاملة على الشاشات الصغيرة */
+  gap: 12px;
+  flex-direction: row-reverse; /* لضمان ترتيب اللوجو والنص بشكل متناسق من اليمين لليسار */
   min-width: 0;
+  margin-right: 5px; /* إزاحة بسيطة للحاوية من جهة اليمين */
 }
 
 .mah {
   text-align: right;
-  margin-right: 5px;
-  padding-left: 8px; /* إضافة مساحة بسيطة من جهة اليسار لضمان عدم قص حرف التاء */
+  margin-right: 8px;   /* دفع النص قليلاً نحو اليمين ليقترب من اللوجو تماماً */
+  padding-left: 0;     /* إلغاء الـ padding السابق الذي كان يدفع حرف التاء لليسار */
 }
     </style>
 
