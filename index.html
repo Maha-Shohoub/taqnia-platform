@@ -129,8 +129,13 @@ header {
   position: relative;
   flex-shrink: 0;
 }
-
-.icon-btn {
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* المسافة الفاصلة بين زر الإضاءة والعناصر المجاورة له */
+  min-width: 0; /* لمنع تداخل العناصر مع بعضها البعض */
+}
+ .icon-btn {
   width: 38px;
   height: 38px;
   border: 1px solid var(--border);
@@ -138,8 +143,9 @@ header {
   background: var(--surface2);
   color: var(--text);
   cursor: pointer;
-  display: grid;
-  place-items: center;
+  display: flex; /* أو grid */
+  align-items: center;
+  justify-content: center;
   transition: .2s ease;
 }
 
