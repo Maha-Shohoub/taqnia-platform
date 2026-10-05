@@ -102,7 +102,7 @@ header {
   gap: 10px;
   flex-direction: row;
   min-width: 0;
-  margin-right: 8px;
+  flex: 1;
 }
 
 .logo {
@@ -138,13 +138,13 @@ header {
 
 /* ================= أزرار التحكم العلوي ================= */
 .nav-actions {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  justify-content: center !important;
-  width: auto !important;
+ display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
   gap: 6px !important;
   position: relative;
   flex-shrink: 0;
+  flex-wrap: nowrap !important;
 }
 
 #Cy {
