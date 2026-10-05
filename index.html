@@ -135,7 +135,8 @@ header {
   gap: 12px; /* المسافة الفاصلة بين زر الإضاءة والعناصر المجاورة له */
   min-width: 0; /* لمنع تداخل العناصر مع بعضها البعض */
 }
- .icon-btn {
+
+.icon-btn {
   width: 38px;
   height: 38px;
   border: 1px solid var(--border);
@@ -143,9 +144,8 @@ header {
   background: var(--surface2);
   color: var(--text);
   cursor: pointer;
-  display: flex; /* أو grid */
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  place-items: center;
   transition: .2s ease;
 }
 
@@ -153,6 +153,7 @@ header {
   background: var(--primary);
   color: #fff;
 }
+
 
 /* تصميم الدوائر الجديدة للصورة */
 .circle-img-btn {
