@@ -534,18 +534,19 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:20px
 
 
 
+ 
  .nav-actions {
-  display: grid !important;
-  grid-template-columns: repeat(2, auto) !important; /* وضع أيقونتين في السطر الأول */
-  gap: 8px !important;
-  align-items: center !important;
-  justify-content: end !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  width: 90px !important; /* قصر عرض الحاوية ليجبر الأيقونة الثالثة على النزول للأسفل */
+  gap: 6px !important;
 }
 
-/* جعل زر الهلال (الوضع المظلم) يأخذ عرض السطر الثاني بالكامل وينزل تحتهما */
 #Cy {
-  grid-column: 1 / -1 !important;
-  justify-self: center !important; /* لتوسيطه تحت الأيقونتين أو جعله بأسفلهما تماماً */
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
 }
 </style>
  
