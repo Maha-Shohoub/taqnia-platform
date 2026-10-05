@@ -124,14 +124,14 @@ header {
   display: block;
 }
 
-/* تنسيق أزرار التحكم العلوي */
+/* تنسيق أزرار التحكم العلوي 
 .nav-actions {
   display: flex;
   align-items: center;
   gap: 8px;
   position: relative;
   flex-shrink: 0;
-}
+}*/
 
 .icon-btn {
   width: 38px;
@@ -184,10 +184,12 @@ header {
     padding: 8px 12px;
   }
   
-  .nav-actions {
+ /* .nav-actions {
     gap: 6px;
-  }
+  }*/
 
+
+ 
   .icon-btn, .circle-img-btn {
     width: 35px;
     height: 35px;
@@ -558,7 +560,7 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:20px
 
 
       <!-- زر الوضع المظلم الخفيف -->
-      <button id="themeBtn" class="icon-btn" aria-label="تبديل المظهر"><i class="fa-solid fa-moon"></i></button>
+      <button id="Cy" class="icon-btn" aria-label="تبديل المظهر"><i class="fa-solid fa-moon"></i></button>
 
      
      
@@ -2623,6 +2625,21 @@ document.querySelectorAll('.section').forEach(section => {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+
+
+
+
+ .nav-actions {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  height: 90px !important; /* تحديد ارتفاع للحاوية لكي تجد الأيقونة مساحة للنزول للأسفل */
+}
+
+#Cy {
+  margin-top: auto !important; /* لدفع أيقونة الهلال للأسفل تماماً تحت الأيقونات الأخرى */
 }
 </style>
 
