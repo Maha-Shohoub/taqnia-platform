@@ -553,9 +553,11 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:20px
         </a>
         <div class="tooltip-box">مكتبة | مها شهوب   </div>
       </div>
-
-      <!-- زر الوضع المظلم الخفيف -->
-      <button id="themeBtn" class="icon-btn" aria-label="تبديل المظهر"><i class="fa-solid fa-moon"></i></button>
+<!-- زر الوضع المظلم والعائم -->
+<button onclick="toggleTheme()" id="themeBtn" class="icon-btn" aria-label="تبديل المظهر" style="position: fixed; bottom: 120px; right: 24px; z-index: 50; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);">
+  <i class="fa-solid fa-moon"></i>
+</button>
+     
     </div>
   </div>
 </header>
