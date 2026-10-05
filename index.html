@@ -135,6 +135,7 @@ header {
   gap: 12px; /* المسافة الفاصلة بين زر الإضاءة والعناصر المجاورة له */
   min-width: 0; /* لمنع تداخل العناصر مع بعضها البعض */
 }
+ 
 
 .icon-btn {
   width: 38px;
@@ -153,6 +154,8 @@ header {
   background: var(--primary);
   color: #fff;
 }
+
+
 
 
 /* تصميم الدوائر الجديدة للصورة */
@@ -555,7 +558,8 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:20px
       </div>
 
 
-
+      <!-- زر الوضع المظلم الخفيف -->
+      <button id="themeBtn" class="icon-btn" aria-label="تبديل المظهر"><i class="fa-solid fa-moon"></i></button>
 
      
      
@@ -2683,10 +2687,7 @@ function toggleAuthorModal() {
 </script>
 
 
- <!-- زر الوضع المظلم والعائم في أقصى اليسار -->
-  <button onclick="toggleTheme()" id="themeBtn" class="icon-btn" aria-label="تبديل المظهر" style="position: fixed; bottom: 120px; left: 24px; z-index: 50; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);">
-    <i class="fa-solid fa-moon"></i>
-  </button>
+
 
 
 </body>
