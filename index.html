@@ -528,6 +528,25 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:20px
   visibility: visible !important;
   opacity: 1 !important;
 }
+
+
+
+
+
+
+ .nav-actions {
+  display: grid !important;
+  grid-template-columns: repeat(2, auto) !important; /* وضع أيقونتين في السطر الأول */
+  gap: 8px !important;
+  align-items: center !important;
+  justify-content: end !important;
+}
+
+/* جعل زر الهلال (الوضع المظلم) يأخذ عرض السطر الثاني بالكامل وينزل تحتهما */
+#Cy {
+  grid-column: 1 / -1 !important;
+  justify-self: center !important; /* لتوسيطه تحت الأيقونتين أو جعله بأسفلهما تماماً */
+}
 </style>
  
 </head>
@@ -558,9 +577,10 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:20px
         <div class="tooltip-box">مكتبة | مها شهوب   </div>
       </div>
 
- </div>
       <!-- زر الوضع المظلم الخفيف -->
       <button id="themeBtn" class="icon-btn" aria-label="تبديل المظهر"><i class="fa-solid fa-moon"></i></button>
+ </div>
+
   </div>
 </header>
 
