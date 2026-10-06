@@ -678,12 +678,28 @@ main {
   padding: 30px;
 }
 
-/* ================= شبكة الكورسات المضافة ================= */
+/* ================= شبكة الكورسات المصغرة ================= */
 .courses-grid {
-  display: grid !important;
-  grid-template-columns: repeat(5, 1fr) !important;
-  gap: 10px !important;
-  padding: 10px !important;
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) !important;
+    gap: 15px !important;
+    padding: 10px !important;
+}
+
+/* تنسيق بطاقة الكورس لضمان عدم تمددها بشكل مزعج */
+.course-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff; /* أو لون الخلفية المناسب لتصميمك */
+    border-radius: 8px;
+    overflow: hidden;
+    text-decoration: none;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease;
+}
+
+.course-card:hover {
+    transform: translateY(-3px);
 }
 
 .course-card {
@@ -883,9 +899,7 @@ footer {
   .about {
     grid-template-columns: 1fr;
   }
-  .courses-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
+ 
 }
 
 @media(max-width: 600px) {
@@ -899,9 +913,8 @@ footer {
   .search {
     width: 100%;
   }
-  .courses-grid {
-    grid-template-columns: 1fr !important;
-  }
+
+ 
 }
 
 @media(max-width: 480px) {
@@ -2928,12 +2941,8 @@ document.querySelectorAll('.section').forEach(section => {
     font-size: 14px;
 }
 
-/* تصغير عرض الأعمدة لتناسب بطاقات أصغر بجانب بعضها */
-.courses-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 10px;
-}
+
+ 
 
 .course-card {
     background-color: #161b22;
