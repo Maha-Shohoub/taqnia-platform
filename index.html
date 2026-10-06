@@ -702,9 +702,6 @@ main {
 }
 
 /* تنسيق بطاقة الكورس لضمان عدم تمددها بشكل مزعج */
-
-
-
 .course-thumb {
   position: relative !important;
   width: 100% !important;
@@ -920,6 +917,117 @@ footer {
     height: 35px;
   }
 }
+
+
+
+
+
+ /* ================= تصميم القائمة المنبثقة (Modal) ================= */
+.modal-overlay {
+    display: none; /* مخفية افتراضياً */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: #ffffff;
+    width: 90%;
+    max-width: 420px;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    position: relative;
+    animation: modalScaleUp 0.3s ease;
+    font-family: inherit;
+    text-align: right;
+    direction: rtl;
+}
+
+@keyframes modalScaleUp {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #666;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close-modal:hover {
+    color: #000;
+}
+
+.modal-header h3 {
+    margin: 0 0 5px 0;
+    color: #1a365d;
+    font-size: 20px;
+}
+
+.modal-header p {
+    margin: 0 0 20px 0;
+    color: #666;
+    font-size: 13px;
+}
+
+.modal-form .form-group {
+    margin-bottom: 15px;
+}
+
+.modal-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 13px;
+    color: #333;
+    font-weight: 600;
+}
+
+.modal-form input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+}
+
+.modal-form input:focus {
+    border-color: #0284c7;
+}
+
+.submit-btn {
+    width: 100%;
+    background: #0284c7;
+    color: #ffffff;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 10px;
+}
+
+.submit-btn:hover {
+    background: #0369a1;
+}
+ 
 </style>
  
 </head>
@@ -1355,6 +1463,72 @@ footer {
 </style>
 
 
+
+ <!-- نافذة التسجيل المنبثقة (Modal) -->
+<div id="registrationModal" class="modal-overlay">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeRegistrationModal()">&times;</span>
+        <div class="modal-header">
+            <h3>تسجيل في الكورس</h3>
+            <p>أدخلي بياناتك وسنرسل لك تفاصيل الانضمام فوراً</p>
+        </div>
+        
+        <!-- استبدلي الرابط التالي برابط نموذج Google Forms الخاص بك -->
+        <form class="modal-form" action="رابط_جوجل_فورم_هنا" method="GET" target="_blank" onsubmit="handleFormSubmit(event)">
+            <div class="form-group">
+                <label for="studentName">الاسم الكامل</label>
+                <input type="text" id="studentName" name="entry.xxxxxx" required placeholder="أدخلي اسمك الكامل">
+            </div>
+            
+            <div class="form-group">
+                <label for="studentEmail">البريد الإلكتروني</label>
+                <input type="email" id="studentEmail" name="entry.xxxxxx" required placeholder="example@domain.com">
+            </div>
+
+            <div class="form-group">
+                <label for="studentPhone">رقم الهاتف (اختياري)</label>
+                <input type="tel" id="studentPhone" name="entry.xxxxxx" placeholder="رقم الهاتف أو واتساب">
+            </div>
+
+            <button type="submit" class="submit-btn">تأكيد التسجيل</button>
+        </form>
+    </div>
+</div>
+
+ <script> // فتح النافذة المنبثقة
+function openRegistrationModal(courseName) {
+    const modal = document.getElementById('registrationModal');
+    if (modal) {
+        modal.style.display = 'flex';
+        // يمكنكِ استخدام اسم الكورس لاحقاً إذا أردتِ إضافته لحقل خفي في النموذج
+    }
+}
+
+// إغلاق النافذة المنبثقة
+function closeRegistrationModal() {
+    const modal = document.getElementById('registrationModal');
+    if (modal) {
+        modal.style.display = 'none';
+    }
+}
+
+// إغلاق النافذة عند الضغط في أي مكان خارج الصندوق الأبيض
+window.onclick = function(event) {
+    const modal = document.getElementById('registrationModal');
+    if (event.target === modal) {
+        modal.style.display = 'none';
+    }
+}
+
+// التعامل مع الإرسال (اختياري: لإغلاق النافذة أو إظهار رسالة نجاح)
+function handleFormSubmit(event) {
+    // إذا كنتِ ترغبين بإغلاق النافذة بعد ثوانٍ من الضغط
+    setTimeout(() => {
+        closeRegistrationModal();
+    }, 1000);
+}
+ </script>
+  
 <!-- ========================================================
      كورسات تعلم الكمبيوتر والبرمجة - كورس مدفوع
 ========================================================= -->
