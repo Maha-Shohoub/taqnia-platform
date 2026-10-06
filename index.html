@@ -678,38 +678,32 @@ main {
   padding: 30px;
 }
 
-/* ================= شبكة الكورسات المصغرة ================= */
+/* ================= شبكة الكورسات المصغرة (تمرير أفقي للجوال) ================= */
 .courses-grid {
-    display: grid !important;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) !important;
-    gap: 15px !important;
-    padding: 10px !important;
+    display: flex !important;
+    overflow-x: auto !important;
+    gap: 10px !important;
+    padding: 10px 0 !important;
+    scroll-snap-type: x mandatory;
 }
 
-/* تنسيق بطاقة الكورس لضمان عدم تمددها بشكل مزعج */
-.course-card {
+/* تحديد عرض ثابت وصغير للبطاقة لتظهر بجانب بعضها تماماً */
+.courses-grid .course-card {
+    flex: 0 0 160px !important; /* عرض ثابت لكل بطاقة ليظهر أكثر من فيديو بجانب بعضهم */
+    max-width: 160px !important;
+    scroll-snap-align: start;
     display: flex;
     flex-direction: column;
-    background: #fff; /* أو لون الخلفية المناسب لتصميمك */
+    background: #fff;
     border-radius: 8px;
     overflow: hidden;
     text-decoration: none;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    transition: transform 0.2s ease;
 }
 
-.course-card:hover {
-    transform: translateY(-3px);
-}
+/* تنسيق بطاقة الكورس لضمان عدم تمددها بشكل مزعج */
 
-.course-card {
-  background-color: #161b22 !important;
-  border: 1px solid #30363d !important;
-  border-radius: 6px !important;
-  overflow: hidden !important;
-  cursor: pointer !important;
-  width: 100% !important;
-}
+
 
 .course-thumb {
   position: relative !important;
@@ -2944,21 +2938,7 @@ document.querySelectorAll('.section').forEach(section => {
 
  
 
-.course-card {
-    background-color: #161b22;
-    border: 1px solid #30363d;
-    border-radius: 8px;
-    overflow: hidden;
-    transition: transform 0.2s ease, border-color 0.2s ease;
-    cursor: pointer;
-    text-decoration: none;
-    display: block;
-}
 
-.course-card:hover {
-    transform: translateY(-3px);
-    border-color: #58a6ff;
-}
 
 /* تقليص ارتفاع الصورة لتتناسب مع التصغير */
 .course-thumb {
