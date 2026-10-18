@@ -20,26 +20,36 @@ html{scroll-behavior:smooth}
 body{
     margin:0;background:var(--bg);color:var(--text);
     font-family:"Segoe UI",Tahoma,Arial,sans-serif;line-height:1.85;
-    overflow-x:hidden; /* منع التمرير الأفقي المفاجئ على الهواتف */
+    overflow-x:hidden;
 }
+
+/* ترويسة متناسقة ومضبوطة */
 header{
     position:fixed;top:0;right:0;left:0;height:68px;
     background:var(--nav);border-bottom:1px solid var(--border);
-    z-index:1000;display:flex;align-items:center;gap:10px;padding:0 15px
-}
-.logo{
-    width:50px;height:50px;border-radius:50%;display:grid;place-items:center;
-    flex-shrink:0;object-fit:cover;
+    z-index:1000;display:flex;align-items:center;justify-content:space-between;
+    padding:0 15px;direction:ltr;
 }
 .brand{
+    display:flex;align-items:center;gap:10px;direction:rtl;min-width:0;
+}
+.logo{
+    width:42px;height:42px;border-radius:50%;display:grid;place-items:center;
+    flex-shrink:0;object-fit:cover;
+}
+.brand-text{
     font-weight:800;font-size:16px;
     white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
 }
-.brand small{display:block;color:var(--muted);font-size:11px}
-.actions{margin-right:auto;display:flex;gap:6px;flex-shrink:0}
+.brand-text small{display:block;color:var(--muted);font-size:11px}
+
+.actions{
+    display:flex;align-items:center;gap:8px;direction:rtl;flex-shrink:0;
+}
 button{
     border:1px solid var(--border);background:var(--card);color:var(--text);
-    border-radius:9px;padding:8px 11px;cursor:pointer;white-space:nowrap;font-size:13px
+    border-radius:9px;padding:8px 11px;cursor:pointer;white-space:nowrap;font-size:13px;
+    transition:.2s ease;
 }
 button:hover{border-color:var(--primary);color:var(--primary)}
 
@@ -121,7 +131,7 @@ pre{
     background:rgba(22,119,200,.08);border-radius:9px
 }
 
-/* دعم الجداول بالتمرير الأفقي على الشاشات الضيقة */
+/* دعم الجداول بالتمرير الأفقي */
 table{
     width:100%;border-collapse:collapse;
     display:block;overflow-x:auto;
@@ -136,9 +146,25 @@ th{background:rgba(22,119,200,.1);color:var(--primary2)}
     position:fixed;bottom:20px;left:20px;
     width:45px;height:45px;border-radius:50%;
     background:var(--primary);color:white;display:none;
-    border:0;cursor:pointer;z-index:900;font-size:20px
+    border:0;cursor:pointer;z-index:900;font-size:20px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.2);
 }
 .menu{display:none}
+
+/* التذييل المتوسط */
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 25px 15px;
+    border-top: 1px solid var(--border);
+    margin-top: 40px;
+    color: var(--muted);
+    font-size: 14px;
+    gap: 6px;
+}
 
 /* التجاوب الذكي مع التابلت والهواتف */
 @media(max-width:1100px){
@@ -149,10 +175,9 @@ th{background:rgba(22,119,200,.1);color:var(--primary2)}
 }
 
 @media(max-width:600px){
-    .brand{font-size:14px}
-    .brand small{display:none} /* إخفاء النص الصغير في الهواتف جداً لمنع التداخل */
+    .brand-text{font-size:14px}
+    .brand-text small{display:none}
     header{padding:0 10px;gap:8px}
-    .actions button:nth-child(2){display:none} /* إخفاء زر الطباعة بالهواتف الضيقة لتوفير المساحة */
     button{padding:7px 9px;font-size:12px}
     .hero{padding:22px 16px}
     .hero h1{font-size:23px}
@@ -167,26 +192,24 @@ th{background:rgba(22,119,200,.1);color:var(--primary2)}
     main{margin:0;width:100%;padding:0}
     section{box-shadow:none;break-inside:avoid}
 }
-
-    footer {  display: flex;
-    justify-content: center; /* للتوسيط الأفقي */
-    align-items: center;     /* للتوسيط العمودي */}
-    
 </style>
 </head>
 
 <body>
 
 <header>
-<button class="menu" onclick="toggleMenu()">☰</button>
-  <img src="IMG/آفاق المعرفة التقنية.png" class="logo">
-<div class="brand">
-أكاديمية  آفاق المعرفة التقنية
-    <small>دليل Excel الشامل | مها شهوب</small>
-</div>
-<div class="actions">
-<button onclick="toggleTheme()">☾ الوضع</button>
-</div>
+  <div class="actions">
+    <button class="menu" onclick="toggleMenu()">☰</button>
+    <button onclick="toggleTheme()">☾ الوضع</button>
+  </div>
+  
+  <div class="brand">
+    <img src="IMG/آفاق المعرفة التقنية.png" class="logo" alt="لوجو">
+    <div class="brand-text">
+      أكاديمية آفاق المعرفة التقنية
+      <small>دليل Excel الشامل | مها شهوب</small>
+    </div>
+  </div>
 </header>
 
 <div class="progress" id="progress"></div>
@@ -194,9 +217,7 @@ th{background:rgba(22,119,200,.1);color:var(--primary2)}
 <div class="layout">
 
 <aside id="sidebar">
-<input class="search" id="search"
-placeholder="ابحث في الدليل..."
-oninput="filterNav()">
+<input class="search" id="search" placeholder="ابحث في الدليل..." oninput="filterNav()">
 
 <div class="nav-title">فهرس Excel الشامل</div>
 
@@ -278,10 +299,8 @@ oninput="filterNav()">
 
 <div class="hero">
 <h1>دليل Excel الشامل</h1>
-<p>من الصفر إلى التحليل المتقدم والأتمتة </p>
-<p> 
-    أكاديمية  آفاق المعرفة التقنية — مكتبة | مها شهوب — سلسلة أساسيات التقنية
-</p>
+<p>من الصفر إلى التحليل المتقدم والأتمتة</p>
+<p>أكاديمية آفاق المعرفة التقنية — مكتبة | مها شهوب — سلسلة أساسيات التقنية</p>
 <div class="badges">
 <span class="badge">Excel Basics</span>
 <span class="badge">Formulas</span>
@@ -899,17 +918,15 @@ ROUND</pre>
 </section>
 
 <footer>
-   
-<div><b>أكاديمية آفاق المعرفة التقنية</b></div>
-<div>  مكتبة | مها شهوب : سلسلة أساسيات التقنية</div>
-  <div>  جميع الحقوق محفوظة ©</div>
-
+  <div><b>أكاديمية آفاق المعرفة التقنية</b></div>
+  <div>مكتبة | مها شهوب : سلسلة أساسيات التقنية</div>
+  <div>جميع الحقوق محفوظة ©</div>
 </footer>
 
 </main>
 </div>
 
-<button class="top" id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<button class="topbtn-float" id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <script>
 function toggleTheme(){
