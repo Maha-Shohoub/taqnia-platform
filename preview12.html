@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="دليل PHP الشامل والمفصل للأكواد والشروح الهندسية - آفاق المعرفة التقنية - مها شهوب">
+<meta name="description" content="دليل PHP الشامل والمفصل للأكواد والشروح الهندسية - أكاديمية آفاق المعرفة التقنية - مها شهوب">
 <title>دليل PHP الشامل والمفصل | مها شهوب</title>
 <style>
 :root{--bg:#eef3f8;--card:#fff;--text:#172033;--muted:#64748b;--p:#4f5d95;--p2:#3c4875;--b:#d7e1eb;--code:#0b1220;--shadow:0 8px 24px rgba(20,55,90,.09)}
@@ -34,15 +34,20 @@ footer{text-align:center;color:var(--muted);padding:28px}
 </style>
 </head>
 <body>
-<header><button class="menu" onclick="document.querySelector('aside').classList.toggle('open')">☰</button>
-  
-  <img src="IMG/آفاق المعرفة التقنية.png" class="logo">
-  <div class="brand"><b>منصة آفاق المعرفة التقنية</b><small>دليل PHP الشامل </small></div>
-
-<div class="actions"><button onclick="toggleTheme()">◐ الوضع</button><button onclick="window.print()">🖨 طباعة</button></div></header>
+<header>
+  <button class="menu" onclick="document.querySelector('aside').classList.toggle('open')">☰</button>
+  <img src="IMG/آفاق المعرفة التقنية.png" class="logo" alt="لوجو">
+  <div class="brand"><b>أكاديمية آفاق المعرفة التقنية</b><small>دليل PHP الشامل</small></div>
+  <div class="actions">
+    <button onclick="toggleTheme()">◐ الوضع</button>
+    <button onclick="window.print()">🖨 طباعة</button>
+  </div>
+</header>
 <div class="progress" id="progress"></div>
 
-<aside><input class="search" id="search" placeholder="🔎 ابحث في الدروس..." oninput="filterNav()"><nav id="nav">
+<aside>
+<input class="search" id="search" placeholder="🔎 ابحث في الدروس..." oninput="filterNav()">
+<nav id="nav">
 <a href="#s1">01. مقدمة في لغة PHP</a>
 <a href="#s2">02. تركيب ووسوم PHP الأساسية</a>
 <a href="#s3">03. التعليقات والتوثيق</a>
@@ -63,7 +68,7 @@ footer{text-align:center;color:var(--muted);padding:28px}
 <a href="#s18">18. حلقة التكرار Foreach</a>
 <a href="#s19">19. التحكم بالتكرار Break و Continue</a>
 <a href="#s20">20. الدوال الأساسية Functions</a>
-<a href="#s21">22. تمرير الوسائط بالمرجع والقيمة</a>
+<a href="#s22">22. تمرير الوسائط بالمرجع والقيمة</a>
 <a href="#s23">23. نطاق المتغيرات Global & Local</a>
 <a href="#s24">24. مقدمة المصفوفات Indexed Arrays</a>
 <a href="#s25">25. المصفوفات الترابطية Associative</a>
@@ -135,7 +140,7 @@ footer{text-align:center;color:var(--muted);padding:28px}
 <main>
 <div class="hero">
   <h1>دليل PHP الشامل والمفصل للأكواد</h1>
-  <p>المرجع الهندسي المتكامل لتطوير الويب من جهة الخادم، مزود بالأمثلة التطبيقية والشروح لكل درس من الـ 88 درساً.</p>
+  <p>هندسة منطق الخادم وبناء أنظمة الويب المنيعة من الجذور حتى الاحتراف؛ رؤية برمجية متكاملة لربط القواعد وحماية البيانات.</p>
   <div class="credit">إعداد الكاتبة والمهندسة: مها شهوب</div>
 </div>
 
@@ -220,7 +225,7 @@ var_dump(100 === "100"); // خطأ لأن النوع مختلف
 
 <section id="s9">
   <h2>09. المعاملات المنطقية</h2>
-  <p>ربط الشروط البرمجية المتعددة باستخدام and, or, &&, ||, !.</p>
+  <p>ربط الشروط البرمجية المتعددة باستخدام and, or, &amp;&amp;, ||, !.</p>
   <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
 $isAdmin = true;
 $isLoggedIn = true;
@@ -309,7 +314,7 @@ for ($i = 1; $i <= 5; $i++) {
   <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
 $counter = 1;
 while ($counter <= 3) {
-    echo "التكرار رقم: $counter<br>";
+    echo "التكرار رقم: $counter&lt;br&gt;";
     $counter++;
 }
 ?&gt;</pre></div>
@@ -350,9 +355,9 @@ echo welcomeUser("مها");
 
 <section id="s22">
   <h2>22. تمرير الوسائط بالمرجع والقيمة</h2>
-  <p>تعديل قيمة المتغير الأصلي داخل الدالة عبر استخدام علامة العطف (&).</p>
+  <p>تعديل قيمة المتغير الأصلي داخل الدالة عبر استخدام علامة العطف (&amp;).</p>
   <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
-function addFive(&$num) {
+function addFive(&amp;$num) {
     $num += 5;
 }
 $val = 10;
@@ -362,7 +367,7 @@ echo $val; // تصبح 15
 </section>
 
 <section id="s23">
-  <h2>23. نطاق المتغيرات Global & Local</h2>
+  <h2>23. نطاق المتغيرات Global &amp; Local</h2>
   <p>فهم مدى رؤية المتغيرات المحلية داخل الدوال والعامة على مستوى الملف.</p>
   <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
 $x = 10;
@@ -641,7 +646,7 @@ class UserProfile {
 </section>
 
 <section id="s50">
-  <h2>50. دوال البناء والهدم Construct & Destruct</h2>
+  <h2>50. دوال البناء والهدم Construct &amp; Destruct</h2>
   <p>تهيئة الخصائص تلقائياً فور إنشاء الكائن باستخدام دالة البناء __construct.</p>
   <div class="code"><button class="copy">نسخ</button><pre>&lt;?php
 class DatabaseManager {
@@ -1000,17 +1005,73 @@ $php_ref = ["arrays" => "array_map", "db" => "PDO", "strings" => "strlen"];
 ?&gt;</pre></div>
 </section>
 
-<footer>منصة آفاق المعرفة التقنية — مكتبة | مها شهوب<br>إعداد الكاتبة والمهندسة: مها شهوب</footer>
+<footer>
+  <div><b>أكاديمية آفاق المعرفة التقنية</b></div>
+  <div>مكتبة | مها شهوب : سلسلة أساسيات التقنية</div>
+  <div>جميع الحقوق محفوظة © 2026</div>
+</footer>
+
 </main>
-<button class="top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+</div>
+
+<button class="top" id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <script>
-function toggleTheme(){document.documentElement.dataset.theme=document.documentElement.dataset.theme==="dark"?"light":"dark";localStorage.setItem("php-theme-88-full",document.documentElement.dataset.theme)}
-if(localStorage.getItem("php-theme-88-full"))document.documentElement.dataset.theme=localStorage.getItem("php-theme-88-full");
-document.querySelectorAll(".copy").forEach(b=>b.onclick=()=>{navigator.clipboard.writeText(b.parentElement.querySelector("pre").innerText);let x=b.innerText;b.innerText="تم النسخ ✓";setTimeout(()=>b.innerText=x,1100)});
-function filterNav(){let q=document.getElementById("search").value.toLowerCase();document.querySelectorAll("#nav a").forEach(a=>a.style.display=a.innerText.toLowerCase().includes(q)?"block":"none")}
-window.addEventListener("scroll",()=>{let d=document.documentElement;document.getElementById("progress").style.width=(d.scrollTop/(d.scrollHeight-d.clientHeight)*100)+"%";let cur="";document.querySelectorAll("section").forEach(s=>{if(scrollY>=s.offsetTop-130)cur=s.id});document.querySelectorAll("#nav a").forEach(a=>a.classList.toggle("active",a.hash==="#"+cur))});
-document.querySelectorAll("#nav a").forEach(a=>a.onclick=()=>document.querySelector("aside").classList.remove("open"));
+function toggleTheme(){
+  const html = document.documentElement;
+  const dark = html.getAttribute("data-theme") === "dark";
+  html.setAttribute("data-theme", dark ? "light" : "dark");
+  localStorage.setItem("php-guide-theme", html.getAttribute("data-theme"));
+}
+
+(function(){
+  const theme = localStorage.getItem("php-guide-theme");
+  if(theme) document.documentElement.setAttribute("data-theme", theme);
+})();
+
+document.querySelectorAll(".copy").forEach(b => {
+  b.onclick = async () => {
+    const code = b.parentElement.querySelector("pre").innerText;
+    try {
+      await navigator.clipboard.writeText(code);
+    } catch(e) {
+      const ta = document.createElement("textarea");
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      ta.remove();
+    }
+    let x = b.innerText;
+    b.innerText = "✓ تم النسخ";
+    setTimeout(() => b.innerText = x, 1100);
+  }
+});
+
+function filterNav(){
+  let q = document.getElementById("search").value.toLowerCase();
+  document.querySelectorAll("#nav a").forEach(a => {
+    a.style.display = a.innerText.toLowerCase().includes(q) ? "block" : "none";
+  });
+}
+
+window.addEventListener("scroll", () => {
+  let d = document.documentElement;
+  let total = d.scrollHeight - d.clientHeight;
+  document.getElementById("progress").style.width = (total ? (d.scrollTop / total) * 100 : 0) + "%";
+  
+  let cur = "";
+  document.querySelectorAll("section").forEach(s => {
+    if(window.scrollY >= s.offsetTop - 130) cur = s.id;
+  });
+  document.querySelectorAll("#nav a").forEach(a => {
+    a.classList.toggle("active", a.hash === "#" + cur);
+  });
+});
+
+document.querySelectorAll("#nav a").forEach(a => {
+  a.onclick = () => document.querySelector("aside").classList.remove("open");
+});
 </script>
 </body>
 </html>
