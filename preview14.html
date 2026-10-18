@@ -3,48 +3,89 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="دليل أنظمة إدارة قواعد البيانات DBMS الشامل والمفصل للأكواد والشروح الهندسية - آفاق المعرفة التقنية - مها شهوب">
+<meta name="description" content="دليل أنظمة إدارة قواعد البيانات DBMS الشامل والمفصل للأكواد والشروح الهندسية - أكاديمية آفاق المعرفة التقنية - مها شهوب">
 <title>دليل DBMS الشامل والمفصل | مها شهوب</title>
 <style>
 :root{--bg:#eef3f8;--card:#fff;--text:#172033;--muted:#64748b;--p:#0b4f88;--p2:#1d4ed8;--b:#d7e1eb;--code:#0b1220;--shadow:0 8px 24px rgba(20,55,90,.09)}
 [data-theme=dark]{--bg:#0c1420;--card:#151f2c;--text:#e7eef8;--muted:#a9b7c8;--p:#0b4f88;--p2:#60a5fa;--b:#2b3a4b;--code:#070b12;--shadow:0 8px 24px rgba(0,0,0,.25)}
 *{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
 body{font-family:"Segoe UI",Tahoma,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.9}
-header{position:fixed;top:0;right:0;left:0;height:72px;z-index:1000;background:var(--card);border-bottom:1px solid var(--b);display:flex;align-items:center;padding:0 20px;box-shadow:var(--shadow)}
-.logo{width:67px;height:54px;border-radius:50%;display:grid;place-items:center;}
-.brand{margin-right:12px}.brand b{display:block;color:var(--p2)}.brand small{color:var(--muted)}
-.actions{margin-right:auto;display:flex;gap:8px}button{border:1px solid var(--b);background:var(--card);color:var(--text);border-radius:9px;padding:8px 12px;cursor:pointer}.menu{display:none}
+
+header{position:fixed;top:0;right:0;left:0;height:72px;z-index:1000;background:var(--card);border-bottom:1px solid var(--b);display:flex;align-items:center;justify-content:space-between;padding:0 20px;box-shadow:var(--shadow)}
+.header-right{display:flex;align-items:center;gap:12px;min-width:0}
+.logo{width:50px;height:50px;border-radius:50%;object-fit:cover;flex-shrink:0}
+.brand{min-width:0}
+.brand b{display:block;color:var(--p2);font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand small{color:var(--muted);font-size:11.5px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.actions{display:flex;gap:8px;flex-shrink:0}
+button{border:1px solid var(--b);background:var(--card);color:var(--text);border-radius:9px;padding:8px 12px;cursor:pointer;font-size:13px;transition:.2s}
+button:hover{border-color:var(--p);color:var(--p)}
+.menu{display:none}
+
 .progress{position:fixed;top:72px;right:0;height:4px;background:var(--p);width:0;z-index:1001}
-aside{position:fixed;top:76px;right:0;bottom:0;width:310px;background:var(--card);border-left:1px solid var(--b);padding:16px;overflow:auto}
-.search{width:100%;padding:10px;border:1px solid var(--b);border-radius:9px;background:var(--bg);color:var(--text);margin-bottom:10px}
-nav a{display:block;color:var(--muted);text-decoration:none;padding:5px 8px;border-radius:7px;font-size:12.5px}
+aside{position:fixed;top:76px;right:0;bottom:0;width:310px;background:var(--card);border-left:1px solid var(--b);padding:16px;overflow:auto;z-index:950;transition:.3s}
+.search{width:100%;padding:10px;border:1px solid var(--b);border-radius:9px;background:var(--bg);color:var(--text);margin-bottom:10px;outline:none}
+nav a{display:block;color:var(--muted);text-decoration:none;padding:5px 8px;border-radius:7px;font-size:12.5px;margin:2px 0}
 nav a:hover,nav a.active{background:#2563eb1a;color:var(--p);font-weight:700}
-main{margin-right:310px;padding:110px 34px 50px;max-width:1300px}
+
+main{margin-right:310px;padding:100px 34px 50px;max-width:1300px;min-width:0}
 .hero{background:linear-gradient(135deg,var(--p2),var(--p));color:#ffffff;border-radius:18px;padding:34px;margin-bottom:22px;box-shadow:var(--shadow)}
-.hero h1{font-size:32px}.credit{font-weight:700;margin-top:8px}
+.hero h1{font-size:32px}
+.hero p{margin-top:8px;opacity:.95}
+.credit{font-weight:700;margin-top:12px;font-size:13.5px}
+
 section{background:var(--card);border:1px solid var(--b);border-radius:14px;padding:24px;margin-bottom:18px;box-shadow:var(--shadow);scroll-margin-top:95px}
 h2{font-size:21px;color:var(--p2);border-right:4px solid var(--p);padding-right:9px;margin-bottom:12px}
-p {margin-bottom: 12px;}
-.code{position:relative;margin:13px 0}.code pre{background:var(--code);color:#dbeafe;direction:ltr;text-align:left;overflow:auto;border-radius:9px;padding:17px;font:13px/1.7 Consolas,monospace;white-space:pre-wrap}
-.copy{position:absolute;right:7px;top:7px;background:#fff;color:#172033;border:0;font-size:11px;padding:5px 8px;cursor:pointer;border-radius:4px;}
-.top{position:fixed;bottom:20px;left:20px;border-radius:50%;background:var(--p);color:#fff;width:44px;height:44px;border:0;cursor:pointer}
-footer{text-align:center;color:var(--muted);padding:28px}
-@media(max-width:900px){aside{transform:translateX(100%);transition:.25s;width:290px}aside.open{transform:none}.menu{display:block}main{margin:0;padding:100px 14px 40px}.brand small{display:none}.hero h1{font-size:25px}}
-@media print{header,aside,.top,.progress,.actions,.copy{display:none!important}main{margin:0;padding:0}section{box-shadow:none;break-inside:avoid}}
+p{margin-bottom:12px}
+
+.code{position:relative;margin:13px 0}
+.code pre{background:var(--code);color:#dbeafe;direction:ltr;text-align:left;overflow:auto;border-radius:9px;padding:17px;font:13px/1.7 Consolas,monospace;white-space:pre-wrap}
+.copy{position:absolute;right:7px;top:7px;background:#fff;color:#172033;border:0;font-size:11px;padding:5px 8px;cursor:pointer;border-radius:4px;transition:.2s}
+.copy:hover{background:var(--p);color:#fff}
+
+.top{position:fixed;bottom:20px;left:20px;border-radius:50%;background:var(--p);color:#fff;width:44px;height:44px;border:0;cursor:pointer;display:none;z-index:900;box-shadow:0 4px 12px rgba(0,0,0,0.15)}
+footer{text-align:center;color:var(--muted);padding:28px;font-size:13.5px}
+
+@media(max-width:1000px){
+    aside{transform:translateX(100%);width:290px}
+    aside.open{transform:none}
+    .menu{display:block}
+    main{margin:0;padding:90px 16px 40px}
+    .brand small{display:block}
+    .hero h1{font-size:24px}
+}
+
+@media(max-width:480px){
+    .brand b{font-size:13px}
+    .brand small{font-size:10px}
+    header{padding:0 10px}
+    .hero{padding:22px 16px}
+}
 </style>
 </head>
 <body>
-<header><button class="menu" onclick="document.querySelector('aside').classList.toggle('open')">☰</button>
 
-   
-  <img src="IMG/آفاق المعرفة التقنية.png" class="logo">
-  <div class="brand"><b>منصة آفاق المعرفة التقنية</b><small>دليل DBMS الشامل </small></div>
+<header>
+  <div class="header-right">
+    <button class="menu" onclick="document.querySelector('aside').classList.toggle('open')">☰</button>
+    <img src="IMG/آفاق المعرفة التقنية.png" class="logo" alt="لوجو">
+    <div class="brand">
+      <b>أكاديمية آفاق المعرفة التقنية</b>
+      <small>دليل DBMS الشامل | مها شهوب</small>
+    </div>
+  </div>
 
+  <div class="actions">
+    <button onclick="toggleTheme()">◐ الوضع</button>
+  </div>
+</header>
 
-  <div class="actions"><button onclick="toggleTheme()">◐ الوضع</button><button onclick="window.print()">🖨 طباعة</button></div></header>
 <div class="progress" id="progress"></div>
 
-<aside><input class="search" id="search" placeholder="🔎 ابحث في الوحدات والدروس..." oninput="filterNav()"><nav id="nav">
+<aside>
+<input class="search" id="search" placeholder="🔎 ابحث في الوحدات والدروس..." oninput="filterNav()">
+<nav id="nav">
 <a href="#s1">01. مفهوم نظم إدارة قواعد البيانات DBMS</a>
 <a href="#s2">02. تطور وتاريخ هندسة قواعد البيانات</a>
 <a href="#s3">03. الهندسة ثلاثية المستويات لـ ANSI-SPARC</a>
@@ -58,9 +99,9 @@ footer{text-align:center;color:var(--muted);padding:28px}
 <a href="#s11">11. قيود النزاهة التكاملية Integrity Constraints</a>
 <a href="#s12">12. مفاهيم لغة التعريف DDL</a>
 <a href="#s13">13. مفاهيم لغة المعالجة DML</a>
-<a href="#s14">14. مفاهيم لغة التحكم DCL & TCL</a>
+<a href="#s14">14. مفاهيم لغة التحكم DCL &amp; TCL</a>
 <a href="#s15">15. مقدمة في الجبر العلائقي Relational Algebra</a>
-<a href="#s16">16. عمليات الانتقاء والاسقاط (Select & Project)</a>
+<a href="#s16">16. عمليات الانتقاء والاسقاط (Select &amp; Project)</a>
 <a href="#s17">17. عمليات الربط الديكارتي والتقاطع</a>
 <a href="#s18">18. تطبيع قواعد البيانات Normalization الأساسي</a>
 <a href="#s19">19. الصيغة الطبيعية الأولى 1NF</a>
@@ -83,7 +124,7 @@ footer{text-align:center;color:var(--muted);padding:28px}
 <a href="#s36">36. هياكل التخزين الفيزيائي للملفات</a>
 <a href="#s37">37. تنظيم الملفات وتخزين السجلات</a>
 <a href="#s38">38. أساسيات فهرسة البيانات Indexing Structures</a>
-<a href="#s39">39. الفهارس كثيفة التوزيع Dense & Sparse Indexes</a>
+<a href="#s39">39. الفهارس كثيفة التوزيع Dense &amp; Sparse Indexes</a>
 <a href="#s40">40. أشجار البحث الثنائية B-Trees و B+ Trees</a>
 <a href="#s41">41. التجزئة القائمة Hashing في التخزين</a>
 <a href="#s42">42. محرك تحسين الاستعلامات Query Optimizer</a>
@@ -138,7 +179,7 @@ footer{text-align:center;color:var(--muted);padding:28px}
 <main>
 <div class="hero">
   <h1>دليل نظم إدارة قواعد البيانات (DBMS) الشامل</h1>
-  <p>المرجع الهندسي المتكامل لتصميم، هيكلة، وإدارة أنظمة قواعد البيانات ومحركات التخزين والتزامن.</p>
+  <p>هندسة تخزين وإدارة البيانات والتحكم في التزامن والمعاملات من الجذور حتى الاحتراف؛ رؤية برمجية متكاملة لمحركات الأنظمة العلائقية.</p>
   <div class="credit">إعداد الكاتبة والمهندسة: مها شهوب</div>
 </div>
 
@@ -187,7 +228,7 @@ SELECT 'DBMS Architecture Initialized' AS status;</pre></div>
 
 <section id="s8">
   <h2>08. النموذج العلائقي Relational Model</h2>
-  <p>النموذج الرياضي لإدгар البيانات في جداول ثنائية الأبعاد (صفوف وأعمدة) أسسه إدگار كود.</p>
+  <p>النموذج الرياضي لإدراج البيانات في جداول ثنائية الأبعاد (صفوف وأعمدة) أسسه إدگار كود.</p>
   <div class="code"><button class="copy">نسخ</button><pre>CREATE TABLE relations_model (id INT PRIMARY KEY, attribute_name VARCHAR(50));</pre></div>
 </section>
 
@@ -206,7 +247,7 @@ SELECT 'DBMS Architecture Initialized' AS status;</pre></div>
 <section id="s11">
   <h2>11. قيود النزاهة التكاملية Integrity Constraints</h2>
   <p>القواعد التي تضمن صحة وسلامة البيانات مثل مفتاح الأساس، القيود الفريدة، وفحص الشروط.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>ALTER TABLE accounts ADD CONSTRAINT chk_balance CHECK (balance >= 0);</pre></div>
+  <div class="code"><button class="copy">نسخ</button><pre>ALTER TABLE accounts ADD CONSTRAINT chk_balance CHECK (balance &gt;= 0);</pre></div>
 </section>
 
 <section id="s12">
@@ -222,7 +263,7 @@ SELECT 'DBMS Architecture Initialized' AS status;</pre></div>
 </section>
 
 <section id="s14">
-  <h2>14. مفاهيم لغة التحكم DCL & TCL</h2>
+  <h2>14. مفاهيم لغة التحكم DCL &amp; TCL</h2>
   <p>أوامر إدارة الصلاحيات (GRANT, REVOKE) والتحكم بالمعاملات (COMMIT, ROLLBACK).</p>
   <div class="code"><button class="copy">نسخ</button><pre>GRANT SELECT ON db.* TO 'user'@'localhost';</pre></div>
 </section>
@@ -234,9 +275,9 @@ SELECT 'DBMS Architecture Initialized' AS status;</pre></div>
 </section>
 
 <section id="s16">
-  <h2>16. عمليات الانتقاء والاسقاط (Select & Project)</h2>
+  <h2>16. عمليات الانتقاء والاسقاط (Select &amp; Project)</h2>
   <p>الانتقاء (فلاتر الصفوف بشروط) والإسقاط (تحديد أعمدة معينة دون غيرها رياضياً).</p>
-  <div class="code"><button class="copy">نسخ</button><pre>SELECT name FROM employees WHERE salary > 5000;</pre></div>
+  <div class="code"><button class="copy">نسخ</button><pre>SELECT name FROM employees WHERE salary &gt; 5000;</pre></div>
 </section>
 
 <section id="s17">
@@ -278,7 +319,7 @@ SELECT 'DBMS Architecture Initialized' AS status;</pre></div>
 <section id="s23">
   <h2>23. الاعتمادات الوظيفية Functional Dependencies</h2>
   <p>العلاقة الرياضية التي يحدد فيها عمود (أو مجموعة أعمدة) قيمة عمود آخر بفرادة تامة.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>-- X -> Y (معرفة X تؤدي بالضرورة لمعرفة Y بدقة)</pre></div>
+  <div class="code"><button class="copy">نسخ</button><pre>-- X -&gt; Y (معرفة X تؤدي بالضرورة لمعرفة Y بدقة)</pre></div>
 </section>
 
 <section id="s24">
@@ -304,7 +345,7 @@ COMMIT;</pre></div>
 <section id="s27">
   <h2>27. جداول الجدولة والتزامن Concurrency Control</h2>
   <p>تنظيم تنفيذ العمليات المتداخلة بطريقة قابلة للتسلسل (Serializability) لضمان صحة النتائج.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>-- Conflict Serializability & View Serializability</pre></div>
+  <div class="code"><button class="copy">نسخ</button><pre>-- Conflict Serializability &amp; View Serializability</pre></div>
 </section>
 
 <section id="s28">
@@ -318,7 +359,7 @@ UNLOCK TABLES;</pre></div>
 <section id="s29">
   <h2>29. قفل المرحلتين Two-Phase Locking (2PL)</h2>
   <p>بروتوكول يضمن القابلية للتسلسل عبر مرحلتين: مرحلة نمو الأقفال ومرحلة تحريرها.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>-- Strict 2PL & Rigorous 2PL لضمان عدم حدوث Dirty Reads</pre></div>
+  <div class="code"><button class="copy">نسخ</button><pre>-- Strict 2PL &amp; Rigorous 2PL لضمان عدم حدوث Dirty Reads</pre></div>
 </section>
 
 <section id="s30">
@@ -376,7 +417,7 @@ UNLOCK TABLES;</pre></div>
 </section>
 
 <section id="s39">
-  <h2>39. الفهارس كثيفة التوزيع Dense & Sparse Indexes</h2>
+  <h2>39. الفهارس كثيفة التوزيع Dense &amp; Sparse Indexes</h2>
   <p>الفرق بين فهرسة كل سجل على حدة (Dense) أو فهرسة مفاتيح كتل البيانات الرئيسية (Sparse).</p>
   <div class="code"><button class="copy">نسخ</button><pre>-- Primary Index vs Secondary Index مقارنة الأداء والمساحة</pre></div>
 </section>
@@ -384,12 +425,12 @@ UNLOCK TABLES;</pre></div>
 <section id="s40">
   <h2>40. أشجار البحث الثنائية B-Trees و B+ Trees</h2>
   <p>الهيكل الأساسي والأكثر شهرة في فهارس قواعد البيانات لضمان سرعة البحث والتحديث.</p>
-  <div class="code"><button class="copy">نسخ5</button><pre>-- B+ Tree تحفظ البيانات في الأوراق وتسمح بالبحث المتسلسل السريع</pre></div>
+  <div class="code"><button class="copy">نسخ</button><pre>-- B+ Tree تحفظ البيانات في الأوراق وتسمح بالبحث المتسلسل السريع</pre></div>
 </section>
 
 <section id="s41">
   <h2>41. التجزئة القائمة Hashing في التخزين</h2>
-  <p>استخدام دال تجزئة لتحديد موقع التخزين المباشر للسجل عبر مفتاحه الفريد.</p>
+  <p>استخدام دالة تجزئة لتحديد موقع التخزين المباشر للسجل عبر مفتاحه الفريد.</p>
   <div class="code"><button class="copy">نسخ</button><pre>-- Static Hashing vs Dynamic Hashing (Extendable Hashing)</pre></div>
 </section>
 
@@ -425,14 +466,14 @@ UNLOCK TABLES;</pre></div>
 
 <section id="s47">
   <h2>47. تجزئة البيانات والنسخ المتماثل Replication</h2>
-  <p>توزيع الجداول أفقياً أو عمودياً (Sharding & Partitioning) ونسخ البيانات لمواجهة الأعطال.</p>
+  <p>توزيع الجداول أفقياً أو عمودياً (Sharding &amp; Partitioning) ونسخ البيانات لمواجهة الأعطال.</p>
   <div class="code"><button class="copy">نسخ</button><pre>-- Master-Slave Replication vs Multi-Master Replication</pre></div>
 </section>
 
 <section id="s48">
   <h2>48. قواعد البيانات السحابية Cloud Databases</h2>
   <p>إدارة قواعد البيانات كخدمة (DBaaS) على المنصات السحابية الكبرى مع مرونة التوسيع التلقائي.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>-- مرونة التوسيع العمودي والأفقي (Vertical & Horizontal Scaling)</pre></div>
+  <div class="code"><button class="copy">نسخ</button><pre>-- مرونة التوسيع العمودي والأفقي (Vertical &amp; Horizontal Scaling)</pre></div>
 </section>
 
 <section id="s49">
@@ -476,7 +517,7 @@ GRANT SELECT ON database.* TO 'db_analyst';</pre></div>
 <section id="s55">
   <h2>55. استراتيجيات النسخ الاحتياطي الكامل والتزايدي</h2>
   <p>حماية النظام عبر نسخ احتياطي كامل (Full)، تفاضلي (Differential)، وتزايدي (Incremental).</p>
-  <div class="code"><button class="copy">نسخ</button><pre>-- mysqldump -u root -p --all-databases > full_backup.sql</pre></div>
+  <div class="code"><button class="copy">نسخ</button><pre>-- mysqldump -u root -p --all-databases &gt; full_backup.sql</pre></div>
 </section>
 
 <section id="s56">
@@ -506,7 +547,7 @@ GRANT SELECT ON database.* TO 'db_analyst';</pre></div>
 <section id="s60">
   <h2>60. استخراج قواعد المعرفة Knowledge Discovery</h2>
   <p>تطبيق خوارزميات استخراج الأنماط، التنقيب عن البيانات، واكتشاف العلاقات الكامنة.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>-- Data Mining & Machine Learning integrations inside modern DBMS</pre></div>
+  <div class="code"><button class="copy">نسخ</button><pre>-- Data Mining &amp; Machine Learning integrations inside modern DBMS</pre></div>
 </section>
 
 <section id="s61">
@@ -523,7 +564,7 @@ GRANT SELECT ON database.* TO 'db_analyst';</pre></div>
 
 <section id="s63">
   <h2>63. قواعد البيانات المكانية Spatial Databases</h2>
-  <p>إدارة البيانات الجغرافية والإحداثيات وتحليل المسافات والخرائط (GIS & PostGIS).</p>
+  <p>إدارة البيانات الجغرافية والإحداثيات وتحليل المسافات والخرائط (GIS &amp; PostGIS).</p>
   <div class="code"><button class="copy">نسخ</button><pre>SELECT ST_Distance(point1, point2) FROM locations;</pre></div>
 </section>
 
@@ -677,17 +718,74 @@ GRANT SELECT ON database.* TO 'db_analyst';</pre></div>
   <div class="code"><button class="copy">نسخ</button><pre>/* خلاصة مفاهيم DBMS: التخزين، التزامن، المعاملات، الأمان، وتحسين الأداء */</pre></div>
 </section>
 
-<footer>منصة آفاق المعرفة التقنية — مكتبة | مها شهوب<br>إعداد الكاتبة والمهندسة: مها شهوب</footer>
+<footer>
+  <div><b>أكاديمية آفاق المعرفة التقنية</b></div>
+  <div>مكتبة | مها شهوب : سلسلة أساسيات التقنية</div>
+  <div>جميع الحقوق محفوظة © 2026</div>
+</footer>
+
 </main>
-<button class="top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+</div>
+
+<button class="top" id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <script>
-function toggleTheme(){document.documentElement.dataset.theme=document.documentElement.dataset.theme==="dark"?"light":"dark";localStorage.setItem("dbms-theme-88-full",document.documentElement.dataset.theme)}
-if(localStorage.getItem("dbms-theme-88-full"))document.documentElement.dataset.theme=localStorage.getItem("dbms-theme-88-full");
-document.querySelectorAll(".copy").forEach(b=>b.onclick=()=>{navigator.clipboard.writeText(b.parentElement.querySelector("pre").innerText);let x=b.innerText;b.innerText="تم النسخ ✓";setTimeout(()=>b.innerText=x,1100)});
-function filterNav(){let q=document.getElementById("search").value.toLowerCase();document.querySelectorAll("#nav a").forEach(a=>a.style.display=a.innerText.toLowerCase().includes(q)?"block":"none")}
-window.addEventListener("scroll",()=>{let d=document.documentElement;document.getElementById("progress").style.width=(d.scrollTop/(d.scrollHeight-d.clientHeight)*100)+"%";let cur="";document.querySelectorAll("section").forEach(s=>{if(scrollY>=s.offsetTop-130)cur=s.id});document.querySelectorAll("#nav a").forEach(a=>a.classList.toggle("active",a.hash==="#"+cur))});
-document.querySelectorAll("#nav a").forEach(a=>a.onclick=()=>document.querySelector("aside").classList.remove("open"));
+function toggleTheme(){
+  const html = document.documentElement;
+  const dark = html.getAttribute("data-theme") === "dark";
+  html.setAttribute("data-theme", dark ? "light" : "dark");
+  localStorage.setItem("dbms-guide-theme", html.getAttribute("data-theme"));
+}
+
+(function(){
+  const theme = localStorage.getItem("dbms-guide-theme");
+  if(theme) document.documentElement.setAttribute("data-theme", theme);
+})();
+
+document.querySelectorAll(".copy").forEach(b => {
+  b.onclick = async () => {
+    const code = b.parentElement.querySelector("pre").innerText;
+    try {
+      await navigator.clipboard.writeText(code);
+    } catch(e) {
+      const ta = document.createElement("textarea");
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      ta.remove();
+    }
+    let x = b.innerText;
+    b.innerText = "✓ تم النسخ";
+    setTimeout(() => b.innerText = x, 1100);
+  }
+});
+
+function filterNav(){
+  let q = document.getElementById("search").value.toLowerCase();
+  document.querySelectorAll("#nav a").forEach(a => {
+    a.style.display = a.innerText.toLowerCase().includes(q) ? "block" : "none";
+  });
+}
+
+window.addEventListener("scroll", () => {
+  let d = document.documentElement;
+  let total = d.scrollHeight - d.clientHeight;
+  document.getElementById("progress").style.width = (total ? (d.scrollTop / total) * 100 : 0) + "%";
+  document.getElementById("topBtn").style.display = d.scrollTop > 400 ? "block" : "none";
+  
+  let cur = "";
+  document.querySelectorAll("section").forEach(s => {
+    if(window.scrollY >= s.offsetTop - 130) cur = s.id;
+  });
+  document.querySelectorAll("#nav a").forEach(a => {
+    a.classList.toggle("active", a.hash === "#" + cur);
+  });
+});
+
+document.querySelectorAll("#nav a").forEach(a => {
+  a.onclick = () => document.querySelector("aside").classList.remove("open");
+});
 </script>
 </body>
 </html>
