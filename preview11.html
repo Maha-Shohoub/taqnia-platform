@@ -2,49 +2,208 @@
 <html lang="ar" dir="rtl" data-theme="light">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="دليل JavaScript الشامل والمفصل للأكواد والشروح الهندسية - آفاق المعرفة التقنية - مها شهوب">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="دليل JavaScript الشامل والمفصل للأكواد والشروح الهندسية - أكاديمية آفاق المعرفة التقنية - مها شهوب">
+<meta name="author" content="مها شهوب">
 <title>دليل JavaScript الشامل والمفصل | مها شهوب</title>
 <style>
-:root{--bg:#eef3f8;--card:#fff;--text:#172033;--muted:#64748b;--p:#1677c8;--p2:#0b4f88;--b:#d7e1eb;--code:#0b1220;--shadow:0 8px 24px rgba(20,55,90,.09)}
-[data-theme=dark]{--bg:#0c1420;--card:#151f2c;--text:#e7eef8;--muted:#a9b7c8;--p:#0b4f88;--p2:#a7d9fb;--b:#2b3a4b;--code:#070b12;--shadow:0 8px 24px rgba(0,0,0,.25)}
-*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
-body{font-family:"Segoe UI",Tahoma,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.9}
-header{position:fixed;top:0;right:0;left:0;height:72px;z-index:1000;background:var(--card);border-bottom:1px solid var(--b);display:flex;align-items:center;padding:0 20px;box-shadow:var(--shadow)}
-.logo{width:67px;height:54px;border-radius:50%;display:grid;place-items:center;}
-.brand{margin-right:12px}.brand b{display:block;color:var(--p2)}.brand small{color:var(--muted)}
-.actions{margin-right:auto;display:flex;gap:8px}button{border:1px solid var(--b);background:var(--card);color:var(--text);border-radius:9px;padding:8px 12px;cursor:pointer}.menu{display:none}
-.progress{position:fixed;top:72px;right:0;height:4px;background:var(--p);width:0;z-index:1001}
-aside{position:fixed;top:76px;right:0;bottom:0;width:310px;background:var(--card);border-left:1px solid var(--b);padding:16px;overflow:auto}
-.search{width:100%;padding:10px;border:1px solid var(--b);border-radius:9px;background:var(--bg);color:var(--text);margin-bottom:10px}
-nav a{display:block;color:var(--muted);text-decoration:none;padding:5px 8px;border-radius:7px;font-size:12.5px}
-nav a:hover,nav a.active{background:#1677c81a;color:var(--p);font-weight:700}
-main{margin-right:310px;padding:110px 34px 50px;max-width:1300px}
-.hero{background:linear-gradient(135deg,var(--p2),var(--p));color:#ffffff;border-radius:18px;padding:34px;margin-bottom:22px;box-shadow:var(--shadow)}
-.hero h1{font-size:32px}.credit{font-weight:700;margin-top:8px}
-section{background:var(--card);border:1px solid var(--b);border-radius:14px;padding:24px;margin-bottom:18px;box-shadow:var(--shadow);scroll-margin-top:95px}
-h2{font-size:21px;color:var(--p2);border-right:4px solid var(--p);padding-right:9px;margin-bottom:12px}
-p {margin-bottom: 12px;}
-.code{position:relative;margin:13px 0}.code pre{background:var(--code);color:#dbeafe;direction:ltr;text-align:left;overflow:auto;border-radius:9px;padding:17px;font:13px/1.7 Consolas,monospace;white-space:pre-wrap}
-.copy{position:absolute;right:7px;top:7px;background:#fff;color:#172033;border:0;font-size:11px;padding:5px 8px;cursor:pointer;border-radius:4px;}
-.top{position:fixed;bottom:20px;left:20px;border-radius:50%;background:var(--p);color:#fff;width:44px;height:44px;border:0;cursor:pointer}
-footer{text-align:center;color:var(--muted);padding:28px}
-@media(max-width:900px){aside{transform:translateX(100%);transition:.25s;width:290px}aside.open{transform:none}.menu{display:block}main{margin:0;padding:100px 14px 40px}.brand small{display:none}.hero h1{font-size:25px}}
-@media print{header,aside,.top,.progress,.actions,.copy{display:none!important}main{margin:0;padding:0}section{box-shadow:none;break-inside:avoid}}
+:root{
+    --bg:#f4f7fb;--card:#fff;--text:#182230;--muted:#64748b;--primary:#1677c8;
+    --primary2:#0b4f88;--border:#dbe4ee;--code:#101827;--codeText:#e8eef7;
+    --nav:#fff
+}
+[data-theme="dark"]{
+    --bg:#0b1220;--card:#111b2b;--text:#e7eef8;--muted:#9fb0c5;--primary:#55aaf0;
+    --primary2:#8cc8fa;--border:#26374c;--code:#07101d;--codeText:#e7eef8;--nav:#0e1727
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+    margin:0;background:var(--bg);color:var(--text);
+    font-family:"Segoe UI",Tahoma,Arial,sans-serif;line-height:1.85;
+    overflow-x:hidden;
+}
+
+/* الترويسة العلوية */
+header{
+    position:fixed;top:0;right:0;left:0;height:68px;
+    background:var(--nav);border-bottom:1px solid var(--border);
+    z-index:1000;display:flex;align-items:center;justify-content:space-between;
+    padding:0 15px;direction:rtl;
+}
+
+.header-right{
+    display:flex;align-items:center;gap:12px;min-width:0;
+}
+
+.logo{
+    width:52px;height:52px;border-radius:50%;display:grid;place-items:center;
+    flex-shrink:0;object-fit:cover;
+}
+
+.brand-text{
+    font-weight:800;font-size:16px;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.brand-text small{display:block;color:var(--muted);font-size:11px}
+
+.header-left{
+    display:flex;align-items:center;gap:8px;flex-shrink:0;
+}
+
+button,.btn{
+    border:1px solid var(--border);background:var(--card);color:var(--text);
+    border-radius:9px;padding:8px 11px;cursor:pointer;white-space:nowrap;font-size:13px;
+    transition:.2s ease;
+}
+button:hover,.btn:hover{border-color:var(--primary);color:var(--primary)}
+
+.progress{
+    position:fixed;top:68px;right:0;height:3px;width:0;
+    background:#3fb5ff;z-index:1001
+}
+.layout{max-width:1550px;margin:auto;padding-top:68px;width:100%}
+
+/* القائمة الجانبية */
+aside{
+    position:fixed;top:68px;right:0;bottom:0;width:315px;
+    background:var(--nav);border-left:1px solid var(--border);
+    padding:18px 14px;overflow-y:auto;z-index:950;
+    transition: transform 0.3s ease;
+}
+
+.search{
+    width:100%;padding:11px;border:1px solid var(--border);
+    border-radius:11px;background:var(--card);color:var(--text);
+    margin-bottom:12px;outline:none
+}
+.nav-title{font-weight:800;color:var(--primary);margin:8px 0}
+nav a{
+    display:block;text-decoration:none;color:var(--muted);
+    padding:6px 9px;border-radius:8px;font-size:12px;margin:2px 0
+}
+nav a:hover,nav a.active{
+    background:rgba(22,119,200,.1);color:var(--primary);font-weight:700
+}
+
+main{
+    margin-right:315px;width:calc(100% - 315px);
+    padding:32px 34px 70px;min-width:0
+}
+
+.hero{
+    background:linear-gradient(135deg,#071b31,#0b4f88 55%,#1677c8);
+    color:white;border-radius:20px;padding:38px;margin-bottom:25px
+}
+.hero h1{font-size:32px;margin:0}
+.hero p{margin-top:10px;opacity:.95}
+.credit{font-weight:700;margin-top:14px;font-size:13px;opacity:.9}
+.credit b{color:#93c5fd}
+
+section{
+    background:var(--card);border:1px solid var(--border);
+    border-radius:17px;padding:27px;margin-bottom:22px
+}
+h2{
+    color:var(--primary2);font-size:23px;
+    border-right:5px solid var(--primary);padding-right:12px;margin-bottom:12px
+}
+p{margin:8px 0}
+
+.codebox{border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-top:14px}
+.codetop{background:rgba(22,119,200,.08);padding:8px 12px;display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:700;color:var(--primary2)}
+.copy{border:1px solid var(--border);background:var(--card);color:var(--text);padding:4px 9px;border-radius:6px;cursor:pointer;font-size:11px}
+.copy:hover{border-color:var(--primary);color:var(--primary)}
+
+pre{
+    direction:ltr;text-align:left;margin:0;padding:16px;overflow:auto;
+    background:var(--code);color:var(--codeText);
+    font:13px/1.75 Consolas,"Courier New",monospace;white-space:pre-wrap
+}
+
+.topbtn-float{
+    position:fixed;bottom:20px;left:20px;
+    width:45px;height:45px;border-radius:50%;
+    background:var(--primary);color:white;display:none;
+    border:0;cursor:pointer;z-index:900;font-size:20px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.2);
+}
+.menu{display:none}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 25px 15px;
+    border-top: 1px solid var(--border);
+    margin-top: 40px;
+    color: var(--muted);
+    font-size: 14px;
+    gap: 6px;
+}
+
+@media(max-width:1100px){
+    .menu{display:block}
+    aside{
+        display:none;
+        right:0;
+        left:auto;
+        width:290px;
+        z-index:950;
+        box-shadow:-8px 0 25px rgba(0,0,0,.15);
+    }
+    aside.open{display:block}
+    main{margin-right:0;width:100%;padding:24px 16px 60px}
+}
+
+@media(max-width:600px){
+    .brand-text{font-size:13px}
+    .brand-text small{display:none}
+    header{padding:0 10px;gap:8px}
+    button,.btn{padding:7px 9px;font-size:12px}
+    .hero{padding:22px 16px}
+    .hero h1{font-size:23px}
+    section{padding:18px 14px}
+    h2{font-size:20px}
+    pre{font-size:12px}
+}
+
+@media print{
+    header,aside,.progress,.topbtn-float{display:none!important}
+    main{margin:0;width:100%;padding:0}
+    section{box-shadow:none;break-inside:avoid}
+}
 </style>
 </head>
 <body>
-<header><button class="menu" onclick="document.querySelector('aside').classList.toggle('open')">☰</button>
 
-  <img src="IMG/آفاق المعرفة التقنية.png" class="logo">
+<header>
+  <div class="header-right">
+    <button class="menu" onclick="toggleMenu()">☰</button>
+    <img src="IMG/آفاق المعرفة التقنية.png" class="logo" alt="لوجو">
+    <div class="brand-text">
+      أكاديمية آفاق المعرفة التقنية
+      <small>دليل JavaScript الشامل | مها شهوب</small>
+    </div>
+  </div>
 
-  <div class="brand"><b>أكاديمية آفاق المعرفة التقنية</b><small>دليل JavaScript الشامل | مها شهوب </small></div>
+  <div class="header-left">
+    <button onclick="toggleTheme()">◐ الوضع</button>
+  </div>
+</header>
 
-<div class="actions"><button onclick="toggleTheme()">◐ الوضع</button>
-</div></header>
 <div class="progress" id="progress"></div>
 
-<aside><input class="search" id="search" placeholder="🔎 ابحث في الدروس..." oninput="filterNav()"><nav id="nav">
+<div class="layout">
+
+<aside id="sidebar">
+<input class="search" id="search" placeholder="🔎 ابحث في الفهرس..." oninput="filterNav()">
+
+<div class="nav-title">فهرس JavaScript الشامل</div>
+
+<nav id="nav">
 <a href="#s1">01. مقدمة في JavaScript</a>
 <a href="#s2">02. طرق تضمين الجافاسكريبت</a>
 <a href="#s3">03. إخراج البيانات والطباعة</a>
@@ -71,7 +230,7 @@ footer{text-align:center;color:var(--muted);padding:28px}
 <a href="#s24">24. مقدمة المصفوفات Arrays</a>
 <a href="#s25">25. أساليب المصفوفات الأساسية</a>
 <a href="#s26">26. البحث في المصفوفات</a>
-<a href="#s27">27. تكرار المصفوفات Loops & Methods</a>
+<a href="#s27">27. تكرار المصفوفات Loops &amp; Methods</a>
 <a href="#s28">28. دوال Map, Filter, Reduce</a>
 <a href="#s29">29. الكائنات Objects الأساسية</a>
 <a href="#s30">30. خصائص الكائنات وطرقها</a>
@@ -85,7 +244,7 @@ footer{text-align:center;color:var(--muted);padding:28px}
 <a href="#s38">38. إنشاء وحذف عناصر الـ DOM</a>
 <a href="#s39">39. معالجة الأحداث Event Listeners</a>
 <a href="#s40">40. أنواع الأحداث وتفاعل المستخدم</a>
-<a href="#s41">41. انتشار الأحداث Bubbling & Capturing</a>
+<a href="#s41">41. انتشار الأحداث Bubbling &amp; Capturing</a>
 <a href="#s42">42. كائن الحدث Event Object</a>
 <a href="#s43">43. تفويض الأحداث Event Delegation</a>
 <a href="#s44">44. التخزين المحلي LocalStorage</a>
@@ -101,13 +260,13 @@ footer{text-align:center;color:var(--muted);padding:28px}
 <a href="#s54">54. الدوال البناءة Constructors</a>
 <a href="#s55">55. النماذج الأولية Prototypes</a>
 <a href="#s56">56. التفكيك Destructuring</a>
-<a href="#s57">57. معاملات الانتشار Spread & Rest</a>
+<a href="#s57">57. معاملات الانتشار Spread &amp; Rest</a>
 <a href="#s58">58. التعبيرات النمطية RegEx</a>
 <a href="#s59">59. وحدة النظام Modules (Import/Export)</a>
-<a href="#s60">60. مؤقتات التمهيد Timeout & Interval</a>
+<a href="#s60">60. مؤقتات التمهيد Timeout &amp; Interval</a>
 <a href="#s61">61. التعامل مع النماذج Form Validation</a>
-<a href="#s62">62. خريطة البيانات Map & Set</a>
-<a href="#s63">63. الخصائص الخاصة WeakMap & WeakSet</a>
+<a href="#s62">62. خريطة البيانات Map &amp; Set</a>
+<a href="#s63">63. الخصائص الخاصة WeakMap &amp; WeakSet</a>
 <a href="#s64">64. العمليات الثنائية Bitwise Operators</a>
 <a href="#s65">65. تتبع الأداء Performance API</a>
 <a href="#s66">66. البرمجة الوظيفية Functional JS</a>
@@ -120,7 +279,7 @@ footer{text-align:center;color:var(--muted);padding:28px}
 <a href="#s73">73. كائن النسخ المتطابق StructuredClone</a>
 <a href="#s74">74. الـ Iterators والمولدات Generators</a>
 <a href="#s75">75. معالجة السلاسل النصية المتقدمة</a>
-<a href="#s76">76. تقنيات الأمان والحماية XSS & CSRF</a>
+<a href="#s76">76. تقنيات الأمان والحماية XSS &amp; CSRF</a>
 <a href="#s77">77. أفضل ممارسات كتابة النظيف Clean Code</a>
 <a href="#s78">78. أدوات التصحيح Debugging Tools</a>
 <a href="#s79">79. اختبار الأكواد وحدياً Unit Testing</a>
@@ -132,643 +291,974 @@ footer{text-align:center;color:var(--muted);padding:28px}
 <a href="#s85">85. مشروع: معرض صور تفاعلي Slider</a>
 <a href="#s86">86. مشروع: نظام تصفح ثيمات Dark/Light</a>
 <a href="#s87">87. مشروع: جلب وعرض بيانات API خارجية</a>
-<a href="#s88">88. المرجع الشامل لأهم دوال ومethods الجافاسكريبت</a>
-</nav></aside>
+<a href="#s88">88. المرجع الشامل لأهم دوال وMethods الجافاسكريبت</a>
+</nav>
+</aside>
 
 <main>
+
 <div class="hero">
-  <h1>دليل JavaScript الشامل</h1>
-  <p>المرجع الهندسي المتكامل والمزود بالأمثلة الحية والشروح لكل درس.</p>
-  <div class="credit">إعداد الكاتبة والمهندسة: مها شهوب</div>
+  <h1>دليل JavaScript الشامل والمفصل</h1>
+  <p>المرجع الهندسي المتكامل والمزود بالأمثلة الحية والشروح لكل درس من الـ 88 درساً.</p>
+  <div class="credit">إعداد الكاتبة والمهندسة: <b>مها شهوب</b></div>
 </div>
 
 <section id="s1">
   <h2>01. مقدمة في JavaScript</h2>
   <p>لغة الجافاسكريبت هي لغة البرمجة الأساسية المسؤولة عن إضافة التفاعل، الديناميكية، والمنطق البرمجي لصفحات الويب.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>// فحص البيئة البرمجية الأساسية
-console.log("تشغيل محرك جافاسكريبت بنجاح");</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>// فحص البيئة البرمجية الأساسية
+console.log("تشغيل محرك جافاسكريبت بنجاح");</code></pre>
+  </div>
 </section>
 
 <section id="s2">
   <h2>02. طرق تضمين الجافاسكريبت</h2>
   <p>يمكن تضمين السكريبتات عبر وسم script مباشرة أو استدعاء ملف خارجي بصيغة .js لتحسين التنظيم.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>&lt;script src="script.js" defer&gt;&lt;/script&gt;</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>&lt;script src="script.js" defer&gt;&lt;/script&gt;</code></pre>
+  </div>
 </section>
 
 <section id="s3">
   <h2>03. إخراج البيانات والطباعة</h2>
   <p>استخدام كونسول المتصفح للتصحيح أو إظهار رسائل منبثقة للمستخدم عبر الأوامر الأساسية.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>console.log("مرحباً بكم في آفاق المعرفة التقنية");</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>console.log("مرحباً بكم في آفاق المعرفة التقنية");</code></pre>
+  </div>
 </section>
 
 <section id="s4">
   <h2>04. التعليقات وتوثيق الأكواد</h2>
   <p>كتابة الملاحظات وشرح الأجزاء البرمجية لتسهيل القراءة والصيانة المستقبليّة.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>// تعليق في سطر واحد
-/* تعليق متعدد الأسطر لتوضيح النظام */</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>// تعليق في سطر واحد
+/* تعليق متعدد الأسطر لتوضيح النظام */</code></pre>
+  </div>
 </section>
 
 <section id="s5">
   <h2>05. المتغيرات بـ let و const</h2>
   <p>حجز مساحات تخزين في الذاكرة للقيم المتغيرة (let) والثابتة (const) الحديثة.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>const appName = "آفاق المعرفة التقنية";
-let visitorCount = 120;</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>const appName = "آفاق المعرفة التقنية";
+let visitorCount = 120;</code></pre>
+  </div>
 </section>
 
 <section id="s6">
   <h2>06. أنواع البيانات الأساسية</h2>
   <p>التعرف على أنواع البيانات البرمجية مثل النصوص، الأرقام، القيم المنطقية، والقيم الفارغة.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>let isPublished = true;
-let score = 98.5;</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>let isPublished = true;
+let score = 98.5;</code></pre>
+  </div>
 </section>
 
 <section id="s7">
   <h2>07. العمليات الحسابية</h2>
   <p>تنفيذ العمليات الرياضية كالجمع، الطرح، الضرب، القسمة، وباقي القسمة.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>let total = 10 + 5 * 2;</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>let total = 10 + 5 * 2;</code></pre>
+  </div>
 </section>
 
 <section id="s8">
   <h2>08. معاملات التخصيص والمقارنة</h2>
   <p>تحديث قيم المتغيرات ومقارنة القيم ببعضها البعض (مثل أكبر من أو يساوي).</p>
-  <div class="code"><button class="copy">نسخ</button><pre>let x = 10;
-x += 5; // تصبح 15</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>let x = 10;
+x += 5; // تصبح 15</code></pre>
+  </div>
 </section>
 
 <section id="s9">
   <h2>09. المعاملات المنطقية (AND, OR, NOT)</h2>
-  <p>ربط الشروط البرمجية المتعددة باستخدام الرموز المنطقية && و || و !.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>if (isAdmin && isLoggedIn) {
+  <p>ربط الشروط البرمجية المتعددة باستخدام الرموز المنطقية &amp;&amp; و || و !.</p>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>if (isAdmin &amp;&amp; isLoggedIn) {
   console.log("مرحباً بك في لوحة التحكم");
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s10">
   <h2>10. نصوص الـ Strings ومعالجتها</h2>
   <p>التعامل مع السلاسل النصية ودمجها وطول النص البرمجي.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>let title = "مها شهوب";
-console.log(title.length);</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>let title = "مها شهوب";
+console.log(title.length);</code></pre>
+  </div>
 </section>
 
 <section id="s11">
   <h2>11. قوالب النصوص Template Literals</h2>
   <p>استخدام العلامة العكسية (`) لدمج المتغيرات داخل النصوص بطريقة نظيفة وسهلة.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>let greeting = `مرحباً بكِ يا مهندسة ${title}`;</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>let greeting = `مرحباً بكِ يا مهندسة ${title}`;</code></pre>
+  </div>
 </section>
 
 <section id="s12">
   <h2>12. الطرق الشائعة للنصوص</h2>
   <p>البحث، الاستبدال، وتقطيع النصوص عبر الدوال الجاهزة.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>let text = "JavaScript Programming";
-let upper = text.toUpperCase();</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>let text = "JavaScript Programming";
+let upper = text.toUpperCase();</code></pre>
+  </div>
 </section>
 
 <section id="s13">
   <h2>13. الأرقام والعمليات الرياضية Math</h2>
   <p>استخدام كائن الرياضيات المدمج للتقريب، الجذور، والقيم العشوائية.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>let rnd = Math.floor(Math.random() * 10) + 1;</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>let rnd = Math.floor(Math.random() * 10) + 1;</code></pre>
+  </div>
 </section>
 
 <section id="s14">
   <h2>14. الجمل الشرطية If / Else</h2>
   <p>توجيه مسار البرنامج لتنفيذ أكواد مختلفة بناءً على تحقق الشروط.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>if (score >= 50) {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>if (score &gt;= 50) {
   console.log("ناجح");
 } else {
   console.log("راسب");
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s15">
   <h2>15. جملة الاختيار Switch</h2>
   <p>اختبار متغير ضد عدة حالات محتملة بشكل منظم بديل لتعدد جمل if.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>switch(day) {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>switch(day) {
   case 1: console.log("السبت"); break;
   default: console.log("يوم عادي");
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s16">
   <h2>16. المعامل الثلاثي Ternary</h2>
   <p>اختصار الجمل الشرطية البسيطة في سطر برمجي واحد وموجز.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>let status = (age >= 18) ? "بالغ" : "قاصر";</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>let status = (age &gt;= 18) ? "بالغ" : "قاصر";</code></pre>
+  </div>
 </section>
 
 <section id="s17">
   <h2>17. حلقة التكرار For</h2>
   <p>تكرار تنفيذ كتلة برمجية لعدد محدد مسبقاً من المرات.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>for(let i = 0; i &lt; 5; i++) {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>for(let i = 0; i &lt; 5; i++) {
   console.log(i);
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s18">
   <h2>18. حلقة التكرار While و Do...While</h2>
   <p>التكرار استناداً إلى تحقق شرط معين طالما أنه بقيمته الصحيحة.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>let i = 0;
-while(i &lt; 3) { i++; }</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>let i = 0;
+while(i &lt; 3) { i++; }</code></pre>
+  </div>
 </section>
 
 <section id="s19">
   <h2>19. التحكم بالتكرار Break و Continue</h2>
   <p>إيقاف حلقة التكرار نهائياً أو تخطي التكرار الحالي.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>if(i === 2) continue;</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>if(i === 2) continue;</code></pre>
+  </div>
 </section>
 
 <section id="s20">
   <h2>20. الدوال الأساسية Functions</h2>
   <p>تغليف الأكواد في كتل برمجية قابلة لإعادة الاستخدام عند النداء.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>function calculateSum(a, b) {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>function calculateSum(a, b) {
   return a + b;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s21">
   <h2>21. التعبيرات ونطاق الدوال (Function Expressions)</h2>
   <p>إسناد الدوال إلى متغيرات برمجية للاستفادة منها بسلاسة وتحديد سلوكها التنفيذي.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>const greet = function(name) { return `أهلاً ${name}`; };</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>const greet = function(name) { return `أهلاً ${name}`; };</code></pre>
+  </div>
 </section>
 
 <section id="s22">
   <h2>22. الدوال السهمية Arrow Functions</h2>
   <p>الصيغة الحديثة والمختصرة لكتابة الدوال في جافاسكريبت ES6.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>const multiply = (a, b) =&gt; a * b;</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>const multiply = (a, b) =&gt; a * b;</code></pre>
+  </div>
 </section>
 
 <section id="s23">
   <h2>23. نطاق المتغيرات Scope</h2>
   <p>فهم النطاق المحلي (Local) والنطاق العام (Global) لمدى رؤية المتغيرات ومنع تداخلها.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>let globalVar = "عام";
-function test() { let localVar = "محلي ضمن الدالة"; }</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>let globalVar = "عام";
+function test() { let localVar = "محلي ضمن الدالة"; }</code></pre>
+  </div>
 </section>
 
 <section id="s24">
   <h2>24. مقدمة المصفوفات Arrays</h2>
   <p>تخزين قوائم متعددة من البيانات داخل متغير واحد مرن.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>let techList = ["HTML", "CSS", "JavaScript"];</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>let techList = ["HTML", "CSS", "JavaScript"];</code></pre>
+  </div>
 </section>
 
 <section id="s25">
   <h2>25. أساليب المصفوفات الأساسية</h2>
   <p>إضافة وإزالة العناصر من بداية ونهاية المصفوفات (push, pop, shift).</p>
-  <div class="code"><button class="copy">نسخ</button><pre>techList.push("Python");
-techList.pop();</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>techList.push("Python");
+techList.pop();</code></pre>
+  </div>
 </section>
 
 <section id="s26">
   <h2>26. البحث في المصفوفات</h2>
   <p>معرفة مواقع العناصر والبحث عنها باستخدام indexOf و includes.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>let hasCss = techList.includes("CSS");</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>let hasCss = techList.includes("CSS");</code></pre>
+  </div>
 </section>
 
 <section id="s27">
-  <h2>27. تكرار المصفوفات Loops</h2>
+  <h2>27. تكرار المصفوفات Loops &amp; Methods</h2>
   <p>المرور على عناصر المصفوفة عن طريق forEach والتكرار الحديث.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>techList.forEach(item =&gt; console.log(item));</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>techList.forEach(item =&gt; console.log(item));</code></pre>
+  </div>
 </section>
 
 <section id="s28">
   <h2>28. دوال Map, Filter, Reduce</h2>
   <p>الأساليب الاحترافية لتحويل، تصفية، وتجميع بيانات المصفوفات.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>let nums = [1, 2, 3];
-let doubled = nums.map(n =&gt; n * 2);</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>let nums = [1, 2, 3];
+let doubled = nums.map(n =&gt; n * 2);</code></pre>
+  </div>
 </section>
 
 <section id="s29">
   <h2>29. الكائنات Objects الأساسية</h2>
   <p>تخزين البيانات في شكل أزواج من المفاتيح والقيم (Key-Value).</p>
-  <div class="code"><button class="copy">نسخ</button><pre>const user = { name: "مها", role: "مهندسة برمجيات" };</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>const user = { name: "مها", role: "مهندسة برمجيات" };</code></pre>
+  </div>
 </section>
 
 <section id="s30">
   <h2>30. خصائص الكائنات وطرقها</h2>
-  <p>الوصول إلى خصائص الكائن وتحديثها وإضافة دوال内部ية له.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>user.city = "طرابلس";
-console.log(user.name);</pre></div>
+  <p>الوصول إلى خصائص الكائن وتحديثها وإضافة دوال داخلية له.</p>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>user.city = "طرابلس";
+console.log(user.name);</code></pre>
+  </div>
 </section>
 
 <section id="s31">
   <h2>31. الكائن المتسلسل This</h2>
   <p>فهم دلالة الكلمة المفتاحية this للإشارة إلى الكائن الحالي وقت تنفيذ السياق.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>const person = {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>const person = {
   name: "مها",
   sayHello() { return `أهلاً أنا ${this.name}`; }
-};</pre></div>
+};</code></pre>
+  </div>
 </section>
 
 <section id="s32">
   <h2>32. كائن التاريخ والوقت Date</h2>
   <p>جلب التواريخ الحالية، الساعات، الدقائق، والتلاعب بالأزمنة.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>const now = new Date();
-console.log(now.getFullYear());</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>const now = new Date();
+console.log(now.getFullYear());</code></pre>
+  </div>
 </section>
 
 <section id="s33">
   <h2>33. توليد الأرقام العشوائية Random</h2>
   <p>صنع أنظمة خوارزمية لتوليد أرقام واختيارات عشوائية دقيقة.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>let randomNum = Math.floor(Math.random() * 100);</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>let randomNum = Math.floor(Math.random() * 100);</code></pre>
+  </div>
 </section>
 
 <section id="s34">
   <h2>34. مقدمة DOM الأساسية</h2>
   <p>فهم نموذج كائنات المستند وكيفية ربط الجافاسكريبت بعناصر الـ HTML كشجرة عقد (Nodes).</p>
-  <div class="code"><button class="copy">نسخ</button><pre>// هيكل شجرة المستند الافتراضي
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>// هيكل شجرة المستند الافتراضي
 const domRoot = document.documentElement;
-console.log(domRoot.nodeName);</pre></div>
+console.log(domRoot.nodeName);</code></pre>
+  </div>
 </section>
 
 <section id="s35">
   <h2>35. استهداف العناصر بـ DOM</h2>
   <p>اختيار العناصر عبر الأقسام، الـ IDs، والفئات بـ querySelector.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>const header = document.querySelector("header");</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>const header = document.querySelector("header");</code></pre>
+  </div>
 </section>
 
 <section id="s36">
   <h2>36. تعديل محتوى العناصر</h2>
   <p>تغيير النصوص والعناصر الداخلية ديناميكياً عبر innerText و innerHTML.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>document.getElementById("title").innerText = "دليل الجافاسكريبت الشامل";</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>document.getElementById("title").innerText = "دليل الجافاسكريبت الشامل";</code></pre>
+  </div>
 </section>
 
 <section id="s37">
   <h2>37. تعديل الخصائص والتنسيقات</h2>
   <p>تغيير خصائص CSS، السمات، وإضافة كلاسات التصميم برمجياً.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>box.style.backgroundColor = "#1677c8";
-box.classList.add("active");</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>box.style.backgroundColor = "#1677c8";
+box.classList.add("active");</code></pre>
+  </div>
 </section>
 
 <section id="s38">
   <h2>38. إنشاء وحذف عناصر الـ DOM</h2>
   <p>صنع عناصر HTML جديدة وإضافتها للصفحة أو حذفها عند الحاجة.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>let p = document.createElement("p");
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>let p = document.createElement("p");
 p.innerText = "عنصر جديد";
-document.body.appendChild(p);</pre></div>
+document.body.appendChild(p);</code></pre>
+  </div>
 </section>
 
 <section id="s39">
   <h2>39. معالجة الأحداث Event Listeners</h2>
   <p>الاستماع لتفاعل المستخدم مثل النقر، الكتابة، والمرور بالفأرة.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>btn.addEventListener("click", () =&gt; {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>btn.addEventListener("click", () =&gt; {
   console.log("تم النقر على الزر");
-});</pre></div>
+});</code></pre>
+  </div>
 </section>
 
 <section id="s40">
   <h2>40. أنواع الأحداث وتفاعل المستخدم</h2>
   <p>التعرف على أحداث التحميل (load)، التمرير (scroll)، وتغيير الحقول.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>window.addEventListener("scroll", () =&gt; {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>window.addEventListener("scroll", () =&gt; {
   // رصد إحداثيات التمرير الديناميكي
-});</pre></div>
+});</code></pre>
+  </div>
 </section>
 
 <section id="s41">
-  <h2>41. انتشار الأحداث Bubbling & Capturing</h2>
+  <h2>41. انتشار الأحداث Bubbling &amp; Capturing</h2>
   <p>فهم كيفية انتقال وتصاعد الأحداث عبر العناصر المتداخلة صعوداً من الابن إلى الأب.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>// إيقاف انتشار الحدث لضمان عدم تداخله
-e.stopPropagation();</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>// إيقاف انتشار الحدث لضمان عدم تداخله
+e.stopPropagation();</code></pre>
+  </div>
 </section>
 
 <section id="s42">
   <h2>42. كائن الحدث Event Object</h2>
   <p>استخراج معلومات دقيقة عن الحدث الواقع مثل العنصر المُستهدف والإحداثيات.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>btn.addEventListener("click", (e) =&gt; {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>btn.addEventListener("click", (e) =&gt; {
   console.log("هدف الحدث:", e.target);
-});</pre></div>
+});</code></pre>
+  </div>
 </section>
 
 <section id="s43">
   <h2>43. تفويض الأحداث Event Delegation</h2>
   <p>ربط الحدث بالعنصر الأب لإدارة الأحداث للعناصر الابنة الحالية والمستقبلية بكفاءة.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>document.body.addEventListener("click", (e) => {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>document.body.addEventListener("click", (e) =&gt; {
   if(e.target.matches(".btn-item")) { /* تنفيذ الإجراء */ }
-});</pre></div>
+});</code></pre>
+  </div>
 </section>
 
 <section id="s44">
   <h2>44. التخزين المحلي LocalStorage</h2>
   <p>حفظ البيانات في متصفح المستخدم لفترات طويلة لا تُمحى بإغلاق المتصفح.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>localStorage.setItem("theme", "dark");
-let currentTheme = localStorage.getItem("theme");</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>localStorage.setItem("theme", "dark");
+let currentTheme = localStorage.getItem("theme");</code></pre>
+  </div>
 </section>
 
 <section id="s45">
   <h2>45. التخزين المؤقت SessionStorage</h2>
   <p>حفظ البيانات مؤقتاً طوال فترة فتح جلسة التبويب الحالية فقط.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>sessionStorage.setItem("userSession", "active");</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>sessionStorage.setItem("userSession", "active");</code></pre>
+  </div>
 </section>
 
 <section id="s46">
   <h2>46. معالجة الأخطاء Try / Catch</h2>
   <p>التعامل مع الأخطاء البرمجية المتوقعة لمنع انهيار وتشوه التطبيق.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>try {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>try {
   // كود قد يحتمل خطأ تشغيلي
 } catch (error) {
   console.log("تمت معالجة الخطأ:", error.message);
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s47">
   <h2>47. البرمجة غير المتزامنة Asynchronous</h2>
   <p>فهم عمل جافاسكريبت أحادية الخيط (Single-threaded) وكيفية التعامل مع المهام المجدولة.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>// نموذج طابور المهام وتأخير التنفيذ
-setTimeout(() => console.log("مهمة غير متزامنة"), 1000);</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>// نموذج طابور المهام وتأخير التنفيذ
+setTimeout(() =&gt; console.log("مهمة غير متزامنة"), 1000);</code></pre>
+  </div>
 </section>
 
 <section id="s48">
   <h2>48. الوعود Promises</h2>
   <p>هيكل برمجي لتمثيل نجاح أو فشل العمليات المستقبلية والشبكية.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>const myPromise = new Promise((resolve, reject) =&gt; {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>const myPromise = new Promise((resolve, reject) =&gt; {
   let success = true;
   if(success) resolve("تمت العملية بنجاح");
   else reject("فشلت العملية");
-});</pre></div>
+});</code></pre>
+  </div>
 </section>
 
 <section id="s49">
   <h2>49. استخدام Async / Await</h2>
   <p>الطريقة الحديثة والأكثر نظافة للتعامل مع الوعود والعمليات غير المتزامنة بشكل متسلسل.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>async function fetchData() {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>async function fetchData() {
   let response = await fetch('api/data');
   let data = await response.json();
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s50">
   <h2>50. جلب البيانات Fetch API</h2>
   <p>التواصل مع الخوادم الخارجية وسحب البيانات وتحديث واجهات الويب.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>fetch('https://api.github.com')
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>fetch('https://api.github.com')
   .then(res =&gt; res.json())
-  .then(data =&gt; console.log(data));</pre></div>
+  .then(data =&gt; console.log(data));</code></pre>
+  </div>
 </section>
 
 <section id="s51">
   <h2>51. التعامل مع صيغة JSON</h2>
   <p>تحويل الكائنات البرمجية إلى نصوص JSON والعكس لتبادل البيانات مع الخوادم.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>let jsonString = JSON.stringify(user);
-let parsedObj = JSON.parse(jsonString);</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>let jsonString = JSON.stringify(user);
+let parsedObj = JSON.parse(jsonString);</code></pre>
+  </div>
 </section>
 
 <section id="s52">
   <h2>52. البرمجة كائنية التوجه OOP</h2>
   <p>بناء البرمجيات باستخدام مفهوم الكائنات والفئات الهندسية وتغليف البيانات.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>// مبدأ تغليف البيانات وهندسة الكائنات
-const AppConfig = { version: "1.0.0", debug: false };</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>// مبدأ تغليف البيانات وهندسة الكائنات
+const AppConfig = { version: "1.0.0", debug: false };</code></pre>
+  </div>
 </section>
 
 <section id="s53">
   <h2>53. الأصناف Classes والوراثة</h2>
   <p>كتابة الأصناف الحديثة وتوريث الخصائص بين الكائنات لتنظيم الأكواد.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>class Book {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>class Book {
   constructor(title) { this.title = title; }
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s54">
   <h2>54. الدوال البناءة Constructors</h2>
   <p>تهيئة الكائنات فور إنشائها عبر دالة البناء الأساسية وإسناد الخصائص الأولية.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>function SystemUser(name) {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>function SystemUser(name) {
   this.name = name;
   this.active = true;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s55">
   <h2>55. النماذج الأولية Prototypes</h2>
   <p>نظام الوراثة الكلاسيكي الخفي والمبني عليه لغة جافاسكريبت لمشاركة الخصائص والدوال.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>SystemUser.prototype.getRole = function() { return "مستخدم النظام"; };</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>SystemUser.prototype.getRole = function() { return "مستخدم النظام"; };</code></pre>
+  </div>
 </section>
 
 <section id="s56">
   <h2>56. التفكيك Destructuring</h2>
   <p>استخراج القيم من المصفوفات والكائنات بسهولة في متغيرات مستقلة ونظيفة.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>const { name, role } = user;</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>const { name, role } = user;</code></pre>
+  </div>
 </section>
 
 <section id="s57">
-  <h2>57. معاملات الانتشار Spread & Rest</h2>
+  <h2>57. معاملات الانتشار Spread &amp; Rest</h2>
   <p>تجميع وفك عناصر المصفوفات والكائنات باستخدام النقاط الثلاث (...).</p>
-  <div class="code"><button class="copy">نسخ</button><pre>let combined = [...techList, "Node.js"];</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>let combined = [...techList, "Node.js"];</code></pre>
+  </div>
 </section>
 
 <section id="s58">
   <h2>58. التعبيرات النمطية RegEx</h2>
   <p>البحث والتحقق من تطابق الأنماط النصية (مثل فحص الإيميلات وكلمات المرور).</p>
-  <div class="code"><button class="copy">نسخ</button><pre>let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;</code></pre>
+  </div>
 </section>
 
 <section id="s59">
   <h2>59. وحدة النظام Modules (Import/Export)</h2>
   <p>تقسيم الأكواد إلى ملفات مستقلة واستيراد وتصدير الدوال والمتغيرات.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>export function showMsg() { /* ... */ }
-import { showMsg } from './module.js';</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>export function showMsg() { /* ... */ }
+import { showMsg } from './module.js';</code></pre>
+  </div>
 </section>
 
 <section id="s60">
-  <h2>60. مؤقتات التمهيد Timeout & Interval</h2>
+  <h2>60. مؤقتات التمهيد Timeout &amp; Interval</h2>
   <p>تنفيذ الأكواد بعد فترة زمنية محددة أو بشكل تكراري منتظم.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>setTimeout(() =&gt; { console.log("تم الانتظار"); }, 2000);</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>setTimeout(() =&gt; { console.log("تم الانتظار"); }, 2000);</code></pre>
+  </div>
 </section>
 
 <section id="s61">
   <h2>61. التعامل مع النماذج Form Validation</h2>
   <p>فحص وتدقيق مدخلات المستخدم قبل إرسالها إلى الخادم ومنع الإدخالات الخاطئة.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>function validateInput(val) {
-  return val.trim().length > 3;
-}</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>function validateInput(val) {
+  return val.trim().length &gt; 3;
+}</code></pre>
+  </div>
 </section>
 
 <section id="s62">
-  <h2>62. خريطة البيانات Map & Set</h2>
+  <h2>62. خريطة البيانات Map &amp; Set</h2>
   <p>هياكل بيانات حديثة لتخزين المفاتيح والقيم الفريدة بكفاءة عالية.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>let uniqueSet = new Set([1, 2, 2, 3]); // تمنع التكرار</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>let uniqueSet = new Set([1, 2, 2, 3]); // تمنع التكرار</code></pre>
+  </div>
 </section>
 
 <section id="s63">
-  <h2>63. الخصائص الخاصة WeakMap & WeakSet</h2>
+  <h2>63. الخصائص الخاصة WeakMap &amp; WeakSet</h2>
   <p>إدارة الذاكرة بذكاء عبر تخزين مراجع ضعيفة للكائنات لتجنب تسريب الذاكرة (Memory Leaks).</p>
-  <div class="code"><button class="copy">نسخ</button><pre>const weakCache = new WeakMap();</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>const weakCache = new WeakMap();</code></pre>
+  </div>
 </section>
 
 <section id="s64">
   <h2>64. العمليات الثنائية Bitwise Operators</h2>
   <p>التعامل مع البتات والأرقام الثنائية على مستوى الذاكرة السفلي للعمليات الرياضية السريعة.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>let bitCheck = 5 & 1; // عملية آند ثنائية</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>let bitCheck = 5 &amp; 1; // عملية آند ثنائية</code></pre>
+  </div>
 </section>
 
 <section id="s65">
   <h2>65. تتبع الأداء Performance API</h2>
   <p>قياس سرعة تنفيذ الأكواد البرمجية وتحسين استهلاك الموارد الزمنية.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>const startTimer = performance.now();
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>const startTimer = performance.now();
 // تنفيذ العمليات البرمجية
-const endTimer = performance.now();</pre></div>
+const endTimer = performance.now();</code></pre>
+  </div>
 </section>
 
 <section id="s66">
   <h2>66. البرمجة الوظيفية Functional JS</h2>
   <p>تطبيق مبادئ البرمجة الوظيفية النظيفة والثابتة (Immutability) وتجنب التأثيرات الجانبية.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>const pureAdd = (a, b) => a + b;</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>const pureAdd = (a, b) =&gt; a + b;</code></pre>
+  </div>
 </section>
 
 <section id="s67">
   <h2>67. الدوال النقية Pure Functions</h2>
   <p>دوال لا تغير المتغيرات الخارجية وتعتمد كلياً وبشكل ثابت على مدخلاتها فقط.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>const square = x => x * x;</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>const square = x =&gt; x * x;</code></pre>
+  </div>
 </section>
 
 <section id="s68">
   <h2>68. الإغلاق Closures في جافاسكريبت</h2>
   <p>الاحتفاظ بنطاق المتغيرات الداخلية حتى بعد انتهاء تنفيذ الدالة الأم لتأمين البيانات.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>function counter() {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>function counter() {
   let count = 0;
   return () =&gt; ++count;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s69">
   <h2>69. إعادة بناء النطاق Hoisting</h2>
   <p>فهم كيفية رفع تعريفات الدوال والمتغيرات إلى أعلى النطاق برمجياً قبل مرحلة التنفيذ.</p>
-  <div class="code"><button class="copy">نسخ</button><pre> hoistedFunction(); // تعمل بفضل الـ Hoisting
- function hoistedFunction() { console.log("مرفوعة"); }</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>hoistedFunction(); // تعمل بفضل الـ Hoisting
+function hoistedFunction() { console.log("مرفوعة"); }</code></pre>
+  </div>
 </section>
 
 <section id="s70">
   <h2>70. الوضع الصارم Strict Mode</h2>
   <p>فرض القواعد الصارمة لكتابة أكواد آمنة ومنع الأخطاء الشائعة والمتغيرات غير المعرفة.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>"use strict";
-// منع استخدام المتغيرات غير المُعلنة</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>"use strict";
+// منع استخدام المتغيرات غير المُعلنة</code></pre>
+  </div>
 </section>
 
 <section id="s71">
   <h2>71. الرمز الفريد Symbol Data Type</h2>
   <p>توليد مفاتيح فريدة وغير قابلة للتصادم داخل الكائنات لحماية الخصائص.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>const uniqueKey = Symbol("id");</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>const uniqueKey = Symbol("id");</code></pre>
+  </div>
 </section>
 
 <section id="s72">
   <h2>72. الخصائص البرمجية Proxies</h2>
   <p>اعتراض وتخصيص العمليات الأساسية التي تتم على الكائنات (مثل القراءة والكتابة).</p>
-  <div class="code"><button class="copy">نسخ</button><pre>const proxyObj = new Proxy(user, {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>const proxyObj = new Proxy(user, {
   get(target, prop) { return target[prop] || "غير موجود"; }
-});</pre></div>
+});</code></pre>
+  </div>
 </section>
 
 <section id="s73">
   <h2>73. كائن النسخ المتطابق StructuredClone</h2>
   <p>صنع نسخ عميقة وكاملة للكائنات المعقدة دون مشاركة المراجع في الذاكرة.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>const deepClone = structuredClone(user);</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>const deepClone = structuredClone(user);</code></pre>
+  </div>
 </section>
 
 <section id="s74">
   <h2>74. الـ Iterators والمولدات Generators</h2>
   <p>التحكم بتوليد القيم تسلسلياً وإيقاف واستئناف تنفيذ الدوال عبر function*.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>function* numberGen() { yield 1; yield 2; }</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>function* numberGen() { yield 1; yield 2; }</code></pre>
+  </div>
 </section>
 
 <section id="s75">
   <h2>75. معالجة السلاسل النصية المتقدمة</h2>
   <p>استخدام التعابير المتقدمة ومطابقة النصوص المعقدة وعمليات التقسيم المتطور.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>let matchedText = "مها شهوب".match(/مها/);</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>let matchedText = "مها شهوب".match(/مها/);</code></pre>
+  </div>
 </section>
 
 <section id="s76">
-  <h2>76. تقنيات الأمان والحماية XSS & CSRF</h2>
+  <h2>76. تقنيات الأمان والحماية XSS &amp; CSRF</h2>
   <p>تأمين التطبيقات ضد حقن الأكواد الخبيثة وهجمات الاختراق عبر تنظيف المدخلات.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>// إستراتيجية تنظيف النصوص من وسوم HTML الخبيثة
-function sanitize(input) { return input.replace(/&lt;[^&gt;]*&gt;/g, ''); }</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>// إستراتيجية تنظيف النصوص من وسوم HTML الخبيثة
+function sanitize(input) { return input.replace(/&lt;[^&gt;]*&gt;/g, ''); }</code></pre>
+  </div>
 </section>
 
 <section id="s77">
   <h2>77. أفضل ممارسات كتابة النظيف Clean Code</h2>
   <p>قواعد هندسة البرمجيات لكتابة أكواد قابلة للقراءة والصيانة والتطوير طويل الأمد.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>// تسمية واضحة ومفهومة للدوال الهندسية
-const calculateTaxRate = (amount) => amount * 0.15;</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>// تسمية واضحة ومفهومة للدوال الهندسية
+const calculateTaxRate = (amount) =&gt; amount * 0.15;</code></pre>
+  </div>
 </section>
 
 <section id="s78">
   <h2>78. أدوات التصحيح Debugging Tools</h2>
   <p>استخدام نقاط التوقف (Breakpoints) وفاحص المتصفح لتتبع مسار الأكواد والأخطاء.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>// إيقاف التنفيذ مؤقتاً للفحص
-debugger;</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>// إيقاف التنفيذ مؤقتاً للفحص
+debugger;</code></pre>
+  </div>
 </section>
 
 <section id="s79">
   <h2>79. اختبار الأكواد وحدياً Unit Testing</h2>
   <p>كتابة اختبارات تلقائية لضمان عمل الدوال البرمجية بكفاءة عالية وتجنب الأعطال.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>// مثال افتراضي لاختبار صحة النتيجة
-assert.strictEqual(calculateSum(2, 3), 5);</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>// مثال افتراضي لاختبار صحة النتيجة
+assert.strictEqual(calculateSum(2, 3), 5);</code></pre>
+  </div>
 </section>
 
 <section id="s80">
   <h2>80. حزم ونظام إدارة الملفات NPM</h2>
   <p>إدارة الحزم الخارجية وتثبيت المكتبات البرمجية المساعدة لتطوير المشاريع الكبرى.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>// ملف تكوين الحزمة الأساسي package.json
-{ "name": "tech-knowledge-hub", "version": "1.0.0" }</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>// ملف تكوين الحزمة الأساسي package.json
+{ "name": "tech-knowledge-hub", "version": "1.0.0" }</code></pre>
+  </div>
 </section>
 
 <section id="s81">
   <h2>81. مشروع: بناء آلة حاسبة متقدمة</h2>
   <p>تطبيق عملي لبناء آلة حاسبة تفاعلية تدعم العمليات الحسابية الكاملة.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>const calculator = { add: (a,b) => a + b, sub: (a,b) => a - b };</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>const calculator = { add: (a,b) =&gt; a + b, sub: (a,b) =&gt; a - b };</code></pre>
+  </div>
 </section>
 
 <section id="s82">
   <h2>82. مشروع: تطبيق قائمة المهام Todo List</h2>
   <p>بناء نظام متكامل لإضافة، حذف، وتعديل المهام مع حفظها في التخزين المحلي.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>const addTodo = (task) => { tasks.push(task); localStorage.setItem('tasks', JSON.stringify(tasks)); };</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>const addTodo = (task) =&gt; { tasks.push(task); localStorage.setItem('tasks', JSON.stringify(tasks)); };</code></pre>
+  </div>
 </section>
 
 <section id="s83">
   <h2>83. مشروع: تطبيق طقس Weather App</h2>
   <p>جلب بيانات الطقس الحية من خوادم خارجية وعرضها بتصميم عصري ومتجاوب.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>async function getWeather(city) { let res = await fetch(`api/weather?q=${city}`); return res.json(); }</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>async function getWeather(city) { let res = await fetch(`api/weather?q=${city}`); return res.json(); }</code></pre>
+  </div>
 </section>
 
 <section id="s84">
   <h2>84. مشروع: ساعة رقمية وتوقيت زمني</h2>
   <p>برمجة ساعة رقمية متحدثة بالتوقيت الفعلي وتحديثها دورياً عبر المؤقتات.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>setInterval(() => { let time = new Date().toLocaleTimeString(); }, 1000);</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>setInterval(() =&gt; { let time = new Date().toLocaleTimeString(); }, 1000);</code></pre>
+  </div>
 </section>
 
 <section id="s85">
   <h2>85. مشروع: معرض صور تفاعلي Slider</h2>
   <p>بناء نظام تنقل سلس بين الصور مع أزرار التحكم والتمرير التلقائي.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>let currentIndex = 0; const nextSlide = () => { currentIndex = (currentIndex + 1) % images.length; };</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>let currentIndex = 0; const nextSlide = () =&gt; { currentIndex = (currentIndex + 1) % images.length; };</code></pre>
+  </div>
 </section>
 
 <section id="s86">
   <h2>86. مشروع: نظام تصفح ثيمات Dark/Light</h2>
   <p>إدارة تبديل الثيمات وحفظ تفضيلات المستخدم بمتغيرات النظام وسمات HTML.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>document.documentElement.dataset.theme = "dark";</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>document.documentElement.dataset.theme = "dark";</code></pre>
+  </div>
 </section>
 
 <section id="s87">
   <h2>87. مشروع: جلب وعرض بيانات API خارجية</h2>
   <p>ربط الواجهة الأمامية بالخوادم البعيدة وعرض المنتجات أو البيانات في بطاقات شبكية ديناميكية.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>fetch('api/products').then(res => res.json()).then(renderCards);</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>fetch('api/products').then(res =&gt; res.json()).then(renderCards);</code></pre>
+  </div>
 </section>
 
 <section id="s88">
-  <h2>88. المرجع الشامل لأهم دوال ومethods الجافاسكريبت</h2>
+  <h2>88. المرجع الشامل لأهم دوال وMethods الجافاسكريبت</h2>
   <p>خلاصة هندسية نهائية لأهم الأوامر والوظائف الأساسية للرجوع إليها فورياً وسريعاً.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>/* خلاصة الختام لأهم دوال الجافاسكريبت */
-const JS_Reference = { arrays: "methods", dom: "manipulation", async: "Promises" };</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>/* خلاصة الختام لأهم دوال الجافاسكريبت */
+const JS_Reference = { arrays: "methods", dom: "manipulation", async: "Promises" };</code></pre>
+  </div>
 </section>
 
 <footer>
-
-<div><b>أكاديمية آفاق المعرفة التقنية</b></div>
-<div>  مكتبة | مها شهوب : سلسلة أساسيات التقنية</div>
-  <div>  جميع الحقوق محفوظة ©</div>
+  <div><b>أكاديمية آفاق المعرفة التقنية</b></div>
+  <div>مكتبة | مها شهوب : سلسلة أساسيات التقنية</div>
+  <div>جميع الحقوق محفوظة © 2026</div>
 </footer>
+
 </main>
-<button class="top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+</div>
+
+<button class="topbtn-float" id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <script>
-function toggleTheme(){document.documentElement.dataset.theme=document.documentElement.dataset.theme==="dark"?"light":"dark";localStorage.setItem("js-theme-88-full",document.documentElement.dataset.theme)}
-if(localStorage.getItem("js-theme-88-full"))document.documentElement.dataset.theme=localStorage.getItem("js-theme-88-full");
-document.querySelectorAll(".copy").forEach(b=>b.onclick=()=>{navigator.clipboard.writeText(b.parentElement.querySelector("pre").innerText);let x=b.innerText;b.innerText="تم النسخ ✓";setTimeout(()=>b.innerText=x,1100)});
-function filterNav(){let q=document.getElementById("search").value.toLowerCase();document.querySelectorAll("#nav a").forEach(a=>a.style.display=a.innerText.toLowerCase().includes(q)?"block":"none")}
-window.addEventListener("scroll",()=>{let d=document.documentElement;document.getElementById("progress").style.width=(d.scrollTop/(d.scrollHeight-d.clientHeight)*100)+"%";let cur="";document.querySelectorAll("section").forEach(s=>{if(scrollY>=s.offsetTop-130)cur=s.id});document.querySelectorAll("#nav a").forEach(a=>a.classList.toggle("active",a.hash==="#"+cur))});
-document.querySelectorAll("#nav a").forEach(a=>a.onclick=()=>document.querySelector("aside").classList.remove("open"));
+function toggleTheme(){
+  const html = document.documentElement;
+  const dark = html.getAttribute("data-theme") === "dark";
+  html.setAttribute("data-theme", dark ? "light" : "dark");
+  localStorage.setItem("js-guide-theme", html.getAttribute("data-theme"));
+}
+
+(function(){
+  const theme = localStorage.getItem("js-guide-theme");
+  if(theme) document.documentElement.setAttribute("data-theme", theme);
+})();
+
+function toggleMenu(){
+  document.getElementById("sidebar").classList.toggle("open");
+}
+
+function filterNav(){
+  const q = document.getElementById("search").value.toLowerCase();
+  document.querySelectorAll("#nav a").forEach(a => {
+    a.style.display = a.textContent.toLowerCase().includes(q) ? "block" : "none";
+  });
+}
+
+async function copyCode(btn){
+  const code = btn.closest(".codebox").querySelector("code").innerText;
+  try{
+    await navigator.clipboard.writeText(code);
+  }catch(e){
+    const textarea = document.createElement("textarea");
+    textarea.value = code;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand("copy");
+    textarea.remove();
+  }
+  btn.textContent = "✓ تم النسخ";
+  setTimeout(() => { btn.textContent = "نسخ"; }, 1200);
+}
+
+window.addEventListener("scroll", () => {
+  const doc = document.documentElement;
+  const total = doc.scrollHeight - doc.clientHeight;
+  document.getElementById("progress").style.width = (total ? doc.scrollTop / total * 100 : 0) + "%";
+  document.getElementById("topBtn").style.display = doc.scrollTop > 500 ? "block" : "none";
+});
+
+const links = [...document.querySelectorAll("#nav a")];
+const sections = links.map(link => document.querySelector(link.getAttribute("href"))).filter(Boolean);
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      links.forEach(link => link.classList.remove("active"));
+      const active = document.querySelector('#nav a[href="#' + entry.target.id + '"]');
+      if(active) active.classList.add("active");
+    }
+  });
+}, {rootMargin: "-90px 0px -65% 0px"});
+
+sections.forEach(section => observer.observe(section));
+
+links.forEach(link => {
+  link.addEventListener("click", () => {
+    if(window.innerWidth <= 1100){
+      document.getElementById("sidebar").classList.remove("open");
+    }
+  });
+});
 </script>
+
 </body>
 </html>
