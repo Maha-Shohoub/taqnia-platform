@@ -3,51 +3,92 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="دليل لغة البرمجة ++C الشامل والمفصل للأكواد وهياكل البيانات - آفاق المعرفة التقنية - مها شهوب">
+<meta name="description" content="دليل لغة البرمجة ++C الشامل والمفصل للأكواد وهياكل البيانات - أكاديمية آفاق المعرفة التقنية - مها شهوب">
 <title>دليل ++C الشامل والمفصل | مها شهوب</title>
 <style>
 :root{--bg:#eef3f8;--card:#fff;--text:#172033;--muted:#64748b;--p:#0b4f88;--p2:#1d4ed8;--b:#d7e1eb;--code:#0b1220;--shadow:0 8px 24px rgba(20,55,90,.09)}
 [data-theme=dark]{--bg:#0c1420;--card:#151f2c;--text:#e7eef8;--muted:#d7e1eb;--p:#0b4f88;--p2:#6194d2;--b:#2b3a4b;--code:#070b12;--shadow:0 8px 24px rgba(0,0,0,.25)}
 *{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
 body{font-family:"Segoe UI",Tahoma,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.9}
-header{position:fixed;top:0;right:0;left:0;height:72px;z-index:1000;background:var(--card);border-bottom:1px solid var(--b);display:flex;align-items:center;padding:0 20px;box-shadow:var(--shadow)}
-.logo{width:67px;height:54px;border-radius:50%;display:grid;place-items:center;}
-.brand{margin-right:12px}.brand b{display:block;color:var(--p2)}.brand small{color:var(--muted)}
-.actions{margin-right:auto;display:flex;gap:8px}button{border:1px solid var(--b);background:var(--card);color:var(--text);border-radius:9px;padding:8px 12px;cursor:pointer}.menu{display:none}
+
+header{position:fixed;top:0;right:0;left:0;height:72px;z-index:1000;background:var(--card);border-bottom:1px solid var(--b);display:flex;align-items:center;justify-content:space-between;padding:0 20px;box-shadow:var(--shadow)}
+.header-right{display:flex;align-items:center;gap:12px;min-width:0}
+.logo{width:50px;height:50px;border-radius:50%;object-fit:cover;flex-shrink:0}
+.brand{min-width:0}
+.brand b{display:block;color:var(--p2);font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand small{color:var(--muted);font-size:11.5px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.actions{display:flex;gap:8px;flex-shrink:0}
+button{border:1px solid var(--b);background:var(--card);color:var(--text);border-radius:9px;padding:8px 12px;cursor:pointer;font-size:13px;transition:.2s}
+button:hover{border-color:var(--p);color:var(--p)}
+.menu{display:none}
+
 .progress{position:fixed;top:72px;right:0;height:4px;background:var(--p);width:0;z-index:1001}
-aside{position:fixed;top:76px;right:0;bottom:0;width:310px;background:var(--card);border-left:1px solid var(--b);padding:16px;overflow:auto}
-.search{width:100%;padding:10px;border:1px solid var(--b);border-radius:9px;background:var(--bg);color:var(--text);margin-bottom:10px}
-nav a{display:block;color:var(--muted);text-decoration:none;padding:5px 8px;border-radius:7px;font-size:12.5px}
+aside{position:fixed;top:76px;right:0;bottom:0;width:310px;background:var(--card);border-left:1px solid var(--b);padding:16px;overflow:auto;z-index:950;transition:.3s}
+.search{width:100%;padding:10px;border:1px solid var(--b);border-radius:9px;background:var(--bg);color:var(--text);margin-bottom:10px;outline:none}
+nav a{display:block;color:var(--muted);text-decoration:none;padding:5px 8px;border-radius:7px;font-size:12.5px;margin:2px 0}
 nav a:hover,nav a.active{background:#2563eb1a;color:var(--p);font-weight:700}
-main{margin-right:310px;padding:110px 34px 50px;max-width:1300px}
+
+main{margin-right:310px;padding:100px 34px 50px;max-width:1300px;min-width:0}
 .hero{background:linear-gradient(135deg,var(--p2),var(--p));color:#ffffff;border-radius:18px;padding:34px;margin-bottom:22px;box-shadow:var(--shadow)}
-.hero h1{font-size:32px}.credit{font-weight:700;margin-top:8px}
+.hero h1{font-size:32px}
+.hero p{margin-top:8px;opacity:.95}
+.credit{font-weight:700;margin-top:12px;font-size:13.5px}
+
 section{background:var(--card);border:1px solid var(--b);border-radius:14px;padding:24px;margin-bottom:18px;box-shadow:var(--shadow);scroll-margin-top:95px}
 h2{font-size:21px;color:var(--p2);border-right:4px solid var(--p);padding-right:9px;margin-bottom:12px}
-p {margin-bottom: 12px;}
-.code{position:relative;margin:13px 0}.code pre{background:var(--code);color:#dbeafe;direction:ltr;text-align:left;overflow:auto;border-radius:9px;padding:17px;font:13px/1.7 Consolas,monospace;white-space:pre-wrap}
-.copy{position:absolute;right:7px;top:7px;background:#fff;color:#172033;border:0;font-size:11px;padding:5px 8px;cursor:pointer;border-radius:4px;}
-.top{position:fixed;bottom:20px;left:20px;border-radius:50%;background:var(--p);color:#fff;width:44px;height:44px;border:0;cursor:pointer}
-footer{text-align:center;color:var(--muted);padding:28px}
-@media(max-width:900px){aside{transform:translateX(100%);transition:.25s;width:290px}aside.open{transform:none}.menu{display:block}main{margin:0;padding:100px 14px 40px}.brand small{display:none}.hero h1{font-size:25px}}
-@media print{header,aside,.top,.progress,.actions,.copy{display:none!important}main{margin:0;padding:0}section{box-shadow:none;break-inside:avoid}}
+p{margin-bottom:12px}
+
+.code{position:relative;margin:13px 0}
+.code pre{background:var(--code);color:#dbeafe;direction:ltr;text-align:left;overflow:auto;border-radius:9px;padding:17px;font:13px/1.7 Consolas,monospace;white-space:pre-wrap}
+.copy{position:absolute;right:7px;top:7px;background:#fff;color:#172033;border:0;font-size:11px;padding:5px 8px;cursor:pointer;border-radius:4px;transition:.2s}
+.copy:hover{background:var(--p);color:#fff}
+
+.top{position:fixed;bottom:20px;left:20px;border-radius:50%;background:var(--p);color:#fff;width:44px;height:44px;border:0;cursor:pointer;display:none;z-index:900;box-shadow:0 4px 12px rgba(0,0,0,0.15)}
+footer{text-align:center;color:var(--muted);padding:28px;font-size:13.5px}
+
+@media(max-width:1000px){
+    aside{transform:translateX(100%);width:290px}
+    aside.open{transform:none}
+    .menu{display:block}
+    main{margin:0;padding:90px 16px 40px}
+    .brand small{display:block}
+    .hero h1{font-size:24px}
+}
+
+@media(max-width:480px){
+    .brand b{font-size:13px}
+    .brand small{font-size:10px}
+    header{padding:0 10px}
+    .hero{padding:22px 16px}
+}
 </style>
 </head>
 <body>
-<header><button class="menu" onclick="document.querySelector('aside').classList.toggle('open')">☰</button>
 
-   
-  <img src="IMG/آفاق المعرفة التقنية.png" class="logo">
-  <div class="brand"><b>منصة آفاق المعرفة التقنية</b><small>دليل ++C الشامل </small></div>
+<header>
+  <div class="header-right">
+    <button class="menu" onclick="document.querySelector('aside').classList.toggle('open')">☰</button>
+    <img src="IMG/آفاق المعرفة التقنية.png" class="logo" alt="لوجو">
+    <div class="brand">
+      <b>أكاديمية آفاق المعرفة التقنية</b>
+      <small>دليل ++C الشامل | مها شهوب</small>
+    </div>
+  </div>
 
+  <div class="actions">
+    <button onclick="toggleTheme()">◐ الوضع</button>
+  </div>
+</header>
 
-  <div class="actions"><button onclick="toggleTheme()">◐ الوضع</button><button onclick="window.print()">🖨 طباعة</button></div></header>
 <div class="progress" id="progress"></div>
 
-<aside><input class="search" id="search" placeholder="🔎 ابحث في الوحدات والدروس..." oninput="filterNav()"><nav id="nav">
+<aside>
+<input class="search" id="search" placeholder="🔎 ابحث في الوحدات والدروس..." oninput="filterNav()">
+<nav id="nav">
 <a href="#s1">01. مقدمة عن لغة ++C وتاريخها</a>
 <a href="#s2">02. بنية الهيكل البرمجي ودالة Main</a>
-<a href="#s3">04. المتغيرات وأنواع البيانات الأساسية</a>
+<a href="#s4">04. المتغيرات وأنواع البيانات الأساسية</a>
 <a href="#s5">05. العمليات الحسابية والمنطقية</a>
 <a href="#s6">06. الجمل الشرطية (if, else, switch)</a>
 <a href="#s7">07. الحلقات التكرارية (for, while, do-while)</a>
@@ -89,7 +130,7 @@ footer{text-align:center;color:var(--muted);padding:28px}
 <main>
 <div class="hero">
   <h1>دليل لغة البرمجة ++C الشامل</h1>
-  <p>المرجع الهندسي المتكامل لتطوير البرمجيات الهيكلية والكائنية وتحسين الأداء باستخدام ++C.</p>
+  <p>هندسة البرمجيات الهيكلية والكائنية وتحسين الأداء من الجذور حتى الاحتراف؛ رؤية برمجية متكاملة للتحكم في الذاكرة والكفاءة.</p>
   <div class="credit">إعداد الكاتبة والمهندسة: مها شهوب</div>
 </div>
 
@@ -105,7 +146,7 @@ using namespace std;</pre></div>
   <h2>02. بنية الهيكل البرمجي ودالة Main</h2>
   <p>نقطة الانطلاق الأساسية لأي تطبيق ++C عبر دالة التنفيذ الرئيسية main.</p>
   <div class="code"><button class="copy">نسخ</button><pre>int main() {
-    cout &lt;&lt; "مرحباً بك في عالم ++C" &lt;&lt; endl;
+    cout &lt;&lt; "مرحباً بكم في أكاديمية آفاق المعرفة التقنية" &lt;&lt; endl;
     return 0;
 }</pre></div>
 </section>
@@ -123,13 +164,13 @@ bool isActive = true;</pre></div>
   <h2>05. العمليات الحسابية والمنطقية</h2>
   <p>استخدام المعاملات الرياضية والمنطقية لمعالجة القيم والبيانات.</p>
   <div class="code"><button class="copy">نسخ</button><pre>int sum = 10 + 20;
-bool check = (sum > 15) && (isActive == true);</pre></div>
+bool check = (sum &gt; 15) &amp;&amp; (isActive == true);</pre></div>
 </section>
 
 <section id="s6">
   <h2>06. الجمل الشرطية (if, else, switch)</h2>
   <p>توجيه مسار التنفيذ بناءً على تحقق الشروط المنطقية المختلفة.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>if (age >= 18) {
+  <div class="code"><button class="copy">نسخ</button><pre>if (age &gt;= 18) {
     cout &lt;&lt; "مؤهل للعمل" &lt;&lt; endl;
 } else {
     cout &lt;&lt; "غير مؤهل" &lt;&lt; endl;
@@ -161,7 +202,7 @@ cout &lt;&lt; scores[0];</pre></div>
   <h2>10. المؤشرات Pointers والذاكرة</h2>
   <p>المتغيرات التي تحوي عناوين الذاكرة للمتغيرات الأخرى لرفع كفاءة التحكم بالنظام.</p>
   <div class="code"><button class="copy">نسخ</button><pre>int x = 10;
-int *ptr = &x;
+int *ptr = &amp;x;
 cout &lt;&lt; *ptr; // طباعة القيمة عبر المؤشر</pre></div>
 </section>
 
@@ -169,7 +210,7 @@ cout &lt;&lt; *ptr; // طباعة القيمة عبر المؤشر</pre></div>
   <h2>11. المؤشرات المتقدمة والمرجع References</h2>
   <p>استخدام المراجع كبدائل آمنة للمؤشرات لتمرير المتغيرات بسهولة.</p>
   <div class="code"><button class="copy">نسخ</button><pre>int original = 50;
-int &ref = original;
+int &amp;ref = original;
 ref = 100; // يتغير original ليصبح 100</pre></div>
 </section>
 
@@ -184,7 +225,7 @@ ref = 100; // يتغير original ليصبح 100</pre></div>
 <section id="s13">
   <h2>13. تمرير المعاملات بالقيم والمراجع</h2>
   <p>الفرق بين تمرير نسخة المتغير وتمرير عنوانه الحقيقي لتعديل قيمته.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>void increment(int &val) {
+  <div class="code"><button class="copy">نسخ</button><pre>void increment(int &amp;val) {
     val++;
 }</pre></div>
 </section>
@@ -398,17 +439,74 @@ public:
   <div class="code"><button class="copy">نسخ</button><pre>/* خلاصة ++C: الكفاءة، الذاكرة، OOP، والمكتبة القياسية STL */</pre></div>
 </section>
 
-<footer>منصة آفاق المعرفة التقنية — مكتبة | مها شهوب<br>إعداد الكاتبة والمهندسة: مها شهوب</footer>
+<footer>
+  <div><b>أكاديمية آفاق المعرفة التقنية</b></div>
+  <div>مكتبة | مها شهوب : سلسلة أساسيات التقنية</div>
+  <div>جميع الحقوق محفوظة © 2026</div>
+</footer>
+
 </main>
-<button class="top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+</div>
+
+<button class="top" id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <script>
-function toggleTheme(){document.documentElement.dataset.theme=document.documentElement.dataset.theme==="dark"?"light":"dark";localStorage.setItem("cpp-theme-full",document.documentElement.dataset.theme)}
-if(localStorage.getItem("cpp-theme-full"))document.documentElement.dataset.theme=localStorage.getItem("cpp-theme-full");
-document.querySelectorAll(".copy").forEach(b=>b.onclick=()=>{navigator.clipboard.writeText(b.parentElement.querySelector("pre").innerText);let x=b.innerText;b.innerText="تم النسخ ✓";setTimeout(()=>b.innerText=x,1100)});
-function filterNav(){let q=document.getElementById("search").value.toLowerCase();document.querySelectorAll("#nav a").forEach(a=>a.style.display=a.innerText.toLowerCase().includes(q)?"block":"none")}
-window.addEventListener("scroll",()=>{let d=document.documentElement;document.getElementById("progress").style.width=(d.scrollTop/(d.scrollHeight-d.clientHeight)*100)+"%";let cur="";document.querySelectorAll("section").forEach(s=>{if(scrollY>=s.offsetTop-130)cur=s.id});document.querySelectorAll("#nav a").forEach(a=>a.classList.toggle("active",a.hash==="#"+cur))});
-document.querySelectorAll("#nav a").forEach(a=>a.onclick=()=>document.querySelector("aside").classList.remove("open"));
+function toggleTheme(){
+  const html = document.documentElement;
+  const dark = html.getAttribute("data-theme") === "dark";
+  html.setAttribute("data-theme", dark ? "light" : "dark");
+  localStorage.setItem("cpp-guide-theme", html.getAttribute("data-theme"));
+}
+
+(function(){
+  const theme = localStorage.getItem("cpp-guide-theme");
+  if(theme) document.documentElement.setAttribute("data-theme", theme);
+})();
+
+document.querySelectorAll(".copy").forEach(b => {
+  b.onclick = async () => {
+    const code = b.parentElement.querySelector("pre").innerText;
+    try {
+      await navigator.clipboard.writeText(code);
+    } catch(e) {
+      const ta = document.createElement("textarea");
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      ta.remove();
+    }
+    let x = b.innerText;
+    b.innerText = "✓ تم النسخ";
+    setTimeout(() => b.innerText = x, 1100);
+  }
+});
+
+function filterNav(){
+  let q = document.getElementById("search").value.toLowerCase();
+  document.querySelectorAll("#nav a").forEach(a => {
+    a.style.display = a.innerText.toLowerCase().includes(q) ? "block" : "none";
+  });
+}
+
+window.addEventListener("scroll", () => {
+  let d = document.documentElement;
+  let total = d.scrollHeight - d.clientHeight;
+  document.getElementById("progress").style.width = (total ? (d.scrollTop / total) * 100 : 0) + "%";
+  document.getElementById("topBtn").style.display = d.scrollTop > 400 ? "block" : "none";
+  
+  let cur = "";
+  document.querySelectorAll("section").forEach(s => {
+    if(window.scrollY >= s.offsetTop - 130) cur = s.id;
+  });
+  document.querySelectorAll("#nav a").forEach(a => {
+    a.classList.toggle("active", a.hash === "#" + cur);
+  });
+});
+
+document.querySelectorAll("#nav a").forEach(a => {
+  a.onclick = () => document.querySelector("aside").classList.remove("open");
+});
 </script>
 </body>
 </html>
