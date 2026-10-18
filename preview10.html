@@ -2,48 +2,207 @@
 <html lang="ar" dir="rtl" data-theme="light">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="دليل CSS الشامل والمفصل بالأسطر البرمجية - أكاديمية آفاق المعرفة التقنية - مها شهوب">
 <title>دليل CSS الشامل والمفصل | مها شهوب</title>
 <style>
-:root{--bg:#eef3f8;--card:#fff;--text:#172033;--muted:#64748b;--p:#1677c8;--p2:#0b4f88;--b:#d7e1eb;--code:#0b1220;--shadow:0 8px 24px rgba(20,55,90,.09)}
-[data-theme=dark]{--bg:#0c1420;--card:#151f2c;--text:#e7eef8;--muted:#a9b7c8;--p:#0b4f88;--p2:#a7d9fb;--b:#2b3a4b;--code:#070b12;--shadow:0 8px 24px rgba(0,0,0,.25)}
-*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
-body{font-family:"Segoe UI",Tahoma,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.9}
-header{position:fixed;top:0;right:0;left:0;height:72px;z-index:1000;background:var(--card);border-bottom:1px solid var(--b);display:flex;align-items:center;padding:0 20px;box-shadow:var(--shadow)}
-.logo{width:67px;height:54px;border-radius:50%;display:grid;place-items:center;}
-.brand{margin-right:12px}.brand b{display:block;color:var(--p2)}.brand small{color:var(--muted)}
-.actions{margin-right:auto;display:flex;gap:8px}button{border:1px solid var(--b);background:var(--card);color:var(--text);border-radius:9px;padding:8px 12px;cursor:pointer}.menu{display:none}
-.progress{position:fixed;top:72px;right:0;height:4px;background:var(--p);width:0;z-index:1001}
-aside{position:fixed;top:76px;right:0;bottom:0;width:310px;background:var(--card);border-left:1px solid var(--b);padding:16px;overflow:auto}
-.search{width:100%;padding:10px;border:1px solid var(--b);border-radius:9px;background:var(--bg);color:var(--text);margin-bottom:10px}
-nav a{display:block;color:var(--muted);text-decoration:none;padding:5px 8px;border-radius:7px;font-size:12.5px}
-nav a:hover,nav a.active{background:#1677c81a;color:var(--p);font-weight:700}
-main{margin-right:310px;padding:110px 34px 50px;max-width:1300px}
-.hero{background:linear-gradient(135deg,var(--p2),var(--p));color:#ffffff;border-radius:18px;padding:34px;margin-bottom:22px;box-shadow:var(--shadow)}
-.hero h1{font-size:32px}.credit{font-weight:700;margin-top:8px}
-section{background:var(--card);border:1px solid var(--b);border-radius:14px;padding:24px;margin-bottom:18px;box-shadow:var(--shadow);scroll-margin-top:95px}
-h2{font-size:21px;color:var(--p2);border-right:4px solid var(--p);padding-right:9px;margin-bottom:12px}
-p {margin-bottom: 12px;}
-.code{position:relative;margin:13px 0}.code pre{background:var(--code);color:#dbeafe;direction:ltr;text-align:left;overflow:auto;border-radius:9px;padding:17px;font:13px/1.7 Consolas,monospace;white-space:pre-wrap}
-.copy{position:absolute;right:7px;top:7px;background:#fff;color:#172033;border:0;font-size:11px;padding:5px 8px;cursor:pointer;border-radius:4px;}
-.top{position:fixed;bottom:20px;left:20px;border-radius:50%;background:var(--p);color:#fff;width:44px;height:44px;border:0;cursor:pointer}
-footer{text-align:center;color:var(--muted);padding:28px}
-@media(max-width:900px){aside{transform:translateX(100%);transition:.25s;width:290px}aside.open{transform:none}.menu{display:block}main{margin:0;padding:100px 14px 40px}.brand small{display:none}.hero h1{font-size:25px}}
-@media print{header,aside,.top,.progress,.actions,.copy{display:none!important}main{margin:0;padding:0}section{box-shadow:none;break-inside:avoid}}
+:root{
+    --bg:#f4f7fb;--card:#fff;--text:#182230;--muted:#64748b;--primary:#1677c8;
+    --primary2:#0b4f88;--border:#dbe4ee;--code:#101827;--codeText:#e8eef7;
+    --nav:#fff
+}
+[data-theme="dark"]{
+    --bg:#0b1220;--card:#111b2b;--text:#e7eef8;--muted:#9fb0c5;--primary:#55aaf0;
+    --primary2:#8cc8fa;--border:#26374c;--code:#07101d;--codeText:#e7eef8;--nav:#0e1727
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+    margin:0;background:var(--bg);color:var(--text);
+    font-family:"Segoe UI",Tahoma,Arial,sans-serif;line-height:1.85;
+    overflow-x:hidden;
+}
+
+/* الترويسة العلوية */
+header{
+    position:fixed;top:0;right:0;left:0;height:68px;
+    background:var(--nav);border-bottom:1px solid var(--border);
+    z-index:1000;display:flex;align-items:center;justify-content:space-between;
+    padding:0 15px;direction:rtl;
+}
+
+.header-right{
+    display:flex;align-items:center;gap:12px;min-width:0;
+}
+
+.logo{
+    width:52px;height:52px;border-radius:50%;display:grid;place-items:center;
+    flex-shrink:0;object-fit:cover;
+}
+
+.brand-text{
+    font-weight:800;font-size:16px;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.brand-text small{display:block;color:var(--muted);font-size:11px}
+
+.header-left{
+    display:flex;align-items:center;gap:8px;flex-shrink:0;
+}
+
+button,.btn{
+    border:1px solid var(--border);background:var(--card);color:var(--text);
+    border-radius:9px;padding:8px 11px;cursor:pointer;white-space:nowrap;font-size:13px;
+    transition:.2s ease;
+}
+button:hover,.btn:hover{border-color:var(--primary);color:var(--primary)}
+
+.progress{
+    position:fixed;top:68px;right:0;height:3px;width:0;
+    background:#3fb5ff;z-index:1001
+}
+.layout{max-width:1550px;margin:auto;padding-top:68px;width:100%}
+
+/* القائمة الجانبية */
+aside{
+    position:fixed;top:68px;right:0;bottom:0;width:315px;
+    background:var(--nav);border-left:1px solid var(--border);
+    padding:18px 14px;overflow-y:auto;z-index:950;
+    transition: transform 0.3s ease;
+}
+
+.search{
+    width:100%;padding:11px;border:1px solid var(--border);
+    border-radius:11px;background:var(--card);color:var(--text);
+    margin-bottom:12px;outline:none
+}
+.nav-title{font-weight:800;color:var(--primary);margin:8px 0}
+nav a{
+    display:block;text-decoration:none;color:var(--muted);
+    padding:6px 9px;border-radius:8px;font-size:12px;margin:2px 0
+}
+nav a:hover,nav a.active{
+    background:rgba(22,119,200,.1);color:var(--primary);font-weight:700
+}
+
+main{
+    margin-right:315px;width:calc(100% - 315px);
+    padding:32px 34px 70px;min-width:0
+}
+
+.hero{
+    background:linear-gradient(135deg,#071b31,#0b4f88 55%,#1677c8);
+    color:white;border-radius:20px;padding:38px;margin-bottom:25px
+}
+.hero h1{font-size:32px;margin:0}
+.hero p{margin-top:10px;opacity:.95}
+.credit{font-weight:700;margin-top:14px;font-size:13px;opacity:.9}
+.credit b{color:#93c5fd}
+
+section{
+    background:var(--card);border:1px solid var(--border);
+    border-radius:17px;padding:27px;margin-bottom:22px
+}
+h2{
+    color:var(--primary2);font-size:23px;
+    border-right:5px solid var(--primary);padding-right:12px;margin-bottom:12px
+}
+p{margin:8px 0}
+
+.codebox{border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-top:14px}
+.codetop{background:rgba(22,119,200,.08);padding:8px 12px;display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:700;color:var(--primary2)}
+.copy{border:1px solid var(--border);background:var(--card);color:var(--text);padding:4px 9px;border-radius:6px;cursor:pointer;font-size:11px}
+.copy:hover{border-color:var(--primary);color:var(--primary)}
+
+pre{
+    direction:ltr;text-align:left;margin:0;padding:16px;overflow:auto;
+    background:var(--code);color:var(--codeText);
+    font:13px/1.75 Consolas,"Courier New",monospace;white-space:pre-wrap
+}
+
+.topbtn-float{
+    position:fixed;bottom:20px;left:20px;
+    width:45px;height:45px;border-radius:50%;
+    background:var(--primary);color:white;display:none;
+    border:0;cursor:pointer;z-index:900;font-size:20px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.2);
+}
+.menu{display:none}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 25px 15px;
+    border-top: 1px solid var(--border);
+    margin-top: 40px;
+    color: var(--muted);
+    font-size: 14px;
+    gap: 6px;
+}
+
+@media(max-width:1100px){
+    .menu{display:block}
+    aside{
+        display:none;
+        right:0;
+        left:auto;
+        width:290px;
+        z-index:950;
+        box-shadow:-8px 0 25px rgba(0,0,0,.15);
+    }
+    aside.open{display:block}
+    main{margin-right:0;width:100%;padding:24px 16px 60px}
+}
+
+@media(max-width:600px){
+    .brand-text{font-size:13px}
+    .brand-text small{display:none}
+    header{padding:0 10px;gap:8px}
+    button,.btn{padding:7px 9px;font-size:12px}
+    .hero{padding:22px 16px}
+    .hero h1{font-size:23px}
+    section{padding:18px 14px}
+    h2{font-size:20px}
+    pre{font-size:12px}
+}
+
+@media print{
+    header,aside,.progress,.topbtn-float{display:none!important}
+    main{margin:0;width:100%;padding:0}
+    section{box-shadow:none;break-inside:avoid}
+}
 </style>
 </head>
 <body>
-<header><button class="menu" onclick="document.querySelector('aside').classList.toggle('open')">☰</button>
 
-  <img src="IMG/آفاق المعرفة التقنية.png" class="logo">
- <div class="brand"><b>أكاديمية آفاق المعرفة التقنية</b><small>دليل CSS الشامل </small></div>
- 
-<div class="actions"><button onclick="toggleTheme()">◐ الوضع</button>
-</div></header>
+<header>
+  <div class="header-right">
+    <button class="menu" onclick="toggleMenu()">☰</button>
+    <img src="IMG/آفاق المعرفة التقنية.png" class="logo" alt="لوجو">
+    <div class="brand-text">
+      أكاديمية آفاق المعرفة التقنية
+      <small>دليل CSS الشامل | مها شهوب</small>
+    </div>
+  </div>
+
+  <div class="header-left">
+    <button onclick="toggleTheme()">◐ الوضع</button>
+  </div>
+</header>
+
 <div class="progress" id="progress"></div>
 
-<aside><input class="search" id="search" placeholder="🔎 ابحث في الدروس..." oninput="filterNav()"><nav id="nav">
+<div class="layout">
+
+<aside id="sidebar">
+<input class="search" id="search" placeholder="🔎 ابحث في الفهرس..." oninput="filterNav()">
+
+<div class="nav-title">فهرس CSS الشامل</div>
+
+<nav id="nav">
 <a href="#s1">01. مقدمة في CSS</a>
 <a href="#s2">02. تركيب قواعد CSS</a>
 <a href="#s3">03. طرق تضمين CSS</a>
@@ -74,7 +233,7 @@ footer{text-align:center;color:var(--muted);padding:28px}
 <a href="#s28">28. التموضع الثابت والملاصق</a>
 <a href="#s29">29. طبقات التراكب Z-Index</a>
 <a href="#s30">30. الطفو والمسح</a>
-<a href="#s31">32. تجاوز المحتوى Overflow</a>
+<a href="#s31">31. تجاوز المحتوى Overflow</a>
 <a href="#s32">32. خطوط النصوص</a>
 <a href="#s33">33. أحجام وأوزان الخطوط</a>
 <a href="#s34">34. تباعد النصوص والأسطر</a>
@@ -104,7 +263,7 @@ footer{text-align:center;color:var(--muted);padding:28px}
 <a href="#s58">58. مدة وتوقيت الانتقالات</a>
 <a href="#s59">59. إطار الحركات Keyframes</a>
 <a href="#s60">60. تشغيل وإدارة الحركات</a>
-<a href="#s61">62. التحويلات ثنائية الأبعاد 2D</a>
+<a href="#s61">61. التحويلات ثنائية الأبعاد 2D</a>
 <a href="#s62">62. التحويلات ثلاثية الأبعاد 3D</a>
 <a href="#s63">63. المتغيرات CSS Variables</a>
 <a href="#s64">64. نطاق المتغيرات Scope</a>
@@ -132,13 +291,15 @@ footer{text-align:center;color:var(--muted);padding:28px}
 <a href="#s86">86. بناء نظام ثيمات متقدم</a>
 <a href="#s87">87. أفضل الممارسات البرمجية</a>
 <a href="#s88">88. المرجع السريع للخصائص</a>
-</nav></aside>
+</nav>
+</aside>
 
 <main>
+
 <div class="hero">
   <h1>دليل CSS الشامل والمفصل للأكواد</h1>
   <p>المرجع الهندسي المتكامل والمزود بالأمثلة الحية والشروح لكل درس من الـ 88 درساً.</p>
-  <div class="credit">إعداد الكاتبة والمهندسة: مها شهوب</div>
+  <div class="credit">إعداد الكاتبة والمهندسة: <b>مها شهوب</b></div>
 </div>
 
 <section id="s1">
@@ -149,72 +310,99 @@ footer{text-align:center;color:var(--muted);padding:28px}
 <section id="s2">
   <h2>02. تركيب قواعد CSS</h2>
   <p>تتكون القاعدة من محدد (Selector) وكتلة إعلانات بين قوسين مجعدين تحتوى على الخاصية (Property) والقيمة (Value).</p>
-  <div class="code"><button class="copy">نسخ</button><pre>selector {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>selector {
   property: value;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s3">
   <h2>03. طرق تضمين CSS</h2>
   <p>يمكن تضمين التنسيقات بثلاث طرق: داخلية عبر الوسم style، مضمنة (Inline) داخل العنصر، أو خارجية عبر ملف مستقل.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>&lt;link rel="stylesheet" href="style.css"&gt;</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>&lt;link rel="stylesheet" href="style.css"&gt;</code></pre>
+  </div>
 </section>
 
 <section id="s4">
   <h2>04. المحددات البسيطة (Selectors)</h2>
   <p>تستهدف عناصر الـ HTML مباشرة عبر كتابة اسم الوسم العام مثل الفقرات أو العناوين الرئيسية.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>p {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>p {
   color: #333;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s5">
   <h2>05. محددات العناصر والفئات (Classes & IDs)</h2>
   <p>الفئات تستخدم لنقاط التكرار باستخدام النقطة (.), بينما المعرفات (IDs) فريدة وتستخدم بالرمز (#).</p>
-  <div class="code"><button class="copy">نسخ</button><pre>.card { background: #fff; }
-#main-header { padding: 20px; }</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>.card { background: #fff; }
+#main-header { padding: 20px; }</code></pre>
+  </div>
 </section>
 
 <section id="s6">
   <h2>06. المحددات المركبة والمجموعات</h2>
   <p>تطبيق نفس كود التنسيق على عدة عناصر مختلفة دفعة واحدة عن طريق فصلها بالفواصل.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>h1, h2, h3 {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>h1, h2, h3 {
   color: #0b4f88;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s7">
   <h2>07. المحددات التابعة (Descendant & Child)</h2>
   <p>استهداف العناصر المتواجدة حصرياً داخل أب أو حاوية معينة لتجنب تأثير باقي عناصر الصفحة.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>div > p {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>div > p {
   font-size: 14px;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s8">
   <h2>08. محددات الحالات (Pseudo-classes)</h2>
   <p>التحكم بتغير شكل العناصر بناءً على حالة تفاعل المستخدم مثل المرور بالفأرة أو الضغط.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>a:hover {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>a:hover {
   color: #1677c8;
   text-decoration: underline;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s9">
   <h2>09. محددات العناصر الوهمية (Pseudo-elements)</h2>
   <p>إضافة وتصميم أجزاء غير موجودة في الـ HTML الأصلي مثل الحرف الأول أو الرموز التعبيرية.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>p::first-letter {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>p::first-letter {
   font-size: 2em;
   font-weight: bold;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s10">
   <h2>10. الخصائص والوراثة (Inheritance)</h2>
   <p>آلية ترث من خلالها العناصر الابنة بعض خصائص الأب (مثل خصائص النصوص والخطوط تلقائياً).</p>
-  <div class="code"><button class="copy">نسخ</button><pre>body {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>body {
   font-family: "Segoe UI", Tahoma, sans-serif;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s11">
@@ -225,32 +413,44 @@ footer{text-align:center;color:var(--muted);padding:28px}
 <section id="s12">
   <h2>12. ألوان CSS (HEX, RGB, HSL)</h2>
   <p>طرق تمثيل الألوان برمجياً، سواء بالنظام السداسي عشري، أو نظام الألوان الأحمر والأخضر والأزرق.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>.box {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>.box {
   background-color: rgb(22, 119, 200);
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s13">
   <h2>13. الوحدات المطلقة (px, cm)</h2>
   <p>وحدات قياس ثابتة لا تتغير مهما تبدلت أبعاد شاشة العرض، وأشبرها البيكسل (px).</p>
-  <div class="code"><button class="copy">نسخ</button><pre>.element {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>.element {
   width: 300px;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s14">
   <h2>14. الوحدات النسبية (em, rem, %)</h2>
   <p>قياسات مرنة تتكيف بناءً على حجم خط العنصر الأب (em) أو خط الجذر الأساسي (rem).</p>
-  <div class="code"><button class="copy">نسخ</button><pre>html { font-size: 16px; }
-h1 { font-size: 2rem; /* يعادل 32px */ }</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>html { font-size: 16px; }
+h1 { font-size: 2rem; /* يعادل 32px */ }</code></pre>
+  </div>
 </section>
 
 <section id="s15">
   <h2>15. وحدات الشاشة (vw, vh, vmin)</h2>
   <p>قياسات تعتمد بشكل مباشر على نسبة مئوية من عرض (vw) أو ارتفاع (vh) شاشة المتصفح.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>.hero {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>.hero {
   height: 100vh;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s16">
@@ -261,325 +461,442 @@ h1 { font-size: 2rem; /* يعادل 32px */ }</pre></div>
 <section id="s17">
   <h2>17. خاصية Box-Sizing</h2>
   <p>استخدام قيمة border-box تضمن عدم تمدد عرض الصندوق عند إضافة الحشوة والحدود.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>* {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>* {
   box-sizing: border-box;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s18">
   <h2>18. الهوامش الخارجية (Margin)</h2>
   <p>التحكم في المساحات الفارغة المحيطة بالعنصر من الخارج، وتستخدم لتوسيط العناصر أفقياً بـ auto.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>.container {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>.container {
   margin: 20px auto;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s19">
   <h2>19. الحشوة الداخلية (Padding)</h2>
   <p>المسافة الفارغة الواقعة بين محتوى العنصر الداخلي وحدوده الخارجية لزيادة الراحة البصرية.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>.card {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>.card {
   padding: 15px 25px;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s20">
   <h2>20. الحدود (Borders) وأنواعها</h2>
   <p>التحكم في سمك، نمط (متصل، منقط، مزدوج)، ولون الإطار المحيط بالعنصر.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>.box {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>.box {
   border: 1px solid #d7e1eb;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s21">
   <h2>21. الزوايا الدائرية (Border-Radius)</h2>
   <p>إعطاء انحناء لزوايا الصناديق والبطاقات، أو تحويلها إلى دوائر تامة.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>.avatar {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>.avatar {
   border-radius: 50%;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s22">
   <h2>22. العرض والارتفاع (Width & Height)</h2>
   <p>تحديد الأبعاد الأساسية للعناصر والحاويات على الشاشة.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>.box {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>.box {
   width: 100%;
   height: 200px;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s23">
   <h2>23. أقصى وأدنى الأبعاد (Min/Max)</h2>
   <p>حماية التخطيط من الانهيار عبر وضع قيود دنيا وعليا للعرض والارتفاع.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>.container {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>.container {
   max-width: 1200px;
   min-height: 400px;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s24">
   <h2>24. أنواع العرض (Display)</h2>
   <p>التحكم بسلوك ظهور العنصر، هل يشغل سطراً كاملاً (block) أم يتقاسم السطر (inline).</p>
-  <div class="code"><button class="copy">نسخ</button><pre>.element {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>.element {
   display: block;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s25">
   <h2>25. الإخفاء والظهور (Visibility & Display)</h2>
   <p>الفرق بين إخفاء العنصر تماماً وإلغاء مساحته (display: none) أو إخفائه مع الحفاظ على فراغه (visibility: hidden).</p>
-  <div class="code"><button class="copy">نسخ</button><pre>.hidden {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>.hidden {
   display: none;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s26">
   <h2>26. التموضع النسبي (Relative)</h2>
   <p>إزاحة العنصر قليلاً عن مكانه الأصلي دون التأثير على تدفق باقي عناصر الصفحة.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>.box {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>.box {
   position: relative;
   top: 10px;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s27">
   <h2>27. التموضع المطلق (Absolute)</h2>
   <p>إخراج العنصر من التدفق الطبيعي وتثبيته بدقة إحداثية داخل أب يمتلك تموضعاً نسبياً.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>.badge {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>.badge {
   position: absolute;
   top: 0;
   right: 0;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s28">
   <h2>28. التموضع الثابت والملاصق (Fixed & Sticky)</h2>
   <p>تثبيت العناصر (مثل الهيدر العلوي) أثناء عملية التمرير في الصفحة.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>header {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>header {
   position: fixed;
   top: 0;
   width: 100%;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s29">
   <h2>29. طبقات التراكب (Z-Index)</h2>
   <p>التحكم بأي العناصر تظهر في المقدمة وأيها تقع في الخلف عند تداخل العناصر المتموضعة.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>.modal {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>.modal {
   z-index: 1050;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s30">
   <h2>30. الطفو والمسح (Float & Clear)</h2>
   <p>التقنية الكلاسيكية لإزاحة العناصر يميناً ويساراً وجعل النصوص يلتفون حولها.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>.float-left {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>.float-left {
   float: left;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s31">
   <h2>31. تجاوز المحتوى (Overflow)</h2>
   <p>التحكم بما يحدث عندما يكون محتوى الصندوق أكبر من أبعاده المحددة (ظهور تمرير أو إخفاء الزائد).</p>
-  <div class="code"><button class="copy">نسخ</button><pre>.scrollable {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>.scrollable {
   overflow: auto;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s32">
   <h2>32. خطوط النصوص (Font-Family)</h2>
   <p>تحديد نوع الخط المستخدم وطبقات الاحتياط في حال عدم توفر الخط الأساسي.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>body {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>body {
   font-family: "Segoe UI", Tahoma, sans-serif;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s33">
   <h2>33. أحجام وأوزان الخطوط</h2>
   <p>التحكم بسماكة ونحافة الخطوط العريضة عبر خاصية الأوزان.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>.bold-text {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>.bold-text {
   font-weight: 700;
   font-size: 18px;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s34">
   <h2>34. تباعد النصوص والأسطر</h2>
   <p>ضبط مسافات الحروف وارتفاعات السطور لتسهيل القراءة المريحة.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>p {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>p {
   line-height: 1.8;
   letter-spacing: 0.5px;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s35">
   <h2>35. محاذاة واتجاه النصوص</h2>
   <p>توزيع النصوص يميناً، يساراً، توسيطاً، أو ضبط الحواف المتساوية.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>.text-center {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>.text-center {
   text-align: center;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s36">
   <h2>36. تأثيرات النصوص الظلال</h2>
   <p>إضافة ظلال جمالية للنصوص البارزة عبر text-shadow.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>h1 {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>h1 {
   text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s37">
   <h2>37. خلفيات الألوان والصور</h2>
   <p>تضمين الألوان والخلفيات المصورة داخل الصناديق.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>.bg {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>.bg {
   background-color: #fff;
   background-image: url('img.jpg');
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s38">
   <h2>38. تحجيم وتكرار الخلفيات</h2>
   <p>منع تكرار صورة الخلفية وضبط تغطيتها الكاملة للحاوية.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>.hero-bg {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>.hero-bg {
   background-repeat: no-repeat;
   background-size: cover;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s39">
   <h2>39. التدرجات الخطية (Linear Gradient)</h2>
   <p>دمج لونين أو أكثر بتدرج هندسي سلس واتجاهي.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>.hero {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>.hero {
   background: linear-gradient(135deg, #0b4f88, #1677c8);
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s40">
   <h2>40. التدرجات الدائرية (Radial Gradient)</h2>
   <p>صنع تدرجات لونية تبدأ من مركز الدائرة وتتوسع للأطراف.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>.circle-grad {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>.circle-grad {
   background: radial-gradient(circle, #fff, #d7e1eb);
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s41">
   <h2>41. الظلال (Box-Shadow)</h2>
   <p>إعطاء عمق وثلاثية أبعاد للبطاقات والصناديق.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>.card {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>.card {
   box-shadow: 0 8px 24px rgba(20,55,90,.09);
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s42">
   <h2>42. المرشحات البصرية (Filters)</h2>
   <p>تطبيق تأثيرات تشويش، تباعد ألوان، أو إضاءة على الصور.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>.blurred {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>.blurred {
   filter: blur(5px);
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s43">
   <h2>43. الشفافية (Opacity & RGBA)</h2>
   <p>التحكم بنسب الشفافية للعناصر الكاملة أو الألوان المنفصلة.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>.transparent {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>.transparent {
   opacity: 0.8;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s44">
   <h2>44. مقدمة نظام Flexbox</h2>
   <p>النظام المرن لترتيب وتوزيع العناصر في اتجاه واحد بكفاءة عالية.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>.flex-container {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>.flex-container {
   display: flex;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s45">
   <h2>45. المحور الرئيسي والعرض في Flex</h2>
   <p>تحديد ما إذا كان توزيع العناصر أفقياً أم عمودياً.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>.col-flex {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>.col-flex {
   flex-direction: column;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s46">
   <h2>46. المحاذاة في الاتجاهين (Align & Justify)</h2>
   <p>توسيط وتوزيع العناصر داخل الحاوية المرنة بكل يسر.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>.centered {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>.centered {
   justify-content: space-between;
   align-items: center;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s47">
   <h2>47. التفاف العناصر (Flex-Wrap)</h2>
   <p>السماح للعناصر بالانتقال لسطر جديد عند ضيق مساحة الشاشة.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>.wrap-box {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>.wrap-box {
   flex-wrap: wrap;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s48">
   <h2>48. خصائص العناصر المرنة (Grow, Shrink, Basis)</h2>
   <p>التحكم بنسب تمدد وانكماش العناصر المرنة داخل الحاوية.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>.item {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>.item {
   flex: 1 1 auto;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s49">
   <h2>49. ترتيب العناصر (Order)</h2>
   <p>تغيير ترتيب ظهور العناصر بصرياً دون تعديل الكود المصدري HTML.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>.first-item {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>.first-item {
   order: -1;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s50">
   <h2>50. مقدمة نظام الشبكات (CSS Grid)</h2>
   <p>النظام الأقوى لتصميم التخطيطات المعقدة ثنائية الأبعاد (صفوف وأعمدة).</p>
-  <div class="code"><button class="copy">نسخ</button><pre>.grid {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>.grid {
   display: grid;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s51">
   <h2>51. تعريف الصفوف والأعمدة (Grid Template)</h2>
   <p>تخصيص قياسات الأعمدة والصفوف للشبكة بدقة.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>.grid-cols {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>.grid-cols {
   grid-template-columns: repeat(3, 1fr);
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s52">
   <h2>52. الفجوات بين الشبكات (Gap)</h2>
   <p>صنع مسافات فاصلة ومنتظمة بين خلايا الشبكة.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>.grid {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>.grid {
   gap: 20px;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s53">
   <h2>53. دمج الخلايا في Grid</h2>
   <p>جعل العنصر يعبر أكثر من عمود أو صف داخل الشبكة.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>.span-col {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>.span-col {
   grid-column: span 2;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s54">
   <h2>54. التوزيع التلقائي (Auto-fit & Minmax)</h2>
   <p>إنشاء شبكات متجاوبة بالكامل تتكيف ذاتياً مع أبعاد الأجهزة.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>.auto-grid {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>.auto-grid {
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s55">
   <h2>55. التصميم المتجاوب (Media Queries)</h2>
   <p>استهداف مقاسات شاشات معينة لتعديل مظهر الموقع وتخطيطه.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>@media (max-width: 900px) {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>@media (max-width: 900px) {
   aside { transform: translateX(100%); }
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s56">
@@ -590,58 +907,79 @@ h1 { font-size: 2rem; /* يعادل 32px */ }</pre></div>
 <section id="s57">
   <h2>57. الانتقالات السلسة (Transitions)</h2>
   <p>إعطاء نعومة وسلاسة عند تغير خصائص العنصر (مثل تأثيرات الأزرار).</p>
-  <div class="code"><button class="copy">نسخ</button><pre>.btn {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>.btn {
   transition: background-color 0.3s ease;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s58">
   <h2>58. مدة وتوقيت الانتقالات (Timing Functions)</h2>
   <p>التحكم في سرعة التسارع والتباطؤ أثناء حدوث الانتقال البصري.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>.box {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>.box {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s59">
   <h2>59. إطار الحركات (Keyframes Animations)</h2>
   <p>صنع حركات تفاعلية متقدمة ومتعددة المراحل عبر الإطارات المفتاحية.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>@keyframes fadeIn {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>@keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s60">
   <h2>60. تشغيل وإدارة الحركات</h2>
   <p>التحكم بعدد مرات التكرار، الاتجاه، وحالة إيقاف الحركة أو تشغيلها.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>.animated {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>.animated {
   animation: fadeIn 0.5s ease infinite alternate;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s61">
   <h2>61. التحويلات ثنائية الأبعاد (2D Transforms)</h2>
   <p>تدوير، تكبير، إزاحة، أو ميل العناصر على المستويين الأفقي والعمودي.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>.box:hover {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>.box:hover {
   transform: scale(1.05) rotate(3deg);
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s62">
   <h2>62. التحويلات ثلاثية الأبعاد (3D Transforms)</h2>
   <p>صنع تأثيرات المنظور والعمق الثلاثي الأبعاد في واجهات الويب.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>.card-3d {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>.card-3d {
   transform: perspective(1000px) rotateY(45deg);
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s63">
   <h2>63. المتغيرات في CSS (Custom Properties)</h2>
   <p>حفظ القيم المتكررة والألوان في الجذر لتسهيل إدارتها.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>:root {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>:root {
   --main-color: #1677c8;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s64">
@@ -652,60 +990,81 @@ h1 { font-size: 2rem; /* يعادل 32px */ }</pre></div>
 <section id="s65">
   <h2>65. تصميم الوضع المظلم (Dark Mode)</h2>
   <p>تغيير ثيم الألوان بالكامل عبر تبديل قيم المتغيرات بحسب سمة البيانات.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>[data-theme="dark"] {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>[data-theme="dark"] {
   --bg: #0c1420;
   --card: #151f2c;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s66">
   <h2>66. تنسيق الجداول (Tables)</h2>
   <p>إضافة التخطيطات، الحدود، والتداخل اللوني لصفوف وأعمدة الجداول.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>tr:nth-child(even) {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>tr:nth-child(even) {
   background-color: rgba(0,0,0,0.02);
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s67">
   <h2>67. تنسيق القوائم والروابط (Lists)</h2>
   <p>إزالة الرموز الافتراضية للقوائم وتنسيق الروابط لتلائم القوائم الجانبية والهيدر.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>ul {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>ul {
   list-style: none;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s68">
   <h2>68. تنسيق النماذج وحقول الإدخال (Forms)</h2>
   <p>جعل حقول النص والأزرار عصرية، مريحة، وذات حدود متناسقة.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>input {
-  border: 1px solid var(--b);
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>input {
+  border: 1px solid var(--border);
   border-radius: 9px;
   padding: 10px;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s69">
   <h2>69. حالات التركيز والتفاعل (Focus-within)</h2>
   <p>تنسيق الحاوية بالكامل عندما يقوم المستخدم بالنقر أو الكتابة داخل أي حقل داخلي.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>.form-group:focus-within {
-  border-color: var(--p);
-}</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>.form-group:focus-within {
+  border-color: var(--primary);
+}</code></pre>
+  </div>
 </section>
 
 <section id="s70">
   <h2>70. المتغيرات الرياضية (Calc function)</h2>
   <p>إجراء عمليات حسابية ديناميكية للقياسات والأبعاد مباشرة داخل الأكواد.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>.sidebar {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>.sidebar {
   width: calc(100% - 310px);
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s71">
   <h2>71. الدوال الشرطية (Clamp, Min, Max)</h2>
   <p>ضبط قياسات مرنة للخطوط والمسافات تتكيف بسلاسة تامة مع عرض الشاشة.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>h1 {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>h1 {
   font-size: clamp(1.5rem, 2.5vw, 2.5rem);
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s72">
@@ -716,41 +1075,56 @@ h1 { font-size: 2rem; /* يعادل 32px */ }</pre></div>
 <section id="s73">
   <h2>73. تخصيص شريط التمرير (Scrollbar)</h2>
   <p>تلوين وتصغير أشرطة التمرير لتتطابق تماماً مع الهوية البصرية للمنصة.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>::-webkit-scrollbar {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>::-webkit-scrollbar {
   width: 8px;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s74">
   <h2>74. تأثيرات دمج الألوان (Blend Modes)</h2>
   <p>صنع تداخلات بصرية مذهلة واحترافية بين الصور والخلفيات الملونة.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>.blend {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>.blend {
   mix-blend-mode: multiply;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s75">
   <h2>75. قص العناصر (Clip-Path)</h2>
   <p>عرض الصور والصناديق بأشكال هندسية مخصصة ومضلعات غير تقليدية.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>.polygon {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>.polygon {
   clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s76">
   <h2>76. اتجاه النصوص واللغات (RTL & LTR)</h2>
   <p>دعم اللغات المختلفة وتغيير اتجاه التخطيط والمحاذاة بسلاسة تامة.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>html {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>html {
   direction: rtl;
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s77">
   <h2>77. تنسيق صفحة الطباعة (@media print)</h2>
   <p>إخفاء القوائم غير الضرورية والأزرار وتنسيق المحتوى الرئيسي حصرياً للطباعة الورقية.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>@media print {
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>@media print {
   header, aside, .actions { display: none !important; }
-}</pre></div>
+}</code></pre>
+  </div>
 </section>
 
 <section id="s78">
@@ -806,25 +1180,94 @@ h1 { font-size: 2rem; /* يعادل 32px */ }</pre></div>
 <section id="s88">
   <h2>88. المرجع السريع لأهم الخصائص</h2>
   <p>خلاصة شاملة وسريعة لأهم أوامر وخصائص الـ CSS الأساسية والمتقدمة للرجوع إليها فورياً.</p>
-  <div class="code"><button class="copy">نسخ</button><pre>/* خلاصة الختام لأهم المحددات والخصائص */
-.quick-reference { display: grid; gap: 1rem; }</pre></div>
+  <div class="codebox">
+    <div class="codetop"><span>مثال عملي</span><button class="copy" onclick="copyCode(this)">نسخ</button></div>
+    <pre><code>/* خلاصة الختام لأهم المحددات والخصائص */
+.quick-reference { display: grid; gap: 1rem; }</code></pre>
+  </div>
 </section>
 
 <footer>
-<div><b>أكاديمية آفاق المعرفة التقنية</b></div>
-<div>  مكتبة | مها شهوب : سلسلة أساسيات التقنية</div>
-  <div>  جميع الحقوق محفوظة ©</div>
+  <div><b>أكاديمية آفاق المعرفة التقنية</b></div>
+  <div>مكتبة | مها شهوب : سلسلة أساسيات التقنية</div>
+  <div>جميع الحقوق محفوظة © 2026</div>
 </footer>
+
 </main>
-<button class="top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+</div>
+
+<button class="topbtn-float" id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <script>
-function toggleTheme(){document.documentElement.dataset.theme=document.documentElement.dataset.theme==="dark"?"light":"dark";localStorage.setItem("css-theme-88-full",document.documentElement.dataset.theme)}
-if(localStorage.getItem("css-theme-88-full"))document.documentElement.dataset.theme=localStorage.getItem("css-theme-88-full");
-document.querySelectorAll(".copy").forEach(b=>b.onclick=()=>{navigator.clipboard.writeText(b.parentElement.querySelector("pre").innerText);let x=b.innerText;b.innerText="تم النسخ ✓";setTimeout(()=>b.innerText=x,1100)});
-function filterNav(){let q=document.getElementById("search").value.toLowerCase();document.querySelectorAll("#nav a").forEach(a=>a.style.display=a.innerText.toLowerCase().includes(q)?"block":"none")}
-window.addEventListener("scroll",()=>{let d=document.documentElement;document.getElementById("progress").style.width=(d.scrollTop/(d.scrollHeight-d.clientHeight)*100)+"%";let cur="";document.querySelectorAll("section").forEach(s=>{if(scrollY>=s.offsetTop-130)cur=s.id});document.querySelectorAll("#nav a").forEach(a=>a.classList.toggle("active",a.hash==="#"+cur))});
-document.querySelectorAll("#nav a").forEach(a=>a.onclick=()=>document.querySelector("aside").classList.remove("open"));
+function toggleTheme(){
+  const html = document.documentElement;
+  const dark = html.getAttribute("data-theme") === "dark";
+  html.setAttribute("data-theme", dark ? "light" : "dark");
+  localStorage.setItem("css-theme", html.getAttribute("data-theme"));
+}
+
+(function(){
+  const theme = localStorage.getItem("css-theme");
+  if(theme) document.documentElement.setAttribute("data-theme", theme);
+})();
+
+function toggleMenu(){
+  document.getElementById("sidebar").classList.toggle("open");
+}
+
+function filterNav(){
+  const q = document.getElementById("search").value.toLowerCase();
+  document.querySelectorAll("#nav a").forEach(a => {
+    a.style.display = a.textContent.toLowerCase().includes(q) ? "block" : "none";
+  });
+}
+
+async function copyCode(btn){
+  const code = btn.closest(".codebox").querySelector("code").innerText;
+  try{
+    await navigator.clipboard.writeText(code);
+  }catch(e){
+    const textarea = document.createElement("textarea");
+    textarea.value = code;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand("copy");
+    textarea.remove();
+  }
+  btn.textContent = "✓ تم النسخ";
+  setTimeout(() => { btn.textContent = "نسخ"; }, 1200);
+}
+
+window.addEventListener("scroll", () => {
+  const doc = document.documentElement;
+  const total = doc.scrollHeight - doc.clientHeight;
+  document.getElementById("progress").style.width = (total ? doc.scrollTop / total * 100 : 0) + "%";
+  document.getElementById("topBtn").style.display = doc.scrollTop > 500 ? "block" : "none";
+});
+
+const links = [...document.querySelectorAll("#nav a")];
+const sections = links.map(link => document.querySelector(link.getAttribute("href"))).filter(Boolean);
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      links.forEach(link => link.classList.remove("active"));
+      const active = document.querySelector('#nav a[href="#' + entry.target.id + '"]');
+      if(active) active.classList.add("active");
+    }
+  });
+}, {rootMargin: "-90px 0px -65% 0px"});
+
+sections.forEach(section => observer.observe(section));
+
+links.forEach(link => {
+  link.addEventListener("click", () => {
+    if(window.innerWidth <= 1100){
+      document.getElementById("sidebar").classList.remove("open");
+    }
+  });
+});
 </script>
+
 </body>
 </html>
