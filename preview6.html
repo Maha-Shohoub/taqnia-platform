@@ -23,29 +23,34 @@ body{
     overflow-x:hidden;
 }
 
-/* ترويسة متناسقة ومضبوطة */
+/* ترويسة الموقع مع وضع العناصر في أماكنها الصحيحة */
 header{
     position:fixed;top:0;right:0;left:0;height:68px;
     background:var(--nav);border-bottom:1px solid var(--border);
     z-index:1000;display:flex;align-items:center;justify-content:space-between;
-    padding:0 15px;direction:ltr;
+    padding:0 15px;direction:rtl;
 }
-.brand{
-    display:flex;align-items:center;gap:10px;direction:rtl;min-width:0;
+
+.actions-right{
+    display:flex;align-items:center;gap:8px;flex-shrink:0;
 }
+
+.brand-left{
+    display:flex;align-items:center;gap:12px;min-width:0;
+}
+
+/* تكبير اللوجو ليكون أوضح واكبر */
 .logo{
-    width:42px;height:42px;border-radius:50%;display:grid;place-items:center;
+    width:52px;height:52px;border-radius:50%;display:grid;place-items:center;
     flex-shrink:0;object-fit:cover;
 }
+
 .brand-text{
     font-weight:800;font-size:16px;
     white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
 }
 .brand-text small{display:block;color:var(--muted);font-size:11px}
 
-.actions{
-    display:flex;align-items:center;gap:8px;direction:rtl;flex-shrink:0;
-}
 button{
     border:1px solid var(--border);background:var(--card);color:var(--text);
     border-radius:9px;padding:8px 11px;cursor:pointer;white-space:nowrap;font-size:13px;
@@ -58,11 +63,15 @@ button:hover{border-color:var(--primary);color:var(--primary)}
     background:#3fb5ff;z-index:1001
 }
 .layout{max-width:1550px;margin:auto;padding-top:68px;width:100%}
+
+/* القائمة الجانبية مثبتة على اليمين بالكامل */
 aside{
-    position:fixed;top:68px;bottom:0;width:315px;
+    position:fixed;top:68px;right:0;bottom:0;width:315px;
     background:var(--nav);border-left:1px solid var(--border);
-    padding:18px 14px;overflow-y:auto;z-index:950
+    padding:18px 14px;overflow-y:auto;z-index:950;
+    transition: transform 0.3s ease;
 }
+
 .search{
     width:100%;padding:11px;border:1px solid var(--border);
     border-radius:11px;background:var(--card);color:var(--text);
@@ -76,10 +85,13 @@ nav a{
 nav a:hover,nav a.active{
     background:rgba(22,119,200,.1);color:var(--primary);font-weight:700
 }
+
+/* المحتوى الرئيسي يتراجع جهة اليسار تاركاً مساحة للشريط الأيمن */
 main{
     margin-right:315px;width:calc(100% - 315px);
     padding:32px 34px 70px;min-width:0
 }
+
 .hero{
     background:linear-gradient(135deg,#071b31,#0b4f88 55%,#1677c8);
     color:white;border-radius:20px;padding:38px;margin-bottom:25px
@@ -131,7 +143,6 @@ pre{
     background:rgba(22,119,200,.08);border-radius:9px
 }
 
-/* دعم الجداول بالتمرير الأفقي */
 table{
     width:100%;border-collapse:collapse;
     display:block;overflow-x:auto;
@@ -151,7 +162,6 @@ th{background:rgba(22,119,200,.1);color:var(--primary2)}
 }
 .menu{display:none}
 
-/* التذييل المتوسط */
 footer {
     display: flex;
     flex-direction: column;
@@ -166,16 +176,23 @@ footer {
     gap: 6px;
 }
 
-/* التجاوب الذكي مع التابلت والهواتف */
+/* التجاوب مع الهاتف والتابلت - إخفاء القائمة الجانبية وإظهار زر المنيو بجهة اليمين */
 @media(max-width:1100px){
     .menu{display:block}
-    aside{display:none;right:0;width:290px;z-index:950;box-shadow:-8px 0 25px rgba(0,0,0,.15)}
+    aside{
+        display:none;
+        right:0;
+        left:auto;
+        width:290px;
+        z-index:950;
+        box-shadow:-8px 0 25px rgba(0,0,0,.15);
+    }
     aside.open{display:block}
-    main{margin:0;width:100%;padding:24px 16px 60px}
+    main{margin-right:0;width:100%;padding:24px 16px 60px}
 }
 
 @media(max-width:600px){
-    .brand-text{font-size:14px}
+    .brand-text{font-size:13px}
     .brand-text small{display:none}
     header{padding:0 10px;gap:8px}
     button{padding:7px 9px;font-size:12px}
@@ -198,17 +215,17 @@ footer {
 <body>
 
 <header>
-  <div class="actions">
+  <div class="actions-right">
     <button class="menu" onclick="toggleMenu()">☰</button>
     <button onclick="toggleTheme()">☾ الوضع</button>
   </div>
   
-  <div class="brand">
-    <img src="IMG/آفاق المعرفة التقنية.png" class="logo" alt="لوجو">
+  <div class="brand-left">
     <div class="brand-text">
       أكاديمية آفاق المعرفة التقنية
       <small>دليل Excel الشامل | مها شهوب</small>
     </div>
+    <img src="IMG/آفاق المعرفة التقنية.png" class="logo" alt="لوجو">
   </div>
 </header>
 
@@ -1021,7 +1038,7 @@ sections.forEach(section=>observer.observe(section));
 
 links.forEach(link=>{
 link.addEventListener("click",()=>{
-if(window.innerWidth<=950){
+if(window.innerWidth<=1100){
 document.getElementById("sidebar").classList.remove("open");
 }
 });
