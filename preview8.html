@@ -44,7 +44,7 @@ header{
   border-bottom:1px solid var(--b);
   display:flex;
   align-items:center;
-  gap:12px;
+  gap:10px;
   padding:0 16px;
   box-shadow:var(--shadow);
 }
@@ -60,12 +60,13 @@ header{
 .brand{
   margin-right:4px;
   min-width:0;
+  flex-shrink:1;
 }
 
 .brand b{
   display:block;
   color:var(--p2);
-  font-size:15px;
+  font-size:13.5px;
   white-space:nowrap;
   overflow:hidden;
   text-overflow:ellipsis;
@@ -73,8 +74,11 @@ header{
 
 .brand small{
   color:var(--muted);
-  font-size:11px;
+  font-size:10.5px;
   white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  display:block;
 }
 
 .actions{
@@ -311,15 +315,23 @@ footer{
     margin-right:0;
     padding:90px 16px 30px;
   }
-  .brand small{
-    display:none;
-  }
 }
 
 @media(max-width:576px){
   header{
-    padding:0 10px;
+    padding:0 8px;
     height:64px;
+    gap:6px;
+  }
+  .logo{
+    width:46px;
+    height:46px;
+  }
+  .brand b{
+    font-size:12px;
+  }
+  .brand small{
+    display:none;
   }
   .progress{
     top:64px;
@@ -535,129 +547,3 @@ UPDATE Accounts SET Balance=Balance-100 WHERE AccountID=1;
 UPDATE Accounts SET Balance=Balance+100 WHERE AccountID=2;
 COMMIT TRANSACTION;</pre></div></section>
   <section id="s39"><h2>39. ACID</h2><p>Atomicity وConsistency وIsolation وDurability هي خصائص المعاملات.</p></section>
-  <section id="s40"><h2>40. Locks</h2><p>تحمي البيانات أثناء التزامن. طول المعاملة والفهارس يؤثران على التزاحم.</p></section>
-  <section id="s41"><h2>41. Deadlocks</h2><p>تحدث عند انتظار معاملات بعضها بعضاً. تحسين ترتيب الوصول وتقليل مدة المعاملة يساعد.</p></section>
-  <section id="s42"><h2>42. Isolation Levels</h2><p>Read Uncommitted وRead Committed وRepeatable Read وSerializable وSnapshot.</p></section>
-  <section id="s43"><h2>43. Indexes</h2><p>تسرع القراءة المناسبة لكنها تزيد مساحة التخزين وتكلفة التعديل.</p></section>
-  <section id="s44"><h2>44. Clustered Index</h2><p>يوجد واحد لكل جدول ويحدد ترتيب تخزين الصفوف المنطقي.</p></section>
-  <section id="s45"><h2>45. Nonclustered Index</h2><p>فهرس منفصل عن ترتيب الصفوف.</p><div class="code"><button class="copy">نسخ</button><pre>CREATE INDEX IX_Students_City ON dbo.Students(City);</pre></div></section>
-  <section id="s46"><h2>46. Composite Index</h2><p>فهرس بأكثر من عمود.</p><div class="code"><button class="copy">نسخ</button><pre>CREATE INDEX IX_Students_City_Grade ON dbo.Students(City,Grade);</pre></div></section>
-  <section id="s47"><h2>47. Execution Plans</h2><p>توضح طريقة تنفيذ الاستعلام وعمليات Seek وScan وJoin.</p></section>
-  <section id="s48"><h2>48. Query Optimization</h2><p>حلل الخطة، حسّن الفهارس، استخدم شروطاً واضحة وحدد الأعمدة المطلوبة.</p></section>
-  <section id="s49"><h2>49. Statistics</h2><p>تساعد Optimizer في تقدير توزيع البيانات وعدد الصفوف.</p></section>
-  <section id="s50"><h2>50. SQL Server Agent</h2><p>جدولة المهام الإدارية مثل النسخ الاحتياطي والتنظيف في الإصدارات الداعمة.</p></section>
-  <section id="s51"><h2>51. Jobs</h2><p>تتكون من Steps وSchedules وسجل تنفيذ.</p></section>
-  <section id="s52"><h2>52. Backup</h2><p>النسخ الاحتياطي جزء أساسي من الاستمرارية.</p><div class="code"><button class="copy">نسخ</button><pre>BACKUP DATABASE SchoolDB TO DISK='D:\Backups\SchoolDB.bak' WITH INIT,COMPRESSION;</pre></div></section>
-  <section id="s53"><h2>53. Restore</h2><p>الاستعادة يجب اختبارها دورياً.</p><div class="code"><button class="copy">نسخ</button><pre>RESTORE DATABASE SchoolDB FROM DISK='D:\Backups\SchoolDB.bak' WITH RECOVERY;</pre></div></section>
-  <section id="s54"><h2>54. Recovery Models</h2><p>Simple وFull وBulk-Logged حسب متطلبات الاستعادة وسجل المعاملات.</p></section>
-  <section id="s55"><h2>55. Import وExport</h2><p>نقل البيانات مع مراجعة الأنواع والمفاتيح والتكرار.</p></section>
-  <section id="s56"><h2>56. SQL Server وExcel</h2><p>SQL Server مصدر مركزي ويمكن استخدام Excel للتحليل والعرض.</p></section>
-  <section id="s57"><h2>57. Access وSQL Server</h2><p>Access يمكن أن يعمل Front-End وSQL Server Back-End.</p></section>
-  <section id="s58"><h2>58. VB.NET</h2><p>استخدم SqlConnection وSqlCommand وParameters.</p><div class="code"><button class="copy">نسخ</button><pre>Using cn As New SqlConnection(connectionString)
- cn.Open()
- Using cmd As New SqlCommand("SELECT StudentName FROM Students WHERE StudentID=@id",cn)
-  cmd.Parameters.Add("@id",SqlDbType.Int).Value=1
-  Using r=cmd.ExecuteReader()
-   While r.Read(): Console.WriteLine(r("StudentName")): End While
-  End Using
- End Using
-End Using</pre></div></section>
-  <section id="s59"><h2>59. C#</h2><p>استخدم SqlConnection وSqlCommand وParameters.</p><div class="code"><button class="copy">نسخ</button><pre>using var cn=new SqlConnection(connectionString);
-await cn.OpenAsync();
-using var cmd=new SqlCommand("SELECT StudentName FROM Students WHERE StudentID=@id",cn);
-cmd.Parameters.Add("@id",SqlDbType.Int).Value=1;</pre></div></section>
-  <section id="s60"><h2>60. Java</h2><p>استخدم JDBC وPreparedStatement.</p><div class="code"><button class="copy">نسخ</button><pre>PreparedStatement ps=conn.prepareStatement("SELECT StudentName FROM Students WHERE StudentID=?");
-ps.setInt(1,1);</pre></div></section>
-  <section id="s61"><h2>61. Python</h2><p>استخدم pyodbc أو SQLAlchemy مع Parameters.</p></section>
-  <section id="s62"><h2>62. PHP</h2><p>استخدم SQLSRV أو PDO_SQLSRV وPrepared Statements.</p></section>
-  <section id="s63"><h2>63. REST API</h2><p>البنية: Client ثم API ثم Service ثم SQL Server. لا تجعل المتصفح يتصل مباشرة بقاعدة البيانات.</p></section>
-  <section id="s64"><h2>64. Security</h2><p>Authentication وAuthorization وأقل صلاحية وحماية الأسرار والتحديثات والنسخ الاحتياطي.</p></section>
-  <section id="s65"><h2>65. GRANT وDENY وREVOKE</h2><p>إدارة الصلاحيات.</p><div class="code"><button class="copy">نسخ</button><pre>GRANT SELECT ON dbo.Students TO AppReader;
-DENY DELETE ON dbo.Students TO AppReader;
-REVOKE SELECT ON dbo.Students FROM AppReader;</pre></div></section>
-  <section id="s66"><h2>66. SQL Injection</h2><p>استخدم Parameters ولا تدمج مدخلات المستخدم داخل SQL.</p></section>
-  <section id="s67"><h2>67. JSON</h2><p>دعم JSON عبر OPENJSON وأدوات JSON الأخرى.</p><div class="code"><button class="copy">نسخ</button><pre>DECLARE @json NVARCHAR(MAX)=N'{"name":"Ali","grade":85}';
-SELECT * FROM OPENJSON(@json) WITH(name NVARCHAR(100) '$.name',grade INT '$.grade');</pre></div></section>
-  <section id="s68"><h2>68. Temporary Tables</h2><p>مفيدة للنتائج الوسيطة.</p><div class="code"><button class="copy">نسخ</button><pre>CREATE TABLE #TopStudents(StudentID INT,Grade DECIMAL(5,2));
-INSERT INTO #TopStudents SELECT StudentID,Grade FROM Students WHERE Grade&gt;=90;
-SELECT * FROM #TopStudents;</pre></div></section>
-  <section id="s69"><h2>69. Table Variables</h2><p>مناسبة لبعض النتائج الصغيرة، والاختيار يعتمد على الحجم والخطة.</p></section>
-  <section id="s70"><h2>70. Window Functions</h2><p>تحسب على مجموعة مرتبطة دون اختزال الصفوف.</p><div class="code"><button class="copy">نسخ</button><pre>SELECT StudentName,City,Grade,AVG(Grade) OVER(PARTITION BY City) CityAverage FROM Students;</pre></div></section>
-  <section id="s71"><h2>71. ROW_NUMBER وRANK</h2><p>ترتيب الصفوف.</p><div class="code"><button class="copy">نسخ</button><pre>SELECT StudentName,Grade,ROW_NUMBER() OVER(ORDER BY Grade DESC) RowNo,RANK() OVER(ORDER BY Grade DESC) RankNo FROM Students;</pre></div></section>
-  <section id="s72"><h2>72. LEAD وLAG</h2><p>مقارنة الصف الحالي بالسابق أو التالي.</p><div class="code"><button class="copy">نسخ</button><pre>SELECT SaleDate,Amount,LAG(Amount) OVER(ORDER BY SaleDate) PreviousAmount FROM Sales;</pre></div></section>
-  <section id="s73"><h2>73. Dynamic SQL</h2><p>استخدم sp_executesql مع Parameters.</p><div class="code"><button class="copy">نسخ</button><pre>DECLARE @sql NVARCHAR(MAX)=N'SELECT * FROM Students WHERE City=@City'; EXEC sys.sp_executesql @sql,N'@City NVARCHAR(100)',@City=N'Tripoli';</pre></div></section>
-  <section id="s74"><h2>74. Monitoring</h2><p>راقب CPU والذاكرة وI/O وWaits والاستعلامات البطيئة وحجم القاعدة وسجل الأخطاء.</p></section>
-  <section id="s75"><h2>75. Full-Text Search</h2><p>بحث نصي متقدم عبر Full-Text Indexes.</p></section>
-  <section id="s76"><h2>76. مشروع إدارة الطلاب</h2><p>Students وClasses وCourses وGrades وAttendance مع Forms أو API وتقارير.</p></section>
-  <section id="s77"><h2>77. مشروع المبيعات</h2><p>Customers وOrders وOrderDetails وProducts مع Transactions.</p></section>
-  <section id="s78"><h2>78. مشروع المخزون</h2><p>Products وWarehouses وStockMovements لتتبع حركة المخزون.</p></section>
-  <section id="s79"><h2>79. مشروع المكتبة</h2><p>Books وAuthors وMembers وLoans وتقارير التأخير.</p></section>
-  <section id="s80"><h2>80. مشروع الإدارة</h2><p>Users وEmployees وDepartments وTasks وDocuments مع Roles وصلاحيات.</p></section>
-  <section id="s81"><h2>81. تصميم Production</h2><p>متطلبات ← ERD ← جداول وقيود ← اختبارات ← فهارس ← أمان ← Backup/Restore ← Monitoring ← نشر.</p></section>
-  <section id="s82"><h2>82. أخطاء شائعة</h2><p>SELECT * دائماً، إهمال PK/FK، فهارس عشوائية، كلمات مرور نصية، SQL Injection، وعدم اختبار Restore.</p></section>
-  <section id="s83"><h2>83. المرجع السريع</h2><p>DDL: CREATE/ALTER/DROP<br>DML: INSERT/UPDATE/DELETE<br>Query: SELECT/WHERE/JOIN/GROUP BY/HAVING<br>Programmability: VIEW/PROCEDURE/FUNCTION/TRIGGER<br>Performance: INDEX/PLAN/STATISTICS<br>Operations: BACKUP/RESTORE/AGENT</p><div class="code"><button class="copy">نسخ</button><pre>SELECT TOP (10) StudentName,Grade,RANK() OVER(ORDER BY Grade DESC) AS GradeRank FROM Students WHERE Grade IS NOT NULL ORDER BY Grade DESC;</pre></div></section>
-
-  <footer>
-<div><b>أكاديمية آفاق المعرفة التقنية</b></div>
-<div>  مكتبة | مها شهوب : سلسلة أساسيات التقنية</div>
-  <div>  جميع الحقوق محفوظة ©</div>
-  </footer>
-</main>
-
-<button class="top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
-
-<script>
-function toggleMenu() {
-  document.getElementById("aside").classList.toggle("open");
-  document.getElementById("overlay").classList.toggle("active");
-}
-
-function toggleTheme(){
-  let newTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
-  document.documentElement.dataset.theme = newTheme;
-  localStorage.setItem("sql-theme", newTheme);
-}
-
-if(localStorage.getItem("sql-theme")){
-  document.documentElement.dataset.theme = localStorage.getItem("sql-theme");
-}
-
-document.querySelectorAll(".copy").forEach(b => b.onclick = () => {
-  navigator.clipboard.writeText(b.parentElement.querySelector("pre").innerText);
-  let originalText = b.innerText;
-  b.innerText = "تم النسخ ✓";
-  setTimeout(() => b.innerText = originalText, 1200);
-});
-
-function filterNav(){
-  let query = document.getElementById("search").value.toLowerCase();
-  document.querySelectorAll("#nav a").forEach(a => {
-    a.style.display = a.innerText.toLowerCase().includes(query) ? "block" : "none";
-  });
-}
-
-window.addEventListener("scroll", () => {
-  let doc = document.documentElement;
-  let scrollPercent = (doc.scrollTop / (doc.scrollHeight - doc.clientHeight)) * 100;
-  document.getElementById("progress").style.width = scrollPercent + "%";
-  
-  let currentSection = "";
-  document.querySelectorAll("section").forEach(s => {
-    if(window.scrollY >= s.offsetTop - 120) currentSection = s.id;
-  });
-  document.querySelectorAll("#nav a").forEach(a => {
-    a.classList.toggle("active", a.hash === "#" + currentSection);
-  });
-});
-
-document.querySelectorAll("#nav a").forEach(a => {
-  a.onclick = () => {
-    if (window.innerWidth <= 992) {
-      toggleMenu();
-    }
-  };
-});
-</script>
-
-</body>
-</html>
