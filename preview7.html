@@ -6,107 +6,237 @@
 <meta name="description" content="دليل Microsoft Access الشامل من إعداد الكاتبة والمهندسة مها شهوب. قواعد البيانات والجداول والعلاقات والاستعلامات والنماذج والتقارير وSQL وVBA والمشاريع العملية.">
 <title>دليل Microsoft Access الشامل | مها شهوب</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
 :root{
---bg:#f4f7fb;--card:#fff;--text:#182230;--muted:#64748b;--primary:#1677c8;
---primary2:#0b4f88;--border:#dbe4ee;--code:#101827;--codeText:#e8eef7;
---shadow:0 8px 25px rgba(15,40,70,.08);--sidebar:315px;--header:68px
+    --bg:#f4f7fb;--card:#fff;--text:#182230;--muted:#64748b;--primary:#1677c8;
+    --primary2:#0b4f88;--border:#dbe4ee;--code:#101827;--codeText:#e8eef7;
+    --nav:#fff
 }
-[data-theme="dark"]{--bg:#0b1220;--card:#111b2b;--text:#e7eef8;--muted:#9fb0c5;--primary:#55aaf0;--primary2:#8cc8fa;--border:#26374c;--code:#07101d;--codeText:#e7eef8;--shadow:0 8px 25px rgba(0,0,0,.25)}
-html{scroll-behavior:smooth;scroll-padding-top:85px}
-body{font-family:"Segoe UI",Tahoma,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.9;overflow-x:hidden}
+[data-theme="dark"]{
+    --bg:#0b1220;--card:#111b2b;--text:#e7eef8;--muted:#9fb0c5;--primary:#55aaf0;
+    --primary2:#8cc8fa;--border:#26374c;--code:#07101d;--codeText:#e7eef8;--nav:#0e1727
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+    margin:0;background:var(--bg);color:var(--text);
+    font-family:"Segoe UI",Tahoma,Arial,sans-serif;line-height:1.85;
+    overflow-x:hidden;
+}
 
-header{height:var(--header);position:fixed;top:0;right:0;left:0;background:var(--card);border-bottom:1px solid var(--border);z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 15px;box-shadow:var(--shadow);direction:rtl}
+/* ترويسة الموقع */
+header{
+    position:fixed;top:0;right:0;left:0;height:68px;
+    background:var(--nav);border-bottom:1px solid var(--border);
+    z-index:1000;display:flex;align-items:center;justify-content:space-between;
+    padding:0 15px;direction:rtl;
+}
 
-.header-right{display:flex;align-items:center;gap:12px;min-width:0}
-.logo{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;flex-shrink:0;object-fit:cover}
-.brand-text{font-weight:800;color:var(--primary2);font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.brand-text small{display:block;color:var(--muted);font-size:11px;font-weight:500}
+.header-right{
+    display:flex;align-items:center;gap:12px;min-width:0;
+}
 
-.header-left{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.logo{
+    width:52px;height:52px;border-radius:50%;display:grid;place-items:center;
+    flex-shrink:0;object-fit:cover;
+}
 
-button,.btn{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:9px;padding:8px 11px;cursor:pointer;font-weight:700;font-size:13px;transition:.2s ease;white-space:nowrap}
+.brand-text{
+    font-weight:800;font-size:16px;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.brand-text small{display:block;color:var(--muted);font-size:11px}
+
+.header-left{
+    display:flex;align-items:center;gap:8px;flex-shrink:0;
+}
+
+button,.btn{
+    border:1px solid var(--border);background:var(--card);color:var(--text);
+    border-radius:9px;padding:8px 11px;cursor:pointer;white-space:nowrap;font-size:13px;
+    transition:.2s ease;
+}
 button:hover,.btn:hover{border-color:var(--primary);color:var(--primary)}
 
-.progress{position:fixed;top:var(--header);right:0;height:3px;background:var(--primary);width:0;z-index:1001}
+.progress{
+    position:fixed;top:68px;right:0;height:3px;width:0;
+    background:#3fb5ff;z-index:1001
+}
+.layout{max-width:1550px;margin:auto;padding-top:68px;width:100%}
 
-.sidebar{position:fixed;top:var(--header);right:0;bottom:0;width:var(--sidebar);background:var(--card);border-left:1px solid var(--border);padding:18px 14px;overflow:auto;z-index:900;transition:transform .3s ease}
-.search{width:100%;padding:11px;border:1px solid var(--border);border-radius:10px;background:var(--bg);color:var(--text);margin-bottom:12px;outline:none}
+/* القائمة الجانبية */
+aside{
+    position:fixed;top:68px;right:0;bottom:0;width:315px;
+    background:var(--nav);border-left:1px solid var(--border);
+    padding:18px 14px;overflow-y:auto;z-index:950;
+    transition: transform 0.3s ease;
+}
+
+.search{
+    width:100%;padding:11px;border:1px solid var(--border);
+    border-radius:11px;background:var(--card);color:var(--text);
+    margin-bottom:12px;outline:none
+}
 .nav-title{font-weight:800;color:var(--primary);margin:8px 0}
-.nav a{display:block;text-decoration:none;color:var(--muted);padding:6px 9px;border-radius:8px;font-size:12px;margin:2px 0}
-.nav a:hover,.nav a.active{background:rgba(22,119,200,.12);color:var(--primary);font-weight:700}
+nav a{
+    display:block;text-decoration:none;color:var(--muted);
+    padding:6px 9px;border-radius:8px;font-size:12px;margin:2px 0
+}
+nav a:hover,nav a.active{
+    background:rgba(22,119,200,.1);color:var(--primary);font-weight:700
+}
 
-.main{margin-right:var(--sidebar);padding:32px 34px 70px;max-width:1400px;min-width:0}
+main{
+    margin-right:315px;width:calc(100% - 315px);
+    padding:32px 34px 70px;min-width:0
+}
 
-.hero{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:30px;box-shadow:var(--shadow);margin-bottom:25px}
-.hero h1{font-size:32px;color:var(--primary2);margin-bottom:7px}
-.hero p{color:var(--muted)}
-.badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}
-.badge{padding:5px 10px;border-radius:20px;background:rgba(22,119,200,.1);color:var(--primary);font-size:12px;font-weight:700}
+.hero{
+    background:linear-gradient(135deg,#071b31,#0b4f88 55%,#1677c8);
+    color:white;border-radius:20px;padding:38px;margin-bottom:25px
+}
+.hero h1{font-size:32px;margin:0}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.badge{
+    padding:6px 12px;border-radius:20px;
+    background:rgba(255,255,255,.13);font-size:12px
+}
+section{
+    background:var(--card);border:1px solid var(--border);
+    border-radius:17px;padding:27px;margin-bottom:22px
+}
+h2{
+    color:var(--primary2);font-size:23px;
+    border-right:5px solid var(--primary);padding-right:12px
+}
+h3{color:var(--primary)}
 
-section{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:25px;margin:18px 0;box-shadow:var(--shadow)}
-section h2{font-size:23px;color:var(--primary2);border-right:4px solid var(--primary);padding-right:12px;margin-bottom:15px}
-section h3{font-size:18px;color:var(--primary);margin:18px 0 8px}
 p{margin:8px 0}
-.note{padding:13px 15px;border-right:4px solid var(--primary);background:rgba(22,119,200,.07);border-radius:8px;margin:14px 0}
+.note{
+    padding:14px;border-right:4px solid var(--primary);
+    background:rgba(22,119,200,.08);border-radius:9px;margin:14px 0;
+}
 .warning{border-right-color:#d68a00;background:rgba(214,138,0,.08)}
 ul,ol{padding-right:25px}li{margin:5px 0}
-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}
-th,td{border:1px solid var(--border);padding:9px;text-align:right}
+
+.grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px
+}
+.mini{
+    border:1px solid var(--border);border-radius:12px;
+    padding:15px;background:var(--bg)
+}
+
+table{
+    width:100%;border-collapse:collapse;
+    display:block;overflow-x:auto;margin:14px 0;font-size:14px
+}
+th,td{
+    border:1px solid var(--border);padding:10px;
+    text-align:right;white-space:nowrap
+}
 th{background:rgba(22,119,200,.1);color:var(--primary2)}
 
-pre{background:var(--code);color:var(--codeText);padding:18px;border-radius:12px;overflow:auto;direction:ltr;text-align:left;margin:12px 0;position:relative;white-space:pre-wrap}
-.copy{float:right;background:#fff;color:#111;border:0;border-radius:7px;padding:4px 8px;cursor:pointer;font-size:11px}
+pre{
+    position:relative;background:var(--code);color:var(--codeText);
+    border-radius:12px;overflow-x:auto;margin:15px 0;padding:20px;
+    direction:ltr;text-align:left;font-family:Consolas,monospace;
+    font-size:13px;line-height:1.7;white-space:pre-wrap
+}
+.copy{
+    position:absolute;top:8px;right:8px;
+    background:#182538;color:#dbeafe;border:1px solid #334155;
+    border-radius:7px;padding:4px 8px;cursor:pointer;font-size:11px
+}
 code{font-family:Consolas,"Courier New",monospace}
 
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
-.mini{border:1px solid var(--border);border-radius:12px;padding:15px;background:var(--bg)}
-
-footer{text-align:center;color:var(--muted);padding:30px;border-top:1px solid var(--border);margin-top:40px}
-.top{position:fixed;left:20px;bottom:20px;border:0;border-radius:50%;width:45px;height:45px;background:var(--primary);color:#fff;cursor:pointer;display:none;z-index:1001;box-shadow:0 4px 12px rgba(0,0,0,.2)}
+.topbtn-float{
+    position:fixed;bottom:20px;left:20px;
+    width:45px;height:45px;border-radius:50%;
+    background:var(--primary);color:white;display:none;
+    border:0;cursor:pointer;z-index:900;font-size:20px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.2);
+}
 .menu{display:none}
 
-@media(max-width:1100px){
-:root{--sidebar:0px}
-.menu{display:block}
-.sidebar{width:290px;right:-310px;top:var(--header);bottom:0;box-shadow:-8px 0 25px rgba(0,0,0,.15)}
-.sidebar.open{right:0}
-.main{margin-right:0;padding:24px 16px 60px}
-.hero h1{font-size:25px}
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 25px 15px;
+    border-top: 1px solid var(--border);
+    margin-top: 40px;
+    color: var(--muted);
+    font-size: 14px;
+    gap: 6px;
 }
+
+/* التجاوب التام مع التابلت والهواتف بنفس كود إكسل بالضبط */
+@media(max-width:1100px){
+    .menu{display:block}
+    aside{
+        display:none;
+        right:0;
+        left:auto;
+        width:290px;
+        z-index:950;
+        box-shadow:-8px 0 25px rgba(0,0,0,.15);
+    }
+    aside.open{display:block}
+    main{margin-right:0;width:100%;padding:24px 16px 60px}
+}
+
+@media(max-width:600px){
+    .brand-text{font-size:13px}
+    .brand-text small{display:none}
+    header{padding:0 10px;gap:8px}
+    button,.btn{padding:7px 9px;font-size:12px}
+    .hero{padding:22px 16px}
+    .hero h1{font-size:23px}
+    section{padding:18px 14px}
+    h2{font-size:20px}
+    table{font-size:12px}
+    pre{font-size:12px}
+}
+
 @media print{
-header,.sidebar,.top,.actions{display:none!important}
-.main{margin:0;padding:10px}
-section,.hero{box-shadow:none;break-inside:avoid}
-body{background:#fff;color:#111}
+    header,aside,.progress,.topbtn-float{display:none!important}
+    main{margin:0;width:100%;padding:0}
+    section{box-shadow:none;break-inside:avoid}
 }
 </style>
 </head>
+
 <body>
 
 <header>
-  <!-- جهة اليمين: زر القائمة ثم اللوجو ثم اسم الأكاديمية -->
+  <!-- جهة اليمين: زر المنيو ثم اللوجو ثم اسم الأكاديمية -->
   <div class="header-right">
-    <button class="btn menu" onclick="toggleMenu()">☰</button>
+    <button class="menu" onclick="toggleMenu()">☰</button>
     <img src="IMG/آفاق المعرفة التقنية.png" class="logo" alt="لوجو">
     <div class="brand-text">
       أكاديمية آفاق المعرفة التقنية
-      <small>دليل Microsoft Access الشامل</small>
+      <small>دليل Microsoft Access الشامل | مها شهوب</small>
     </div>
   </div>
 
   <!-- جهة اليسار: زر الوضع المظلم -->
   <div class="header-left">
-    <button class="btn" onclick="toggleTheme()">◐ الوضع</button>
+    <button onclick="toggleTheme()">☾ الوضع</button>
   </div>
 </header>
 
 <div class="progress" id="progress"></div>
 
-<aside class="sidebar" id="sidebar">
+<div class="layout">
+
+<aside id="sidebar">
 <input class="search" id="search" placeholder="🔎 ابحث في الفصول..." oninput="filterNav()">
+
 <div class="nav-title">فهرس Access الشامل</div>
-<nav class="nav" id="nav">
+
+<nav id="nav">
 <a href="#s1">01 مقدمة Microsoft Access</a><a href="#s2">02 ما هو Access؟</a><a href="#s3">03 Access وExcel</a>
 <a href="#s4">04 Database وTables</a><a href="#s5">05 الحقول Field</a><a href="#s6">06 السجلات Records</a>
 <a href="#s7">07 أنواع البيانات</a><a href="#s8">08 Primary Key</a><a href="#s9">09 إنشاء الجداول</a>
@@ -133,12 +263,19 @@ body{background:#fff;color:#111}
 </nav>
 </aside>
 
-<main class="main">
+<main>
+
 <div class="hero">
 <h1>دليل Microsoft Access الشامل</h1>
 <p>من الجداول والعلاقات والاستعلامات إلى Forms وReports وSQL وVBA وبناء قواعد بيانات عملية.</p>
-<p><strong>إعداد الكاتبة والمهندسة: مها شهوب</strong></p>
-<div class="badges"><span class="badge">Microsoft Access</span><span class="badge">Database</span><span class="badge">SQL</span><span class="badge">VBA</span><span class="badge">Projects</span></div>
+
+<div class="badges">
+<span class="badge">Microsoft Access</span>
+<span class="badge">Database</span>
+<span class="badge">SQL</span>
+<span class="badge">VBA</span>
+<span class="badge">Projects</span>
+</div>
 </div>
 
 <section id="s1"><h2>01 — مقدمة Microsoft Access</h2>
@@ -358,59 +495,111 @@ InvoiceDetails(DetailID, InvoiceID, ProductID, Qty, UnitPrice)</code></pre></sec
   <div>مكتبة | مها شهوب : سلسلة أساسيات التقنية</div>
   <div>جميع الحقوق محفوظة ©</div>
 </footer>
-</main>
 
-<button class="top" id="top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+</main>
+</div>
+
+<button class="topbtn-float" id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
 <script>
 function toggleTheme(){
-  const html = document.documentElement;
-  const nextTheme = html.dataset.theme === "dark" ? "light" : "dark";
-  html.dataset.theme = nextTheme;
-  localStorage.setItem("accessTheme", nextTheme);
+const html=document.documentElement;
+const dark=html.getAttribute("data-theme")==="dark";
+html.setAttribute("data-theme",dark?"light":"dark");
+localStorage.setItem("access-theme",html.getAttribute("data-theme"));
 }
-if(localStorage.getItem("accessTheme")) {
-  document.documentElement.dataset.theme = localStorage.getItem("accessTheme");
-}
+
+(function(){
+const theme=localStorage.getItem("access-theme");
+if(theme)document.documentElement.setAttribute("data-theme",theme);
+})();
 
 function toggleMenu(){
-  document.getElementById("sidebar").classList.toggle("open");
-}
-
-function copyCode(btn){
-  const code = btn.parentElement.querySelector("code").innerText;
-  navigator.clipboard.writeText(code);
-  btn.textContent = "تم النسخ";
-  setTimeout(() => btn.textContent = "نسخ", 1200);
+document.getElementById("sidebar").classList.toggle("open");
 }
 
 function filterNav(){
-  const q = document.getElementById("search").value.trim().toLowerCase();
-  document.querySelectorAll("#nav a").forEach(a => {
-    a.style.display = a.textContent.toLowerCase().includes(q) ? "block" : "none";
-  });
+const q=document.getElementById("search").value.toLowerCase();
+
+document.querySelectorAll("#nav a").forEach(a=>{
+a.style.display=
+a.textContent.toLowerCase().includes(q)?"block":"none";
+});
 }
 
-window.addEventListener("scroll", () => {
-  const h = document.documentElement.scrollHeight - innerHeight;
-  document.getElementById("progress").style.width = (scrollY / h * 100) + "%";
-  document.getElementById("top").style.display = scrollY > 500 ? "block" : "none";
-  
-  let current = "";
-  document.querySelectorAll("section").forEach(s => {
-    if (scrollY >= s.offsetTop - 130) current = s.id;
-  });
-  document.querySelectorAll("#nav a").forEach(a => {
-    a.classList.toggle("active", a.getAttribute("href") === "#" + current);
-  });
+async function copyCode(btn){
+
+const code=btn.parentElement.querySelector("code").innerText;
+
+try{
+await navigator.clipboard.writeText(code);
+}catch(e){
+const textarea=document.createElement("textarea");
+textarea.value=code;
+document.body.appendChild(textarea);
+textarea.select();
+document.execCommand("copy");
+textarea.remove();
+}
+
+btn.textContent="✓ تم النسخ";
+
+setTimeout(()=>{
+btn.textContent="نسخ";
+},1200);
+}
+
+function updateProgress(){
+
+const doc=document.documentElement;
+const total=doc.scrollHeight-doc.clientHeight;
+
+document.getElementById("progress").style.width=
+(total ? doc.scrollTop/total*100 : 0)+"%";
+
+document.getElementById("topBtn").style.display=
+doc.scrollTop>500?"block":"none";
+}
+
+window.addEventListener("scroll",updateProgress);
+updateProgress();
+
+const links=[...document.querySelectorAll("#nav a")];
+
+const sections=links
+.map(link=>document.querySelector(link.getAttribute("href")))
+.filter(Boolean);
+
+const observer=new IntersectionObserver(entries=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+links.forEach(link=>link.classList.remove("active"));
+
+const active=document.querySelector(
+'#nav a[href="#'+entry.target.id+'"]'
+);
+
+if(active)active.classList.add("active");
+
+}
+
 });
 
-document.querySelectorAll("#nav a").forEach(a => {
-  a.addEventListener("click", () => {
-    if (innerWidth <= 1100) {
-      document.getElementById("sidebar").classList.remove("open");
-    }
-  });
+},{rootMargin:"-90px 0px -65% 0px"});
+
+sections.forEach(section=>observer.observe(section));
+
+links.forEach(link=>{
+link.addEventListener("click",()=>{
+if(window.innerWidth<=1100){
+document.getElementById("sidebar").classList.remove("open");
+}
+});
 });
 </script>
+
 </body>
 </html>
