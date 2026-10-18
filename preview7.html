@@ -10,57 +10,102 @@
 :root{
 --bg:#f4f7fb;--card:#fff;--text:#182230;--muted:#64748b;--primary:#1677c8;
 --primary2:#0b4f88;--border:#dbe4ee;--code:#101827;--codeText:#e8eef7;
---shadow:0 8px 25px rgba(15,40,70,.08);--sidebar:300px;--header:68px
+--shadow:0 8px 25px rgba(15,40,70,.08);--sidebar:315px;--header:68px
 }
 [data-theme="dark"]{--bg:#0b1220;--card:#111b2b;--text:#e7eef8;--muted:#9fb0c5;--primary:#55aaf0;--primary2:#8cc8fa;--border:#26374c;--code:#07101d;--codeText:#e7eef8;--shadow:0 8px 25px rgba(0,0,0,.25)}
 html{scroll-behavior:smooth;scroll-padding-top:85px}
-body{font-family:"Segoe UI",Tahoma,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.9}
-header{height:var(--header);position:fixed;top:0;right:0;left:0;background:var(--card);border-bottom:1px solid var(--border);z-index:1000;display:flex;align-items:center;gap:15px;padding:0 20px;box-shadow:var(--shadow)}
-.logo{width:67px;height:54px;border-radius:50%;display:grid;place-items:center;}
-.brand{font-weight:800;color:var(--primary2);font-size:17px}.brand small{display:block;color:var(--muted);font-size:11px;font-weight:500}
-.actions{margin-right:auto;display:flex;gap:8px}.btn{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:10px;padding:8px 12px;cursor:pointer;font-weight:700}.btn:hover{border-color:var(--primary);color:var(--primary)}
-.progress{position:absolute;bottom:-2px;right:0;height:3px;background:var(--primary);width:0}
-.sidebar{position:fixed;top:var(--header);right:0;bottom:0;width:var(--sidebar);background:var(--card);border-left:1px solid var(--border);padding:18px;overflow:auto;z-index:900}
-.search{width:100%;padding:11px;border:1px solid var(--border);border-radius:10px;background:var(--bg);color:var(--text);margin-bottom:12px}
-.nav a{display:block;text-decoration:none;color:var(--text);padding:7px 9px;border-radius:8px;font-size:13px}.nav a:hover,.nav a.active{background:rgba(22,119,200,.12);color:var(--primary);font-weight:700}
-.main{margin-right:var(--sidebar);padding:95px 30px 50px;max-width:1400px}
+body{font-family:"Segoe UI",Tahoma,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.9;overflow-x:hidden}
+
+header{height:var(--header);position:fixed;top:0;right:0;left:0;background:var(--card);border-bottom:1px solid var(--border);z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 15px;box-shadow:var(--shadow);direction:rtl}
+
+.header-right{display:flex;align-items:center;gap:12px;min-width:0}
+.logo{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;flex-shrink:0;object-fit:cover}
+.brand-text{font-weight:800;color:var(--primary2);font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand-text small{display:block;color:var(--muted);font-size:11px;font-weight:500}
+
+.header-left{display:flex;align-items:center;gap:8px;flex-shrink:0}
+
+button,.btn{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:9px;padding:8px 11px;cursor:pointer;font-weight:700;font-size:13px;transition:.2s ease;white-space:nowrap}
+button:hover,.btn:hover{border-color:var(--primary);color:var(--primary)}
+
+.progress{position:fixed;top:var(--header);right:0;height:3px;background:var(--primary);width:0;z-index:1001}
+
+.sidebar{position:fixed;top:var(--header);right:0;bottom:0;width:var(--sidebar);background:var(--card);border-left:1px solid var(--border);padding:18px 14px;overflow:auto;z-index:900;transition:transform .3s ease}
+.search{width:100%;padding:11px;border:1px solid var(--border);border-radius:10px;background:var(--bg);color:var(--text);margin-bottom:12px;outline:none}
+.nav-title{font-weight:800;color:var(--primary);margin:8px 0}
+.nav a{display:block;text-decoration:none;color:var(--muted);padding:6px 9px;border-radius:8px;font-size:12px;margin:2px 0}
+.nav a:hover,.nav a.active{background:rgba(22,119,200,.12);color:var(--primary);font-weight:700}
+
+.main{margin-right:var(--sidebar);padding:32px 34px 70px;max-width:1400px;min-width:0}
+
 .hero{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:30px;box-shadow:var(--shadow);margin-bottom:25px}
-.hero h1{font-size:32px;color:var(--primary2);margin-bottom:7px}.hero p{color:var(--muted)}
-.badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}.badge{padding:5px 10px;border-radius:20px;background:rgba(22,119,200,.1);color:var(--primary);font-size:12px;font-weight:700}
+.hero h1{font-size:32px;color:var(--primary2);margin-bottom:7px}
+.hero p{color:var(--muted)}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}
+.badge{padding:5px 10px;border-radius:20px;background:rgba(22,119,200,.1);color:var(--primary);font-size:12px;font-weight:700}
+
 section{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:25px;margin:18px 0;box-shadow:var(--shadow)}
 section h2{font-size:23px;color:var(--primary2);border-right:4px solid var(--primary);padding-right:12px;margin-bottom:15px}
 section h3{font-size:18px;color:var(--primary);margin:18px 0 8px}
-p{margin:8px 0}.note{padding:13px 15px;border-right:4px solid var(--primary);background:rgba(22,119,200,.07);border-radius:8px;margin:14px 0}
+p{margin:8px 0}
+.note{padding:13px 15px;border-right:4px solid var(--primary);background:rgba(22,119,200,.07);border-radius:8px;margin:14px 0}
 .warning{border-right-color:#d68a00;background:rgba(214,138,0,.08)}
 ul,ol{padding-right:25px}li{margin:5px 0}
-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}th,td{border:1px solid var(--border);padding:9px;text-align:right}th{background:rgba(22,119,200,.1);color:var(--primary2)}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}
+th,td{border:1px solid var(--border);padding:9px;text-align:right}
+th{background:rgba(22,119,200,.1);color:var(--primary2)}
+
 pre{background:var(--code);color:var(--codeText);padding:18px;border-radius:12px;overflow:auto;direction:ltr;text-align:left;margin:12px 0;position:relative;white-space:pre-wrap}
 .copy{float:right;background:#fff;color:#111;border:0;border-radius:7px;padding:4px 8px;cursor:pointer;font-size:11px}
 code{font-family:Consolas,"Courier New",monospace}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}.mini{border:1px solid var(--border);border-radius:12px;padding:15px;background:var(--bg)}
-footer{text-align:center;color:var(--muted);padding:30px}
-.top{position:fixed;left:20px;bottom:20px;border:0;border-radius:50%;width:45px;height:45px;background:var(--primary);color:#fff;cursor:pointer;display:none;z-index:1001}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.mini{border:1px solid var(--border);border-radius:12px;padding:15px;background:var(--bg)}
+
+footer{text-align:center;color:var(--muted);padding:30px;border-top:1px solid var(--border);margin-top:40px}
+.top{position:fixed;left:20px;bottom:20px;border:0;border-radius:50%;width:45px;height:45px;background:var(--primary);color:#fff;cursor:pointer;display:none;z-index:1001;box-shadow:0 4px 12px rgba(0,0,0,.2)}
 .menu{display:none}
-@media(max-width:900px){
-:root{--sidebar:0px}.menu{display:block}.sidebar{width:290px;right:-310px;transition:.25s}.sidebar.open{right:0}.main{margin-right:0;padding:90px 15px 35px}.actions .hideMob{display:none}.hero h1{font-size:25px}
+
+@media(max-width:1100px){
+:root{--sidebar:0px}
+.menu{display:block}
+.sidebar{width:290px;right:-310px;top:var(--header);bottom:0;box-shadow:-8px 0 25px rgba(0,0,0,.15)}
+.sidebar.open{right:0}
+.main{margin-right:0;padding:24px 16px 60px}
+.hero h1{font-size:25px}
 }
-@media print{header,.sidebar,.top,.actions{display:none!important}.main{margin:0;padding:10px}section,.hero{box-shadow:none;break-inside:avoid}body{background:#fff;color:#111}}
+@media print{
+header,.sidebar,.top,.actions{display:none!important}
+.main{margin:0;padding:10px}
+section,.hero{box-shadow:none;break-inside:avoid}
+body{background:#fff;color:#111}
+}
 </style>
 </head>
 <body>
-<header>
-<button class="btn menu" onclick="toggleMenu()">☰</button>
-  <img src="IMG/آفاق المعرفة التقنية.png" class="logo">
-<div class="brand">أكاديمية آفاق المعرفة التقنية<small>دليل Microsoft Access الشامل</small></div>
-<div class="actions">
-<button class="btn" onclick="toggleTheme()">◐ الوضع</button>
 
-</div>
-<div class="progress" id="progress"></div>
+<header>
+  <!-- جهة اليمين: زر القائمة ثم اللوجو ثم اسم الأكاديمية -->
+  <div class="header-right">
+    <button class="btn menu" onclick="toggleMenu()">☰</button>
+    <img src="IMG/آفاق المعرفة التقنية.png" class="logo" alt="لوجو">
+    <div class="brand-text">
+      أكاديمية آفاق المعرفة التقنية
+      <small>دليل Microsoft Access الشامل</small>
+    </div>
+  </div>
+
+  <!-- جهة اليسار: زر الوضع المظلم -->
+  <div class="header-left">
+    <button class="btn" onclick="toggleTheme()">◐ الوضع</button>
+  </div>
 </header>
+
+<div class="progress" id="progress"></div>
 
 <aside class="sidebar" id="sidebar">
 <input class="search" id="search" placeholder="🔎 ابحث في الفصول..." oninput="filterNav()">
+<div class="nav-title">فهرس Access الشامل</div>
 <nav class="nav" id="nav">
 <a href="#s1">01 مقدمة Microsoft Access</a><a href="#s2">02 ما هو Access؟</a><a href="#s3">03 Access وExcel</a>
 <a href="#s4">04 Database وTables</a><a href="#s5">05 الحقول Field</a><a href="#s6">06 السجلات Records</a>
@@ -210,7 +255,7 @@ End Sub</code></pre></section>
 =Avg([Grade])</code></pre></section>
 
 <section id="s36"><h2>36 — العلاقات المتقدمة</h2><p>قبل إنشاء العلاقة حدد PK وFK وتأكد من توافق نوع البيانات. فعّل Cascade Update/Delete فقط عندما تكون لهما قاعدة عمل واضحة.</p></section>
-<section id="s37"><h2>37 — Validation Rules</h2><p>Validation Rule تمنع إدخال قيم غير مناسبة.</p><table><tr><th>الهدف</th><th>Rule</th></tr><tr><td>درجة من 0 إلى 100</td><td><code>Between 0 And 100</code></td></tr><tr><td>مبلغ غير سالب</td><td><code>&gt;=0</code></td></tr><tr><td>إلزامي</td><td><code>Is Not Null</code></td></tr></table></section>
+<section id="s37"><h2>37 — Validation Rules</h2><p>Validation Rule تمنع إدخال قيم غير مناسبة.</p><table><tr><th>الهدف</th><th>Rule</th></tr><tr><td>درجة من 0 إلى 100</td><td><code>Between 0 And 100</code></td></tr><tr><td>مبلغ غير سالب</td><td><code>>=0</code></td></tr><tr><td>إلزامي</td><td><code>Is Not Null</code></td></tr></table></section>
 <section id="s38"><h2>38 — Input Mask</h2><p>Input Mask تساعد في فرض نمط إدخال محدد مثل أرقام الهاتف أو التاريخ. لا تعتبرها بديلًا كاملًا للتحقق من صحة البيانات.</p></section>
 <section id="s39"><h2>39 — Indexes</h2><p>الفهارس تسرّع البحث والفرز والربط في الحالات المناسبة، لكنها تزيد حجم التخزين وكلفة عمليات الإدخال والتعديل. لا تفهرس كل عمود عشوائيًا.</p></section>
 <section id="s40"><h2>40 — Navigation Forms</h2><p>أنشئ شاشة رئيسية تحتوي أزرارًا للوصول إلى الطلاب والمبيعات والتقارير والإعدادات. اجعل الواجهة واضحة ومحدودة الصلاحيات.</p></section>
@@ -309,29 +354,63 @@ InvoiceDetails(DetailID, InvoiceID, ProductID, Qty, UnitPrice)</code></pre></sec
 </section>
 
 <footer>
-   
-<div><b>أكاديمية آفاق المعرفة التقنية</b></div>
-<div>  مكتبة | مها شهوب : سلسلة أساسيات التقنية</div>
-  <div>  جميع الحقوق محفوظة ©</div>
+  <div><b>أكاديمية آفاق المعرفة التقنية</b></div>
+  <div>مكتبة | مها شهوب : سلسلة أساسيات التقنية</div>
+  <div>جميع الحقوق محفوظة ©</div>
 </footer>
 </main>
 
 <button class="top" id="top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 <script>
-function toggleTheme(){document.documentElement.dataset.theme=document.documentElement.dataset.theme==="dark"?"light":"dark";localStorage.setItem("accessTheme",document.documentElement.dataset.theme)}
-if(localStorage.getItem("accessTheme"))document.documentElement.dataset.theme=localStorage.getItem("accessTheme");
-function toggleMenu(){document.getElementById("sidebar").classList.toggle("open")}
-function copyCode(btn){const code=btn.parentElement.querySelector("code").innerText;navigator.clipboard.writeText(code);btn.textContent="تم النسخ";setTimeout(()=>btn.textContent="نسخ",1200)}
-function filterNav(){const q=document.getElementById("search").value.trim().toLowerCase();document.querySelectorAll("#nav a").forEach(a=>a.style.display=a.textContent.toLowerCase().includes(q)?"block":"none")}
-window.addEventListener("scroll",()=>{
-const h=document.documentElement.scrollHeight-innerHeight;
-document.getElementById("progress").style.width=(scrollY/h*100)+"%";
-document.getElementById("top").style.display=scrollY>500?"block":"none";
-let current="";
-document.querySelectorAll("section").forEach(s=>{if(scrollY>=s.offsetTop-130)current=s.id});
-document.querySelectorAll("#nav a").forEach(a=>a.classList.toggle("active",a.getAttribute("href")==="#"+current));
+function toggleTheme(){
+  const html = document.documentElement;
+  const nextTheme = html.dataset.theme === "dark" ? "light" : "dark";
+  html.dataset.theme = nextTheme;
+  localStorage.setItem("accessTheme", nextTheme);
+}
+if(localStorage.getItem("accessTheme")) {
+  document.documentElement.dataset.theme = localStorage.getItem("accessTheme");
+}
+
+function toggleMenu(){
+  document.getElementById("sidebar").classList.toggle("open");
+}
+
+function copyCode(btn){
+  const code = btn.parentElement.querySelector("code").innerText;
+  navigator.clipboard.writeText(code);
+  btn.textContent = "تم النسخ";
+  setTimeout(() => btn.textContent = "نسخ", 1200);
+}
+
+function filterNav(){
+  const q = document.getElementById("search").value.trim().toLowerCase();
+  document.querySelectorAll("#nav a").forEach(a => {
+    a.style.display = a.textContent.toLowerCase().includes(q) ? "block" : "none";
+  });
+}
+
+window.addEventListener("scroll", () => {
+  const h = document.documentElement.scrollHeight - innerHeight;
+  document.getElementById("progress").style.width = (scrollY / h * 100) + "%";
+  document.getElementById("top").style.display = scrollY > 500 ? "block" : "none";
+  
+  let current = "";
+  document.querySelectorAll("section").forEach(s => {
+    if (scrollY >= s.offsetTop - 130) current = s.id;
+  });
+  document.querySelectorAll("#nav a").forEach(a => {
+    a.classList.toggle("active", a.getAttribute("href") === "#" + current);
+  });
 });
-document.querySelectorAll("#nav a").forEach(a=>a.addEventListener("click",()=>{if(innerWidth<=900)document.getElementById("sidebar").classList.remove("open")}));
+
+document.querySelectorAll("#nav a").forEach(a => {
+  a.addEventListener("click", () => {
+    if (innerWidth <= 1100) {
+      document.getElementById("sidebar").classList.remove("open");
+    }
+  });
+});
 </script>
 </body>
 </html>
