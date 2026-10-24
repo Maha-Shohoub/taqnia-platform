@@ -1,1075 +1,1018 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl" data-theme="light">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>كورسات أكاديمية آفاق المعرفة التقنية | مها شهوب</title>
+<meta name="description" content="كورسات أكاديمية آفاق المعرفة التقنية بإشراف الكاتبة والمهندسة مها شهوب">
 
-  <meta name="description"
-    content="كورسات أكاديمية آفاق المعرفة التقنية للمهندسة مها شهوب، تشمل أساسيات البرمجة والخوارزميات وهياكل البيانات.">
+<title>كورسات أكاديمية آفاق المعرفة التقنية | مها شهوب</title>
 
-  <meta name="author" content="مها شهوب">
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-  <link rel="icon" type="image/png" href="IMG/آفاق المعرفة التقنية.png">
+<style>
 
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+/* =========================
+   المتغيرات
+========================= */
 
-  <style>
+:root{
+  --bg:#e9edf3;
+  --surface:#fff;
+  --surface2:#f4f7fb;
+  --text:#111820;
+  --muted:#5f6b78;
 
-    /* =========================
-       المتغيرات
-    ========================= */
+  --primary:#e09b05;
+  --primary2:#3d97e1;
 
-    :root {
-      --primary: #1677c8;
-      --primary-dark: #0b4f88;
+  --border:#d7e0ea;
 
-      --bg: #f4f7fb;
-      --card: #ffffff;
-      --text: #172033;
-      --muted: #667085;
+  --shadow:0 12px 30px rgba(33,60,44,.09);
 
-      --border: #e2e8f0;
+  --card-bg:#fff;
+  --card-border:#d7e0ea;
+  --card-title:#111820;
+  --card-muted:#5f6b78;
 
-      --header: #ffffff;
+  --card-shadow:0 8px 22px rgba(22,119,200,.08);
 
-      --shadow:
-        0 10px 30px rgba(15, 23, 42, .08);
-    }
+  --number-bg:#eef5fb;
+  --number-text:#0b4f88;
+  --number-border:#b9d4ea;
 
-    [data-theme="dark"] {
-      --primary: #4da3ff;
-      --primary-dark: #1677c8;
+  --image-bg:#f4f7fb;
+  --image-border:#d7e0ea;
+}
 
-      --bg: #0f172a;
-      --card: #172033;
-      --text: #f8fafc;
-      --muted: #b7c0d0;
 
-      --border: #263247;
+/* =========================
+   الوضع الداكن
+========================= */
 
-      --header: #111827;
+[data-theme="dark"]{
+  --bg:#1a2332;
+  --surface:#243044;
+  --surface2:#2d3b54;
 
-      --shadow:
-        0 10px 30px rgba(0, 0, 0, .25);
-    }
+  --text:#f0f4f8;
+  --muted:#9fb0c7;
 
+  --primary:#38a3f8;
+  --primary2:#1e88e5;
 
-    /* =========================
-       Reset
-    ========================= */
+  --border:#3a4c6a;
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+  --shadow:0 12px 30px rgba(0,0,0,.35);
 
-    html {
-      scroll-behavior: smooth;
-    }
+  --card-bg:#071827;
+  --card-border:#263e55;
 
-    body {
-      font-family:
-        "Segoe UI",
-        Tahoma,
-        Arial,
-        sans-serif;
+  --card-title:#fff;
+  --card-muted:#b8c7d6;
 
-      background: var(--bg);
-      color: var(--text);
+  --card-shadow:0 8px 22px rgba(0,0,0,.30);
 
-      line-height: 1.8;
+  --number-bg:#07111c;
+  --number-text:#fff;
+  --number-border:#456985;
 
-      transition:
-        background .3s ease,
-        color .3s ease;
-    }
+  --image-bg:#0d1117;
+  --image-border:#34495e;
+}
 
-    button,
-    a {
-      font-family: inherit;
-    }
 
+/* =========================
+   الأساسيات
+========================= */
 
-    /* =========================
-       الشريط العلوي
-    ========================= */
+*{
+  box-sizing:border-box;
+}
 
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+html{
+  scroll-behavior:smooth;
+}
 
-      width: 100%;
+body{
+  margin:0;
+  font-family:Tahoma,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  transition:background .25s,color .25s;
+}
 
-      background: var(--header);
+button,
+input,
+textarea{
+  font:inherit;
+}
 
-      border-bottom:
-        1px solid var(--border);
+a{
+  text-decoration:none;
+}
 
-      box-shadow:
-        0 3px 15px rgba(0, 0, 0, .05);
 
-      transition: .3s;
-    }
+/* =========================
+   الصفحة
+========================= */
 
-    .topbar-inner {
-      max-width: 1200px;
+.page{
+  width:100%;
+  max-width:1200px;
+  margin:auto;
+  padding:22px 20px 50px;
+}
 
-      margin: auto;
 
-      min-height: 72px;
+/* =========================
+   الشريط العلوي
+========================= */
 
-      padding:
-        10px 20px;
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin-bottom:18px;
+}
 
-      display: flex;
+.brand{
+  min-width:0;
+}
 
-      align-items: center;
+.brand h1{
+  font-size:1.15rem;
+  margin:0;
+  color:var(--primary);
+  line-height:1.7;
+}
 
-      justify-content: space-between;
+.brand p{
+  margin:5px 0 0;
+  color:var(--muted);
+  font-size:.85rem;
+  line-height:1.8;
+}
 
-      gap: 20px;
-    }
 
+/* =========================
+   زر الوضع
+========================= */
 
-    /* =========================
-       الهوية
-    ========================= */
+.theme-btn{
+  flex:0 0 auto;
+  width:42px;
+  height:42px;
 
-    .brand {
-      display: flex;
+  border:1px solid var(--border);
+  border-radius:50%;
 
-      align-items: center;
+  background:var(--surface);
+  color:var(--text);
 
-      gap: 12px;
+  cursor:pointer;
 
-      text-decoration: none;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
-      color: var(--text);
-    }
+  transition:.2s;
+}
 
-    .brand-logo {
-      width: 48px;
-      height: 48px;
+.theme-btn:hover{
+  background:var(--primary);
+  color:#fff;
+  transform:rotate(8deg);
+}
 
-      border-radius: 50%;
 
-      display: flex;
+/* =========================
+   القسم
+========================= */
 
-      align-items: center;
-      justify-content: center;
+.section{
+  margin:20px 0;
+  padding:24px;
 
-      overflow: hidden;
+  background:var(--surface);
 
-      border:
-        2px solid var(--primary);
+  border:1px solid var(--border);
+  border-radius:20px;
 
-      background: #fff;
+  box-shadow:var(--shadow);
+}
 
-      flex-shrink: 0;
-    }
 
-    .brand-logo img {
-      width: 100%;
-      height: 100%;
+/* =========================
+   عنوان القسم
+========================= */
 
-      object-fit: cover;
-    }
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  align-items:center;
+  flex-wrap:wrap;
 
-    .brand-text {
-      display: flex;
+  margin-bottom:20px;
+}
 
-      flex-direction: column;
-    }
+.section-head h2{
+  margin:0;
 
-    .brand-title {
-      font-size: 16px;
+  font-size:1.25rem;
 
-      font-weight: 800;
+  color:var(--primary2);
 
-      color: var(--primary-dark);
-    }
+  line-height:1.7;
+}
 
-    [data-theme="dark"] .brand-title {
-      color: var(--primary);
-    }
+[data-theme="dark"] .section-head h2{
+  color:var(--primary);
+}
 
-    .brand-subtitle {
-      font-size: 12px;
+.section-head p{
+  margin:5px 0 0;
 
-      color: var(--muted);
-    }
+  color:var(--muted);
 
+  font-size:.88rem;
 
-    /* =========================
-       أزرار الهيدر
-    ========================= */
+  line-height:1.9;
+}
 
-    .header-actions {
-      display: flex;
 
-      align-items: center;
+/* =========================
+   صندوق الكورسات
+========================= */
 
-      gap: 8px;
-    }
+.course-box{
+  padding:18px;
 
-    .theme-btn {
-      width: 42px;
-      height: 42px;
+  background:var(--surface2);
 
-      border: 1px solid var(--border);
+  border:1px solid var(--border);
 
-      border-radius: 50%;
+  border-radius:17px;
+}
 
-      background: var(--card);
 
-      color: var(--text);
+/* =========================
+   شبكة الكورسات
+========================= */
 
-      cursor: pointer;
+.course-cards{
+  display:grid;
 
-      display: flex;
+  grid-template-columns:
+    repeat(3,minmax(0,1fr));
 
-      align-items: center;
-      justify-content: center;
+  gap:16px;
+}
 
-      font-size: 16px;
 
-      transition: .25s;
-    }
+/* =========================
+   بطاقة الكورس
+========================= */
 
-    .theme-btn:hover {
-      background: var(--primary);
+.course-card{
+  position:relative;
 
-      color: #fff;
+  min-width:0;
+  min-height:320px;
 
-      border-color: var(--primary);
-    }
+  padding:10px;
 
+  background:var(--card-bg);
 
-    /* =========================
-       المحتوى
-    ========================= */
+  border:1px solid var(--card-border);
 
-    .container {
-      width: min(1200px, 92%);
+  border-radius:14px;
 
-      margin:
-        35px auto 50px;
-    }
+  text-align:center;
 
+  display:flex;
+  flex-direction:column;
 
-    /* =========================
-       Hero
-    ========================= */
+  overflow:hidden;
 
-    .hero {
-      background:
-        linear-gradient(
-          135deg,
-          var(--primary-dark),
-          var(--primary)
-        );
+  transition:
+    transform .2s,
+    box-shadow .2s,
+    border-color .2s,
+    background .2s;
 
-      color: #fff;
+  box-shadow:var(--card-shadow);
+}
 
-      border-radius: 22px;
+.course-card:hover{
+  transform:translateY(-4px);
 
-      padding:
-        42px 30px;
+  border-color:var(--primary);
 
-      text-align: center;
+  box-shadow:
+    0 12px 28px rgba(22,119,200,.17);
+}
 
-      margin-bottom: 30px;
 
-      box-shadow:
-        0 15px 35px rgba(22, 119, 200, .20);
-    }
+/* =========================
+   رقم الكورس
+========================= */
 
-    .hero-icon {
-      width: 75px;
-      height: 75px;
+.course-number{
+  position:absolute;
 
-      margin:
-        0 auto 15px;
+  top:9px;
+  left:9px;
 
-      border-radius: 50%;
+  width:29px;
+  height:29px;
 
-      background:
-        rgba(255,255,255,.15);
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
-      display: flex;
+  background:var(--number-bg);
 
-      align-items: center;
-      justify-content: center;
+  color:var(--number-text);
 
-      font-size: 32px;
-    }
+  border:1px solid var(--number-border);
 
-    .hero h1 {
-      font-size: clamp(25px, 4vw, 38px);
+  border-radius:50%;
 
-      margin-bottom: 10px;
+  font-size:11px;
+  font-weight:bold;
 
-      font-weight: 800;
-    }
+  z-index:2;
+}
 
-    .hero p {
-      max-width: 800px;
 
-      margin: auto;
+/* =========================
+   صورة الكورس
+========================= */
 
-      font-size: 15px;
+.course-image{
+  width:100%;
+  height:170px;
 
-      opacity: .95;
-    }
+  overflow:hidden;
 
+  border-radius:10px;
 
-    /* =========================
-       عنوان القسم
-    ========================= */
+  background:var(--image-bg);
 
-    .section-title {
-      text-align: center;
+  border:1px solid var(--image-border);
 
-      margin:
-        10px 0 25px;
-    }
+  margin-bottom:11px;
+}
 
-    .section-title h2 {
-      font-size: 25px;
+.course-image img{
+  width:100%;
+  height:100%;
 
-      color: var(--primary-dark);
+  object-fit:cover;
 
-      margin-bottom: 5px;
-    }
+  display:block;
 
-    [data-theme="dark"] .section-title h2 {
-      color: var(--primary);
-    }
+  transition:transform .3s;
+}
 
-    .section-title p {
-      color: var(--muted);
+.course-card:hover .course-image img{
+  transform:scale(1.04);
+}
 
-      font-size: 14px;
-    }
 
+/* =========================
+   وسم الكورس
+========================= */
 
-    /* =========================
-       بطاقات الكورسات
-    ========================= */
+.course-tag{
+  align-self:center;
 
-    .courses-grid {
-      display: grid;
+  display:inline-block;
 
-      grid-template-columns:
-        repeat(3, 1fr);
+  max-width:100%;
 
-      gap: 22px;
-    }
+  padding:4px 10px;
 
-    .course-card {
-      background: var(--card);
+  border-radius:20px;
 
-      border:
-        1px solid var(--border);
+  background:
+    color-mix(
+      in srgb,
+      var(--primary) 15%,
+      transparent
+    );
 
-      border-radius: 20px;
+  color:var(--primary);
 
-      padding: 25px;
+  font-size:10px;
 
-      box-shadow: var(--shadow);
+  font-weight:bold;
 
-      display: flex;
+  margin-bottom:7px;
+}
 
-      flex-direction: column;
 
-      transition:
-        transform .25s ease,
-        box-shadow .25s ease,
-        border-color .25s ease;
-    }
+/* =========================
+   عنوان الكورس
+========================= */
 
-    .course-card:hover {
-      transform: translateY(-5px);
+.course-card h3{
+  margin:0 0 7px;
 
-      border-color:
-        rgba(22,119,200,.35);
+  color:var(--card-title);
 
-      box-shadow:
-        0 18px 40px rgba(15,23,42,.12);
-    }
+  font-size:14px;
 
-    .course-icon {
-      width: 60px;
-      height: 60px;
+  line-height:1.7;
+}
 
-      border-radius: 16px;
 
-      background:
-        rgba(22,119,200,.10);
+/* =========================
+   وصف الكورس
+========================= */
 
-      color: var(--primary);
+.course-card p{
+  margin:0;
 
-      display: flex;
+  color:var(--card-muted);
 
-      align-items: center;
-      justify-content: center;
+  font-size:11px;
 
-      font-size: 25px;
+  line-height:1.8;
 
-      margin-bottom: 17px;
-    }
+  flex:1;
+}
 
-    .course-card h3 {
-      font-size: 20px;
 
-      margin-bottom: 10px;
+/* =========================
+   منطقة التسجيل
+========================= */
 
-      color: var(--text);
-    }
+.register-area{
+  display:flex;
 
-    .course-card p {
-      color: var(--muted);
+  justify-content:center;
+  align-items:center;
 
-      font-size: 14px;
+  margin-top:22px;
+}
 
-      margin-bottom: 18px;
-    }
 
-    .course-info {
-      list-style: none;
+/* =========================
+   زر التسجيل
+========================= */
 
-      margin-bottom: 22px;
-    }
+.register-btn{
+  width:320px;
 
-    .course-info li {
-      display: flex;
+  max-width:100%;
 
-      align-items: center;
+  min-height:47px;
 
-      gap: 8px;
+  display:flex;
 
-      color: var(--muted);
+  align-items:center;
+  justify-content:center;
 
-      font-size: 13px;
+  gap:9px;
 
-      margin-bottom: 7px;
-    }
+  padding:10px 20px;
 
-    .course-info i {
-      color: var(--primary);
+  background:
+    linear-gradient(
+      135deg,
+      #1677c8,
+      #0b72d9
+    );
 
-      width: 18px;
-    }
+  color:#fff;
 
+  border:0;
 
-    /* =========================
-       زر التسجيل - قريبًا
-    ========================= */
+  border-radius:25px;
 
-    .register-area {
-      margin-top: auto;
+  font-size:14px;
 
-      padding-top: 5px;
-    }
+  font-weight:bold;
 
-    .register-btn {
-      width: 320px;
+  cursor:pointer;
 
-      max-width: 100%;
+  box-shadow:
+    0 8px 20px rgba(22,119,200,.25);
 
-      min-height: 47px;
+  transition:.2s;
 
-      display: flex;
+  text-decoration:none;
+}
 
-      align-items: center;
+.register-btn:hover{
+  transform:translateY(-2px);
 
-      justify-content: center;
+  background:
+    linear-gradient(
+      135deg,
+      #0b4f88,
+      #1677c8
+    );
 
-      gap: 9px;
+  color:#fff;
+}
 
-      padding:
-        10px 20px;
+.register-btn:active{
+  transform:translateY(0);
+}
 
-      background:
-        linear-gradient(
-          135deg,
-          #f59e0b,
-          #ea580c
-        );
 
-      color: #fff;
+/* =========================
+   التذييل
+========================= */
 
-      border: 0;
+footer{
+  text-align:center;
 
-      border-radius: 25px;
+  color:var(--muted);
 
-      font-size: 14px;
+  font-size:.82rem;
 
-      font-weight: bold;
+  padding:15px 10px;
+}
 
-      cursor: not-allowed;
 
-      box-shadow:
-        0 8px 20px
-        rgba(234,88,12,.25);
+/* =========================
+   شاشات اللابتوب
+========================= */
 
-      opacity: .95;
-    }
+@media(max-width:1050px){
 
+  .course-cards{
+    grid-template-columns:
+      repeat(3,minmax(0,1fr));
+  }
 
-    /* =========================
-       الفوتر
-    ========================= */
+}
 
-    footer {
-      border-top:
-        1px solid var(--border);
 
-      margin-top: 40px;
+/* =========================
+   التابلت
+========================= */
 
-      padding:
-        25px 20px;
+@media(max-width:760px){
 
-      text-align: center;
+  .page{
+    padding:14px 10px 35px;
+  }
 
-      color: var(--muted);
+  .section{
+    padding:15px;
+  }
 
-      font-size: 13px;
-    }
+  .course-box{
+    padding:11px;
+  }
 
-    footer strong {
-      color: var(--primary);
-    }
+  .course-cards{
+    grid-template-columns:
+      repeat(2,minmax(0,1fr));
 
+    gap:12px;
+  }
 
-    /* =========================
-       Responsive
-    ========================= */
+  .course-card{
+    min-height:310px;
+  }
 
-    @media (max-width: 900px) {
+  .course-image{
+    height:145px;
+  }
 
-      .courses-grid {
-        grid-template-columns:
-          repeat(2, 1fr);
-      }
+  .section-head h2{
+    font-size:1.1rem;
+  }
 
-    }
+}
 
 
-    @media (max-width: 650px) {
+/* =========================
+   الهواتف
+========================= */
 
-      .topbar-inner {
-        min-height: 65px;
+@media(max-width:450px){
 
-        padding:
-          8px 12px;
-      }
+  .topbar{
+    align-items:flex-start;
+  }
 
-      .brand-title {
-        font-size: 14px;
-      }
+  .brand{
+    padding-left:5px;
+  }
 
-      .brand-subtitle {
-        font-size: 11px;
-      }
+  .brand h1{
+    font-size:1rem;
+  }
 
-      .brand-logo {
-        width: 42px;
-        height: 42px;
-      }
+  .brand p{
+    font-size:.78rem;
+  }
 
-      .container {
-        width: 94%;
+  .theme-btn{
+    width:38px;
+    height:38px;
+  }
 
-        margin-top: 22px;
-      }
+  .section{
+    border-radius:16px;
+  }
 
-      .hero {
-        padding:
-          30px 18px;
+  .course-cards{
+    grid-template-columns:1fr;
+  }
 
-        border-radius: 18px;
-      }
+  .course-card{
+    min-height:0;
 
-      .hero h1 {
-        font-size: 25px;
-      }
+    padding:12px;
+  }
 
-      .courses-grid {
-        grid-template-columns: 1fr;
+  .course-image{
+    height:190px;
+  }
 
-        gap: 17px;
-      }
+  .course-card h3{
+    font-size:15px;
+  }
 
-      .course-card {
-        padding: 22px;
-      }
+  .course-card p{
+    font-size:12px;
+  }
 
-      .register-btn {
-        width: 100%;
-      }
+  .register-btn{
+    width:100%;
+    min-height:48px;
+    font-size:14px;
+  }
 
-    }
+}
 
 
-    @media (max-width: 400px) {
+/* =========================
+   الهواتف الصغيرة جدًا
+========================= */
 
-      .brand-subtitle {
-        display: none;
-      }
+@media(max-width:360px){
 
-      .hero h1 {
-        font-size: 22px;
-      }
+  .page{
+    padding-left:7px;
+    padding-right:7px;
+  }
 
-      .hero p {
-        font-size: 13px;
-      }
+  .section{
+    padding:11px;
+  }
 
-    }
+  .course-box{
+    padding:8px;
+  }
 
-  </style>
+  .course-image{
+    height:165px;
+  }
+
+  .register-btn{
+    font-size:13px;
+  }
+
+}
+
+</style>
 </head>
 
 
 <body>
 
 
+<div class="page">
+
+
   <!-- =========================
        الشريط العلوي
-  ========================= -->
+  ========================== -->
 
-  <header class="topbar">
+  <div class="topbar">
 
-    <div class="topbar-inner">
-
-      <a href="#" class="brand">
-
-        <div class="brand-logo">
-
-          <img
-            src="IMG/آفاق المعرفة التقنية.png"
-            alt="آفاق المعرفة التقنية">
-
-        </div>
-
-        <div class="brand-text">
-
-          <span class="brand-title">
-            أكاديمية آفاق المعرفة التقنية
-          </span>
-
-          <span class="brand-subtitle">
-            بإشراف المهندسة مها شهوب
-          </span>
-
-        </div>
-
-      </a>
-
-
-      <div class="header-actions">
-
-        <button
-          class="theme-btn"
-          id="themeToggle"
-          type="button"
-          title="تغيير الوضع">
-
-          <i class="fa-solid fa-moon"></i>
-
-        </button>
-
-      </div>
-
-    </div>
-
-  </header>
-
-
-
-  <!-- =========================
-       المحتوى الرئيسي
-  ========================= -->
-
-  <main class="container">
-
-
-    <!-- Hero -->
-
-    <section class="hero">
-
-      <div class="hero-icon">
-
-        <i class="fa-solid fa-graduation-cap"></i>
-
-      </div>
+    <div class="brand">
 
       <h1>
-        كورسات أكاديمية آفاق المعرفة التقنية
+        أكاديمية آفاق المعرفة التقنية
       </h1>
 
       <p>
-        مسارات تعليمية تقنية تساعدك على بناء أساس قوي
-        في البرمجة والخوارزميات وهياكل البيانات.
-      </p>
-
-    </section>
-
-
-
-    <!-- =========================
-         عنوان الكورسات
-    ========================= -->
-
-    <div class="section-title">
-
-      <h2>
-        الكورسات المتاحة
-      </h2>
-
-      <p>
-        اختر المسار المناسب لك وابدأ رحلتك التعليمية
+        سلسلة أساسيات التقنية بإشراف الكاتبة والمهندسة مها شهوب
       </p>
 
     </div>
 
 
-
-    <!-- =========================
-         الكورسات
-    ========================= -->
-
-    <section class="courses-grid">
-
-
-      <!-- =========================
-           كورس أساسيات البرمجة
-      ========================= -->
-
-      <article class="course-card">
-
-        <div class="course-icon">
-
-          <i class="fa-solid fa-code"></i>
-
-        </div>
-
-        <h3>
-          أساسيات البرمجة
-        </h3>
-
-        <p>
-          مدخل شامل إلى عالم البرمجة،
-          مناسب للمبتدئين والطلاب الراغبين
-          في بناء أساس قوي في البرمجة.
-        </p>
-
-        <ul class="course-info">
-
-          <li>
-            <i class="fa-solid fa-circle-check"></i>
-            مفاهيم البرمجة الأساسية
-          </li>
-
-          <li>
-            <i class="fa-solid fa-circle-check"></i>
-            المتغيرات وأنواع البيانات
-          </li>
-
-          <li>
-            <i class="fa-solid fa-circle-check"></i>
-            الشروط والحلقات
-          </li>
-
-          <li>
-            <i class="fa-solid fa-circle-check"></i>
-            الدوال والبرمجة المنظمة
-          </li>
-
-        </ul>
-
-
-        <div class="register-area">
-
-          <button
-            class="register-btn"
-            type="button"
-            disabled>
-
-            <i class="fa-solid fa-clock"></i>
-
-            قريبًا
-
-          </button>
-
-        </div>
-
-      </article>
-
-
-
-      <!-- =========================
-           كورس أساسيات الخوارزميات
-      ========================= -->
-
-      <article class="course-card">
-
-        <div class="course-icon">
-
-          <i class="fa-solid fa-diagram-project"></i>
-
-        </div>
-
-        <h3>
-          أساسيات الخوارزميات
-        </h3>
-
-        <p>
-          تعلم طريقة التفكير الخوارزمي
-          وتحويل المشكلات إلى خطوات منظمة
-          قابلة للتنفيذ والبرمجة.
-        </p>
-
-        <ul class="course-info">
-
-          <li>
-            <i class="fa-solid fa-circle-check"></i>
-            مفهوم الخوارزميات
-          </li>
-
-          <li>
-            <i class="fa-solid fa-circle-check"></i>
-            خطوات حل المشكلات
-          </li>
-
-          <li>
-            <i class="fa-solid fa-circle-check"></i>
-            الخوارزميات التكرارية
-          </li>
-
-          <li>
-            <i class="fa-solid fa-circle-check"></i>
-            تحليل الخوارزميات
-          </li>
-
-        </ul>
-
-
-        <div class="register-area">
-
-          <button
-            class="register-btn"
-            type="button"
-            disabled>
-
-            <i class="fa-solid fa-clock"></i>
-
-            قريبًا
-
-          </button>
-
-        </div>
-
-      </article>
-
-
-
-      <!-- =========================
-           كورس هياكل البيانات
-      ========================= -->
-
-      <article class="course-card">
-
-        <div class="course-icon">
-
-          <i class="fa-solid fa-sitemap"></i>
-
-        </div>
-
-        <h3>
-          أساسيات هياكل البيانات
-        </h3>
-
-        <p>
-          تعرف على أهم هياكل البيانات
-          المستخدمة في البرمجة وكيفية تنظيم
-          البيانات ومعالجتها بكفاءة.
-        </p>
-
-        <ul class="course-info">
-
-          <li>
-            <i class="fa-solid fa-circle-check"></i>
-            Arrays
-          </li>
-
-          <li>
-            <i class="fa-solid fa-circle-check"></i>
-            Linked Lists
-          </li>
-
-          <li>
-            <i class="fa-solid fa-circle-check"></i>
-            Stacks & Queues
-          </li>
-
-          <li>
-            <i class="fa-solid fa-circle-check"></i>
-            Trees & Graphs
-          </li>
-
-        </ul>
-
-
-        <div class="register-area">
-
-          <button
-            class="register-btn"
-            type="button"
-            disabled>
-
-            <i class="fa-solid fa-clock"></i>
-
-            قريبًا
-
-          </button>
-
-        </div>
-
-      </article>
-
-
-    </section>
-
-
-  </main>
+    <button
+      class="theme-btn"
+      type="button"
+      onclick="toggleTheme()"
+      aria-label="تبديل الوضع"
+      title="تبديل الوضع">
+
+      <i
+        class="fa-solid fa-moon"
+        id="themeIcon">
+      </i>
+
+    </button>
+
+  </div>
 
 
 
   <!-- =========================
-       Footer
-  ========================= -->
+       كورس أساسيات البرمجة
+  ========================== -->
+
+  <section
+    class="section"
+    id="programming-paths">
+
+
+    <div class="section-head">
+
+      <div>
+
+        <h2>
+          <i class="fa-solid fa-lock"></i>
+          كورس مدفوع: تعلم أساسيات البرمجة
+        </h2>
+
+        <p>
+          كورس متكامل لتعلم أساسيات البرمجة ضمن سلسلة أساسيات التقنية تحت إشراف الكاتبة والمهندسة مها شهوب.
+        </p>
+
+      </div>
+
+    </div>
+
+
+
+    <div class="course-box">
+
+
+      <div class="course-cards">
+
+
+        <!-- الكورس 01 -->
+
+        <article class="course-card">
+
+          <span class="course-number">
+            01
+          </span>
+
+
+          <div class="course-image">
+
+            <img
+              src="https://images.unsplash.com/photo-1593720213428-28a5b9e94613?q=80&w=870&auto=format&fit=crop"
+              alt="أساسيات البرمجة">
+
+          </div>
+
+
+          <span class="course-tag">
+            Programming
+          </span>
+
+
+          <h3>
+            أساسيات البرمجة
+          </h3>
+
+
+          <p>
+            تعلم المفاهيم والمبادئ الأساسية للبرمجة:
+            الدوال، المتغيرات، الجمل الشرطية وغيرها من المبادئ المهمة.
+          </p>
+
+        </article>
+
+
+
+        <!-- الكورس 02 -->
+
+        <article class="course-card">
+
+          <span class="course-number">
+            02
+          </span>
+
+
+          <div class="course-image">
+
+            <img
+              src="https://plus.unsplash.com/premium_photo-1753380849525-d8c1f406fa4e?q=80&w=870&auto=format&fit=crop"
+              alt="أساسيات الخوارزميات">
+
+          </div>
+
+
+          <span class="course-tag">
+            Algorithm
+          </span>
+
+
+          <h3>
+            أساسيات الخوارزميات
+          </h3>
+
+
+          <p>
+            التعرف على كيفية التعامل وإنشاء خوارزمية صحيحة وسريعة داخل برنامجك.
+          </p>
+
+        </article>
+
+
+
+        <!-- الكورس 03 -->
+
+        <article class="course-card">
+
+          <span class="course-number">
+            03
+          </span>
+
+
+          <div class="course-image">
+
+            <img
+              src="https://plus.unsplash.com/premium_photo-1663050633633-2856e875dcc7?q=80&w=870&auto=format&fit=crop"
+              alt="أساسيات هياكل البيانات">
+
+          </div>
+
+
+          <span class="course-tag">
+            Data Structures
+          </span>
+
+
+          <h3>
+            أساسيات هياكل البيانات
+          </h3>
+
+
+          <p>
+            تعلم الطرق البرمجية المحددة لتنظيم وتخزين وإدارة البيانات في ذاكرة الحاسوب بكفاءة.
+          </p>
+
+        </article>
+
+
+      </div>
+
+
+
+      <!-- =========================
+           زر التسجيل
+      ========================== -->
+
+      <div class="register-area">
+
+        <a
+          href="registration.html"
+          class="register-btn"
+          target="_blank"
+          rel="noopener noreferrer">
+
+          <i class="fa-solid fa-paper-plane"></i>
+
+          اشترك الآن
+
+        </a>
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =========================
+       التذييل
+  ========================== -->
 
   <footer>
 
-    <p>
-      جميع الحقوق محفوظة ©
-      <strong>مها شهوب</strong>
-    </p>
-
-    <p>
-      منصة آفاق المعرفة التقنية
-    </p>
+    © 2026 أكاديمية آفاق المعرفة التقنية
+    —
+    إعداد الكاتبة والمهندسة: مها شهوب
 
   </footer>
 
 
-
-  <!-- =========================
-       JavaScript
-  ========================= -->
-
-  <script>
-
-    const themeToggle =
-      document.getElementById("themeToggle");
-
-    const html =
-      document.documentElement;
+</div>
 
 
-    /* =========================
-       الوضع المحفوظ
-    ========================= */
 
-    const savedTheme =
-      localStorage.getItem("theme");
+<script>
 
-    if (savedTheme) {
+/* =========================
+   الوضع الليلي
+========================= */
 
-      html.setAttribute(
-        "data-theme",
-        savedTheme
-      );
+function applyTheme(theme){
 
-    }
+  document.documentElement.setAttribute(
+    "data-theme",
+    theme
+  );
+
+  localStorage.setItem(
+    "theme",
+    theme
+  );
 
 
-    /* =========================
-       تحديث أيقونة الوضع
-    ========================= */
+  const icon =
+    document.getElementById("themeIcon");
 
-    function updateThemeIcon() {
 
-      const icon =
-        themeToggle.querySelector("i");
+  if(icon){
 
-      const currentTheme =
-        html.getAttribute("data-theme");
+    if(theme === "dark"){
 
-      if (currentTheme === "dark") {
+      icon.className =
+        "fa-solid fa-sun";
 
-        icon.className =
-          "fa-solid fa-sun";
+    }else{
 
-        themeToggle.title =
-          "تفعيل الوضع الفاتح";
-
-      } else {
-
-        icon.className =
-          "fa-solid fa-moon";
-
-        themeToggle.title =
-          "تفعيل الوضع الداكن";
-
-      }
+      icon.className =
+        "fa-solid fa-moon";
 
     }
 
+  }
 
-    updateThemeIcon();
+}
 
 
-    /* =========================
-       تبديل الوضع
-    ========================= */
+/* =========================
+   تبديل الوضع
+========================= */
 
-    themeToggle.addEventListener(
-      "click",
-      function () {
+function toggleTheme(){
 
-        const currentTheme =
-          html.getAttribute("data-theme");
+  const current =
+    document.documentElement.getAttribute(
+      "data-theme"
+    ) || "light";
 
-        const newTheme =
-          currentTheme === "dark"
-            ? "light"
-            : "dark";
 
-        html.setAttribute(
-          "data-theme",
-          newTheme
-        );
+  const next =
+    current === "dark"
+      ? "light"
+      : "dark";
 
-        localStorage.setItem(
-          "theme",
-          newTheme
-        );
 
-        updateThemeIcon();
+  applyTheme(next);
 
-      }
-    );
+}
 
-  </script>
+
+/* =========================
+   حفظ الوضع
+========================= */
+
+(function(){
+
+  const saved =
+    localStorage.getItem("theme");
+
+
+  if(saved === "dark" || saved === "light"){
+
+    applyTheme(saved);
+
+  }else{
+
+    applyTheme("light");
+
+  }
+
+})();
+
+</script>
 
 
 </body>
