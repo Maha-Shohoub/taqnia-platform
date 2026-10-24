@@ -1,0 +1,1492 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<meta name="description"
+      content="كورسات أكاديمية آفاق المعرفة التقنية بإشراف الكاتبة والمهندسة مها شهوب">
+
+<title>كورسات أكاديمية آفاق المعرفة التقنية | مها شهوب</title>
+
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+/* =========================================================
+   المتغيرات
+========================================================= */
+
+:root{
+    --bg:#e9edf3;
+    --surface:#fff;
+    --surface2:#f4f7fb;
+    --text:#111820;
+    --muted:#5f6b78;
+
+    --primary:#1677c8;
+    --primary2:#0b4f88;
+
+    --border:#d7e0ea;
+
+    --shadow:
+        0 12px 30px rgba(33,60,44,.09);
+
+    --card-bg:#fff;
+    --card-border:#d7e0ea;
+    --card-title:#111820;
+    --card-muted:#5f6b78;
+
+    --card-shadow:
+        0 8px 22px rgba(22,119,200,.08);
+
+    --number-bg:#eef5fb;
+    --number-text:#0b4f88;
+    --number-border:#b9d4ea;
+
+    --image-bg:#f4f7fb;
+    --image-border:#d7e0ea;
+}
+
+
+/* =========================================================
+   الوضع الداكن
+========================================================= */
+
+[data-theme="dark"]{
+
+    --bg:#1a2332;
+    --surface:#243044;
+    --surface2:#2d3b54;
+
+    --text:#f0f4f8;
+    --muted:#9fb0c7;
+
+    --primary:#38a3f8;
+    --primary2:#1e88e5;
+
+    --border:#3a4c6a;
+
+    --shadow:
+        0 12px 30px rgba(0,0,0,.35);
+
+    --card-bg:#071827;
+    --card-border:#263e55;
+    --card-title:#fff;
+    --card-muted:#b8c7d6;
+
+    --card-shadow:
+        0 8px 22px rgba(0,0,0,.30);
+
+    --number-bg:#07111c;
+    --number-text:#fff;
+    --number-border:#456985;
+
+    --image-bg:#0d1117;
+    --image-border:#34495e;
+}
+
+
+/* =========================================================
+   الإعدادات العامة
+========================================================= */
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+
+    font-family:
+        Tahoma,
+        Arial,
+        sans-serif;
+
+    background:var(--bg);
+    color:var(--text);
+
+    transition:
+        background .25s,
+        color .25s;
+}
+
+button,
+input,
+textarea{
+    font:inherit;
+}
+
+
+/* =========================================================
+   الصفحة
+========================================================= */
+
+.page{
+    width:100%;
+    max-width:1200px;
+
+    margin:auto;
+
+    padding:
+        22px 20px 50px;
+}
+
+
+/* =========================================================
+   الشريط العلوي
+========================================================= */
+
+.topbar{
+    display:flex;
+
+    justify-content:space-between;
+    align-items:center;
+
+    gap:12px;
+
+    margin-bottom:18px;
+}
+
+.brand{
+    min-width:0;
+}
+
+.brand h1{
+    font-size:1.15rem;
+
+    margin:0;
+
+    color:var(--primary);
+}
+
+.brand p{
+    margin:5px 0 0;
+
+    color:var(--muted);
+
+    font-size:.85rem;
+
+    line-height:1.8;
+}
+
+.theme-btn{
+    flex:0 0 auto;
+
+    width:42px;
+    height:42px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:50%;
+
+    background:var(--surface);
+    color:var(--text);
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.theme-btn:hover{
+    background:var(--primary);
+    color:#fff;
+}
+
+
+/* =========================================================
+   القسم
+========================================================= */
+
+.section{
+    margin:20px 0;
+
+    padding:24px;
+
+    background:var(--surface);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:20px;
+
+    box-shadow:var(--shadow);
+}
+
+.section-head{
+    display:flex;
+
+    justify-content:space-between;
+    align-items:center;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:20px;
+}
+
+.section-head h2{
+    margin:0;
+
+    font-size:1.25rem;
+
+    color:var(--primary2);
+
+    line-height:1.7;
+}
+
+[data-theme="dark"] .section-head h2{
+    color:var(--primary);
+}
+
+.section-head p{
+    margin:5px 0 0;
+
+    color:var(--muted);
+
+    font-size:.88rem;
+
+    line-height:1.9;
+}
+
+
+/* =========================================================
+   صندوق الكورسات
+========================================================= */
+
+.course-box{
+    padding:18px;
+
+    background:var(--surface2);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:17px;
+}
+
+
+/* =========================================================
+   بطاقات الكورسات
+========================================================= */
+
+.course-cards{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(5,minmax(0,1fr));
+
+    gap:16px;
+}
+
+.course-card{
+
+    position:relative;
+
+    min-width:0;
+    min-height:320px;
+
+    padding:10px;
+
+    background:var(--card-bg);
+
+    border:
+        1px solid var(--card-border);
+
+    border-radius:14px;
+
+    text-align:center;
+
+    display:flex;
+
+    flex-direction:column;
+
+    overflow:hidden;
+
+    transition:
+        transform .2s,
+        box-shadow .2s,
+        border-color .2s,
+        background .2s;
+
+    box-shadow:var(--card-shadow);
+}
+
+.course-card:hover{
+
+    transform:
+        translateY(-4px);
+
+    border-color:
+        var(--primary);
+
+    box-shadow:
+        0 12px 28px
+        rgba(22,119,200,.17);
+}
+
+
+/* =========================================================
+   رقم البطاقة
+========================================================= */
+
+.course-number{
+
+    position:absolute;
+
+    top:9px;
+    left:9px;
+
+    width:29px;
+    height:29px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    background:var(--number-bg);
+
+    color:var(--number-text);
+
+    border:
+        1px solid var(--number-border);
+
+    border-radius:50%;
+
+    font-size:11px;
+
+    font-weight:bold;
+
+    z-index:2;
+}
+
+
+/* =========================================================
+   صورة الكورس
+========================================================= */
+
+.course-image{
+
+    width:100%;
+    height:130px;
+
+    overflow:hidden;
+
+    border-radius:10px;
+
+    background:var(--image-bg);
+
+    border:
+        1px solid var(--image-border);
+
+    margin-bottom:11px;
+}
+
+.course-image img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+    transition:
+        transform .3s;
+}
+
+.course-card:hover
+.course-image img{
+
+    transform:
+        scale(1.04);
+}
+
+
+/* =========================================================
+   التصنيف
+========================================================= */
+
+.course-tag{
+
+    align-self:center;
+
+    display:inline-block;
+
+    max-width:100%;
+
+    padding:
+        4px 10px;
+
+    border-radius:20px;
+
+    background:
+        color-mix(
+            in srgb,
+            var(--primary) 15%,
+            transparent
+        );
+
+    color:var(--primary);
+
+    font-size:10px;
+
+    font-weight:bold;
+
+    margin-bottom:7px;
+}
+
+
+/* =========================================================
+   عنوان البطاقة
+========================================================= */
+
+.course-card h3{
+
+    margin:
+        0 0 7px;
+
+    color:var(--card-title);
+
+    font-size:14px;
+
+    line-height:1.7;
+}
+
+
+/* =========================================================
+   وصف البطاقة
+========================================================= */
+
+.course-card p{
+
+    margin:0;
+
+    color:var(--card-muted);
+
+    font-size:11px;
+
+    line-height:1.8;
+
+    flex:1;
+}
+
+
+/* =========================================================
+   منطقة التسجيل
+========================================================= */
+
+.register-area{
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    margin-top:22px;
+}
+
+
+/* =========================================================
+   زر التسجيل
+========================================================= */
+
+.register-btn{
+
+    width:320px;
+
+    max-width:100%;
+
+    min-height:47px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:9px;
+
+    padding:
+        10px 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1677c8,
+            #0b72d9
+        );
+
+    color:#fff;
+
+    border:0;
+
+    border-radius:25px;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 8px 20px
+        rgba(22,119,200,.25);
+
+    transition:.2s;
+
+    text-decoration:none;
+}
+
+.register-btn:hover{
+
+    transform:
+        translateY(-2px);
+
+    background:
+        linear-gradient(
+            135deg,
+            #0b4f88,
+            #1677c8
+        );
+
+    color:#fff;
+}
+
+.register-btn:active{
+
+    transform:
+        translateY(0);
+}
+
+
+/* =========================================================
+   الفوتر
+========================================================= */
+
+footer{
+
+    text-align:center;
+
+    color:var(--muted);
+
+    font-size:.82rem;
+
+    padding:
+        15px 10px;
+}
+
+
+/* =========================================================
+   شاشات اللابتوب والمتوسطة
+========================================================= */
+
+@media(max-width:1100px){
+
+    .course-cards{
+
+        grid-template-columns:
+            repeat(4,minmax(0,1fr));
+    }
+}
+
+
+/* =========================================================
+   الأجهزة اللوحية
+========================================================= */
+
+@media(max-width:900px){
+
+    .page{
+
+        padding:
+            18px 15px 40px;
+    }
+
+    .section{
+
+        padding:20px;
+    }
+
+    .course-cards{
+
+        grid-template-columns:
+            repeat(3,minmax(0,1fr));
+
+        gap:14px;
+    }
+
+    .course-card{
+
+        min-height:310px;
+    }
+}
+
+
+/* =========================================================
+   الأجهزة اللوحية الصغيرة
+========================================================= */
+
+@media(max-width:700px){
+
+    .topbar{
+
+        align-items:flex-start;
+    }
+
+    .brand h1{
+
+        font-size:1.05rem;
+    }
+
+    .brand p{
+
+        font-size:.8rem;
+    }
+
+    .section{
+
+        padding:16px;
+
+        border-radius:16px;
+    }
+
+    .section-head h2{
+
+        font-size:1.1rem;
+    }
+
+    .section-head p{
+
+        font-size:.82rem;
+    }
+
+    .course-box{
+
+        padding:12px;
+    }
+
+    .course-cards{
+
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+
+        gap:12px;
+    }
+
+    .course-card{
+
+        min-height:300px;
+    }
+
+    .course-image{
+
+        height:125px;
+    }
+
+    .register-btn{
+
+        width:100%;
+    }
+}
+
+
+/* =========================================================
+   الهواتف
+========================================================= */
+
+@media(max-width:500px){
+
+    .page{
+
+        padding:
+            12px 9px 30px;
+    }
+
+    .topbar{
+
+        gap:8px;
+    }
+
+    .brand h1{
+
+        font-size:.95rem;
+    }
+
+    .brand p{
+
+        font-size:.75rem;
+
+        line-height:1.7;
+    }
+
+    .theme-btn{
+
+        width:38px;
+        height:38px;
+    }
+
+    .section{
+
+        margin:
+            12px 0;
+
+        padding:13px;
+
+        border-radius:14px;
+    }
+
+    .section-head{
+
+        margin-bottom:15px;
+    }
+
+    .section-head h2{
+
+        font-size:1rem;
+
+        line-height:1.8;
+    }
+
+    .section-head p{
+
+        font-size:.78rem;
+
+        line-height:1.8;
+    }
+
+    .course-box{
+
+        padding:9px;
+
+        border-radius:13px;
+    }
+
+    .course-cards{
+
+        grid-template-columns:1fr;
+
+        gap:12px;
+    }
+
+    .course-card{
+
+        min-height:0;
+
+        padding:11px;
+    }
+
+    .course-image{
+
+        height:190px;
+    }
+
+    .course-card h3{
+
+        font-size:15px;
+    }
+
+    .course-card p{
+
+        font-size:12px;
+
+        line-height:1.9;
+    }
+
+    .course-tag{
+
+        font-size:10px;
+    }
+
+    .register-area{
+
+        margin-top:18px;
+    }
+
+    .register-btn{
+
+        width:100%;
+
+        min-height:48px;
+
+        font-size:14px;
+    }
+
+    footer{
+
+        font-size:.75rem;
+
+        line-height:1.8;
+    }
+}
+
+
+/* =========================================================
+   الهواتف الصغيرة جدًا
+========================================================= */
+
+@media(max-width:360px){
+
+    .page{
+
+        padding:
+            10px 7px 25px;
+    }
+
+    .section{
+
+        padding:10px;
+    }
+
+    .course-box{
+
+        padding:7px;
+    }
+
+    .course-image{
+
+        height:160px;
+    }
+
+    .course-card{
+
+        padding:9px;
+    }
+
+    .course-card h3{
+
+        font-size:14px;
+    }
+
+    .course-card p{
+
+        font-size:11px;
+    }
+
+    .register-btn{
+
+        font-size:13px;
+    }
+}
+
+
+/* =========================================================
+   تحسين الوصول ولوحة المفاتيح
+========================================================= */
+
+.register-btn:focus-visible,
+.theme-btn:focus-visible{
+
+    outline:
+        3px solid
+        rgba(22,119,200,.35);
+
+    outline-offset:3px;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="page">
+
+
+    <!-- =====================================================
+         الشريط العلوي
+    ====================================================== -->
+
+    <div class="topbar">
+
+        <div class="brand">
+
+            <h1>
+                أكاديمية آفاق المعرفة التقنية
+            </h1>
+
+            <p>
+                سلسلة أساسيات التقنية بإشراف
+                الكاتبة والمهندسة مها شهوب
+            </p>
+
+        </div>
+
+
+        <button
+            class="theme-btn"
+            type="button"
+            onclick="toggleTheme()"
+            aria-label="تبديل الوضع"
+            title="تبديل الوضع">
+
+            <i
+                class="fa-solid fa-moon"
+                id="themeIcon">
+            </i>
+
+        </button>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         كورس أساسيات الكمبيوتر
+    ====================================================== -->
+
+    <section
+        class="section"
+        id="computer-course">
+
+
+        <div class="section-head">
+
+            <div>
+
+                <h2>
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    كورس مدفوع:
+                    تعلم أساسيات الكمبيوتر
+
+                </h2>
+
+
+                <p>
+
+                    كورس متكامل لتعلم أساسيات الكمبيوتر،
+                    الشبكات، البرامج المكتبية والأمن الرقمي
+                    ضمن سلسلة أساسيات التقنية تحت إشراف
+                    الكاتبة والمهندسة مها شهوب.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="course-box">
+
+
+            <div class="course-cards">
+
+
+                <!-- 01 -->
+
+                <article class="course-card">
+
+                    <span class="course-number">
+                        01
+                    </span>
+
+
+                    <div class="course-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=600&q=80"
+                            alt="أساسيات مكونات الكمبيوتر">
+
+                    </div>
+
+
+                    <span class="course-tag">
+                        Hardware
+                    </span>
+
+
+                    <h3>
+                        أساسيات مكونات الكمبيوتر
+                    </h3>
+
+
+                    <p>
+                        التعرف على مكونات الحاسوب
+                        الداخلية والخارجية ووظيفة كل مكون.
+                    </p>
+
+                </article>
+
+
+
+                <!-- 02 -->
+
+                <article class="course-card">
+
+                    <span class="course-number">
+                        02
+                    </span>
+
+
+                    <div class="course-image">
+
+                        <img
+                            src="https://upload.wikimedia.org/wikipedia/commons/7/7f/Windows10abstract.png"
+                            alt="أساسيات Windows">
+
+                    </div>
+
+
+                    <span class="course-tag">
+                        Windows
+                    </span>
+
+
+                    <h3>
+                        أساسيات Windows
+                    </h3>
+
+
+                    <p>
+                        تعلم أساسيات نظام Windows
+                        وإدارة الملفات والبرامج.
+                    </p>
+
+                </article>
+
+
+
+                <!-- 03 -->
+
+                <article class="course-card">
+
+                    <span class="course-number">
+                        03
+                    </span>
+
+
+                    <div class="course-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1658203897415-3cad6cfad5c0?q=80&w=862&auto=format&fit=crop"
+                            alt="أساسيات Word">
+
+                    </div>
+
+
+                    <span class="course-tag">
+                        Microsoft Word
+                    </span>
+
+
+                    <h3>
+                        أساسيات Word
+                    </h3>
+
+
+                    <p>
+                        تعلم إنشاء وتنسيق المستندات
+                        والصفحات والجداول باستخدام Word.
+                    </p>
+
+                </article>
+
+
+
+                <!-- 04 -->
+
+                <article class="course-card">
+
+                    <span class="course-number">
+                        04
+                    </span>
+
+
+                    <div class="course-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1658203897339-0b8c64a42fba?q=80&w=862&auto=format&fit=crop"
+                            alt="أساسيات Excel">
+
+                    </div>
+
+
+                    <span class="course-tag">
+                        Microsoft Excel
+                    </span>
+
+
+                    <h3>
+                        أساسيات Excel
+                    </h3>
+
+
+                    <p>
+                        تعلم الجداول والعمليات الحسابية
+                        والدوال وتنظيم البيانات.
+                    </p>
+
+                </article>
+
+
+
+                <!-- 05 -->
+
+                <article class="course-card">
+
+                    <span class="course-number">
+                        05
+                    </span>
+
+
+                    <div class="course-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1733222764895-9bf3a19162fe?q=80&w=870&auto=format&fit=crop"
+                            alt="أساسيات PowerPoint">
+
+                    </div>
+
+
+                    <span class="course-tag">
+                        Microsoft PowerPoint
+                    </span>
+
+
+                    <h3>
+                        أساسيات PowerPoint
+                    </h3>
+
+
+                    <p>
+                        تعلم إنشاء العروض التقديمية
+                        وتصميم الشرائح الاحترافية.
+                    </p>
+
+                </article>
+
+
+
+                <!-- 06 -->
+
+                <article class="course-card">
+
+                    <span class="course-number">
+                        06
+                    </span>
+
+
+                    <div class="course-image">
+
+                        <img
+                            src="https://plus.unsplash.com/premium_photo-1768910328029-4222d58dcbc7?q=80&w=870&auto=format&fit=crop"
+                            alt="أساسيات Access">
+
+                    </div>
+
+
+                    <span class="course-tag">
+                        Microsoft Access
+                    </span>
+
+
+                    <h3>
+                        أساسيات Access
+                    </h3>
+
+
+                    <p>
+                        تعلم إنشاء قواعد البيانات
+                        والجداول والاستعلامات والنماذج والتقارير.
+                    </p>
+
+                </article>
+
+
+
+                <!-- 07 -->
+
+                <article class="course-card">
+
+                    <span class="course-number">
+                        07
+                    </span>
+
+
+                    <div class="course-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1648392368628-6e984d89e2f3?q=80&w=870&auto=format&fit=crop"
+                            alt="اختصارات الكمبيوتر">
+
+                    </div>
+
+
+                    <span class="course-tag">
+                        Computer Skills
+                    </span>
+
+
+                    <h3>
+                        أساسيات اختصارات الكمبيوتر
+                    </h3>
+
+
+                    <p>
+                        تعلم أهم اختصارات لوحة المفاتيح
+                        التي تساعد على السرعة.
+                    </p>
+
+                </article>
+
+
+
+                <!-- 08 -->
+
+                <article class="course-card">
+
+                    <span class="course-number">
+                        08
+                    </span>
+
+
+                    <div class="course-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1546124404-9e7e3cac2ec1?q=80&w=1031&auto=format&fit=crop"
+                            alt="أساسيات الإنترنت والشبكات">
+
+                    </div>
+
+
+                    <span class="course-tag">
+                        الشبكات
+                    </span>
+
+
+                    <h3>
+                        أساسيات الإنترنت والشبكات
+                    </h3>
+
+
+                    <p>
+                        تعلم مبادئ الاتصال،
+                        بروتوكولات الإنترنت،
+                        وكيفية عمل شبكات الحاسوب.
+                    </p>
+
+                </article>
+
+
+
+                <!-- 09 -->
+
+                <article class="course-card">
+
+                    <span class="course-number">
+                        09
+                    </span>
+
+
+                    <div class="course-image">
+
+                        <img
+                            src="https://plus.unsplash.com/premium_photo-1726769179669-dcca21be64ac?q=80&w=870&auto=format&fit=crop"
+                            alt="أعطال الكمبيوتر">
+
+                    </div>
+
+
+                    <span class="course-tag">
+                        أعطال الكمبيوتر وكيفية إصلاحها
+                    </span>
+
+
+                    <h3>
+                        أعطال الكمبيوتر
+                    </h3>
+
+
+                    <p>
+                        رحلة إصلاح الأجزاء التالفة
+                        من الكمبيوتر لتوفير الوقت والجهد.
+                    </p>
+
+                </article>
+
+
+
+                <!-- 10 -->
+
+                <article class="course-card">
+
+                    <span class="course-number">
+                        10
+                    </span>
+
+
+                    <div class="course-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1662638600476-d563fffbb072?q=80&w=870&auto=format&fit=crop"
+                            alt="أساسيات الأمن الرقمي">
+
+                    </div>
+
+
+                    <span class="course-tag">
+                        الأمن الرقمي
+                    </span>
+
+
+                    <h3>
+                        أساسيات الأمن الرقمي
+                    </h3>
+
+
+                    <p>
+                        الأمن الرقمي الشامل:
+                        دليل الوقاية من الاختراقات
+                        وإغلاق ثغرات الكمبيوتر.
+                    </p>
+
+                </article>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 زر التسجيل
+            ================================================== -->
+
+            <div class="register-area">
+
+                <a
+                    class="register-btn"
+                    href="registration.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="فتح صفحة التسجيل في كورس تعلم أساسيات الكمبيوتر">
+
+                    <i class="fa-solid fa-paper-plane"></i>
+
+                    اشترك الآن
+
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         الفوتر
+    ====================================================== -->
+
+    <footer>
+
+        جميع الحقوق محفوظة
+        للكاتبة والمهندسة مها شهوب
+        © 2026
+
+    </footer>
+
+
+</div>
+
+
+
+<script>
+
+/* =========================================================
+   الوضع الليلي
+========================================================= */
+
+function applyTheme(theme){
+
+    document.documentElement
+        .setAttribute('data-theme',theme);
+
+    const icon =
+        document.getElementById('themeIcon');
+
+    if(icon){
+
+        icon.className =
+            theme === 'dark'
+            ? 'fa-solid fa-sun'
+            : 'fa-solid fa-moon';
+    }
+
+    try{
+
+        localStorage.setItem(
+            'academy-theme',
+            theme
+        );
+
+    }catch(e){}
+
+}
+
+
+function toggleTheme(){
+
+    const current =
+        document.documentElement
+        .getAttribute('data-theme')
+        || 'light';
+
+    applyTheme(
+        current === 'dark'
+        ? 'light'
+        : 'dark'
+    );
+}
+
+
+/* =========================================================
+   استرجاع الوضع المحفوظ
+========================================================= */
+
+(function(){
+
+    let saved='light';
+
+    try{
+
+        saved =
+            localStorage.getItem(
+                'academy-theme'
+            )
+            || 'light';
+
+    }catch(e){}
+
+    applyTheme(
+        saved === 'dark'
+        ? 'dark'
+        : 'light'
+    );
+
+})();
+
+</script>
+
+
+</body>
+</html>

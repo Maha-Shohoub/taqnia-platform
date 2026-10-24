@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description"
+content="كورسات أكاديمية آفاق المعرفة التقنية في بناء المنظومات وقواعد البيانات بإشراف الكاتبة والمهندسة مها شهوب">
+
+<title>كورسات بناء المنظومات | أكاديمية آفاق المعرفة التقنية</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+/* =========================
+   المتغيرات
+========================= */
+
+:root{
+    --bg:#e9edf3;
+    --surface:#ffffff;
+    --surface2:#f4f7fb;
+    --text:#111820;
+    --muted:#5f6b78;
+
+    --primary:#1677c8;
+    --primary2:#0b4f88;
+
+    --border:#d7e0ea;
+
+    --shadow:
+        0 12px 30px rgba(33,60,44,.09);
+
+    --card-bg:#ffffff;
+    --card-border:#d7e0ea;
+    --card-title:#111820;
+    --card-muted:#5f6b78;
+
+    --card-shadow:
+        0 8px 22px rgba(22,119,200,.08);
+
+    --number-bg:#eef5fb;
+    --number-text:#0b4f88;
+    --number-border:#b9d4ea;
+
+    --image-bg:#f4f7fb;
+    --image-border:#d7e0ea;
+}
+
+
+/* =========================
+   الوضع الداكن
+========================= */
+
+[data-theme="dark"]{
+    --bg:#1a2332;
+    --surface:#243044;
+    --surface2:#2d3b54;
+
+    --text:#f0f4f8;
+    --muted:#9fb0c7;
+
+    --primary:#38a3f8;
+    --primary2:#1e88e5;
+
+    --border:#3a4c6a;
+
+    --shadow:
+        0 12px 30px rgba(0,0,0,.35);
+
+    --card-bg:#071827;
+    --card-border:#263e55;
+    --card-title:#ffffff;
+    --card-muted:#b8c7d6;
+
+    --card-shadow:
+        0 8px 22px rgba(0,0,0,.30);
+
+    --number-bg:#07111c;
+    --number-text:#ffffff;
+    --number-border:#456985;
+
+    --image-bg:#0d1117;
+    --image-border:#34495e;
+}
+
+
+/* =========================
+   الإعدادات العامة
+========================= */
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+
+    font-family:
+        Tahoma,
+        Arial,
+        sans-serif;
+
+    background:var(--bg);
+    color:var(--text);
+
+    transition:
+        background .25s,
+        color .25s;
+}
+
+a{
+    text-decoration:none;
+}
+
+button{
+    font:inherit;
+}
+
+
+/* =========================
+   الصفحة
+========================= */
+
+.page{
+    width:100%;
+    max-width:1200px;
+
+    margin:auto;
+
+    padding:
+        22px 20px 50px;
+}
+
+
+/* =========================
+   الشريط العلوي
+========================= */
+
+.topbar{
+    display:flex;
+
+    justify-content:space-between;
+    align-items:center;
+
+    gap:12px;
+
+    margin-bottom:18px;
+}
+
+.brand{
+    min-width:0;
+}
+
+.brand h1{
+    margin:0;
+
+    color:var(--primary);
+
+    font-size:1.15rem;
+}
+
+.brand p{
+    margin:5px 0 0;
+
+    color:var(--muted);
+
+    font-size:.85rem;
+
+    line-height:1.8;
+}
+
+
+/* =========================
+   زر الوضع
+========================= */
+
+.theme-btn{
+    flex:0 0 auto;
+
+    width:42px;
+    height:42px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:50%;
+
+    background:var(--surface);
+
+    color:var(--text);
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.theme-btn:hover{
+    background:var(--primary);
+    color:#fff;
+}
+
+
+/* =========================
+   القسم
+========================= */
+
+.section{
+    margin:20px 0;
+
+    padding:24px;
+
+    background:var(--surface);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:20px;
+
+    box-shadow:var(--shadow);
+}
+
+.section-head{
+    display:flex;
+
+    justify-content:space-between;
+    align-items:center;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:20px;
+}
+
+.section-head h2{
+    margin:0;
+
+    color:var(--primary2);
+
+    font-size:1.25rem;
+
+    line-height:1.7;
+}
+
+[data-theme="dark"] .section-head h2{
+    color:var(--primary);
+}
+
+.section-head p{
+    margin:6px 0 0;
+
+    color:var(--muted);
+
+    font-size:.88rem;
+
+    line-height:1.9;
+}
+
+
+/* =========================
+   صندوق الكورسات
+========================= */
+
+.course-box{
+    padding:18px;
+
+    background:var(--surface2);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:17px;
+}
+
+
+/* =========================
+   البطاقات
+========================= */
+
+.course-cards{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(5,minmax(0,1fr));
+
+    gap:16px;
+}
+
+
+/* =========================
+   البطاقة
+========================= */
+
+.course-card{
+
+    position:relative;
+
+    min-width:0;
+
+    min-height:320px;
+
+    padding:10px;
+
+    background:var(--card-bg);
+
+    border:
+        1px solid var(--card-border);
+
+    border-radius:14px;
+
+    text-align:center;
+
+    display:flex;
+
+    flex-direction:column;
+
+    overflow:hidden;
+
+    box-shadow:var(--card-shadow);
+
+    transition:
+        transform .2s,
+        box-shadow .2s,
+        border-color .2s;
+}
+
+.course-card:hover{
+
+    transform:
+        translateY(-4px);
+
+    border-color:
+        var(--primary);
+
+    box-shadow:
+        0 12px 28px
+        rgba(22,119,200,.17);
+}
+
+
+/* =========================
+   رقم البطاقة
+========================= */
+
+.course-number{
+
+    position:absolute;
+
+    top:9px;
+    left:9px;
+
+    width:29px;
+    height:29px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    background:var(--number-bg);
+
+    color:var(--number-text);
+
+    border:
+        1px solid var(--number-border);
+
+    border-radius:50%;
+
+    font-size:11px;
+
+    font-weight:bold;
+
+    z-index:2;
+}
+
+
+/* =========================
+   الصور
+========================= */
+
+.course-image{
+
+    width:100%;
+    height:130px;
+
+    overflow:hidden;
+
+    border-radius:10px;
+
+    background:var(--image-bg);
+
+    border:
+        1px solid var(--image-border);
+
+    margin-bottom:11px;
+}
+
+.course-image img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+    transition:
+        transform .3s;
+}
+
+.course-card:hover
+.course-image img{
+
+    transform:
+        scale(1.04);
+}
+
+
+/* =========================
+   التصنيف
+========================= */
+
+.course-tag{
+
+    align-self:center;
+
+    display:inline-block;
+
+    max-width:100%;
+
+    padding:
+        4px 10px;
+
+    border-radius:20px;
+
+    background:
+        rgba(22,119,200,.12);
+
+    color:var(--primary);
+
+    font-size:10px;
+
+    font-weight:bold;
+
+    margin-bottom:7px;
+}
+
+
+/* =========================
+   العنوان
+========================= */
+
+.course-card h3{
+
+    margin:
+        0 0 7px;
+
+    color:var(--card-title);
+
+    font-size:14px;
+
+    line-height:1.7;
+}
+
+
+/* =========================
+   الوصف
+========================= */
+
+.course-card p{
+
+    margin:0;
+
+    color:var(--card-muted);
+
+    font-size:11px;
+
+    line-height:1.8;
+
+    flex:1;
+}
+
+
+/* =========================
+   زر التسجيل
+========================= */
+
+.register-area{
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    margin-top:22px;
+}
+
+.register-btn{
+
+    width:320px;
+
+    max-width:100%;
+
+    min-height:47px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:9px;
+
+    padding:
+        10px 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1677c8,
+            #0b72d9
+        );
+
+    color:#ffffff;
+
+    border-radius:25px;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    box-shadow:
+        0 8px 20px
+        rgba(22,119,200,.25);
+
+    transition:.2s;
+}
+
+.register-btn:hover{
+
+    transform:
+        translateY(-2px);
+
+    background:
+        linear-gradient(
+            135deg,
+            #0b4f88,
+            #1677c8
+        );
+
+    color:#ffffff;
+}
+
+.register-btn:active{
+
+    transform:
+        translateY(0);
+}
+
+
+/* =========================
+   الفوتر
+========================= */
+
+footer{
+
+    text-align:center;
+
+    color:var(--muted);
+
+    font-size:.82rem;
+
+    line-height:1.8;
+
+    padding:
+        15px 10px;
+}
+
+
+/* =========================
+   اللابتوب
+========================= */
+
+@media(max-width:1100px){
+
+    .course-cards{
+
+        grid-template-columns:
+            repeat(4,minmax(0,1fr));
+    }
+}
+
+
+/* =========================
+   التابلت
+========================= */
+
+@media(max-width:900px){
+
+    .page{
+
+        padding:
+            18px 15px 40px;
+    }
+
+    .section{
+
+        padding:20px;
+    }
+
+    .course-cards{
+
+        grid-template-columns:
+            repeat(3,minmax(0,1fr));
+
+        gap:14px;
+    }
+
+    .course-card{
+
+        min-height:310px;
+    }
+}
+
+
+/* =========================
+   التابلت الصغير
+========================= */
+
+@media(max-width:700px){
+
+    .brand h1{
+        font-size:1.05rem;
+    }
+
+    .brand p{
+        font-size:.8rem;
+    }
+
+    .section{
+        padding:16px;
+    }
+
+    .section-head h2{
+        font-size:1.1rem;
+    }
+
+    .section-head p{
+        font-size:.82rem;
+    }
+
+    .course-box{
+        padding:12px;
+    }
+
+    .course-cards{
+
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+
+        gap:12px;
+    }
+
+    .course-card{
+        min-height:300px;
+    }
+
+    .course-image{
+        height:125px;
+    }
+
+    .register-btn{
+        width:100%;
+    }
+}
+
+
+/* =========================
+   الهاتف
+========================= */
+
+@media(max-width:500px){
+
+    .page{
+
+        padding:
+            12px 9px 30px;
+    }
+
+    .topbar{
+        align-items:flex-start;
+    }
+
+    .brand h1{
+        font-size:.95rem;
+    }
+
+    .brand p{
+        font-size:.75rem;
+    }
+
+    .theme-btn{
+        width:38px;
+        height:38px;
+    }
+
+    .section{
+
+        margin:12px 0;
+
+        padding:13px;
+
+        border-radius:14px;
+    }
+
+    .section-head h2{
+        font-size:1rem;
+    }
+
+    .section-head p{
+        font-size:.78rem;
+    }
+
+    .course-box{
+        padding:9px;
+    }
+
+    .course-cards{
+
+        grid-template-columns:1fr;
+
+        gap:12px;
+    }
+
+    .course-card{
+
+        min-height:0;
+
+        padding:12px;
+    }
+
+    .course-image{
+
+        height:190px;
+    }
+
+    .course-card h3{
+
+        font-size:15px;
+    }
+
+    .course-card p{
+
+        font-size:12px;
+
+        line-height:1.9;
+    }
+
+    .register-area{
+
+        margin-top:18px;
+    }
+
+    .register-btn{
+
+        width:100%;
+
+        min-height:48px;
+
+        font-size:14px;
+    }
+}
+
+
+/* =========================
+   الهواتف الصغيرة
+========================= */
+
+@media(max-width:360px){
+
+    .page{
+        padding:
+            10px 7px 25px;
+    }
+
+    .section{
+        padding:10px;
+    }
+
+    .course-box{
+        padding:7px;
+    }
+
+    .course-image{
+        height:160px;
+    }
+
+    .course-card{
+        padding:9px;
+    }
+
+    .course-card h3{
+        font-size:14px;
+    }
+
+    .course-card p{
+        font-size:11px;
+    }
+
+    .register-btn{
+        font-size:13px;
+    }
+}
+
+
+/* =========================
+   تحسين لوحة المفاتيح
+========================= */
+
+.register-btn:focus-visible,
+.theme-btn:focus-visible{
+
+    outline:
+        3px solid
+        rgba(22,119,200,.35);
+
+    outline-offset:3px;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="page">
+
+
+<!-- =====================================================
+     الشريط العلوي
+===================================================== -->
+
+<div class="topbar">
+
+    <div class="brand">
+
+        <h1>
+            أكاديمية آفاق المعرفة التقنية
+        </h1>
+
+        <p>
+            سلسلة أساسيات التقنية بإشراف
+            الكاتبة والمهندسة مها شهوب
+        </p>
+
+    </div>
+
+
+    <button
+        class="theme-btn"
+        type="button"
+        onclick="toggleTheme()"
+        aria-label="تبديل الوضع"
+        title="تبديل الوضع">
+
+        <i
+            class="fa-solid fa-moon"
+            id="themeIcon">
+        </i>
+
+    </button>
+
+</div>
+
+
+
+<!-- =====================================================
+     كورسات بناء المنظومات
+===================================================== -->
+
+<section
+    class="section"
+    id="systems-paths">
+
+
+    <div class="section-head">
+
+        <div>
+
+            <h2>
+
+                <i class="fa-solid fa-lock"></i>
+
+                كورس مدفوع:
+                تعلم أساسيات بناء المنظومات
+
+            </h2>
+
+
+            <p>
+
+                كورس تعلم المنظومات وقواعد البيانات الضخمة
+                وكيفية التعامل مع مستودعات البيانات ضمن
+                سلسلة أساسيات التقنية تحت إشراف الكاتبة
+                والمهندسة مها شهوب.
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="course-box">
+
+
+        <div class="course-cards">
+
+
+            <!-- 01 -->
+
+            <article class="course-card">
+
+                <span class="course-number">
+                    01
+                </span>
+
+
+                <div class="course-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1559028012-481c04fa702d?q=80&w=736&auto=format&fit=crop"
+                        alt="منظومات Web">
+
+                </div>
+
+
+                <span class="course-tag">
+                    تطوير الويب
+                </span>
+
+
+                <h3>
+                    منظومات Web
+                </h3>
+
+
+                <p>
+                    تعلم وتصميم منظومات وتطبيقات
+                    الويب التفاعلية الحديثة.
+                </p>
+
+            </article>
+
+
+
+            <!-- 02 -->
+
+            <article class="course-card">
+
+                <span class="course-number">
+                    02
+                </span>
+
+
+                <div class="course-image">
+
+                    <img
+                        src="https://plus.unsplash.com/premium_photo-1733342561505-306871f4e706?q=80&w=870&auto=format&fit=crop"
+                        alt="منظومات C#">
+
+                </div>
+
+
+                <span class="course-tag">
+                    لغة #C
+                </span>
+
+
+                <h3>
+                    منظومات #C
+                </h3>
+
+
+                <p>
+                    بناء البرمجيات والمنظومات
+                    باستخدام لغة #C.
+                </p>
+
+            </article>
+
+
+
+            <!-- 03 -->
+
+            <article class="course-card">
+
+                <span class="course-number">
+                    03
+                </span>
+
+
+                <div class="course-image">
+
+                    <img
+                        src="https://media.istockphoto.com/id/1484786238/photo/cyber-security-data-protection-business-working-on-compute-intelligenc-digital-tablet-global.jpg?s=2048x2048&w=is&k=20&c=CV6ZnLQtbrpJ-5pi39OK0fNHL3Z8VwiU7NOXc_bxQXg="
+                        alt="منظومات Access">
+
+                </div>
+
+
+                <span class="course-tag">
+                    قواعد البيانات
+                </span>
+
+
+                <h3>
+                    منظومات Access
+                </h3>
+
+
+                <p>
+                    تصميم وإدارة القواعد والمنظومات
+                    الإدارية باستخدام Microsoft Access.
+                </p>
+
+            </article>
+
+
+
+            <!-- 04 -->
+
+            <article class="course-card">
+
+                <span class="course-number">
+                    04
+                </span>
+
+
+                <div class="course-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=600&q=80"
+                        alt="منظومات VB.NET">
+
+                </div>
+
+
+                <span class="course-tag">
+                    لغة VB.NET
+                </span>
+
+
+                <h3>
+                    منظومات VB.NET
+                </h3>
+
+
+                <p>
+                    تطوير المنظومات المكتبية
+                    وتطبيقات سطح المكتب بلغة VB.NET.
+                </p>
+
+            </article>
+
+
+
+            <!-- 05 -->
+
+            <article class="course-card">
+
+                <span class="course-number">
+                    05
+                </span>
+
+
+                <div class="course-image">
+
+                    <img
+                        src="https://plus.unsplash.com/premium_photo-1671461774955-7aab3ab41b90?q=80&w=871&auto=format&fit=crop"
+                        alt="منظومات Excel">
+
+                </div>
+
+
+                <span class="course-tag">
+                    جداول البيانات
+                </span>
+
+
+                <h3>
+                    منظومات Excel
+                </h3>
+
+
+                <p>
+                    تصميم وتطوير النماذج والمنظومات
+                    الإدارية المتقدمة باستخدام Excel.
+                </p>
+
+            </article>
+
+
+
+            <!-- 06 -->
+
+            <article class="course-card">
+
+                <span class="course-number">
+                    06
+                </span>
+
+
+                <div class="course-image">
+
+                    <img
+                        src="https://media.istockphoto.com/id/1200717412/photo/database-structure-flow-chart-of-a-control-panel-of-web-site.jpg?s=2048x2048&w=is&k=20&c=ibUZq3EHgQVk-Qx0j4ssJh8kR_PIBs7TG0HvAGpIzD8="
+                        alt="Database Management System">
+
+                </div>
+
+
+                <span class="course-tag">
+                    إدارة قواعد البيانات
+                </span>
+
+
+                <h3>
+                    Database Management System
+                </h3>
+
+
+                <p>
+                    فهم وتصميم هياكل وأنظمة إدارة
+                    قواعد البيانات بكفاءة عالية.
+                </p>
+
+            </article>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             زر الاشتراك
+        ================================================== -->
+
+        <div class="register-area">
+
+            <a
+                href="registration.html"
+                class="register-btn"
+                target="_blank"
+                rel="noopener noreferrer">
+
+                <i class="fa-solid fa-paper-plane"></i>
+
+                اشترك الآن
+
+            </a>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<footer>
+
+    جميع الحقوق محفوظة للكاتبة والمهندسة
+    مها شهوب © 2026
+
+</footer>
+
+
+</div>
+
+
+
+<script>
+
+/* =========================================================
+   نظام الوضع الليلي
+========================================================= */
+
+function applyTheme(theme){
+
+    document.documentElement
+        .setAttribute(
+            'data-theme',
+            theme
+        );
+
+    const icon =
+        document.getElementById(
+            'themeIcon'
+        );
+
+    if(icon){
+
+        icon.className =
+            theme === 'dark'
+            ? 'fa-solid fa-sun'
+            : 'fa-solid fa-moon';
+    }
+
+    try{
+
+        localStorage.setItem(
+            'academy-theme',
+            theme
+        );
+
+    }catch(e){}
+
+}
+
+
+function toggleTheme(){
+
+    const current =
+        document.documentElement
+        .getAttribute('data-theme')
+        || 'light';
+
+    applyTheme(
+        current === 'dark'
+        ? 'light'
+        : 'dark'
+    );
+}
+
+
+/* =========================================================
+   حفظ الوضع المختار
+========================================================= */
+
+(function(){
+
+    let saved = 'light';
+
+    try{
+
+        saved =
+            localStorage.getItem(
+                'academy-theme'
+            )
+            || 'light';
+
+    }catch(e){}
+
+    applyTheme(
+        saved === 'dark'
+        ? 'dark'
+        : 'light'
+    );
+
+})();
+
+</script>
+
+
+</body>
+</html>
