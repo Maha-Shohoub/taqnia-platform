@@ -920,6 +920,69 @@ footer {
 
 
 
+
+
+
+ 
+
+#systems-paths .cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    align-items: stretch;
+}
+
+#systems-paths .card {
+    width: 100%;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+#systems-paths .card-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+#systems-paths .card-action {
+    margin-top: auto;
+    padding-top: 15px;
+}
+
+#systems-paths .card-register-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 12px;
+    background: #1677c8;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 9px;
+    font-weight: bold;
+    transition: 0.25s;
+}
+
+#systems-paths .card-register-btn:hover {
+    background: #0b4f88;
+}
+
+/* الأجهزة اللوحية */
+@media (max-width: 900px) {
+    #systems-paths .cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* الهواتف */
+@media (max-width: 600px) {
+    #systems-paths .cards {
+        grid-template-columns: 1fr;
+    }
+}
+
 </style>
  
 </head>
