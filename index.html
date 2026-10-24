@@ -3,192 +3,57 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="description" content="آفاق المعرفة التقنية - أكاديمية تعليمية رقمية للمهندسة مها شهوب">
- <meta name="google-site-verification" content="blxO6EwmMTk1pE" />  <!-- وسوم   ملكية الموقع  -->
+<meta name="description" content="آفاق المعرفة التقنية - منصة تعليمية رقمية للمهندسة مها شهوب">
 <link rel="icon" type="image/png" href="IMG/آفاق المعرفة التقنية.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
- <link rel="sitemap" type="application/xml" title="Sitemap" href="/taqnia-platform/sitemap.xml">
-<title> أكاديمية آفاق المعرفة التقنية </title>
- <!-- وسوم السيو الإضافية الأساسية -->
-    <meta name="keywords" content=" أكاديمية آفاق المعرفة التقنية , المهندسة مها شهوب, كتب تقنية, برمجة, قواعد بيانات, أساسيات التقنية, كورسات مجانية ومدفوعة ">
+<title>آفاق المعرفة التقنية</title>
+<!-- وسوم السيو الإضافية الأساسية -->
+    <meta name="keywords" content="آفاق المعرفة التقنية, المهندسة مها شهوب, كتب تقنية, برمجة, قواعد بيانات, أساسيات التقنية, كورسات مجانية ومدفوعة ">
     <meta name="author" content="المهندسة مها شهوب">
     <meta name="robots" content="index, follow">
     <!-- وسوم المشاركة على منصات التواصل الاجتماعي (Open Graph لـ Facebook و LinkedIn) -->
-    <meta property="og:title" content=" أكاديمية آفاق المعرفة التقنية  ">
-    <meta property="og:description" content="أكاديمية تعليمية رقمية متكاملة لتعلم البرمجة وتقنيات الحاسوب بإشراف المهندسة مها شهوب.">
+    <meta property="og:title" content="آفاق المعرفة التقنية">
+    <meta property="og:description" content="منصة تعليمية رقمية متكاملة لتعلم البرمجة وتقنيات الحاسوب بإشراف المهندسة مها شهوب.">
     <meta property="og:image" content="IMG/آفاق المعرفة التقنية.png">
     <meta property="og:type" content="website">
     <!-- وسم توافق المظهر مع الهواتف والأجهزة الذكية -->
     <meta name="theme-color" content="#0d1b2a">
-
 <style>
-/* ================= إعدادات الجذر والمتغيرات ================= */
-:root {
-  --bg: #e9edf3;
-  --surface: #ffffff;
-  --surface2: #f4f7fb;
-  --text: #111820;
-  --muted: #5f6b78;
-  --primary: #1677c8;
-  --primary2: #0b4f88;
-  --purple: #4d8fc9;
-  --border: #d7e0ea;
-  --shadow: 0 10px 25px rgba(33, 60, 44, 0.08);
+:root{
+--bg:#e9edf3;--surface:#ffffff;--surface2:#f4f7fb;--text:#111820;--muted:#5f6b78;
+--primary:#1677c8;--primary2:#0b4f88;--purple:#4d8fc9;--border:#d7e0ea;
+--shadow:0 12px 30px rgba(33,60,44,.09)
 }
-
-[data-theme="dark"] {
-  --bg: #1a2332;
-  --surface: #243044;
-  --surface2: #2d3b54;
-  --text: #f0f4f8;
-  --muted: #9fb0c7;
-  --primary: #38a3f8;
-  --primary2: #1e88e5;
-  --purple: #7cb3f0;
-  --border: #3a4c6a;
-  --shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+/* الوضع المظلم الناعم وغير القاتم */
+[data-theme=dark]{
+--bg:#1a2332;--surface:#243044;--surface2:#2d3b54;--text:#f0f4f8;--muted:#9fb0c7;
+--primary:#38a3f8;--primary2:#1e88e5;--purple:#7cb3f0;--border:#3a4c6a;--shadow:0 12px 30px rgba(0,0,0,.35)
 }
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:Tahoma,Arial,sans-serif;background:var(--bg);color:var(--text)}
+a{text-decoration:none;color:inherit}button,input{font:inherit}
 
-/* ================= إعدادات عامة ================= */
-* {
-  box-sizing: border-box;
-}
+/* ترويسة */
+header{position:sticky;top:0;z-index:100;background:var(--surface);border-bottom:2px solid var(--primary);box-shadow:0 4px 20px rgba(0,0,0,.05)}
+.nav{max-width:1200px;margin:auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:15px}
 
-html {
-  scroll-behavior: smooth;
-  font-size: 16px;
-}
+/* شعار بخلفية شفافة بدون إطار */
+.logo{width:67px;height:60px;object-fit:contain;background:transparent;border:none;padding:0;box-shadow:none}
 
-body {
-  margin: 0;
-  font-family: Tahoma, Arial, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  overflow-x: hidden;
-}
+.brand h1{font-size:1.1rem;margin:0;color:var(--primary)}.brand small{color:var(--muted);font-size:.75rem}
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
+/* تنسيق أزرار التحكم العلوي */
+.nav-actions{display:flex;align-items:center;gap:10px;position:relative}
+.icon-btn{width:40px;height:40px;border:1px solid var(--border);border-radius:50%;background:var(--surface2);color:var(--text);cursor:pointer;display:grid;place-items:center;transition:.2s}
+.icon-btn:hover{background:var(--primary);color:#fff}
 
-button, input {
-  font: inherit;
-}
+/* تصميم الدائرتين الجديدتين للصورة */
+.circle-img-btn{width:40px;height:40px;border:1px solid var(--border);border-radius:50%;background:var(--surface2);overflow:hidden;display:grid;place-items:center;padding:0;cursor:pointer;transition:.2s}
+.circle-img-btn:hover{border-color:var(--primary);box-shadow:0 0 10px rgba(22,119,200,.3)}
+.circle-img-btn img{width:100%;height:100%;object-fit:cover}
 
-/* ================= الترويسة وشريط التنقل ================= */
-header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: var(--surface);
-  border-bottom: 2px solid var(--primary);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, .05);
-}
-
-.nav {
-  max-width: 1200px;
-  margin: auto;
-  padding: 10px 16px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-}
-
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-direction: row;
-  min-width: 0;
-  flex: 1;
-}
-
-.logo {
-  width: clamp(50px, 12vw, 67px);
-  height: clamp(45px, 10vw, 60px);
-  object-fit: contain;
-  background: transparent;
-  border: none;
-  padding: 0;
-  box-shadow: none;
-  flex-shrink: 0;
-}
-
-.mah {
-  font-size: clamp(0.95rem, 2.5vw, 1.1rem);
-  margin: 0;
-  color: var(--primary);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  text-align: right;
-  margin-right: 0;
-  padding-left: 0;
-}
-
-.op, .brand small {
-  color: var(--muted);
-  font-size: clamp(0.65rem, 2vw, 0.75rem);
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-}
-
-/* ================= أزرار التحكم العلوي ================= */
-.nav-actions {
- display: flex !important;
-  align-items: center !important;
-  justify-content: flex-start !important;
-  gap: 6px !important;
-  position: relative;
-  flex-shrink: 0;
-  flex-wrap: nowrap !important;
-}
-
-#Cy {
-  width: 100% !important;
-  display: flex !important;
-  justify-content: center !important;
-}
-
-.icon-btn, .circle-img-btn {
-  width: 38px;
-  height: 38px;
-  border: 1px solid var(--border);
-  border-radius: 50%;
-  background: var(--surface2);
-  color: var(--text);
-  cursor: pointer;
-  display: grid;
-  place-items: center;
-  transition: .2s ease;
-  flex-shrink: 0;
-}
-
-.icon-btn:hover {
-  background: var(--primary);
-  color: #fff;
-}
-
-.circle-img-btn {
-  overflow: hidden;
-  padding: 0;
-}
-
-.circle-img-btn:hover {
-  border-color: var(--primary);
-  box-shadow: 0 0 10px rgba(22, 119, 200, .3);
-}
-
-.circle-img-btn img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* ================= تنسيق التلميحات (Tooltip) ================= */
+/* تصميم الشريط الأسود المعتاد (Tooltip) */
 .tooltip-box {
   position: absolute;
   top: 52%;
@@ -208,6 +73,7 @@ header {
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
+/* سهم صغير يخرج من الشريط الأسود للأعلى باتجاه الزر */
 .tooltip-box::after {
   content: "";
   position: absolute;
@@ -219,718 +85,297 @@ header {
   border-color: transparent transparent #111820 transparent;
 }
 
+/* إظهار الشريط عند تمرير الماوس على الحاوية الأب */
 .tooltip-parent:hover .tooltip-box {
   opacity: 1;
   visibility: visible;
   transform: translateX(50%) translateY(2px);
 }
 
-/* ================= قسم البطل (Hero) ================= */
-.hero {
-  max-width: 1200px;
-  margin: 25px auto 0;
-  padding: 0 20px;
+/* قسم البطل (Hero) */
+.hero{max-width:1200px;margin:25px auto 0;padding:0 20px}
+.hero-box{display:grid;grid-template-columns:1fr 320px;align-items:center;gap:30px;padding:40px;border-radius:24px;background:linear-gradient(135deg,#07111c,#0e2b45 58%,#1677c8);color:#fff;box-shadow:var(--shadow)}
+.hero h2{font-size:2.4rem;margin:0 0 10px;line-height:1.2}.hero p{line-height:1.8;margin:0;color:#eef6ff;font-size:.95rem}
+.badge{display:inline-block;padding:5px 12px;background:#ffffff20;border:1px solid #ffffff30;border-radius:8px;margin-bottom:12px;font-size:.85rem}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.btn{padding:10px 18px;border-radius:10px;font-weight:bold;display:inline-flex;align-items:center;gap:8px;font-size:.9rem;transition:.2s}
+.btn-light{background:#fff;color:#0b4f88}.btn-light:hover{background:#f0f0f0}
+.btn-ghost{border:1px solid #ffffff50;color:#fff}.btn-ghost:hover{background:#ffffff10}
+.hero-logo{display:flex;justify-content:center}.hero-logo img{width:100%;max-width:220px;background:#fff;padding:12px;border-radius:20px;box-shadow:0 10px 25px #0003}
+
+main{max-width:1200px;margin:auto;padding:20px 20px 50px}
+
+/* الإحصائيات */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-bottom:25px}
+.stat{background:var(--surface);border-right:4px solid var(--primary);border-top:1px solid var(--border);border-left:1px solid var(--border);border-bottom:1px solid var(--border);border-radius:12px;padding:15px;box-shadow:var(--shadow)}
+.stat strong{display:block;color:var(--primary);font-size:1.3rem}
+.stat span{font-size:.8rem;color:var(--muted)}
+
+/* الأقسام العامة */
+.section{margin-top:25px;padding:25px;background:var(--surface);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow)}
+.section-head{display:flex;justify-content:space-between;gap:15px;align-items:center;margin-bottom:20px;flex-wrap:wrap}
+.section-head h3{margin:0;font-size:1.3rem;color:var(--primary2)}
+[data-theme=dark] .section-head h3{color:var(--primary)}
+.section-head p{margin:4px 0 0;color:var(--muted);font-size:.85rem}
+
+/* شريط البحث */
+.search{position:relative;width:280px}
+.search input{width:100%;padding:10px 35px 10px 12px;border:1px solid var(--border);border-radius:10px;background:var(--surface2);color:var(--text);font-size:.9rem}
+.search i{position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--muted)}
+
+/* البطاقات */
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.card{display:flex;gap:15px;align-items:center;position:relative;padding:16px;background:var(--surface2);border:1px solid var(--border);border-radius:16px;transition:.2s}
+.card:hover{transform:translateY(-3px);border-color:var(--primary);box-shadow:0 8px 25px rgba(22,119,200,.15)}
+.num{position:absolute;left:12px;top:12px;font-size:.7rem;font-weight:bold;color:var(--muted);background:var(--surface);padding:2px 6px;border-radius:6px;border:1px solid var(--border)}
+.imgbox{width:90px;height:90px;flex-shrink:0;background:var(--surface);border-radius:12px;display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px solid var(--border)}
+.imgbox img{width:100%;height:100%;object-fit:contain;padding:6px}
+.card-content{flex:1;display:flex;flex-direction:column}
+.tag{align-self:flex-start;font-size:.68rem;color:var(--primary);background:color-mix(in srgb,var(--primary) 12%,transparent);padding:3px 8px;border-radius:6px;margin-bottom:6px;font-weight:bold}
+.card h4{margin:0 0 4px;font-size:.95rem;line-height:1.4}
+.card p{margin:0 0 10px;color:var(--muted);font-size:.8rem;line-height:1.5}
+.card-btn{display:inline-flex;justify-content:center;align-items:center;gap:6px;padding:6px 12px;background:var(--primary);color:#fff;border-radius:8px;font-weight:bold;font-size:.78rem;align-self:flex-start}
+.card-btn:hover{background:var(--primary2)}
+.btn-logo{width:16px;height:16px;object-fit:contain;background:#fff;border-radius:3px;padding:1px}
+
+/* قسم مدونة الكتب المقسمة */
+.blog-tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;}
+.blog-tab-btn{padding:6px 14px;border-radius:8px;border:1px solid var(--border);background:var(--surface2);color:var(--muted);cursor:pointer;font-size:0.85rem;font-weight:bold;transition:.2s;}
+.blog-tab-btn.active,.blog-tab-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary);}
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.blog-card{background:var(--surface2);border:1px solid var(--border);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;transition:.2s;}
+.blog-card:hover{transform:translateY(-3px);border-color:var(--primary);box-shadow:0 8px 25px rgba(22,119,200,.15)}
+.blog-imgbox{width:100%;height:140px;background:var(--surface);display:flex;align-items:center;justify-content:center;overflow:hidden;border-bottom:1px solid var(--border);}
+.blog-imgbox img{width:100%;height:100%;object-fit:cover;}
+.blog-content{padding:16px;display:flex;flex-direction:column;flex:1;}
+.blog-tag{align-self:flex-start;font-size:.68rem;color:var(--primary);background:color-mix(in srgb,var(--primary) 12%,transparent);padding:3px 8px;border-radius:6px;margin-bottom:6px;font-weight:bold}
+.blog-card h4{margin:0 0 6px;font-size:.95rem;color:var(--text);line-height:1.4}
+.blog-card p{margin:0 0 14px;color:var(--muted);font-size:.8rem;line-height:1.5;flex:1;}
+.blog-btn{align-self:flex-start;font-size:.78rem;color:#fff;background:var(--primary);padding:6px 12px;border-radius:8px;font-weight:bold;display:inline-flex;align-items:center;gap:6px;}
+.blog-btn:hover{background:var(--primary2);}
+
+/* قسم عن المنصة */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.about-box{background:var(--surface2);border:1px solid var(--border);padding:20px;border-radius:14px}
+.about-box h4{margin:0 0 8px;color:var(--primary);display:flex;align-items:center;gap:8px}
+.about-box p{margin:0;color:var(--muted);line-height:1.7;font-size:.9rem}
+
+.empty{display:none;grid-column:1/-1;text-align:center;color:var(--muted);padding:30px}
+
+/* تذييل الصفحة */
+footer{border-top:1px solid var(--border);background:var(--surface);padding:20px;color:var(--muted);margin-top:30px}
+.footer{max-width:1200px;margin:auto;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:.85rem}
+
+@media(max-width:900px){.hero-box{grid-template-columns:1fr}.hero-logo{display:none}.cards,.blog-grid{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.about{grid-template-columns:1fr}}
+@media(max-width:600px){.brand small{display:none}.section-head{flex-direction:column;align-items:stretch}.search{width:100%}}
+
+
+        /* شبكة البطاقات داخل الصندوق */
+        .cards-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
+            gap: 20px; 
+        }
+
+        .w3-card { 
+            padding: 25px 20px; 
+            border-radius: 8px; 
+            text-align: center; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05); 
+            transition: 0.2s; 
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+        
+        .w3-card:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12); 
+        }
+        
+        .w3-card h2 { 
+            font-size: 1.6rem; 
+            margin-bottom: 8px; 
+            font-weight: 900; 
+            color: #111;
+        }
+        
+        .w3-card p { 
+            font-size: 0.9rem; 
+            color: #444; 
+            margin-bottom: 15px; 
+            min-height: 40px; 
+        }
+        
+        .w3-card-btn { 
+            background-color: #282A35; 
+            color: rgb(232, 224, 224); 
+            border: none; 
+            padding: 8px 18px; 
+            border-radius: 4px; 
+            font-weight: 60; 
+            text-decoration: none; 
+            display: inline-block; 
+            transition: 0.2s; 
+        }
+        
+        .w3-card-btn:hover { 
+            background-color: #12639d; 
+        }
+
+        #we {
+    display: block;
+    text-align: center;
+    width: 100%;
+    margin: 0px auto; /* مسافة علوية سفلية وتوسيط أفقي تلقائي */
+              }
+
+
+/* جعل صف العنوان والأيقونة في منتصف الكارت مع بقائهما جنباً إلى جنب */
+.card-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* وضع العناصر في المنتصف أفقياً */
+    gap: 15px; /* المسافة بين اللوجو والعنوان */
+    margin-bottom: 10px;
+    text-align: center;
 }
 
-.hero-box {
-  display: grid;
-  grid-template-columns: 1fr 320px;
-  align-items: center;
-  gap: 30px;
-  padding: 40px;
-  border-radius: 24px;
-  background: linear-gradient(135deg,#07111c,#0e2b45 58%,#1677c8);
-  color: #fff;
-  box-shadow: var(--shadow);
+/* تكبير اللوجو وجعله واضحاً جداً */
+.big-icon {
+    font-size: 2.8rem !important; /* حجم كبير وواضح */
+    line-height: 1;
+    flex-shrink: 0;
 }
 
-.hero h2 {
-  font-size: 2.4rem;
-  margin: 0 0 10px;
-  line-height: 1.2;
+/* تنسيق العنوان */
+.card-title-row h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+    color: #1e293b;
 }
 
-.hero p {
-  line-height: 1.8;
-  margin: 0;
-  color: #eef6ff;
-  font-size: .95rem;
-}
-
-.badge {
-  display: inline-block;
-  padding: 5px 12px;
-  background: #ffffff20;
-  border: 1px solid #ffffff30;
-  border-radius: 8px;
-  margin-bottom: 12px;
-  font-size: .85rem;
-}
-
-.hero-actions {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-top: 20px;
-}
-
-.btn {
-  padding: 10px 18px;
-  border-radius: 10px;
-  font-weight: bold;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: .9rem;
-  transition: .2s;
-}
-
-.btn-light {
-  background: #fff;
-  color: #0b4f88;
-}
-
-.btn-light:hover {
-  background: #f0f0f0;
-}
-
-.btn-ghost {
-  border: 1px solid #ffffff50;
-  color: #fff;
-}
-
-.btn-ghost:hover {
-  background: #ffffff10;
-}
-
-.hero-logo {
-  display: flex;
-  justify-content: center;
-}
-
-.hero-logo img {
-  width: 100%;
-  max-width: 220px;
-  background: #fff;
-  padding: 12px;
-  border-radius: 20px;
-  box-shadow: 0 10px 25px #0003;
-}
-
-main {
-  max-width: 1200px;
-  margin: auto;
-  padding: 20px 20px 50px;
-}
-
-/* ================= الإحصائيات والأقسام ================= */
-.stats {
-  display: grid;
-  grid-template-columns: repeat(4,1fr);
-  gap: 15px;
-  margin-bottom: 25px;
-}
-
-.stat {
-  background: var(--surface);
-  border-right: 4px solid var(--primary);
-  border-top: 1px solid var(--border);
-  border-left: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 15px;
-  box-shadow: var(--shadow);
-}
-
-.stat strong {
-  display: block;
-  color: var(--primary);
-  font-size: 1.3rem;
-}
-
-.stat span {
-  font-size: .8rem;
-  color: var(--muted);
-}
-
-.section {
-  margin-top: 25px;
-  padding: 25px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  box-shadow: var(--shadow);
-}
-
-.section-head {
-  display: flex;
-  justify-content: space-between;
-  gap: 15px;
-  align-items: center;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
-}
-
-.section-head h3 {
-  margin: 0;
-  font-size: 1.3rem;
-  color: var(--primary2);
-}
-
-[data-theme=dark] .section-head h3 {
-  color: var(--primary);
-}
-
-.section-head p {
-  margin: 4px 0 0;
-  color: var(--muted);
-  font-size: .85rem;
-}
-
-/* ================= البحث والبطاقات ================= */
-.search {
-  position: relative;
-  width: 280px;
-}
-
-.search input {
-  width: 100%;
-  padding: 10px 35px 10px 12px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  background: var(--surface2);
-  color: var(--text);
-  font-size: .9rem;
-}
-
-.search i {
-  position: absolute;
-  right: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--muted);
-}
-
-.cards {
-  display: grid;
-  grid-template-columns: repeat(2,1fr);
-  gap: 20px;
-}
-
-.card {
-  display: flex;
-  gap: 15px;
-  align-items: center;
-  position: relative;
-  padding: 16px;
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  transition: .2s;
-}
-
-.card:hover {
-  transform: translateY(-3px);
-  border-color: var(--primary);
-  box-shadow: 0 8px 25px rgba(22,119,200,.15);
-}
-
-.num {
-  position: absolute;
-  left: 12px;
-  top: 12px;
-  font-size: .7rem;
-  font-weight: bold;
-  color: var(--muted);
-  background: var(--surface);
-  padding: 2px 6px;
-  border-radius: 6px;
-  border: 1px solid var(--border);
-}
-
-.imgbox {
-  width: 90px;
-  height: 90px;
-  flex-shrink: 0;
-  background: var(--surface);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  border: 1px solid var(--border);
-}
-
-.imgbox img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  padding: 6px;
-}
-
-.card-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.tag {
-  align-self: flex-start;
-  font-size: .68rem;
-  color: var(--primary);
-  background: color-mix(in srgb,var(--primary) 12%,transparent);
-  padding: 3px 8px;
-  border-radius: 6px;
-  margin-bottom: 6px;
-  font-weight: bold;
-}
-
-.card h4 {
-  margin: 0 0 4px;
-  font-size: .95rem;
-  line-height: 1.4;
-}
-
-.card p {
-  margin: 0 0 10px;
-  color: var(--muted);
-  font-size: .8rem;
-  line-height: 1.5;
-}
-
-.card-btn {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 12px;
-  background: var(--primary);
-  color: #fff;
-  border-radius: 8px;
-  font-weight: bold;
-  font-size: .78rem;
-  align-self: flex-start;
-}
-
-.card-btn:hover {
-  background: var(--primary2);
-}
-
-.btn-logo {
-  width: 16px;
-  height: 16px;
-  object-fit: contain;
-  background: #fff;
-  border-radius: 3px;
-  padding: 1px;
-}
-
-/* ================= تبويبات المدونة والكتب ================= */
-.blog-tabs {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
-}
-
-.blog-tab-btn {
-  padding: 6px 14px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background: var(--surface2);
-  color: var(--muted);
-  cursor: pointer;
-  font-size: 0.85rem;
-  font-weight: bold;
-  transition: .2s;
-}
-
-.blog-tab-btn.active, .blog-tab-btn:hover {
-  background: var(--primary);
-  color: #fff;
-  border-color: var(--primary);
-}
-
-.blog-grid {
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 20px;
-}
-
-.blog-card {
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  transition: .2s;
-}
-
-.blog-card:hover {
-  transform: translateY(-3px);
-  border-color: var(--primary);
-  box-shadow: 0 8px 25px rgba(22,119,200,.15);
-}
-
-.blog-imgbox {
-  width: 100%;
-  height: 140px;
-  background: var(--surface);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  border-bottom: 1px solid var(--border);
-}
-
-.blog-imgbox img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.blog-content {
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-.blog-tag {
-  align-self: flex-start;
-  font-size: .68rem;
-  color: var(--primary);
-  background: color-mix(in srgb,var(--primary) 12%,transparent);
-  padding: 3px 8px;
-  border-radius: 6px;
-  margin-bottom: 6px;
-  font-weight: bold;
-}
-
-.blog-card h4 {
-  margin: 0 0 6px;
-  font-size: .95rem;
-  color: var(--text);
-  line-height: 1.4;
-}
-
-.blog-card p {
-  margin: 0 0 14px;
-  color: var(--muted);
-  font-size: .8rem;
-  line-height: 1.5;
-  flex: 1;
-}
-
-.blog-btn {
-  align-self: flex-start;
-  font-size: .78rem;
-  color: #fff;
-  background: var(--primary);
-  padding: 6px 12px;
-  border-radius: 8px;
-  font-weight: bold;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.blog-btn:hover {
-  background: var(--primary2);
-}
-
-/* ================= قسم عن المنصة ================= */
-.about {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-
-.about-box {
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  padding: 20px;
-  border-radius: 14px;
-}
-
-.about-box h4 {
-  margin: 0 0 8px;
-  color: var(--primary);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.about-box p {
-  margin: 0;
-  color: var(--muted);
-  line-height: 1.7;
-  font-size: .9rem;
-}
-
-.empty {
-  display: none;
-  grid-column: 1/-1;
-  text-align: center;
-  color: var(--muted);
-  padding: 30px;
-}
-
-/* ================= شبكة الكورسات المصغرة (تمرير أفقي للجوال) ================= */
-.courses-grid {
-    display: flex !important;
-    overflow-x: auto !important;
-    gap: 10px !important;
-    padding: 10px 0 !important;
-    scroll-snap-type: x mandatory;
-}
-
-/* تحديد عرض ثابت وصغير للبطاقة لتظهر بجانب بعضها تماماً */
-.courses-grid .course-card {
-    flex: 0 0 160px !important; /* عرض ثابت لكل بطاقة ليظهر أكثر من فيديو بجانب بعضهم */
-    max-width: 160px !important;
-    scroll-snap-align: start;
+/* جعل النص والزر أيضاً في المنتصف لتكتمل أناقة الكارت */
+.w3-card {
     display: flex;
     flex-direction: column;
-    background: #fff;
-    border-radius: 8px;
-    overflow: hidden;
-    text-decoration: none;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    align-items: center;
+    text-align: center;
 }
 
-/* تنسيق بطاقة الكورس لضمان عدم تمددها بشكل مزعج */
+
+
+.courses-grid {
+    display: grid !important;
+    grid-template-columns: repeat(5, 1fr) !important; /* فرض ظهور 5 مربعات بجوار بعضها بالضبط */
+    gap: 10px !important;
+    padding: 10px !important;
+}
+
+.course-card {
+    background-color: #161b22 !important;
+    border: 1px solid #30363d !important;
+    border-radius: 6px !important;
+    overflow: hidden !important;
+    cursor: pointer !important;
+    width: 100% !important;
+}
+
+/* تصغير المربع وثباته */
 .course-thumb {
-  position: relative !important;
-  width: 100% !important;
-  padding-bottom: 100% !important;
-  background-color: #0d1117 !important;
+    position: relative !important;
+    width: 100% !important;
+    padding-bottom: 100% !important; /* مربع متساوي الأبعاد */
+    background-color: #0d1117 !important;
 }
 
 .course-thumb img {
-  position: absolute !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
 }
 
+/* أيقونة تشغيل صغيرة جداً في المنتصف */
 .play-icon {
-  position: absolute !important;
-  top: 50% !important;
-  left: 50% !important;
-  transform: translate(-50%, -50%) !important;
-  background: rgba(0, 0, 0, 0.7) !important;
-  color: #fff !important;
-  width: 28px !important;
-  height: 28px !important;
-  border-radius: 50% !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  font-size: 10px !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    background: rgba(0, 0, 0, 0.7) !important;
+    color: #fff !important;
+    width: 28px !important;
+    height: 28px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 10px !important;
 }
 
 .course-info {
-  padding: 6px !important;
-  text-align: right !important;
+    padding: 6px !important;
+    text-align: right !important;
 }
 
 .course-info h3 {
-  font-size: 10px !important;
-  color: #ffffff !important;
-  margin: 0 0 2px 0 !important;
-  white-space: nowrap !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
+    font-size: 10px !important;
+    color: #ffffff !important;
+    margin: 0 0 2px 0 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
 }
 
 .course-info p {
-  font-size: 8px !important;
-  color: #8b949e !important;
-  margin: 0 !important;
-  white-space: nowrap !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
+    font-size: 8px !important;
+    color: #8b949e !important;
+    margin: 0 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
 }
 
-/* ================= الأزرار الإضافية والتصميم التقني ================= */
-.w3-card {
-  padding: 25px 20px;
-  border-radius: 8px;
-  text-align: center;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-  transition: 0.2s;
-  border: 1px solid rgba(0,0,0,0.04);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 
-.w3-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-}
-
-.w3-card h2, .card-title-row h2 {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin: 0;
-  color: #1e293b;
-}
-
-.w3-card p {
-  font-size: 0.9rem;
-  color: #444;
-  margin-bottom: 15px;
-  min-height: 40px;
-}
-
-.w3-card-btn {
-  background-color: #282A35;
-  color: rgb(232, 224, 224);
-  border: none;
-  padding: 8px 18px;
-  border-radius: 4px;
-  font-weight: 60;
-  text-decoration: none;
-  display: inline-block;
-  transition: 0.2s;
-}
-
-.w3-card-btn:hover {
-  background-color: #12639d;
-}
-
-#we {
-  display: block;
-  text-align: center;
-  width: 100%;
-  margin: 0px auto;
-}
-
-.card-title-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-  margin-bottom: 10px;
-  text-align: center;
-}
-
-.big-icon {
-  font-size: 2.8rem !important;
-  line-height: 1;
-  flex-shrink: 0;
-}
-
+/* تنسيق الزر المتناسق مع باقي أزرار المنصة */
 .btn-tech {
-  background-color: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #ffffff;
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  text-decoration: none;
-  transition: all 0.2s ease;
-  cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
 }
 
 .btn-tech:hover {
-  background-color: rgba(255, 255, 255, 0.15);
-  border-color: #58a6ff;
-  color: #ffffff;
-  transform: translateY(-2px);
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: #58a6ff;
+    color: #ffffff;
+    transform: translateY(-2px);
 }
 
 .btn-tech i {
-  color: #58a6ff;
+    color: #58a6ff;
 }
 
-/* ================= تذييل الصفحة (Footer) ================= */
-footer {
-  border-top: 1px solid var(--border);
-  background: var(--surface);
-  padding: 20px;
-  color: var(--muted);
-  margin-top: 30px;
-}
+    </style>
 
-.footer {
-  max-width: 1200px;
-  margin: auto;
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  flex-wrap: wrap;
-  font-size: .85rem;
-}
-
-/* ================= الاستجابة للشاشات (Media Queries) ================= */
-@media(max-width: 900px) {
-  .hero-box {
-    grid-template-columns: 1fr;
-  }
-  .hero-logo {
-    display: none;
-  }
-  .cards, .blog-grid {
-    grid-template-columns: 1fr;
-  }
-  .stats {
-    grid-template-columns: repeat(2,1fr);
-  }
-  .about {
-    grid-template-columns: 1fr;
-  }
- 
-}
-
-@media(max-width: 600px) {
-  .brand small {
-    display: none;
-  }
-  .section-head {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .search {
-    width: 100%;
-  }
-
- 
-}
-
-@media(max-width: 480px) {
-  .nav {
-    padding: 8px 12px;
-  }
-  .icon-btn, .circle-img-btn {
-    width: 35px;
-    height: 35px;
-  }
-}
-
-
-
-</style>
- 
 </head>
- 
 <body id="top">
- 
+
 <header>
   <div class="nav">
     <div class="brand">
       <img src="IMG/آفاق المعرفة التقنية.png" alt="شعار آفاق المعرفة التقنية" class="logo">
-      <div><h1 class="mah"> أكاديمية آفاق المعرفة التقنية </h1><small Class="op">بإشراف المهندسة مها شهوب</small></div>
+      <div><h1>آفاق المعرفة التقنية</h1><small>بإشراف المهندسة مها شهوب</small></div>
     </div>
     <div class="nav-actions">
       
@@ -952,8 +397,7 @@ footer {
 
       <!-- زر الوضع المظلم الخفيف -->
       <button id="themeBtn" class="icon-btn" aria-label="تبديل المظهر"><i class="fa-solid fa-moon"></i></button>
- </div>
-
+    </div>
   </div>
 </header>
 
@@ -978,7 +422,7 @@ footer {
         <!-- مكان النبذة -->
         <div class="mb-6 text-gray-700 dark:text-gray-300 text-sm leading-relaxed bg-amber-50/50 dark:bg-slate-900/50 p-4 rounded-xl border border-amber-100 dark:border-slate-700" style="margin-bottom: 1.5rem; padding: 1rem; border-radius: 0.75rem; background: var(--surface2); border: 1px solid var(--border); font-size: 0.9rem; line-height: 1.6;">
             <p class="font-bold text-amber-900 dark:text-amber-400 mb-2" style="font-weight: bold; margin-bottom: 0.5rem; color: var(--primary);">نبذة عن الكاتبة:</p>
-            <p id="author-bio-text" style="margin: 0; color: var(--muted);">المهندسة مها شهوب، باحثة ومطورة محتوى تقني ليبية، وصاحبة أكاديمية «آفاق المعرفة التقنية» ومنصة كتب أساسيات التقنية المجانية. تتمتع بخبرة واسعة ومسبقة في البرمجة وقيادة الحاسب الآلي، وإصلاح أعطال الكمبيوتر، بالإضافة إلى خبرتها الكبيرة في مجال الإلكترونيات والشبكات. تسعى لتقديم محتوى تعليمي رقمي يسهم في تسهيل علوم البرمجة والتقنية بلغة عربية.</p>
+            <p id="author-bio-text" style="margin: 0; color: var(--muted);">المهندسة مها شهوب، باحثة ومطورة محتوى تقني ليبية، وصاحبة مشروع «آفاق المعرفة التقنية» ومنصة كتب أساسيات التقنية المجانية. تتمتع بخبرة واسعة ومسبقة في البرمجة وقيادة الحاسب الآلي، وإصلاح أعطال الكمبيوتر، بالإضافة إلى خبرتها الكبيرة في مجال الإلكترونيات والشبكات. تسعى لتقديم محتوى تعليمي رقمي يسهم في تسهيل علوم البرمجة والتقنية بلغة عربية.</p>
         </div>
 
         <!-- معلومات التواصل وروابط السوشيال ميديا -->
@@ -1007,7 +451,7 @@ footer {
         <a href="#articles" class="btn btn-ghost"><i class="fa-solid fa-book-open"></i>  كتب سلسلة أساسيات التقنية</a>
         <a href="#tools2" class="btn-tech"><i class="fa-solid fa-video"></i> فيديوهات المنصة</a>
         <a href="" class="btn-tech"><i class="fa-solid fa-robot"></i>  روبوتات المنصة قريباً </a>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSc2tmDuBVTuLJr_cbrKrzPzH2sZ8HKUZ_pQ8PTCVf_uGPcSWw/viewform?usp=header" class="btn btn-ghost" target="_blank" ><i class="fa-solid fa-headset"></i>   تواصل معنا للاشتراك </a>
+        <a href="https://www.facebook.com/profile.php?id=61561346536355&locale=ar_AR" class="btn btn-ghost"  target="_blank" ><i class="fa-solid fa-headset"></i>   تواصل معنا </a>
         
         <a href="#boot" 
         onmouseover="this.style.backgroundColor='#1266ab'; this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 5px rgba(11, 79, 136, 0.4)';" 
@@ -1351,380 +795,209 @@ footer {
     padding: 40px;
     color: #95a5a6;
     grid-column: 1 / -1;
-  }
+  } 
+  
+
+
+
+
+
+
+  .card-register-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 12px;
+    background: #1677c8;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 9px;
+    font-weight: bold;
+    font-size: 13px;
+    transition: .25s;
+}
+
+.card-register-btn:hover {
+    background: #0b4f88;
+    transform: translateY(-2px);
+}
+
+
+
+
+#systems-paths .cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    align-items: stretch;
+}
+
+#systems-paths .card {
+    width: 100%;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+#systems-paths .card-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+#systems-paths .card-action {
+    margin-top: auto;
+    padding-top: 15px;
+}
+
+#systems-paths .card-register-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 12px;
+    background: #1677c8;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 9px;
+    font-weight: bold;
+    transition: 0.25s;
+}
+
+#systems-paths .card-register-btn:hover {
+    background: #0b4f88;
+}
+
+/* الأجهزة اللوحية */
+@media (max-width: 900px) {
+    #systems-paths .cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* الهواتف */
+@media (max-width: 600px) {
+    #systems-paths .cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+
 </style>
 
 
-<!-- ========================================================
-     كورسات تعلم الكمبيوتر والبرمجة - كورس مدفوع
-========================================================= -->
-<section class="section" id="programming-paths">
-  <div class="section-head">
-    <div>
-      <h3>
-          <i class="fa-solid fa-lock"></i> كورس مدفوع:
-         تعلم أساسيات البرمجة  
-      </h3>
-      <p>كورس متكامل لتعلم أساسيات البرمجة ضمن سلسلة أساسيات التقنية تحت إشراف الكاتبة والمهندسة مها شهوب.</p>
-    </div>
-  </div>
-  
-  <div class="cards">
-    <!-- 1. أساسيات البرمجة -->
-    <article class="card" data-search="أساسيات البرمجة">
-      <span class="num">01</span>
-      <div class="imgbox">
-        <img src="https://images.unsplash.com/photo-1593720213428-28a5b9e94613?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="أساسيات البرمجة">
-      </div>
-      <div class="card-content">
-        <span class="tag">Programming</span>
-        <h4>أساسيات البرمجة</h4>
-        <p>تعلم المفاهيم والمبادئ الأساسية للبرمجة: الدوال، المتغيرات، الجمل الشرطية وغيرها من المبادئ المهمة.</p>
-                 <i class="fa-solid fa-hourglass-half" style="color: #ee9e2edd;"> قريباً </i> 
-      </div>
-    </article>
 
-    <!-- 2. أساسيات الخوارزميات -->
-    <article class="card" data-search="أساسيات الخوارزميات">
-      <span class="num">02</span>
-      <div class="imgbox">
-        <img src="https://plus.unsplash.com/premium_photo-1753380849525-d8c1f406fa4e?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="أساسيات الخوارزميات">
-      </div>
-      <div class="card-content">
-        <span class="tag">Algorithm</span>
-        <h4>أساسيات الخوارزميات</h4>
-        <p>التعرف على كيفية التعامل وإنشاء خوارزمية صحيحة وسريعة داخل برنامجك.</p>
-       <i class="fa-solid fa-hourglass-half" style="color: #ee9e2edd;"> قريباً</i> 
-      </div>
-    </article>
-
-    <!-- 3. أساسيات هياكل البيانات -->
-    <article class="card" data-search="تعلم أساسيات هياكل البيانات">
-      <span class="num">03</span>
-      <div class="imgbox">
-        <img src="https://plus.unsplash.com/premium_photo-1663050633633-2856e875dcc7?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="أساسيات هياكل البيانات">
-      </div>
-      <div class="card-content">
-        <span class="tag">Data Structures</span>
-        <h4>أساسيات هياكل البيانات</h4>
-        <p>تعلم الطرق البرمجية المحددة لتنظيم، وتخزين، وإدارة البيانات في ذاكرة الحاسوب بكفاءة.</p>
-        <i class="fa-solid fa-hourglass-half" style="color: #ee9e2edd;"> قريباً </i> 
-      </div>
-    </article>
-  </div>
-</section>
-
-
-<!-- =========================================================
-     كورسات تعلم المنظومات - كورسات مدفوعة
-========================================================= -->
+   <!-- كورسات تعلم الأساسيات التقنية -->
 <section class="section" id="systems-paths">
   <div class="section-head">
     <div>
       <h3>
-          <i class="fa-solid fa-lock"></i> كورس مدفوع:
-         تعلم أساسيات بناء المنظومات 
+        <i class="fa-solid fa-lock"></i>
+        كورسات مدفوعة: تعلم أساسيات التقنية
       </h3>
-      <p> كورس تعلم المنظومات وقواعد البيانات الضحمة وكيفية التعامل مع مستودعات البيانات ضمن سلسلة أساسيات التقنية تحت إشراف الكاتبة والمهندسة مها شهوب.</p>
+
+      <p>
+        مجموعة من الكورسات التأسيسية لتطوير مهاراتك التقنية وتأهيلك
+        للانطلاق نحو سوق العمل الليبي، ضمن سلسلة أساسيات التقنية،
+        تحت إشراف الكاتبة والمهندسة مها شهوب.
+      </p>
     </div>
   </div>
-  
+
   <div class="systems-section">
     <div class="cards">
-      <!-- 1. منظومات Web -->
-      <article class="card" data-search="منظومات Web web development">
+
+      <!-- البطاقة الأولى -->
+      <article class="card" data-search="أساسيات الكمبيوتر Computer Basics">
         <span class="num">01</span>
+
         <div class="imgbox">
-          <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?q=80&w=736&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="منظومات Web">
+          <img
+            src="https://images.unsplash.com/photo-1737922342275-71bab46ace83?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D"
+            alt="أساسيات الكمبيوتر"
+          >
         </div>
+
         <div class="card-content">
-          <span class="tag">تطوير الويب</span>
-          <h4>منظومات Web</h4>
-          <p>تعلم وتصميم منظومات وتطبيقات الويب التفاعلية الحديثة.</p>
-          <i class="fa-solid fa-hourglass-half" style="color: #ee9e2edd;"> قريباً...</i> 
+          <span class="tag">Computer Basics</span>
+          <h4>أساسيات الكمبيوتر</h4>
+
+          <p>
+            تعلم أساسيات الكمبيوتر ولوحة المفاتيح ونظام Windows،
+            وبرامج Word وExcel وAccess وPowerPoint،
+            إلى جانب أساسيات الشبكات والإنترنت والأمن الرقمي.
+          </p>
+
+          <div class="card-action">
+            <a href="course1.html" class="card-register-btn"target="_blank">
+              <i class="fa-solid fa-arrow-left"></i>
+              الدخول إلى الكورس
+            </a>
+          </div>
         </div>
       </article>
-      
-      <!-- 2. منظومات C# -->
-      <article class="card" data-search="منظومات C# csharp c sharp">
+
+      <!--أساسيات برمجة-->
+      <article class="card" data-search="Word الوورد">
         <span class="num">02</span>
+
         <div class="imgbox">
-          <img src="https://plus.unsplash.com/premium_photo-1733342561505-306871f4e706?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="منظومات C#">
+          <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=869&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D" alt="Programming Fundamentals  ">
         </div>
+
         <div class="card-content">
-          <span class="tag">لغة #C</span>
-          <h4>منظومات #C</h4>
-          <p>بناء البرمجيات والمنظومات باستخدام لغة #C.</p>
-          <i class="fa-solid fa-hourglass-half" style="color: #ee9e2edd;">  قريباً...</i> 
+          <span class="tag"> Programming Fundamentals</span>
+          <h4>  أساسيات البرمجة</h4>
+
+          <p>
+           
+            تعلم أساسيات البرمجة وفهم المتغيرات والشروط والحلقات التكرارية، واكتساب مهارات التفكير المنطقي وحل المشكلات، مع التعرف على الذكاء الاصطناعي وتطبيقاته العملية، لبناء قاعدة تقنية قوية والانطلاق في عالم البرمجة والتقنيات الحديثة.
+            
+          </p>
+
+          <div class="card-action">
+            <a href="course2.html" class="card-register-btn"target="_blank">
+              <i class="fa-solid fa-arrow-left"></i>
+              الدخول إلى الكورس
+            </a>
+          </div>
         </div>
       </article>
-      
-      <!-- 3. منظومات Access -->
-      <article class="card" data-search="منظومات Access access database">
+
+      <!-- أساسيات منظومات-->
+      <article class="card" data-search="Excel اكسيل">
         <span class="num">03</span>
+
         <div class="imgbox">
-          <img src="https://media.istockphoto.com/id/1484786238/photo/cyber-security-data-protection-business-working-on-compute-intelligenc-digital-tablet-global.jpg?s=2048x2048&w=is&k=20&c=CV6ZnLQtbrpJ-5pi39OK0fNHL3Z8VwiU7NOXc_bxQXg=" alt="منظومات Access">
+          <img src="https://plus.unsplash.com/premium_photo-1678565869434-c81195861939?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D" alt="Fundamentals of Systems  ">
         </div>
+
         <div class="card-content">
-          <span class="tag">قواعد البيانات</span>
-          <h4>منظومات Access</h4>
-          <p>تصميم وإدارة القواعد والمنظومات الإدارية باستخدام Microsoft Access.</p>
-          <i class="fa-solid fa-hourglass-half" style="color: #ee9e2edd;">  قريباً...</i> 
+          <span class="tag"> Fundamentals of Systems</span>
+          <h4>  أساسيات منظومات </h4>
+
+          <p>
+           تعلم أساسيات المنظومات وفهم طريقة عملها وتصميمها، والتعرف على قواعد البيانات وكيفية إدارتها، مع اكتساب المهارات اللازمة لتحليل البيانات وتنظيمها وتطوير تطبيقات تساعد على حل المشكلات وتلبية احتياجات العمل.
+          </p>
+
+          <div class="card-action">
+            <a href="course3.html" class="card-register-btn"target="_blank">
+              <i class="fa-solid fa-arrow-left"></i>
+              الدخول إلى الكورس
+            </a>
+          </div>
         </div>
       </article>
-      
-      <!-- 4. منظومات VB.NET -->
-      <article class="card" data-search="منظومات VB.NET visual basic">
-        <span class="num">04</span>
-        <div class="imgbox">
-          <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=600&q=80" alt="منظومات VB.NET">
-        </div>
-        <div class="card-content">
-          <span class="tag">لغة VB.NET</span>
-          <h4>منظومات VB.NET</h4>
-          <p>تطوير المنظومات المكتبية وتطبيقات سطح المكتب بلغة VB.NET.</p>
-          <i class="fa-solid fa-hourglass-half" style="color: #ee9e2edd;"> قريباً...</i> 
-        </div>
-      </article>
-      
-      <!-- 5. منظومات Excel -->
-      <article class="card" data-search="منظومات Excel">
-        <span class="num">05</span>
-        <div class="imgbox">
-          <img src="https://plus.unsplash.com/premium_photo-1671461774955-7aab3ab41b90?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="منظومات Excel">
-        </div>
-        <div class="card-content">
-          <span class="tag">جداول البيانات</span>
-          <h4>منظومات Excel</h4>
-          <p>تصميم وتطوير النماذج والمنظومات الإدارية المتقدمة باستخدام Excel.</p>
-          <i class="fa-solid fa-hourglass-half" style="color: #ee9e2edd;">  قريباً...</i> 
-        </div>
-      </article>
-      
-      <!-- 6. نظام إدارة قواعد البيانات DBMS -->
-      <article class="card" data-search="تعلم DBMS database management system">
-        <span class="num">06</span>
-        <div class="imgbox">
-          <img src="https://media.istockphoto.com/id/1200717412/photo/database-structure-flow-chart-of-a-control-panel-of-web-site.jpg?s=2048x2048&w=is&k=20&c=ibUZq3EHgQVk-Qx0j4ssJh8kR_PIBs7TG0HvAGpIzD8=" alt="Database Management System">
-        </div>
-        <div class="card-content">
-          <span class="tag">إدارة قواعد البيانات</span>
-          <h4>Database Management System</h4>
-          <p>فهم وتصميم هياكل وأنظمة إدارة قواعد البيانات بكفاءة عالية.</p>
-          <i class="fa-solid fa-hourglass-half" style="color: #ee9e2edd;" >  قريباً...</i> 
-        </div>
-      </article>
+
     </div>
   </div>
 </section>
 
 
-
-<section class="section" id="computer-course">
-  <div class="section-head">
-    <div>
-      <h3>
-          <i class="fa-solid fa-lock"> كورس مدفوع</i> 
-         تعلم أساسيات الكمبيوتر  
-      </h3>
-      <p>كورس متكامل لتعلم أساسيات الكمبيوتر، الشبكات، البرامج المكتبية والأمن الرقمي  ضمن سلسلة أساسيات التقنية تحت إشراف الكاتبة والمهندسة مها شهوب.</p>
-    </div>
-  </div>
-
-  <div class="cards"id="boot">
-    <!-- 1. مكونات الكمبيوتر -->
-    <article class="card" data-search="مكونات الكمبيوتر computer hardware">
-      <span class="num">01</span>
-      <div class="imgbox">
-        <img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=600&q=80" alt="أساسيات مكونات الكمبيوتر">
-      </div>
-      <div class="card-content">
-        <span class="tag">Hardware</span>
-        <h4>أساسيات مكونات الكمبيوتر</h4>
-        <p>التعرف على مكونات الحاسوب الداخلية والخارجية ووظيفة كل مكون.</p>
-  <div style="color: #12c123dd;"> 
-  <i class="fa-solid fa-headset"> متاح حاليًا للاشتراك </i>
-  <hr>
-  <b>المقاعد محدودة</b> 
-  </div>
-      </div>
-    </article>
-
-    <!-- 2. Windows -->
-    <article class="card" data-search="Windows ويندوز windows basics">
-      <span class="num">02</span>
-      <div class="imgbox">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7f/Windows10abstract.png?utm_source=ar.wikipedia.org&utm_campaign=index&utm_content=original" alt="أساسيات Windows">
-      </div>
-      <div class="card-content">
-        <span class="tag">Windows</span>
-        <h4>أساسيات Windows</h4>
-        <p>تعلم أساسيات نظام Windows وإدارة الملفات والبرامج.</p>
-     <div style="color: #12c123dd;"> 
-     <i class="fa-solid fa-headset"> متاح حاليًا للاشتراك </i>
-     <hr>
-     <b>المقاعد محدودة</b> 
-    </div>
-
-      </div>
-    </article>
-
-    <!-- 3. Word -->
-    <article class="card" data-search="Word الوورد Microsoft Word">
-      <span class="num">03</span>
-      <div class="imgbox">
-        <img src="https://images.unsplash.com/photo-1658203897415-3cad6cfad5c0?q=80&w=862&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="أساسيات Word">
-      </div>
-      <div class="card-content">
-        <span class="tag">Microsoft Word</span>
-        <h4>أساسيات Word</h4>
-        <p>تعلم إنشاء وتنسيق المستندات والصفحات والجداول باستخدام Word.</p>
-      <div style="color: #12c123dd;"> 
-  <i class="fa-solid fa-headset"> متاح حاليًا للاشتراك </i>
-  <hr>
-  <b>المقاعد محدودة</b> 
-  </div>
-
-     </div>
-    </article>
-
-   
-    <!-- 4. PowerPoint -->
-    <article class="card" data-search="PowerPoint باوربوينت presentation">
-      <span class="num">04</span>
-      <div class="imgbox">
-        <img src="https://images.unsplash.com/photo-1733222764895-9bf3a19162fe?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="أساسيات PowerPoint">
-      </div>
-      <div class="card-content">
-        <span class="tag">Microsoft PowerPoint</span>
-        <h4>أساسيات PowerPoint</h4>
-        <p>تعلم إنشاء العروض التقديمية وتصميم الشرائح الإحترافية.</p>
-       <div style="color: #12c123dd;"> 
-       <i class="fa-solid fa-headset"> متاح حاليًا للاشتراك </i>
-       <hr>
-       <b>المقاعد محدودة</b> 
-     </div>
-      </div>
-    </article>
-
-   
-    <!-- 5. اختصارات الكمبيوتر -->
-    <article class="card" data-search="اختصارات الكمبيوتر keyboard shortcuts shortcuts">
-      <span class="num">05</span>
-      <div class="imgbox">
-        <img src="https://images.unsplash.com/photo-1648392368628-6e984d89e2f3?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="اختصارات الكمبيوتر">
-      </div>
-      <div class="card-content">
-        <span class="tag">Computer Skills</span>
-        <h4>أساسيات اختصارات الكمبيوتر</h4>
-        <p>تعلم أهم اختصارات لوحة المفاتيح التي تساعد على السرعة.</p>
-     <div style="color: #12c123dd;"> 
-     <i class="fa-solid fa-headset"> متاح حاليًا للاشتراك </i>
-     <hr>
-     <b>المقاعد محدودة</b> 
-     </div>  
-      </div>
-    </article>
-
-    <!-- 6. أساسيات الإنترنت والشبكات -->
-    <article class="card" data-search="أساسيات الإنترنت والشبكات internet networks">
-      <span class="num">06</span>
-      <div class="imgbox">
-        <img src="https://images.unsplash.com/photo-1546124404-9e7e3cac2ec1?q=80&w=1031&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="أساسيات الإنترنت والشبكات">
-      </div>
-      <div class="card-content">
-        <span class="tag">الشبكات</span>
-        <h4>أساسيات الإنترنت والشبكات</h4>
-        <p>تعلم مبادئ الاتصال، بروتوكولات الإنترنت، وكيفية عمل شبكات الحاسوب.</p>
-    <div style="color: #12c123dd;"> 
-    <i class="fa-solid fa-headset"> متاح حاليًا للاشتراك </i>
-    <hr>
-    <b>المقاعد محدودة</b> 
-    </div>  
-      </div>
-    </article>
-
-    <!-- 7. أساسيات  اصلاح اعطال الكمبيوتر -->
-    <article class="card" data-search="أساسيات  اصلاح اعطال الكمبيوتر digital security cyber security">
-      <span class="num">07</span>
-      <div class="imgbox">
-        <img src="https://plus.unsplash.com/premium_photo-1726769179669-dcca21be64ac?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="أساسيات الأمن الرقمي">
-      </div>
-      <div class="card-content">
-        <span class="tag">اعطال الكمبيوتر وكيفية اصلاحها </span>
-        <h4>  اعطال الكمبيوتر</h4>
-        <p>رحلة اصلاح الاجزاء التالفة من الكمبيوتر لتوفير الوقت والجهد      </p>
-    <div style="color: #12c123dd;"> 
-    <i class="fa-solid fa-headset"> متاح حاليًا للاشتراك </i>
-    <hr>
-    <b>المقاعد محدودة</b> 
-   </div>
-      </div>
-    </article>
-
-   
-    <!-- 8.أساسيات الامن  -->
-
-<article class="card" data-search="  digital security cyber security">
-      <span class="num">08</span>
-      <div class="imgbox">
-        <img src="https://images.unsplash.com/photo-1662638600476-d563fffbb072?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="أساسيات الأمن الرقمي">
-      </div>
-      <div class="card-content">
-        <span class="tag"> الامن الرقمي  </span>
-        <h4>  أساسيات الامن الرقمي  </h4>
-        <p>الأمن الرقمي الشامل: دليل الوقاية من الاختراقات وإغلاق ثغرات الكمبيوتر.</p>
-    <div style="color: #12c123dd;"> 
-    <i class="fa-solid fa-headset"> متاح حاليًا للاشتراك </i>
-    <hr>
-    <b>المقاعد محدودة</b> 
-   </div>
-      </div>
-    </article>
-
- 
- <!-- 9. Excel 
-    <article class="card" data-search="Excel اكسل Microsoft Excel">
-      <span class="num">09</span>
-      <div class="imgbox">
-        <img src="https://images.unsplash.com/photo-1658203897339-0b8c64a42fba?q=80&w=862&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="أساسيات Excel">
-      </div>
-      <div class="card-content">
-        <span class="tag">Microsoft Excel</span>
-        <h4>أساسيات Excel</h4>
-        <p>تعلم الجداول والعمليات الحسابية والدوال وتنظيم البيانات.</p>
-  <div style="color: #12c123dd;"> 
-          <i class="fa-solid fa-hourglass-half" style="color: #ee9e2edd;"> قريباً...</i> 
-  <hr>
-   <b>المقاعد محدودة</b> 
-  </div> 
-
-      </div>
-    </article>
--->
-    <!-- 10. Access 
-    <article class="card" data-search="Access اكسس Microsoft Access database">
-      <span class="num">10</span>
-      <div class="imgbox">
-        <img src="https://plus.unsplash.com/premium_photo-1768910328029-4222d58dcbc7?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="أساسيات Access">
-      </div>
-      <div class="card-content">
-        <span class="tag">Microsoft Access</span>
-        <h4>أساسيات Access</h4>
-        <p>تعلم إنشاء قواعد البيانات والجداول والاستعلامات والنماذج والتقارير.</p>
-  <div style="color: #12c123dd;"> 
-          <i class="fa-solid fa-hourglass-half" style="color: #ee9e2edd;"> قريباً...</i> 
-  <hr>
-   <b>المقاعد محدودة</b>  
-  </div>
-      </div>
-    </article>
-
--->
-   
-
-  </div>
-</section>
 
 
 <!-- ========================================================= 
@@ -2792,25 +2065,11 @@ document.querySelectorAll('.section').forEach(section => {
             </div>
         </a>
 
-     
-
         <!-- الفيديو 2 -->
-        <a href="https://www.youtube.com/watch?v=07xsKk51ShI" target="_blank" class="course-card">
+        <!-- 
+        <a href="https://www.youtube.com/watch?v=jNQXAC9IVRw" target="_blank" class="course-card">
             <div class="course-thumb">
-                <img src="https://img.youtube.com/vi/07xsKk51ShI/hqdefault.jpg" alt="   حاول مرة اخرة">
-                <div class="play-icon">▶</div>
-            </div>
-            <div class="course-info">
-                <h3>سبحان الله راحة نفسية</h3>
-                <p>تلاوة خاشعة ومباركة</p>
-            </div>
-        </a>
-
-        <!-- الفيديو 3 -->
-       
-        <a href="https://www.youtube.com/watch?v=07xsKk51ShI" target="_blank" class="course-card">
-            <div class="course-thumb">
-                <img src="https://img.youtube.com/vi/07xsKk51ShI/hqdefault.jpg" alt="  حاول مرة اخرة">
+                <img src="https://img.youtube.com/vi/jNQXAC9IVRw/hqdefault.jpg" alt="  حاول مرة اخرة">
                 <div class="play-icon">▶</div>
             </div>
             <div class="course-info">
@@ -2818,20 +2077,7 @@ document.querySelectorAll('.section').forEach(section => {
                 <p>كيفية استخدام الأدوات</p>
             </div>
         </a>
-
-     
-        <!-- الفيديو 4 -->
-        <a href="https://www.youtube.com/watch?v=07xsKk51ShI" target="_blank" class="course-card">
-            <div class="course-thumb">
-                <img src="https://img.youtube.com/vi/07xsKk51ShI/hqdefault.jpg" alt="   حاول مرة اخرة">
-                <div class="play-icon">▶</div>
-            </div>
-            <div class="course-info">
-                <h3>سبحان الله راحة نفسية</h3>
-                <p>تلاوة خاشعة ومباركة</p>
-            </div>
-        </a>
-
+-->
 
     </div>
 </div> 
@@ -2968,10 +2214,28 @@ document.querySelectorAll('.section').forEach(section => {
     font-size: 14px;
 }
 
+/* تصغير عرض الأعمدة لتناسب بطاقات أصغر بجانب بعضها */
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+}
 
- 
+.course-card {
+    background-color: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+}
 
-
+.course-card:hover {
+    transform: translateY(-3px);
+    border-color: #58a6ff;
+}
 
 /* تقليص ارتفاع الصورة لتتناسب مع التصغير */
 .course-thumb {
@@ -3030,7 +2294,6 @@ document.querySelectorAll('.section').forEach(section => {
     overflow: hidden;
     text-overflow: ellipsis;
 }
-
 </style>
 
 
@@ -3043,15 +2306,15 @@ document.querySelectorAll('.section').forEach(section => {
 
 <footer>
   <div class="footer">
- <!-- قسم عن الأكاديمية -->
+ <!-- قسم عن المنصة -->
   <section class="section" id="about">
     <div class="section-head"><div><h3>عن آفاق المعرفة التقنية</h3><p>هوية تعليمية لتبسيط المعرفة التقنية وتوفير أدوات عملية للطلاب والباحثين.</p></div></div>
     <div class="about">
 <div class="about-box">
-    <h4><i class="fa-solid fa-bullseye"></i> هدف الأكاديمية</h4>
-    <p>أكاديمية تعليمية هادفة لتطوير مفاهيم البرمجية، تبسيط علوم الحاسوب، وتوفير بيئة تفاعلية متكاملة تجمع الكتب والكورسات التقنية، الأدوات الذكية، والمراجع لدعم الطلاب والباحثين في رحلتهم نحو الاحتراف.</p>
+    <h4><i class="fa-solid fa-bullseye"></i> هدف المنصة</h4>
+    <p>منصة تعليمية هادفة لتطوير مفاهيم البرمجية، تبسيط علوم الحاسوب، وتوفير بيئة تفاعلية متكاملة تجمع الكتب والكورسات التقنية، الأدوات الذكية، والمراجع لدعم الطلاب والباحثين في رحلتهم نحو الاحتراف.</p>
 </div>   
-   <div class="about-box"><h4><i class="fa-solid fa-user-gear"></i> الإشراف</h4><p>الأكاديمية تحت إشراف المهندسة مها شهوب، ومرتبطة بسلسلة أساسيات التقنية ومشاريع آفاق المعرفة التقنية.</p></div>
+   <div class="about-box"><h4><i class="fa-solid fa-user-gear"></i> الإشراف</h4><p>المنصة تحت إشراف المهندسة مها شهوب، ومرتبطة بسلسلة أساسيات التقنية ومشاريع آفاق المعرفة التقنية.</p></div>
     </div>
   </section>
       <span id="we">جميع الحقوق محفوظة للمهندسة مها شهوب © 2026</span>
@@ -3091,7 +2354,6 @@ function toggleAuthorModal() {
   }
 }
 </script>
-
 
 
 
