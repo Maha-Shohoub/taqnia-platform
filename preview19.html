@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="دليل مكتبة React الشامل والمفصل للأكواد والمكونات والهياكل - أكاديمية آفاق المعرفة التقنية - مها شهوب">
+<title>دليل React الشامل والمفصل | مها شهوب</title>
+<style>
+:root{--bg:#eef3f8;--card:#fff;--text:#172033;--muted:#64748b;--p:#0b4f88;--p2:#1d4ed8;--b:#d7e1eb;--code:#0b1220;--shadow:0 8px 24px rgba(20,55,90,.09)}
+[data-theme=dark]{--bg:#0c1420;--card:#151f2c;--text:#e7eef8;--muted:#a9b7c8;--p:#0b4f88;--p2:#60a5fa;--b:#2b3a4b;--code:#070b12;--shadow:0 8px 24px rgba(0,0,0,.25)}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",Tahoma,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.9}
+
+header{position:fixed;top:0;right:0;left:0;height:72px;z-index:1000;background:var(--card);border-bottom:1px solid var(--b);display:flex;align-items:center;justify-content:space-between;padding:0 20px;box-shadow:var(--shadow)}
+.header-right{display:flex;align-items:center;gap:12px;min-width:0}
+.logo{width:50px;height:50px;border-radius:50%;object-fit:cover;flex-shrink:0}
+.brand{min-width:0}
+.brand b{display:block;color:var(--p2);font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand small{color:var(--muted);font-size:11.5px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.actions{display:flex;gap:8px;flex-shrink:0}
+button{border:1px solid var(--b);background:var(--card);color:var(--text);border-radius:9px;padding:8px 12px;cursor:pointer;font-size:13px;transition:.2s}
+button:hover{border-color:var(--p);color:var(--p)}
+.menu{display:none}
+
+.progress{position:fixed;top:72px;right:0;height:4px;background:var(--p);width:0;z-index:1001}
+aside{position:fixed;top:76px;right:0;bottom:0;width:310px;background:var(--card);border-left:1px solid var(--b);padding:16px;overflow:auto;z-index:950;transition:.3s}
+.search{width:100%;padding:10px;border:1px solid var(--b);border-radius:9px;background:var(--bg);color:var(--text);margin-bottom:10px;outline:none}
+nav a{display:block;color:var(--muted);text-decoration:none;padding:5px 8px;border-radius:7px;font-size:12.5px;margin:2px 0}
+nav a:hover,nav a.active{background:#2563eb1a;color:var(--p);font-weight:700}
+
+main{margin-right:310px;padding:100px 34px 50px;max-width:1300px;min-width:0}
+.hero{background:linear-gradient(135deg,var(--p2),var(--p));color:#ffffff;border-radius:18px;padding:34px;margin-bottom:22px;box-shadow:var(--shadow)}
+.hero h1{font-size:32px}
+.hero p{margin-top:8px;opacity:.95}
+.credit{font-weight:700;margin-top:12px;font-size:13.5px}
+
+section{background:var(--card);border:1px solid var(--b);border-radius:14px;padding:24px;margin-bottom:18px;box-shadow:var(--shadow);scroll-margin-top:95px}
+h2{font-size:21px;color:var(--p2);border-right:4px solid var(--p);padding-right:9px;margin-bottom:12px}
+p{margin-bottom:12px}
+
+.code{position:relative;margin:13px 0}
+.code pre{background:var(--code);color:#dbeafe;direction:ltr;text-align:left;overflow:auto;border-radius:9px;padding:17px;font:13px/1.7 Consolas,monospace;white-space:pre-wrap}
+.copy{position:absolute;right:7px;top:7px;background:#fff;color:#172033;border:0;font-size:11px;padding:5px 8px;cursor:pointer;border-radius:4px;transition:.2s}
+.copy:hover{background:var(--p);color:#fff}
+
+.top{position:fixed;bottom:20px;left:20px;border-radius:50%;background:var(--p);color:#fff;width:44px;height:44px;border:0;cursor:pointer;display:none;z-index:900;box-shadow:0 4px 12px rgba(0,0,0,0.15)}
+footer{text-align:center;color:var(--muted);padding:28px;font-size:13.5px}
+
+@media(max-width:1000px){
+    aside{transform:translateX(100%);width:290px}
+    aside.open{transform:none}
+    .menu{display:block}
+    main{margin:0;padding:90px 16px 40px}
+    .brand small{display:block}
+    .hero h1{font-size:24px}
+}
+
+@media(max-width:480px){
+    .brand b{font-size:13px}
+    .brand small{font-size:10px}
+    header{padding:0 10px}
+    .hero{padding:22px 16px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-right">
+    <button class="menu" onclick="document.querySelector('aside').classList.toggle('open')">☰</button>
+    <img src="IMG/آفاق المعرفة التقنية.png" class="logo" alt="لوجو">
+    <div class="brand">
+      <b>أكاديمية آفاق المعرفة التقنية</b>
+      <small>دليل React الشامل | مها شهوب</small>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button onclick="toggleTheme()">◐ الوضع</button>
+  </div>
+</header>
+
+<div class="progress" id="progress"></div>
+
+<aside>
+<input class="search" id="search" placeholder="🔎 ابحث في الوحدات والدروس..." oninput="filterNav()">
+<nav id="nav">
+<a href="#s1">01. مقدمة عن مكتبة React وفلسفتها</a>
+<a href="#s2">02. إعداد البيئة وإنشاء مشروع جديد (Vite / Node)</a>
+<a href="#s3">03. هيكلية المشروع وملفات التكوين الأساسية</a>
+<a href="#s4">04. مقدمة في لغة JSX وبنية العناصر</a>
+<a href="#s5">05. المكونات (Components) وإنشائها</a>
+<a href="#s6">06. تمرير البيانات عبر الخصائص (Props)</a>
+<a href="#s7">07. إدارة الحالة الداخلية (State باستخدام useState)</a>
+<a href="#s8">08. التأثيرات الجانبية وإدارة دورة الحياة (useEffect)</a>
+<a href="#s9">09. معالجة الأحداث والتفاعل (Event Handling)</a>
+<a href="#s10">10. العرض الشرطي وعمليات التكرار (Conditional & Lists)</a>
+<a href="#s11">11. مشاركة الحالة المتقدمة (Context API)</a>
+<a href="#s12">12. إدارة الحالة المعقدة عبر Hook (useReducer)</a>
+<a href="#s13">13. تحسين الأداء (useMemo و useCallback)</a>
+<a href="#s14">14. المراجع واستشعار العناصر (useRef)</a>
+<a href="#s15">15. بناء خطاطيف مخصصة (Custom Hooks)</a>
+<a href="#s16">16. التوجيه وإدارة الصفحات (React Router)</a>
+<a href="#s17">17. التعامل مع واجهات الأبعاد والـ APIs (Fetch & Axios)</a>
+<a href="#s18">18. إدارة النماذج والتحقق من المدخلات (Forms)</a>
+<a href="#s19">19. مشروع هندسي: تطبيق إدارة مهام متكامل (Todo App)</a>
+<a href="#s20">20. الخلاصة الهندسية لمفاهيم React</a>
+</nav></aside>
+
+<main>
+<div class="hero">
+  <h1>دليل مكتبة React.js الشامل</h1>
+  <p>هندسة بناء واجهات المستخدم الحديثة، المكونات التفاعلية، وإدارة الحالة من الجذور حتى الاحتراف؛ رؤية برمجية متكاملة لتطوير تطبيقات الويب الديناميكية.</p>
+  <div class="credit">إعداد الكاتبة والمهندسة: مها شهوب</div>
+</div>
+
+<section id="s1">
+  <h2>01. مقدمة عن مكتبة React وفلسفتها</h2>
+  <p>مكتبة JavaScript مفتوحة المصدر تم تطويرها بواسطة Meta (Facebook) لبناء واجهات المستخدم الديناميكية بناءً على مفهوم المكونات المعزولة (Components) ونظام Virtual DOM لرفع الكفاءة والأداء.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>// الفلسفة الأساسية: الواجهة عبارة عن دالة تعكس الحالة (UI = f(state))</pre></div>
+</section>
+
+<section id="s2">
+  <h2>02. إعداد البيئة وإنشاء مشروع جديد (Vite / Node)</h2>
+  <p>استخدام أدوات البناء السريعة الحديثة مثل Vite لإنشاء بيئة عمل React متكاملة ومهيأة للتشغيل الفوري.</p>
+  <div class="code"><button class="copy">نسخ</button><pre># أوامر إنشاء وتشغيل المشروع عبر موجه الأوامر
+npm create vite@latest my-react-app -- --template react
+cd my-react-app
+npm install
+npm run dev</pre></div>
+</section>
+
+<section id="s3">
+  <h2>03. هيكلية المشروع وملفات التكوين الأساسية</h2>
+  <p>فهم مجلدات المشروع (src, public, node_modules) وملف نقطة الدخول الرئيسية main.jsx أو App.jsx.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>// ربط التطبيق بمدخل المستند DOM الحقيقي
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App.jsx'
+
+ReactDOM.createRoot(document.getElementById('root')).render(&lt;App /&gt;);</pre></div>
+</section>
+
+<section id="s4">
+  <h2>04. مقدمة في لغة JSX وبنية العناصر</h2>
+  <p>صيغة برمجية تدمج JavaScript مع HTML لتمكين كتابة عناصر واجهة المستخدم بمرونة وسهولة فائقة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>const element = &lt;h1 className="header"&gt;مرحباً بكم في أكاديمية آفاق المعرفة التقنية&lt;/h1&gt;;</pre></div>
+</section>
+
+<section id="s5">
+  <h2>05. المكونات (Components) وإنشائها</h2>
+  <p>تقسيم الواجهة إلى أجزاء مستقلة وقابلة لإعادة الاستخدام باستخدام الدوال البرمجية (Functional Components).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>function WelcomeCard() {
+    return &lt;div&gt;&lt;h3&gt;مكون ترحيبي مخصص&lt;/h3&gt;&lt;/div&gt;;
+}
+export default WelcomeCard;</pre></div>
+</section>
+
+<section id="s6">
+  <h2>06. تمرير البيانات عبر الخصائص (Props)</h2>
+  <p>آلية تمرير البيانات من المكون الأب إلى المكون الأبناء لتخصيص محتواها وسلوكها.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>function UserProfile(props) {
+    return &lt;h4&gt;المستخدم: {props.name}&lt;/h4&gt;;
+}
+// الاستخدام: &lt;UserProfile name="مها شهوب" /&gt;</pre></div>
+</section>
+
+<section id="s7">
+  <h2>07. إدارة الحالة الداخلية (State باستخدام useState)</h2>
+  <p>الخطاف الأساسي (Hook) لتخزين وتحديث البيانات المتغيرة داخل المكون وإعادة رسم الواجهة تلقائياً عند تغييرها.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>import { useState } from 'react';
+
+function Counter() {
+    const [count, setCount] = useState(0);
+    return &lt;button onClick={() =&gt; setCount(count + 1)}&gt;العداد: {count}&lt;/button&gt;;
+}</pre></div>
+</section>
+
+<section id="s8">
+  <h2>08. التأثيرات الجانبية وإدارة دورة الحياة (useEffect)</h2>
+  <p>تنفيذ الأكواد المرتبطة بجلب البيانات من الخوادم، المؤقتات، أو التفاعل مع المتصفح عند تحميل أو تحديث المكون.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>import { useEffect, useState } from 'react';
+
+useEffect(() =&gt; {
+    console.log("تم تحميل المكون بنجاح");
+}, []); // مصفوفة فارغة لتنفيذ الكود مرة واحدة</pre></div>
+</section>
+
+<section id="s9">
+  <h2>09. معالجة الأحداث والتفاعل (Event Handling)</h2>
+  <p>التعامل مع ضغطات الأزرار، إدخال النماذج، وحركات الفأرة بطريقة متوافقة مع المتصفحات.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>function handleClick(e) {
+    e.preventDefault();
+    alert("تم النقر على الزر بنجاح!");
+}
+return &lt;button onClick={handleClick}&gt;انقر هنا&lt;/button&gt;;</pre></div>
+</section>
+
+<section id="s10">
+  <h2>10. العرض الشرطي وعمليات التكرار (Conditional & Lists)</h2>
+  <p>عرض العناصر بناءً على شروط منطقية (ternary operator) ومعالجة المصفوفات لعرض قوائم البيانات (map).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>const books = ['قواعد البيانات', 'لغة C', '++C'];
+return (
+    &lt;ul&gt;
+        {books.map((book, index) =&gt; &lt;li key={index}&gt;{book}&lt;/li&gt;)}
+    &lt;/ul&gt;
+);</pre></div>
+</section>
+
+<section id="s11">
+  <h2>11. مشاركة الحالة المتقدمة (Context API)</h2>
+  <p>تجنب تمرير الخصائص عبر مستويات متعددة (Prop Drilling) ومشاركة البيانات العامة مثل ثيم الألوان وتسجيل الدخول.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>import { createContext, useContext } from 'const';
+const ThemeContext = createContext('light');
+// استخدام الـ Context داخل المكونات الفرعية عبر useContext</pre></div>
+</section>
+
+<section id="s12">
+  <h2>12. إدارة الحالة المعقدة عبر Hook (useReducer)</h2>
+  <p>الخطاف البديل لـ useState للتعامل مع الحالات المعقدة التي تحتوي على عمليات منطقية متعددة ومترابطة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>import { useReducer } from 'react';
+const initialState = { count: 0 };
+function reducer(state, action) {
+    switch (action.type) {
+        case 'increment': return { count: state.count + 1 };
+        default: return state;
+    }
+}</pre></div>
+</section>
+
+<section id="s13">
+  <h2>13. تحسين الأداء (useMemo و useCallback)</h2>
+  <p>تخزين نتائج العمليات الحسابية والدوال لمنع إعادة تنفيذها بلا داعٍ ورفع كفاءة التطبيق.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>import { useMemo, useCallback } from 'react';
+const memoizedValue = useMemo(() =&gt; computeExpensiveValue(a, b), [a, b]);</pre></div>
+</section>
+
+<section id="s14">
+  <h2>14. المراجع واستشعار العناصر (useRef)</h2>
+  <p>الوصول المباشر لعناصر DOM الحقيقية أو تخزين قيم لا تتسبب في إعادة رسم المكون عند تحديثها.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>import { useRef } from 'react';
+const inputRef = useRef(null);
+const focusInput = () =&gt; inputRef.current.focus();</pre></div>
+</section>
+
+<section id="s15">
+  <h2>15. بناء خطاطيف مخصصة (Custom Hooks)</h2>
+  <p>تغليف المنطق البرمجي المتكرر في خطاف خاص لإعادة استخدامه في أي مكون آخر بكل سهولة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>function useLocalStorage(key, initialValue) {
+    // منطق مخصص للتعامل مع LocalStorage
+}</pre></div>
+</section>
+
+<section id="s16">
+  <h2>16. التوجيه وإدارة الصفحات (React Router)</h2>
+  <p>تحويل تطبيق React إلى نظام صفحات متعددة (SPA) بسلاسة ودون إعادة تحميل المتصفح.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>import { BrowserRouter, Routes, Route } from 'react-router-dom';
+// تنظيم المسارات والصفحات الرئيسية للنظام</pre></div>
+</section>
+
+<section id="s17">
+  <h2>17. التعامل مع واجهات الأبعاد والـ APIs (Fetch & Axios)</h2>
+  <p>جلب البيانات من الخوادم الخارجية وعرضها ديناميكياً داخل المكونات بكفاءة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>useEffect(() =&gt; {
+    fetch('https://api.example.com/data')
+        .then(res =&gt; res.json())
+        .then(data =&gt; setData(data));
+}, []);</pre></div>
+</section>
+
+<section id="s18">
+  <h2>18. إدارة النماذج والتحقق من المدخلات (Forms)</h2>
+  <p>التحكم بحقول الإدخال، حفظ قيمها في الحالة (Controlled Components)، والتحقق من صحتها.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;form onSubmit={handleSubmit}&gt;
+    &lt;input type="text" value={username} onChange={(e) =&gt; setUsername(e.target.value)} /&gt;
+    &lt;button type="submit"&gt;إرسال&lt;/button&gt;
+&lt;/form&gt;</pre></div>
+</section>
+
+<section id="s19">
+  <h2>19. مشروع هندسي: تطبيق إدارة مهام متكامل (Todo App)</h2>
+  <p>تطبيق عملي يجمع المكونات، الحالة (useState)، الحلقات، ومعالجة الأحداث لبناء نظام إدارة مهام تفاعلي.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>function TodoApp() {
+    const [todos, setTodos] = useState([]);
+    // إضافة، حذف، وتعديل المهام برمجياً
+}</pre></div>
+</section>
+
+<section id="s20">
+  <h2>20. الخلاصة الهندسية لمفاهيم React</h2>
+  <p>الخلاصة النهائية لأبرز أسس ومعماريات مكتبة React.js في بناء واجهات المستخدم الحديثة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>/* خلاصة React: المكونات، الحالة State، الخطاطيف Hooks، والأداء العالي */</pre></div>
+</section>
+
+<footer>
+  <div><b>أكاديمية آفاق المعرفة التقنية</b></div>
+  <div>مكتبة | مها شهوب : سلسلة أساسيات التقنية</div>
+  <div>جميع الحقوق محفوظة © 2026</div>
+</footer>
+
+</main>
+</div>
+
+<button class="top" id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+function toggleTheme(){
+  const html = document.documentElement;
+  const dark = html.getAttribute("data-theme") === "dark";
+  html.setAttribute("data-theme", dark ? "light" : "dark");
+  localStorage.setItem("react-guide-theme", html.getAttribute("data-theme"));
+}
+
+(function(){
+  const theme = localStorage.getItem("react-guide-theme");
+  if(theme) document.documentElement.setAttribute("data-theme", theme);
+})();
+
+document.querySelectorAll(".copy").forEach(b => {
+  b.onclick = async () => {
+    const code = b.parentElement.querySelector("pre").innerText;
+    try {
+      await navigator.clipboard.writeText(code);
+    } catch(e) {
+      const ta = document.createElement("textarea");
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      ta.remove();
+    }
+    let x = b.innerText;
+    b.innerText = "✓ تم النسخ";
+    setTimeout(() => b.innerText = x, 1100);
+  }
+});
+
+function filterNav(){
+  let q = document.getElementById("search").value.toLowerCase();
+  document.querySelectorAll("#nav a").forEach(a => {
+    a.style.display = a.innerText.toLowerCase().includes(q) ? "block" : "none";
+  });
+}
+
+window.addEventListener("scroll", () => {
+  let d = document.documentElement;
+  let total = d.scrollHeight - d.clientHeight;
+  document.getElementById("progress").style.width = (total ? (d.scrollTop / total) * 100 : 0) + "%";
+  document.getElementById("topBtn").style.display = d.scrollTop > 400 ? "block" : "none";
+  
+  let cur = "";
+  document.querySelectorAll("section").forEach(s => {
+    if(window.scrollY >= s.offsetTop - 130) cur = s.id;
+  });
+  document.querySelectorAll("#nav a").forEach(a => {
+    a.classList.toggle("active", a.hash === "#" + cur);
+  });
+});
+
+document.querySelectorAll("#nav a").forEach(a => {
+  a.onclick = () => document.querySelector("aside").classList.remove("open");
+});
+</script>
+</body>
+</html>

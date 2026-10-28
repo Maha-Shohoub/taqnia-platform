@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="دليل إطار العمل Bootstrap الشامل والمفصل للأكواد والتصميم المتجاوب - أكاديمية آفاق المعرفة التقنية - مها شهوب">
+<title>دليل Bootstrap الشامل والمفصل | مها شهوب</title>
+<style>
+:root{--bg:#eef3f8;--card:#fff;--text:#172033;--muted:#64748b;--p:#0b4f88;--p2:#1d4ed8;--b:#d7e1eb;--code:#0b1220;--shadow:0 8px 24px rgba(20,55,90,.09)}
+[data-theme=dark]{--bg:#0c1420;--card:#151f2c;--text:#e7eef8;--muted:#a9b7c8;--p:#0b4f88;--p2:#60a5fa;--b:#2b3a4b;--code:#070b12;--shadow:0 8px 24px rgba(0,0,0,.25)}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",Tahoma,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.9}
+
+header{position:fixed;top:0;right:0;left:0;height:72px;z-index:1000;background:var(--card);border-bottom:1px solid var(--b);display:flex;align-items:center;justify-content:space-between;padding:0 20px;box-shadow:var(--shadow)}
+.header-right{display:flex;align-items:center;gap:12px;min-width:0}
+.logo{width:50px;height:50px;border-radius:50%;object-fit:cover;flex-shrink:0}
+.brand{min-width:0}
+.brand b{display:block;color:var(--p2);font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand small{color:var(--muted);font-size:11.5px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.actions{display:flex;gap:8px;flex-shrink:0}
+button{border:1px solid var(--b);background:var(--card);color:var(--text);border-radius:9px;padding:8px 12px;cursor:pointer;font-size:13px;transition:.2s}
+button:hover{border-color:var(--p);color:var(--p)}
+.menu{display:none}
+
+.progress{position:fixed;top:72px;right:0;height:4px;background:var(--p);width:0;z-index:1001}
+aside{position:fixed;top:76px;right:0;bottom:0;width:310px;background:var(--card);border-left:1px solid var(--b);padding:16px;overflow:auto;z-index:950;transition:.3s}
+.search{width:100%;padding:10px;border:1px solid var(--b);border-radius:9px;background:var(--bg);color:var(--text);margin-bottom:10px;outline:none}
+nav a{display:block;color:var(--muted);text-decoration:none;padding:5px 8px;border-radius:7px;font-size:12.5px;margin:2px 0}
+nav a:hover,nav a.active{background:#2563eb1a;color:var(--p);font-weight:700}
+
+main{margin-right:310px;padding:100px 34px 50px;max-width:1300px;min-width:0}
+.hero{background:linear-gradient(135deg,var(--p2),var(--p));color:#ffffff;border-radius:18px;padding:34px;margin-bottom:22px;box-shadow:var(--shadow)}
+.hero h1{font-size:32px}
+.hero p{margin-top:8px;opacity:.95}
+.credit{font-weight:700;margin-top:12px;font-size:13.5px}
+
+section{background:var(--card);border:1px solid var(--b);border-radius:14px;padding:24px;margin-bottom:18px;box-shadow:var(--shadow);scroll-margin-top:95px}
+h2{font-size:21px;color:var(--p2);border-right:4px solid var(--p);padding-right:9px;margin-bottom:12px}
+p{margin-bottom:12px}
+
+.code{position:relative;margin:13px 0}
+.code pre{background:var(--code);color:#dbeafe;direction:ltr;text-align:left;overflow:auto;border-radius:9px;padding:17px;font:13px/1.7 Consolas,monospace;white-space:pre-wrap}
+.copy{position:absolute;right:7px;top:7px;background:#fff;color:#172033;border:0;font-size:11px;padding:5px 8px;cursor:pointer;border-radius:4px;transition:.2s}
+.copy:hover{background:var(--p);color:#fff}
+
+.top{position:fixed;bottom:20px;left:20px;border-radius:50%;background:var(--p);color:#fff;width:44px;height:44px;border:0;cursor:pointer;display:none;z-index:900;box-shadow:0 4px 12px rgba(0,0,0,0.15)}
+footer{text-align:center;color:var(--muted);padding:28px;font-size:13.5px}
+
+@media(max-width:1000px){
+    aside{transform:translateX(100%);width:290px}
+    aside.open{transform:none}
+    .menu{display:block}
+    main{margin:0;padding:90px 16px 40px}
+    .brand small{display:block}
+    .hero h1{font-size:24px}
+}
+
+@media(max-width:480px){
+    .brand b{font-size:13px}
+    .brand small{font-size:10px}
+    header{padding:0 10px}
+    .hero{padding:22px 16px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-right">
+    <button class="menu" onclick="document.querySelector('aside').classList.toggle('open')">☰</button>
+    <img src="IMG/آفاق المعرفة التقنية.png" class="logo" alt="لوجو">
+    <div class="brand">
+      <b>أكاديمية آفاق المعرفة التقنية</b>
+      <small>دليل Bootstrap الشامل | مها شهوب</small>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button onclick="toggleTheme()">◐ الوضع</button>
+  </div>
+</header>
+
+<div class="progress" id="progress"></div>
+
+<aside>
+<input class="search" id="search" placeholder="🔎 ابحث في الوحدات والدروس..." oninput="filterNav()">
+<nav id="nav">
+<a href="#s1">01. مقدمة عن إطار العمل Bootstrap 5</a>
+<a href="#s2">02. الهيكل الأساسي وصفحة البدء (Starter Template)</a>
+<a href="#s3">03. نظام الشبكة المتجاوب (Grid System)</a>
+<a href="#s4">04. الحاويات وخواص العرض (Containers & Layout)</a>
+<a href="#s5">05. طبوغرافيا النصوص والعناوين (Typography)</a>
+<a href="#s6">06. الألوان وخلفيات العناصر (Colors & Backgrounds)</a>
+<a href="#s7">07. المسافات والهوامش (Spacing Utilities: m, p)</a>
+<a href="#s8">08. الأزرار ومجموعات التحكم (Buttons)</a>
+<a href="#s9">09. الجداول وتنسيق البيانات (Tables)</a>
+<a href="#s10">10. الصور والأشكال المتجاوبة (Images & Figures)</a>
+<a href="#s11">11. القوائم المنسدلة وشريط التنقل (Navbar)</a>
+<a href="#s12">12. البطاقات الهندسية (Cards) وتصميم المحتوى</a>
+<a href="#s13">13. النماذج وإدخال البيانات (Forms & Controls)</a>
+<a href="#s14">14. التنبيهات وشارات الإشعارات (Alerts & Badges)</a>
+<a href="#s15">15. النوافذ المنسدلة والمودال (Modals)</a>
+<a href="#s16">16. القوائم الجانبية والمطوية (Accordion & Collapse)</a>
+<a href="#s17">17. شريط التقدم ومؤشرات التحميل (Progress & Spinners)</a>
+<a href="#s18">18. أدوات التموضع والعرض (Flexbox & Positioning)</a>
+<a href="#s19">19. مشروع هندسي: تصميم لوحة تحكم داشبورد متكاملة</a>
+<a href="#s20">20. الخلاصة الهندسية لمفاهيم Bootstrap</a>
+</nav></aside>
+
+<main>
+<div class="hero">
+  <h1>دليل إطار العمل Bootstrap 5 الشامل</h1>
+  <p>هندسة وتصميم واجهات المستخدم المتجاوبة، الشبكات المرنة، والمكونات الجاهزة من الجذور حتى الاحتراف؛ رؤية برمجية متكاملة للسرعة والكفاءة.</p>
+  <div class="credit">إعداد الكاتبة والمهندسة: مها شهوب</div>
+</div>
+
+<section id="s1">
+  <h2>01. مقدمة عن إطار العمل Bootstrap 5</h2>
+  <p>أشهر إطار عمل لتطوير واجهات الويب الأمامية (Frontend Framework)، يعتمد على HTML و CSS و JavaScript لتصميم مواقع سريعة ومتجاوبة مع جميع الشاشات دون الحاجة لاعتماديات jQuery في النسخة الخامسة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;!-- ربط مكتبة Bootstrap 5 عبر CDN --&gt;
+&lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"&gt;</pre></div>
+</section>
+
+<section id="s2">
+  <h2>02. الهيكل الأساسي وصفحة البدء (Starter Template)</h2>
+  <p>القالب البرمجي القياسي الذي يضمن التجاوب السليم وتفعيل دعم اللغة العربية واتجاه الصفحة (RTL).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="ar" dir="rtl"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet"&gt;
+    &lt;title&gt;منصة آفاق المعرفة التقنية&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1 class="text-center mt-5"&gt;مرحباً بكم&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre></div>
+</section>
+
+<section id="s3">
+  <h2>03. نظام الشبكة المتجاوب (Grid System)</h2>
+  <p>نظام شبكي يعتمد على 12 عموداً (12 Columns) يتيح توزيع العناصر بمرونة تامة عبر الشاشات المختلفة (xs, sm, md, lg, xl, xxl).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;div class="container"&gt;
+    &lt;div class="row"&gt;
+        &lt;div class="col-md-6 bg-light p-3"&gt;عمود أول (نصف الشاشة)&lt;/div&gt;
+        &lt;div class="col-md-6 bg-secondary text-white p-3"&gt;عمود ثان&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</pre></div>
+</section>
+
+<section id="s4">
+  <h2>04. الحاويات وخواص العرض (Containers & Layout)</h2>
+  <p>استخدام الحاويات (container أو container-fluid) لتأطير المحتوى وتحديد هوامشه الخارجية بتناسق هندسي.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;div class="container-fluid bg-primary text-white p-4"&gt;
+    شريط عرض يمتد بعرض الشاشة بالكامل
+&lt;/div&gt;</pre></div>
+</section>
+
+<section id="s5">
+  <h2>05. طبوغرافيا النصوص والعناوين (Typography)</h2>
+  <p>تنسيق النصوص، العناوين (h1 إلى h6)، النصوص البارزة، والتمييز باستخدام أصناف Bootstrap الجاهزة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;p class="fs-1 fw-bold text-primary"&gt;عنوان رئيسي كبير وبارز&lt;/p&gt;
+&lt;p class="text-muted"&gt;نص ثانوي رمادي اللون وموضح للتفاصيل.&lt;/p&gt;</pre></div>
+</section>
+
+<section id="s6">
+  <h2>06. الألوان وخلفيات العناصر (Colors & Backgrounds)</h2>
+  <p>أصناف الألوان المعيارية (primary, secondary, success, danger, warning, info, light, dark) لتلوين النصوص والخلفيات.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;div class="bg-success text-white p-3 rounded"&gt;تمت العملية بنجاح&lt;/div&gt;</pre></div>
+</section>
+
+<section id="s7">
+  <h2>07. المسافات والهوامش (Spacing Utilities: m, p)</h2>
+  <p>التحكم السريع في الهوامش الخارجية (Margin - m) والداخليّة (Padding - p) بناءً على مقاييس متسقة من 0 إلى 5.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;div class="mt-4 p-3 mb-2 bg-light border"&gt;عنصر مسافات منظمة&lt;/div&gt;</pre></div>
+</section>
+
+<section id="s8">
+  <h2>08. الأزرار ومجموعات التحكم (Buttons)</h2>
+  <p>تصميم أزرار تفاعلية متجاوبة بأحجام وألوان مختلفة، مع إمكانية جعلها بحجم كامل أو معطلة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;button type="button" class="btn btn-primary btn-lg"&gt;زر رئيسي كبير&lt;/button&gt;
+&lt;button type="button" class="btn btn-outline-danger"&gt;زر حافة تنبيه&lt;/button&gt;</pre></div>
+</section>
+
+<section id="s9">
+  <h2>09. الجداول وتنسيق البيانات (Tables)</h2>
+  <p>تصميم جداول منظمة عبر أصناف مثل table-striped (مخططة)، table-hover (تفاعل عند المرور)، و table-bordered.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;table class="table table-striped table-hover"&gt;
+    &lt;thead class="table-dark"&gt;
+        &lt;tr&gt;&lt;th&gt;#&lt;/th&gt;&lt;th&gt;الاسم&lt;/th&gt;&lt;th&gt;التخصص&lt;/th&gt;&lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;مها شهوب&lt;/td&gt;&lt;td&gt;هندسة برمجيات&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</pre></div>
+</section>
+
+<section id="s10">
+  <h2>10. الصور والأشكال المتجاوبة (Images & Figures)</h2>
+  <p>جعل الصور متجاوبة تلقائياً مع حجم الشاشة عبر صنف img-fluid وتنسيق حوافها.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;img src="IMG/banner.png" class="img-fluid rounded shadow" alt="صورة متجاوبة"&gt;</pre></div>
+</section>
+
+<section id="s11">
+  <h2>11. القوائم المنسدلة وشريط التنقل (Navbar)</h2>
+  <p>بناء أشرطة تنقل علوية متجاوبة بالكامل تتكيف تلقائياً مع الشاشات الصغيرة عبر زر القائمة المنسدلة (Hamburger Menu).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;nav class="navbar navbar-expand-lg navbar-dark bg-dark"&gt;
+    &lt;div class="container-fluid"&gt;
+        &lt;a class="navbar-brand" href="#"&gt;آفاق المعرفة التقنية&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/nav&gt;</pre></div>
+</section>
+
+<section id="s12">
+  <h2>12. البطاقات الهندسية (Cards) وتصميم المحتوى</h2>
+  <p>الحاويات المثالية لعرض المقالات، المنتجات، والبيانات المرئية بتصميم منسق وأنيق.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;div class="card" style="width: 18rem;"&gt;
+    &lt;div class="card-body"&gt;
+        &lt;h5 class="card-title text-primary"&gt;عنوان الكتاب&lt;/h5&gt;
+        &lt;p class="card-text"&gt;وصف مختصر لمحتوى الدليل التقني.&lt;/p&gt;
+        &lt;a href="#" class="btn btn-primary"&gt;قراءة المزيد&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</pre></div>
+</section>
+
+<section id="s13">
+  <h2>13. النماذج وإدخال البيانات (Forms & Controls)</h2>
+  <p>تنسيق حقول الإدخال، مربعات الاختيار، القوائم المنسدلة، والأزرار بمعمارية متناسقة وسهلة الاستخدام.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;div class="mb-3"&gt;
+    &lt;label for="email" class="form-label"&gt;البريد الإلكتروني&lt;/label&gt;
+    &lt;input type="email" class="form-control" id="email" placeholder="name@example.com"&gt;
+&lt;/div&gt;</pre></div>
+</section>
+
+<section id="s14">
+  <h2>14. التنبيهات وشارات الإشعارات (Alerts & Badges)</h2>
+  <p>عرض رسائل التنبيه التفاعلية والشارات الصغيرة لتمييز الحالات والأرقام.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;div class="alert alert-success" role="alert"&gt;
+    تم حفظ التغييرات بنجاح في النظام!
+&lt;/div&gt;
+&lt;span class="badge bg-primary"&gt;جديد 4&lt;/span&gt;</pre></div>
+</section>
+
+<section id="s15">
+  <h2>15. النوافذ المنسدلة والمودال (Modals)</h2>
+  <p>تصميم نوافذ منبثقة تفاعلية لتأكيد العمليات أو عرض تفاصيل إضافية دون مغادرة الصفحة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;!-- زر تفعيل النافذة المنبثقة --&gt;
+&lt;button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal"&gt;
+    فتح النافذة
+&lt;/button&gt;</pre></div>
+</section>
+
+<section id="s16">
+  <h2>16. القوائم الجانبية والمطوية (Accordion & Collapse)</h2>
+  <p>تنظيم المحتوى الطويل عبر أقسام قابلة للطي والفتح بسلاسة تامة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;div class="accordion" id="myAccordion"&gt;
+    &lt;div class="accordion-item"&gt;
+        &lt;h2 class="accordion-header"&gt;
+            &lt;button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"&gt;السؤال أو القسم الأول&lt;/button&gt;
+        &lt;/h2&gt;
+        &lt;div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#myAccordion"&gt;
+            &lt;div class="accordion-body"&gt;محتوى القسم المشروح هنا.&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</pre></div>
+</section>
+
+<section id="s17">
+  <h2>17. شريط التقدم ومؤشرات التحميل (Progress & Spinners)</h2>
+  <p>توفير مؤشرات مرئية لحالة التحميل أو نسبة إنجاز المهام.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;div class="progress"&gt;
+    &lt;div class="progress-bar w-75" role="progressbar"&gt;75%&lt;/div&gt;
+&lt;/div&gt;</pre></div>
+</section>
+
+<section id="s18">
+  <h2>18. أدوات التموضع والعرض (Flexbox & Positioning)</h2>
+  <p>استخدام أدوات الفلكس (d-flex, justify-content-between, align-items-center) للتحكم الدقيق بتوزيع العناصر.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;div class="d-flex justify-content-between align-items-center bg-light p-3"&gt;
+    &lt;span&gt;العنصر الأيمن&lt;/span&gt;
+    &lt;span&gt;العنصر الأيسر&lt;/span&gt;
+&lt;/div&gt;</pre></div>
+</section>
+
+<section id="s19">
+  <h2>19. مشروع هندسي: تصميم لوحة تحكم داشبورد متكاملة</h2>
+  <p>تطبيق عملي يجمع الشبكة، الأزرار، البطاقات، والجداول لتصميم لوحة تحكم إدارية متجاوبة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;div class="container-fluid py-4"&gt;
+    &lt;div class="row"&gt;
+        &lt;div class="col-md-3 bg-dark text-white p-3 min-vh-100"&gt;القائمة الجانبية&lt;/div&gt;
+        &lt;div class="col-md-9 p-4"&gt;محتوى لوحة التحكم الرئيسي&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</pre></div>
+</section>
+
+<section id="s20">
+  <h2>20. الخلاصة الهندسية لمفاهيم Bootstrap</h2>
+  <p>الخلاصة النهائية لأبرز أسس ومعماريات إطار العمل Bootstrap 5 في تسريع وتطوير واجهات الويب.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>/* خلاصة Bootstrap: السرعة، الشبكة المتجاوبة، المكونات الجاهزة، والكفاءة */</pre></div>
+</section>
+
+<footer>
+  <div><b>أكاديمية آفاق المعرفة التقنية</b></div>
+  <div>مكتبة | مها شهوب : سلسلة أساسيات التقنية</div>
+  <div>جميع الحقوق محفوظة © 2026</div>
+</footer>
+
+</main>
+</div>
+
+<button class="top" id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+function toggleTheme(){
+  const html = document.documentElement;
+  const dark = html.getAttribute("data-theme") === "dark";
+  html.setAttribute("data-theme", dark ? "light" : "dark");
+  localStorage.setItem("bootstrap-guide-theme", html.getAttribute("data-theme"));
+}
+
+(function(){
+  const theme = localStorage.getItem("bootstrap-guide-theme");
+  if(theme) document.documentElement.setAttribute("data-theme", theme);
+})();
+
+document.querySelectorAll(".copy").forEach(b => {
+  b.onclick = async () => {
+    const code = b.parentElement.querySelector("pre").innerText;
+    try {
+      await navigator.clipboard.writeText(code);
+    } catch(e) {
+      const ta = document.createElement("textarea");
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      ta.remove();
+    }
+    let x = b.innerText;
+    b.innerText = "✓ تم النسخ";
+    setTimeout(() => b.innerText = x, 1100);
+  }
+});
+
+function filterNav(){
+  let q = document.getElementById("search").value.toLowerCase();
+  document.querySelectorAll("#nav a").forEach(a => {
+    a.style.display = a.innerText.toLowerCase().includes(q) ? "block" : "none";
+  });
+}
+
+window.addEventListener("scroll", () => {
+  let d = document.documentElement;
+  let total = d.scrollHeight - d.clientHeight;
+  document.getElementById("progress").style.width = (total ? (d.scrollTop / total) * 100 : 0) + "%";
+  document.getElementById("topBtn").style.display = d.scrollTop > 400 ? "block" : "none";
+  
+  let cur = "";
+  document.querySelectorAll("section").forEach(s => {
+    if(window.scrollY >= s.offsetTop - 130) cur = s.id;
+  });
+  document.querySelectorAll("#nav a").forEach(a => {
+    a.classList.toggle("active", a.hash === "#" + cur);
+  });
+});
+
+document.querySelectorAll("#nav a").forEach(a => {
+  a.onclick = () => document.querySelector("aside").classList.remove("open");
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="دليل إطار العمل Vue.js الشامل والمفصل للأكواد والمكونات والهياكل - أكاديمية آفاق المعرفة التقنية - مها شهوب">
+<title>دليل Vue.js الشامل والمفصل | مها شهوب</title>
+<style>
+:root{--bg:#eef3f8;--card:#fff;--text:#172033;--muted:#64748b;--p:#0b4f88;--p2:#1d4ed8;--b:#d7e1eb;--code:#0b1220;--shadow:0 8px 24px rgba(20,55,90,.09)}
+[data-theme=dark]{--bg:#0c1420;--card:#151f2c;--text:#e7eef8;--muted:#a9b7c8;--p:#0b4f88;--p2:#60a5fa;--b:#2b3a4b;--code:#070b12;--shadow:0 8px 24px rgba(0,0,0,.25)}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",Tahoma,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.9}
+
+header{position:fixed;top:0;right:0;left:0;height:72px;z-index:1000;background:var(--card);border-bottom:1px solid var(--b);display:flex;align-items:center;justify-content:space-between;padding:0 20px;box-shadow:var(--shadow)}
+.header-right{display:flex;align-items:center;gap:12px;min-width:0}
+.logo{width:50px;height:50px;border-radius:50%;object-fit:cover;flex-shrink:0}
+.brand{min-width:0}
+.brand b{display:block;color:var(--p2);font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand small{color:var(--muted);font-size:11.5px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.actions{display:flex;gap:8px;flex-shrink:0}
+button{border:1px solid var(--b);background:var(--card);color:var(--text);border-radius:9px;padding:8px 12px;cursor:pointer;font-size:13px;transition:.2s}
+button:hover{border-color:var(--p);color:var(--p)}
+.menu{display:none}
+
+.progress{position:fixed;top:72px;right:0;height:4px;background:var(--p);width:0;z-index:1001}
+aside{position:fixed;top:76px;right:0;bottom:0;width:310px;background:var(--card);border-left:1px solid var(--b);padding:16px;overflow:auto;z-index:950;transition:.3s}
+.search{width:100%;padding:10px;border:1px solid var(--b);border-radius:9px;background:var(--bg);color:var(--text);margin-bottom:10px;outline:none}
+nav a{display:block;color:var(--muted);text-decoration:none;padding:5px 8px;border-radius:7px;font-size:12.5px;margin:2px 0}
+nav a:hover,nav a.active{background:#2563eb1a;color:var(--p);font-weight:700}
+
+main{margin-right:310px;padding:100px 34px 50px;max-width:1300px;min-width:0}
+.hero{background:linear-gradient(135deg,var(--p2),var(--p));color:#ffffff;border-radius:18px;padding:34px;margin-bottom:22px;box-shadow:var(--shadow)}
+.hero h1{font-size:32px}
+.hero p{margin-top:8px;opacity:.95}
+.credit{font-weight:700;margin-top:12px;font-size:13.5px}
+
+section{background:var(--card);border:1px solid var(--b);border-radius:14px;padding:24px;margin-bottom:18px;box-shadow:var(--shadow);scroll-margin-top:95px}
+h2{font-size:21px;color:var(--p2);border-right:4px solid var(--p);padding-right:9px;margin-bottom:12px}
+p{margin-bottom:12px}
+
+.code{position:relative;margin:13px 0}
+.code pre{background:var(--code);color:#dbeafe;direction:ltr;text-align:left;overflow:auto;border-radius:9px;padding:17px;font:13px/1.7 Consolas,monospace;white-space:pre-wrap}
+.copy{position:absolute;right:7px;top:7px;background:#fff;color:#172033;border:0;font-size:11px;padding:5px 8px;cursor:pointer;border-radius:4px;transition:.2s}
+.copy:hover{background:var(--p);color:#fff}
+
+.top{position:fixed;bottom:20px;left:20px;border-radius:50%;background:var(--p);color:#fff;width:44px;height:44px;border:0;cursor:pointer;display:none;z-index:900;box-shadow:0 4px 12px rgba(0,0,0,0.15)}
+footer{text-align:center;color:var(--muted);padding:28px;font-size:13.5px}
+
+@media(max-width:1000px){
+    aside{transform:translateX(100%);width:290px}
+    aside.open{transform:none}
+    .menu{display:block}
+    main{margin:0;padding:90px 16px 40px}
+    .brand small{display:block}
+    .hero h1{font-size:24px}
+}
+
+@media(max-width:480px){
+    .brand b{font-size:13px}
+    .brand small{font-size:10px}
+    header{padding:0 10px}
+    .hero{padding:22px 16px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-right">
+    <button class="menu" onclick="document.querySelector('aside').classList.toggle('open')">☰</button>
+    <img src="IMG/آفاق المعرفة التقنية.png" class="logo" alt="لوجو">
+    <div class="brand">
+      <b>أكاديمية آفاق المعرفة التقنية</b>
+      <small>دليل Vue.js الشامل | مها شهوب</small>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button onclick="toggleTheme()">◐ الوضع</button>
+  </div>
+</header>
+
+<div class="progress" id="progress"></div>
+
+<aside>
+<input class="search" id="search" placeholder="🔎 ابحث في الوحدات والدروس..." oninput="filterNav()">
+<nav id="nav">
+<a href="#s1">01. مقدمة عن إطار العمل Vue.js وفلسفته</a>
+<a href="#s2">02. إنشاء مشروع جديد عبر Vite والنظام الأساسي</a>
+<a href="#s3">03. هيكلية مكونات Single File Components (SFC)</a>
+<a href="#s4">04. تهيئة الحالة المتفاعلة عبر ref() و reactive()</a>
+<a href="#s5">05. توجيهات العرض والربط (v-bind & v-model)</a>
+<a href="#s6">06. الجمل الشرطية (v-if, v-else, v-show)</a>
+<a href="#s7">07. حلقات التكرار وعرض القوائم (v-for)</a>
+<a href="#s8">08. معالجة الأحداث والتفاعل (v-on / @click)</a>
+<a href="#s9">09. الخصائص المحسوبة (Computed Properties)</a>
+<a href="#s10">10. مراقبة التغييرات (Watchers)</a>
+<a href="#s11">11. تمرير البيانات بين المكونات عبر Props</a>
+<a href="#s12">12. إصدار الأحداث والتواصل العكسي (Emits)</a>
+<a href="#s13">13. دورة حياة المكون (Lifecycle Hooks)</a>
+<a href="#s14">14. إدراج القوالب والمحتوى (Slots)</a>
+<a href="#s15">15. الخطاطيف المخصصة (Composables)</a>
+<a href="#s16">16. إدارة الحالة المركزية عبر Pinia</a>
+<a href="#s17">17. التوجيه وإدارة الصفحات (Vue Router)</a>
+<a href="#s18">18. التعامل مع النماذج والتحقق من المدخلات</a>
+<a href="#s19">19. مشروع هندسي: تطبيق إدارة مهام متكامل (Vue Todo)</a>
+<a href="#s20">20. الخلاصة الهندسية لمفاهيم Vue.js</a>
+</nav></aside>
+
+<main>
+<div class="hero">
+  <h1>دليل إطار العمل Vue.js الشامل</h1>
+  <p>هندسة واجهات المستخدم التفاعلية، Composition API، وإدارة الحالة من الجذور حتى الاحتراف؛ رؤية برمجية متكاملة للسرعة والمرونة.</p>
+  <div class="credit">إعداد الكاتبة والمهندسة: مها شهوب</div>
+</div>
+
+<section id="s1">
+  <h2>01. مقدمة عن إطار العمل Vue.js وفلسفته</h2>
+  <p>إطار عمل تدريجي (Progressive Framework) لتطوير واجهات المستخدم، يجمع بين بساطة HTML/CSS و قوة JavaScript، مع أداء عالٍ ونظام تفاعلي مرن تم تطويره بواسطة إيفان يو.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>// الفلسفة: إطار عمل متطور وسهل التعلم يتكيف مع احتياجات المشروع البرمجي</pre></div>
+</section>
+
+<section id="s2">
+  <h2>02. إنشاء مشروع جديد عبر Vite والنظام الأساسي</h2>
+  <p>استخدام أدوات البناء الحديثة Vite لإنشاء بيئة عمل Vue 3 متكاملة وسريعة الأداء.</p>
+  <div class="code"><button class="copy">نسخ</button><pre># أوامر إنشاء وتشغيل مشروع Vue عبر موجه الأوامر
+npm create vue@latest
+cd my-vue-app
+npm install
+npm run dev</pre></div>
+</section>
+
+<section id="s3">
+  <h2>03. هيكلية مكونات Single File Components (SFC)</h2>
+  <p>تقسيم المكون داخل ملف واحد يحوي ثلاثة أقسام رئيسية: القالب (&lt;template&gt;)، المنطق (&lt;script setup&gt;)، والتنسيق (&lt;style&gt;).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;template&gt;
+    &lt;h1&gt;{{ message }}&lt;/h1&gt;
+&lt;/template&gt;
+&lt;script setup&gt;
+import { ref } from 'vue'
+const message = ref('مرحباً بك في أكاديمية آفاق المعرفة التقنية')
+&lt;/script&gt;</pre></div>
+</section>
+
+<section id="s4">
+  <h2>04. تهيئة الحالة المتفاعلة عبر ref() و reactive()</h2>
+  <p>طرق تعريف المتغيرات والحالات المتفاعلة (Reactivity) لضمان تحديث الواجهة تلقائياً عند تغير القيم.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>import { ref, reactive } from 'vue'
+
+const count = ref(0) // للقيم الفردية
+const state = reactive({ name: 'مها شهوب', role: 'مهندسة برمجيات' }) // للكائنات</pre></div>
+</section>
+
+<section id="s5">
+  <h2>05. توجيهات العرض والربط (v-bind & v-model)</h2>
+  <p>ربط خصائص العناصر بالمتغيرات (v-bind أو :) والربط الثنائي للنماذج وحقول الإدخال (v-model).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;input v-model="username" placeholder="أدخل الاسم..." /&gt;
+&lt;p&gt;القيمة المدخلة: {{ username }}&lt;/p&gt;</pre></div>
+</section>
+
+<section id="s6">
+  <h2>06. الجمل الشرطية (v-if, v-else, v-show)</h2>
+  <p>التحكم في ظهور واختفاء العناصر في الواجهة بناءً على تحقق الشروط البرمجية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;p v-if="isLoggedIn0"&gt;مرحباً بك مجدداً&lt;/p&gt;
+&lt;p v-else&gt;يرجى تسجيل الدخول&lt;/p&gt;</pre></div>
+</section>
+
+<section id="s7">
+  <h2>07. حلقات التكرار وعرض القوائم (v-for)</h2>
+  <p>معالجة مصفوفات البيانات وعرضها ديناميكياً داخل القوائم والجداول باستخدام التوجيه v-for.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;ul&gt;
+    &lt;li v-for="(book, index) in books" :key="index"&gt;{{ book }}&lt;/li&gt;
+&lt;/ul&gt;</pre></div>
+</section>
+
+<section id="s8">
+  <h2>08. معالجة الأحداث والتفاعل (v-on / @click)</h2>
+  <p>استماع وتفعيل الأحداث البرمجية مثل النقر، الإرسال، وحركات الفأرة باستخدام الاختصار @.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;button @click="incrementCount"&gt;زيادة العداد&lt;/button&gt;</pre></div>
+</section>
+
+<section id="s9">
+  <h2>09. الخصائص المحسوبة (Computed Properties)</h2>
+  <p>إنشاء قيم مشتقة يتم حسابها تلقائياً وتخزينها مؤقتاً (Cached) بناءً على تغير المتغيرات المرتبطة بها.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>import { ref, computed } from 'vue'
+const price = ref(100)
+const tax = computed(() =&gt; price.value * 0.15)</pre></div>
+</section>
+
+<section id="s10">
+  <h2>10. مراقبة التغييرات (Watchers)</h2>
+  <p>تنفيذ عمليات أو مهام محددة فور رصد أي تغيير يطرأ على متغير أو حالة معينة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>import { ref, watch } from 'vue'
+const searchQuery = ref('')
+watch(searchQuery, (newValue) =&gt; {
+    console.log('جاري البحث عن: ', newValue)
+})</pre></div>
+</section>
+
+<section id="s11">
+  <h2>11. تمرير البيانات بين المكونات عبر Props</h2>
+  <p>استقبال البيانات من المكونات الآباء إلى المكونات الأبناء باستخدام دالة defineProps.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;script setup&gt;
+defineProps({
+    title: String,
+    likes: Number
+})
+&lt;/script&gt;</pre></div>
+</section>
+
+<section id="s12">
+  <h2>12. إصدار الأحداث والتواصل العكسي (Emits)</h2>
+  <p>إرسال إشارات أو بيانات من المكون الابن إلى المكون الأب باستخدام دالة defineEmits.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;script setup&gt;
+const emit = defineEmits(['update'])
+const triggerUpdate = () =&gt; emit('update', 'بيانات جديدة')
+&lt;/script&gt;</pre></div>
+</section>
+
+<section id="s13">
+  <h2>13. دورة حياة المكون (Lifecycle Hooks)</h2>
+  <p>الخطافات التي تُنفذ في مراحل عمر المكون المختلفة مثل onMounted و onUnmounted.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>import { onMounted } from 'vue'
+onMounted(() =&gt; {
+    console.log('تم تحميل المكون وعرضه في DOM بنجاح')
+})</pre></div>
+</section>
+
+<section id="s14">
+  <h2>14. إدراج القوالب والمحتوى (Slots)</h2>
+  <p>تمرير محتوى مرن وعناصر HTML من الأب لتضمينها داخل تصميم المكون الابن.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;template&gt;
+    &lt;div class="card"&gt;
+        &lt;slot&gt;محتوى افتراضي في حال عدم التمرير&lt;/slot&gt;
+    &lt;/div&gt;
+&lt;/template&gt;</pre></div>
+</section>
+
+<section id="s15">
+  <h2>15. الخطاطيف المخصصة (Composables)</h2>
+  <p>تغليف المنطق البرمجي المشترك في ملفات مستقلة لإعادة استخدامها بكفاءة (تشبه Custom Hooks في React).</p>
+  <div class="code"><button class="copy">نسخ</button><pre>// useCounter.js
+import { ref } from 'vue'
+export function useCounter() {
+    const count = ref(0)
+    const increment = () =&gt; count.value++
+    return { count, increment }
+}</pre></div>
+</section>
+
+<section id="s16">
+  <h2>16. إدارة الحالة المركزية عبر Pinia</h2>
+  <p>مكتبة إدارة الحالة الرسمية والحديثة لتطبيقات Vue لإدارة البيانات العامة المشتركة بين كافة المكونات.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>import { defineStore } from 'pinia'
+export const useUserStore = defineStore('user', {
+    state: () =&gt; ({ name: 'مها شهوب' }),
+})</pre></div>
+</section>
+
+<section id="s17">
+  <h2>17. التوجيه وإدارة الصفحات (Vue Router)</h2>
+  <p>إعداد مسارات التطبيق وإنشاء نظام صفحات متعددة (SPA) بسلاسة تامة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>import { createRouter, createWebHistory } from 'vue-router'
+// تعريف المسارات وربط المكونات بالصفحات</pre></div>
+</section>
+
+<section id="s18">
+  <h2>18. التعامل مع النماذج والتحقق من المدخلات</h2>
+  <p>إدارة المدخلات، استخدام المعدلات (Modifiers مثل .trim و .number)، والتحقق من صحة البيانات.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;input v-model.trim="age" type="number" /&gt;</pre></div>
+</section>
+
+<section id="s19">
+  <h2>19. مشروع هندسي: تطبيق إدارة مهام متكامل (Vue Todo)</h2>
+  <p>تطبيق عملي يجمع الحالة، الحلقات، النماذج، ومعالجة الأحداث لبناء نظام مهام تفاعلي.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;script setup&gt;
+import { ref } from 'vue'
+const tasks = ref([])
+const newTask = ref('')
+const addTask = () =&gt; { if(newTask.value) tasks.value.push(newTask.value) }
+&lt;/script&gt;</pre></div>
+</section>
+
+<section id="s20">
+  <h2>20. الخلاصة الهندسية لمفاهيم Vue.js</h2>
+  <p>الخلاصة النهائية لأبرز أسس ومعماريات إطار العمل Vue.js في بناء واجهات المستخدم المرنة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>/* خلاصة Vue.js: التفاعلية، Composition API، المكونات، والأداء العالي */</pre></div>
+</section>
+
+<footer>
+  <div><b>أكاديمية آفاق المعرفة التقنية</b></div>
+  <div>مكتبة | مها شهوب : سلسلة أساسيات التقنية</div>
+  <div>جميع الحقوق محفوظة © 2026</div>
+</footer>
+
+</main>
+</div>
+
+<button class="top" id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+function toggleTheme(){
+  const html = document.documentElement;
+  const dark = html.getAttribute("data-theme") === "dark";
+  html.setAttribute("data-theme", dark ? "light" : "dark");
+  localStorage.setItem("vue-guide-theme", html.getAttribute("data-theme"));
+}
+
+(function(){
+  const theme = localStorage.getItem("vue-guide-theme");
+  if(theme) document.documentElement.setAttribute("data-theme", theme);
+})();
+
+document.querySelectorAll(".copy").forEach(b => {
+  b.onclick = async () => {
+    const code = b.parentElement.querySelector("pre").innerText;
+    try {
+      await navigator.clipboard.writeText(code);
+    } catch(e) {
+      const ta = document.createElement("textarea");
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      ta.remove();
+    }
+    let x = b.innerText;
+    b.innerText = "✓ تم النسخ";
+    setTimeout(() => b.innerText = x, 1100);
+  }
+});
+
+function filterNav(){
+  let q = document.getElementById("search").value.toLowerCase();
+  document.querySelectorAll("#nav a").forEach(a => {
+    a.style.display = a.innerText.toLowerCase().includes(q) ? "block" : "none";
+  });
+}
+
+window.addEventListener("scroll", () => {
+  let d = document.documentElement;
+  let total = d.scrollHeight - d.clientHeight;
+  document.getElementById("progress").style.width = (total ? (d.scrollTop / total) * 100 : 0) + "%";
+  document.getElementById("topBtn").style.display = d.scrollTop > 400 ? "block" : "none";
+  
+  let cur = "";
+  document.querySelectorAll("section").forEach(s => {
+    if(window.scrollY >= s.offsetTop - 130) cur = s.id;
+  });
+  document.querySelectorAll("#nav a").forEach(a => {
+    a.classList.toggle("active", a.hash === "#" + cur);
+  });
+});
+
+document.querySelectorAll("#nav a").forEach(a => {
+  a.onclick = () => document.querySelector("aside").classList.remove("open");
+});
+</script>
+</body>
+</html>

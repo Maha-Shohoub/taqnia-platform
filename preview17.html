@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="دليل لغة ترميز البيانات XML الشامل والمفصل للأكواد والهياكل - أكاديمية آفاق المعرفة التقنية - مها شهوب">
+<title>دليل XML الشامل والمفصل | مها شهوب</title>
+<style>
+:root{--bg:#eef3f8;--card:#fff;--text:#172033;--muted:#64748b;--p:#0b4f88;--p2:#1d4ed8;--b:#d7e1eb;--code:#0b1220;--shadow:0 8px 24px rgba(20,55,90,.09)}
+[data-theme=dark]{--bg:#0c1420;--card:#151f2c;--text:#e7eef8;--muted:#a9b7c8;--p:#0b4f88;--p2:#60a5fa;--b:#2b3a4b;--code:#070b12;--shadow:0 8px 24px rgba(0,0,0,.25)}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",Tahoma,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.9}
+
+header{position:fixed;top:0;right:0;left:0;height:72px;z-index:1000;background:var(--card);border-bottom:1px solid var(--b);display:flex;align-items:center;justify-content:space-between;padding:0 20px;box-shadow:var(--shadow)}
+.header-right{display:flex;align-items:center;gap:12px;min-width:0}
+.logo{width:50px;height:50px;border-radius:50%;object-fit:cover;flex-shrink:0}
+.brand{min-width:0}
+.brand b{display:block;color:var(--p2);font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand small{color:var(--muted);font-size:11.5px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.actions{display:flex;gap:8px;flex-shrink:0}
+button{border:1px solid var(--b);background:var(--card);color:var(--text);border-radius:9px;padding:8px 12px;cursor:pointer;font-size:13px;transition:.2s}
+button:hover{border-color:var(--p);color:var(--p)}
+.menu{display:none}
+
+.progress{position:fixed;top:72px;right:0;height:4px;background:var(--p);width:0;z-index:1001}
+aside{position:fixed;top:76px;right:0;bottom:0;width:310px;background:var(--card);border-left:1px solid var(--b);padding:16px;overflow:auto;z-index:950;transition:.3s}
+.search{width:100%;padding:10px;border:1px solid var(--b);border-radius:9px;background:var(--bg);color:var(--text);margin-bottom:10px;outline:none}
+nav a{display:block;color:var(--muted);text-decoration:none;padding:5px 8px;border-radius:7px;font-size:12.5px;margin:2px 0}
+nav a:hover,nav a.active{background:#2563eb1a;color:var(--p);font-weight:700}
+
+main{margin-right:310px;padding:100px 34px 50px;max-width:1300px;min-width:0}
+.hero{background:linear-gradient(135deg,var(--p2),var(--p));color:#ffffff;border-radius:18px;padding:34px;margin-bottom:22px;box-shadow:var(--shadow)}
+.hero h1{font-size:32px}
+.hero p{margin-top:8px;opacity:.95}
+.credit{font-weight:700;margin-top:12px;font-size:13.5px}
+
+section{background:var(--card);border:1px solid var(--b);border-radius:14px;padding:24px;margin-bottom:18px;box-shadow:var(--shadow);scroll-margin-top:95px}
+h2{font-size:21px;color:var(--p2);border-right:4px solid var(--p);padding-right:9px;margin-bottom:12px}
+p{margin-bottom:12px}
+
+.code{position:relative;margin:13px 0}
+.code pre{background:var(--code);color:#dbeafe;direction:ltr;text-align:left;overflow:auto;border-radius:9px;padding:17px;font:13px/1.7 Consolas,monospace;white-space:pre-wrap}
+.copy{position:absolute;right:7px;top:7px;background:#fff;color:#172033;border:0;font-size:11px;padding:5px 8px;cursor:pointer;border-radius:4px;transition:.2s}
+.copy:hover{background:var(--p);color:#fff}
+
+.top{position:fixed;bottom:20px;left:20px;border-radius:50%;background:var(--p);color:#fff;width:44px;height:44px;border:0;cursor:pointer;display:none;z-index:900;box-shadow:0 4px 12px rgba(0,0,0,0.15)}
+footer{text-align:center;color:var(--muted);padding:28px;font-size:13.5px}
+
+@media(max-width:1000px){
+    aside{transform:translateX(100%);width:290px}
+    aside.open{transform:none}
+    .menu{display:block}
+    main{margin:0;padding:90px 16px 40px}
+    .brand small{display:block}
+    .hero h1{font-size:24px}
+}
+
+@media(max-width:480px){
+    .brand b{font-size:13px}
+    .brand small{font-size:10px}
+    header{padding:0 10px}
+    .hero{padding:22px 16px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-right">
+    <button class="menu" onclick="document.querySelector('aside').classList.toggle('open')">☰</button>
+    <img src="IMG/آفاق المعرفة التقنية.png" class="logo" alt="لوجو">
+    <div class="brand">
+      <b>أكاديمية آفاق المعرفة التقنية</b>
+      <small>دليل XML الشامل | مها شهوب</small>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button onclick="toggleTheme()">◐ الوضع</button>
+  </div>
+</header>
+
+<div class="progress" id="progress"></div>
+
+<aside>
+<input class="search" id="search" placeholder="🔎 ابحث في الوحدات والدروس..." oninput="filterNav()">
+<nav id="nav">
+<a href="#s1">01. مقدمة عن لغة XML وتاريخها</a>
+<a href="#s2">02. بنية وهيكل مستند XML الأساسي</a>
+<a href="#s3">03. قواعد صياغة العناصر والعلامات (Tags)</a>
+<a href="#s4">04. خصائص العناصر Attributes واستخداماتها</a>
+<a href="#s5">05. التعليقات ومحارف الهروب (Entities)</a>
+<a href="#s6">06. هندسة البيانات الهرمية والعلاقات</a>
+<a href="#s7">07. التحقق من صحة المستندات DTD</a>
+<a href="#s8">08. مخططات XML Schema (XSD) المتطورة</a>
+<a href="#s9">09. أنواع البيانات والقيود في XSD</a>
+<a href="#s10">10. استعلامات البيانات XPath الأساسية</a>
+<a href="#s11">11. مسارات البحث والتعبيرات في XPath</a>
+<a href="#s12">12. تحويل المستندات XSLT والأنماط</a>
+<a href="#s13">13. قراءة ومعالجة XML عبر لغات البرمجة</a>
+<a href="#s14">14. استخدام XML في ملفات التعديل والإعدادات Config</a>
+<a href="#s15">15. مقارنة هندسية بين XML و JSON</a>
+<a href="#s16">16. مشروع هندسي: نظام تخزين كتب مكتبة رقمية</a>
+<a href="#s17">17. مشروع هندسي: هيكل بيانات هيكلي لدرجات طلاب</a>
+<a href="#s18">18. مشروع هندسي: سجل معاملات بنكية مؤرشفة</a>
+<a href="#s19">19. معالجة الأخطاء وهندسة التحقق بصرياً</a>
+<a href="#s20">20. الخلاصة الهندسية لمفاهيم XML</a>
+</nav></aside>
+
+<main>
+<div class="hero">
+  <h1>دليل لغة ترميز البيانات (XML) الشامل</h1>
+  <p>هندسة تخزين، تبادل، والتحقق من سلامة البيانات الهرمية من الجذور حتى الاحتراف؛ رؤية برمجية متكاملة لربط الأنظمة المتباينة.</p>
+  <div class="credit">إعداد الكاتبة والمهندسة: مها شهوب</div>
+</div>
+
+<section id="s1">
+  <h2>01. مقدمة عن لغة XML وتاريخها</h2>
+  <p>لغة ترميز قابلة للتوسعة (Extensible Markup Language) تم تطويرها بواسطة منظمة W3C عام 1998 لتسهيل تخزين ونقل البيانات الهرمية بين الأنظمة المختلفة باستقلالية تامة عن منصات التشغيل.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!-- مقدمة توثيقية أساسية لملفات XML القياسية --&gt;</pre></div>
+</section>
+
+<section id="s2">
+  <h2>02. بنية وهيكل مستند XML الأساسي</h2>
+  <p>يعتمد المستند على عنصر جذري واحد (Root Element) يضم تحته كافة العناصر الفرعية بترتيب هرمي دقيق ومتشعب.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;Library&gt;
+    &lt;Book&gt;أساسيات التقنية&lt;/Book&gt;
+&lt;/Library&gt;</pre></div>
+</section>
+
+<section id="s3">
+  <h2>03. قواعد صياغة العناصر والعلامات (Tags)</h2>
+  <p>تشترط لغة XML الحساسية لحالة الأحرف (Case-sensitive)، ضرورة إغلاق كافة العلامات المفتوحة، وتجنب تداخل الهياكل.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;Student&gt;
+    &lt;Name&gt;مها شهوب&lt;/Name&gt;
+&&lt;/Student&gt;</pre></div>
+</section>
+
+<section id="s4">
+  <h2>04. خصائص العناصر Attributes واستخداماتها</h2>
+  <p>تستخدم الخصائص لإرفاق بيانات وصفية إضافية بالعنصر (مثل المعرفات الفريدة والأنواع)، يفضل حصرها للبيانات غير الهرمية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;Course id="CS101" level="Advanced"&gt;
+    &lt;Title&gt;نظم قواعد البيانات&lt;/Title&gt;
+&lt;/Course&gt;</pre></div>
+</section>
+
+<section id="s5">
+  <h2>05. التعليقات ومحارف الهروب (Entities)</h2>
+  <p>استخدام الرموز الخاصة مثل &amp;amp; و &amp;lt; لتمثيل المحارف المحجوزة، وكتابة التعليقات التوثيقية بوضوح.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;!-- تعليق هندسي توثيقي --&gt;
+&lt;Expression&gt;A &amp;lt; B &amp;amp; C &amp;gt; D&lt;/Expression&gt;</pre></div>
+</section>
+
+<section id="s6">
+  <h2>06. هندسة البيانات الهرمية والعلاقات</h2>
+  <p>تصميم الجذور والأفرع لتشكيل علاقات واضحة (أب - ابن - شقيق) تحاكي الكيانات الواقعية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;Organization&gt;
+    &lt;Department name="Engineering"&gt;
+        &lt;Employee&gt;مهندسة مها&&Employee&gt;
+    &lt;/Department&gt;
+&lt;/Organization&gt;</pre></div>
+</section>
+
+<section id="s7">
+  <h2>07. التحقق من صحة المستندات DTD</h2>
+  <p>استخدام تعريف نوع المستند (Document Type Definition) لفرض هيكل وقواعد صارمة على محتوى الملفات.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;!ELEMENT Note (To, From, Body)&gt;
+&lt;!ELEMENT To (#PCDATA)&gt;</pre></div>
+</section>
+
+<section id="s8">
+  <h2>08. مخططات XML Schema (XSD) المتطورة</h2>
+  <p>المعمارية الحديثة والأكثر قوة للتحقق من أنواع البيانات والهياكل باستخدام مستندات مكتوبة بلغة XML ذاتها.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+    &lt;xs:element name="Age" type="xs:integer"/&gt;
+&&/xs:schema&gt;</pre></div>
+</section>
+
+<section id="s9">
+  <h2>09. أنواع البيانات والقيود في XSD</h2>
+  <p>تحديد الأطوال، الأنماط النصية (Patterns)، النطاق الرقمي، والقيود الزمنية للقيم المدخلة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;xs:element name="Score"&gt;
+    &lt;xs:simpleType&gt;
+        &lt;xs:restriction base="xs:integer"&gt;
+            &lt;xs:minInclusive value="0"/&gt;
+            &lt;xs:maxInclusive value="100"/&gt;
+        &&/xs:restriction&gt;
+    &&/xs:simpleType&gt;
+&&/xs:element&gt;</pre></div>
+</section>
+
+<section id="s10">
+  <h2>10. استعلامات البيانات XPath الأساسية</h2>
+  <p>لغة المسارات المستخدمة للتنقل عبر عناصر وخصائص مستند XML واستخراج البيانات المستهدفة بدقة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>// تحديد مسار العناصر الأساسية
+/Library/Book/Title</pre></div>
+</section>
+
+<section id="s11">
+  <h2>11. مسارات البحث والتعبيرات في XPath</h2>
+  <p>استخدام الفلاتر، الشرطات العقدية، والوظائف المتقدمة لتصفية النتائج البرمجية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>// استخراج الكتب التي يتجاوز سعرها قيمة محددة
+//Book[Price &gt; 50]</pre></div>
+</section>
+
+<section id="s12">
+  <h2>12. تحويل المستندات XSLT والأنماط</h2>
+  <p>لغة تحويل مستندات XML إلى تنسيقات أخرى مثل HTML، أو نص عادي، أو مستندات XML بأشكال جديدة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&gt;
+    &lt;xsl:template match="/"&gt;...&lt;/xsl:template&gt;
+&&/xsl:stylesheet&gt;</pre></div>
+</section>
+
+<section id="s13">
+  <h2>13. قراءة ومعالجة XML عبر لغات البرمجة</h2>
+  <p>آليات تحليل الملفات (DOM و SAX Parsers) في لغات البرمجة لاستخراج وتعديل محتويات العقد برمجياً.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>// C# / C++ / Python XML Parser Integration
+// قراءة وتعبئة كائنات الذاكرة مباشرة من العقد</pre></div>
+</section>
+
+<section id="s14">
+  <h2>14. استخدام XML في ملفات التعديل والإعدادات Config</h2>
+  <p>الاعتماد الواسع على XML في ضبط إعدادات الاتصال، سلاسل قواعد البيانات، وصلاحيات الأنظمة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;configuration&gt;
+    &lt;add key="Server" value="localhost"/&gt;
+&&/configuration&gt;</pre></div>
+</section>
+
+<section id="s15">
+  <h2>15. مقارنة هندسية بين XML و JSON</h2>
+  <p>مقارنة شاملة من حيث الأداء، دعم التوثيق، التحقق الصارم عبر XSD، وحجم النقل على الشبكات.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- XML: دعم قوي للتحقق والمخططات (XSD)
+-- JSON: خفة الحجم وسهولة التوافق مع JavaScript</pre></div>
+</section>
+
+<section id="s16">
+  <h2>16. مشروع هندسي: نظام تخزين كتب مكتبة رقمية</h2>
+  <p>تصميم ملف XML متكامل لهندسة بيانات الكتب، المؤلفين، الأسعار، وسنوات الإصدار.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;DigitalLibrary&gt;
+    &lt;Book id="B01"&gt;
+        &lt;Title&gt;هندسة قواعد البيانات&lt;/Title&gt;
+        &lt;Author&gt;مها شهوب&&Author&gt;
+        &lt;Price currency="LYD"&gt;45.00&&Price&gt;
+    &&Book&gt;
+&&/DigitalLibrary&gt;</pre></div>
+</section>
+
+<section id="s17">
+  <h2>17. مشروع هندسي: هيكل بيانات هيكلي لدرجات طلاب</h2>
+  <p>بناء مستند XML يمثل بيانات الجامعة، الكليات، المقررات، وعلامات الطلاب الفصلية.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;University&gt;
+    &lt;Student id="202601"&gt;
+        &lt;Name&gt;طالب تقني&&Name&gt;
+        &lt;Grade course="DBMS"&gt;95.5&&Grade&gt;
+    &&Student&gt;
+&&/University&gt;</pre></div>
+</section>
+
+<section id="s18">
+  <h2>18. مشروع هندسي: سجل معاملات بنكية مؤرشفة</h2>
+  <p>هندسة سجلات الحسابات البنكية لضمان التدقيق، الأختام الزمنية، ومتابعة الحركات المالية بدقة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>&lt;BankTransactions&gt;
+    &lt;Transaction type="Deposit" timestamp="2026-10-18T19:00:00"&gt;
+        &lt;AccountNo&gt;100200300&&AccountNo&gt;
+        &lt;Amount&gt;1250.00&&Amount&gt;
+    &&Transaction&gt;
+&&/BankTransactions&gt;</pre></div>
+</section>
+
+<section id="s19">
+  <h2>19. معالجة الأخطاء وهندسة التحقق بصرياً</h2>
+  <p>أبرز الأخطاء الشائعة في صياغة XML (مثل تداخل العقد أو نسيان الإغلاق) وكيفية تلافيها برمجياً.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>-- Validation Exception Handling &amp; Well-Formedness Checks</pre></div>
+</section>
+
+<section id="s20">
+  <h2>20. الخلاصة الهندسية لمفاهيم XML</h2>
+  <p>الخلاصة النهائية لأبرز أسس ومعماريات لغة XML في تخزين وبناء البيانات المنظمة.</p>
+  <div class="code"><button class="copy">نسخ</button><pre>/* خلاصة XML: الهيكلة، التوسعة، المخططات XSD، والتحقق الصارم */</pre></div>
+</section>
+
+<footer>
+  <div><b>أكاديمية آفاق المعرفة التقنية</b></div>
+  <div>مكتبة | مها شهوب : سلسلة أساسيات التقنية</div>
+  <div>جميع الحقوق محفوظة © 2026</div>
+</footer>
+
+</main>
+</div>
+
+<button class="top" id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+function toggleTheme(){
+  const html = document.documentElement;
+  const dark = html.getAttribute("data-theme") === "dark";
+  html.setAttribute("data-theme", dark ? "light" : "dark");
+  localStorage.setItem("xml-guide-theme", html.getAttribute("data-theme"));
+}
+
+(function(){
+  const theme = localStorage.getItem("xml-guide-theme");
+  if(theme) document.documentElement.setAttribute("data-theme", theme);
+})();
+
+document.querySelectorAll(".copy").forEach(b => {
+  b.onclick = async () => {
+    const code = b.parentElement.querySelector("pre").innerText;
+    try {
+      await navigator.clipboard.writeText(code);
+    } catch(e) {
+      const ta = document.createElement("textarea");
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      ta.remove();
+    }
+    let x = b.innerText;
+    b.innerText = "✓ تم النسخ";
+    setTimeout(() => b.innerText = x, 1100);
+  }
+});
+
+function filterNav(){
+  let q = document.getElementById("search").value.toLowerCase();
+  document.querySelectorAll("#nav a").forEach(a => {
+    a.style.display = a.innerText.toLowerCase().includes(q) ? "block" : "none";
+  });
+}
+
+window.addEventListener("scroll", () => {
+  let d = document.documentElement;
+  let total = d.scrollHeight - d.clientHeight;
+  document.getElementById("progress").style.width = (total ? (d.scrollTop / total) * 100 : 0) + "%";
+  document.getElementById("topBtn").style.display = d.scrollTop > 400 ? "block" : "none";
+  
+  let cur = "";
+  document.querySelectorAll("section").forEach(s => {
+    if(window.scrollY >= s.offsetTop - 130) cur = s.id;
+  });
+  document.querySelectorAll("#nav a").forEach(a => {
+    a.classList.toggle("active", a.hash === "#" + cur);
+  });
+});
+
+document.querySelectorAll("#nav a").forEach(a => {
+  a.onclick = () => document.querySelector("aside").classList.remove("open");
+});
+</script>
+</body>
+</html>
